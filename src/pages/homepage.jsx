@@ -4,6 +4,9 @@ import home1 from "../assets/home1.png";
 import home2 from "../assets/home2.png";
 import home3 from "../assets/home3.png";
 import NewFeature from "../components/homepage/newFeature";
+import Popular from "../components/homepage/popular";
+import HomeTool from "../components/homepage/hometool";
+import Event from "../components/homepage/event";
 
 const Homepage = () => {
   return (
@@ -51,6 +54,9 @@ const Homepage = () => {
 
       {/* NewFeature Section BELOW */}
       <NewFeature />
+      <Popular />
+      <HomeTool />
+      <Event />
     </div>
   );
 };
