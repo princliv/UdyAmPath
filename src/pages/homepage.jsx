@@ -3,47 +3,54 @@ import { Link } from "react-router-dom";
 import home1 from "../assets/home1.png";
 import home2 from "../assets/home2.png";
 import home3 from "../assets/home3.png";
+import NewFeature from "../components/homepage/newFeature";
 
 const Homepage = () => {
   return (
     <div style={styles.container}>
-      {/* Left Section */}
-      <div style={styles.leftSection}>
-        <p style={styles.description}>
-          A complete solution for learning, time management, mental wellness, and career growth.
-        </p>
-        <div style={styles.buttonContainer}>
-          <button style={styles.seeMoreBtn}>See More</button>
-          <button style={styles.exploreBtn}>Explore</button>
+      {/* Content Wrapper */}
+      <div style={styles.contentWrapper}>
+        {/* Left Section */}
+        <div style={styles.leftSection}>
+          <p style={styles.description}>
+            A complete solution for learning, time management, mental wellness, and career growth.
+          </p>
+          <div style={styles.buttonContainer}>
+            <button style={styles.seeMoreBtn}>See More</button>
+            <button style={styles.exploreBtn}>Explore</button>
+          </div>
+        </div>
+
+        {/* Right Section */}
+        <div style={styles.rightSection}>
+          <Link to="/jobpage" style={{ ...styles.box, backgroundColor: "#9be6c1" }}>
+            <div style={styles.textContainer}>
+              <h3 style={styles.heading}>Jobs and Internships</h3>
+              <p style={styles.subHeading}>Explore and Achieve</p>
+            </div>
+            <img src={home1} alt="Jobs and Internships" style={styles.image} />
+          </Link>
+
+          <Link to="/coursepage" style={{ ...styles.box, backgroundColor: "#c8bbff" }}>
+            <div style={styles.textContainer}>
+              <h3 style={styles.heading}>Courses</h3>
+              <p style={styles.subHeading}>Refine Your Knowledge</p>
+            </div>
+            <img src={home2} alt="Courses" style={styles.image} />
+          </Link>
+
+          <Link to="/toolspage" style={{ ...styles.box, backgroundColor: "#fbc5ff" }}>
+            <div style={styles.textContainer}>
+              <h3 style={styles.heading}>Productivity Tools</h3>
+              <p style={styles.subHeading}>Enjoy and Explore</p>
+            </div>
+            <img src={home3} alt="Productivity Tools" style={styles.image} />
+          </Link>
         </div>
       </div>
 
-      {/* Right Section */}
-      <div style={styles.rightSection}>
-        <Link to="/jobpage" style={{ ...styles.box, backgroundColor: "#9be6c1" }}>
-          <div style={styles.textContainer}>
-            <h3 style={styles.heading}>Jobs and Internships</h3>
-            <p style={styles.subHeading}>Explore and Achieve</p>
-          </div>
-          <img src={home1} alt="Jobs and Internships" style={styles.image} />
-        </Link>
-
-        <Link to="/coursepage" style={{ ...styles.box, backgroundColor: "#c8bbff" }}>
-          <div style={styles.textContainer}>
-            <h3 style={styles.heading}>Courses</h3>
-            <p style={styles.subHeading}>Refine Your Knowledge</p>
-          </div>
-          <img src={home2} alt="Courses" style={styles.image} />
-        </Link>
-
-        <Link to="/toolspage" style={{ ...styles.box, backgroundColor: "#fbc5ff" }}>
-          <div style={styles.textContainer}>
-            <h3 style={styles.heading}>Productivity Tools</h3>
-            <p style={styles.subHeading}>Enjoy and Explore</p>
-          </div>
-          <img src={home3} alt="Productivity Tools" style={styles.image} />
-        </Link>
-      </div>
+      {/* NewFeature Section BELOW */}
+      <NewFeature />
     </div>
   );
 };
@@ -51,9 +58,14 @@ const Homepage = () => {
 const styles = {
   container: {
     display: "flex",
-    justifyContent: "space-between",
+    flexDirection: "column", // Ensures content stacks vertically
     alignItems: "center",
     padding: "40px",
+  },
+  contentWrapper: {
+    display: "flex",
+    justifyContent: "space-between",
+    width: "100%", 
   },
   leftSection: {
     flex: 1,
