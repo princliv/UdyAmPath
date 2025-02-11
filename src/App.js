@@ -6,6 +6,8 @@ import JobPage from "./pages/jobpage";
 import ToolsPage from "./pages/toolspage";
 //import Contact from "";
 import Profile from "./pages/profile";
+import backgroud from "./assets/background.png";
+
 
 function App() {
   const headerStyle = {
@@ -44,7 +46,7 @@ function App() {
       {/* Header inside App.js */}
       <header style={headerStyle}>
         <Link to="/homepage">
-          <img src="/src/assets/background.png" alt="Logo" style={logoStyle} />
+          <img src={backgroud} alt="Logo" style={logoStyle} />
         </Link>
         <nav style={navStyle}>
           <NavLink to="/coursepage" style={linkStyle} activeStyle={{ color: "#007bff" }}>
