@@ -67,13 +67,14 @@ function App() {
 
       {/* Page Routes */}
       <Routes>
+        <Route path="/" element={<Homepage />} />
         <Route path="/homepage" element={<Homepage />} />
         <Route path="/coursepage" element={<CoursePage />} />
         <Route path="/jobpage" element={<JobPage />} />
         <Route path="/toolspage" element={<ToolsPage />} />
-        
         <Route path="/profile" element={<Profile />} />
       </Routes>
+
     </Router>
   );
 }
