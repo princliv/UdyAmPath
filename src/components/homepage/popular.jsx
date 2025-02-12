@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link for internal navigation
+import { Link } from "react-router-dom";
 import homeArrow from "../../assets/homearrow.png";
 import homePopular from "../../assets/homepopular.png";
 
@@ -61,40 +61,50 @@ const styles = {
     justifyContent: "space-between",
     backgroundColor: "#d2e4fc",
     padding: "40px",
+    width: "100%",
+    flexWrap: "wrap",
   },
   headingContainer: {
     flex: 1,
+    minWidth: "280px",
+    textAlign: "left",
+    marginBottom: "20px",
   },
   heading: {
     fontWeight: 900,
-    fontSize: "48px",
+    fontSize: "3rem",
     display: "flex",
     alignItems: "center",
+    flexWrap: "wrap",
   },
   arrowIcon: {
-    width: "100px",
-    marginLeft: "2px",
+    width: "80px",
+    marginLeft: "5px",
   },
   subHeading: {
     fontWeight: 400,
-    fontSize: "16px",
+    fontSize: "1rem",
     maxWidth: "300px",
   },
   courseContainer: {
     display: "flex",
     gap: "20px",
     flex: 2,
-    alignItems: "center", // Ensures all items align properly
+    alignItems: "center",
+    justifyContent: "center",
+    flexWrap: "wrap",
+    width: "100%",
   },
   courseBox: {
     padding: "20px",
     borderRadius: "20px",
-    width: "250px", // Increased width
-    height: "250px", // Ensured same height for all
+    width: "300px",
+    height: "300px",
     textAlign: "center",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    transition: "transform 0.3s ease",
   },
   pinkBox: {
     backgroundColor: "#fabec0",
@@ -111,7 +121,7 @@ const styles = {
     borderBottomRightRadius: "0px",
   },
   courseTitle: {
-    fontSize: "18px",
+    fontSize: "1.2rem",
     fontWeight: 700,
   },
   startLearning: {
@@ -125,17 +135,55 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    width: "250px", // Matches box size
-    height: "250px", // Matches box size
+    width: "100%",
+    maxWidth: "300px",
+    height: "300px",
   },
   courseImage: {
-    width: "100%", // Ensures it fills container
-    height: "100%", // Ensures it fills container
-    borderTopRightRadius: "34px",
-    borderBottomLeftRadius: "34px",
-    borderTopLeftRadius: "34px",
-    borderBottomRightRadius: "34px",
+    width: "100%",
+    height: "100%",
+    borderRadius: "34px",
     objectFit: "cover",
+  },
+
+  // Responsive Styles
+  "@media (max-width: 1024px)": {
+    container: {
+      flexWrap: "wrap",
+      justifyContent: "center",
+    },
+    heading: {
+      fontSize: "2rem",
+      textAlign: "center",
+    },
+    subHeading: {
+      textAlign: "center",
+      margin: "auto",
+    },
+    courseContainer: {
+      justifyContent: "center",
+    },
+  },
+  "@media (max-width: 768px)": {
+    container: {
+      flexDirection: "column",
+      textAlign: "center",
+      padding: "20px",
+    },
+    heading: {
+      fontSize: "1.8rem",
+    },
+    subHeading: {
+      fontSize: "0.9rem",
+    },
+    courseBox: {
+      width: "100%",
+      height: "auto",
+      padding: "15px",
+    },
+    startLearning: {
+      fontSize: "0.9rem",
+    },
   },
 };
 
