@@ -1,0 +1,107 @@
+[
+    {
+      "date": "20 Jan, 2025",
+      "company": "Amazon",
+      "title": "Senior UI/UX Designer",
+      "type": "Part Time",
+      "level": "Senior Level",
+      "logo": "amazonLogo",
+      "color": "#fabec0",
+      "location": ["New York, USA", "Seattle, USA"],
+      "experience": "5+ years",
+      "salary": "$90,000 - $120,000 per year",
+      "key_responsibilities": [
+        "Design intuitive and user-friendly UI/UX for web and mobile applications.",
+        "Collaborate with product managers and developers to enhance the user experience.",
+        "Conduct user research and usability testing to refine designs.",
+        "Create wireframes, prototypes, and user flows to communicate design ideas.",
+        "Ensure brand consistency and adherence to design guidelines."
+      ],
+      "skills_required": [
+        "Figma, Adobe XD, Sketch",
+        "HTML, CSS, JavaScript",
+        "User research & usability testing",
+        "Prototyping & wireframing",
+        "Strong understanding of design systems"
+      ]
+    },
+    {
+      "date": "20 Jan, 2025",
+      "company": "Google",
+      "title": "Senior FrontEnd Designer",
+      "type": "On-Site",
+      "level": "Senior Level",
+      "logo": "googleLogo",
+      "color": "#e7ddcd",
+      "location": ["Mountain View, USA", "London, UK"],
+      "experience": "6+ years",
+      "salary": "$100,000 - $130,000 per year",
+      "key_responsibilities": [
+        "Develop and maintain user-facing features using React and Angular.",
+        "Work closely with UI/UX designers to implement responsive web designs.",
+        "Optimize applications for maximum performance and scalability.",
+        "Ensure cross-browser compatibility and responsive design principles.",
+        "Collaborate with backend developers to integrate APIs and services."
+      ],
+      "skills_required": [
+        "React, Angular, Vue.js",
+        "JavaScript, TypeScript",
+        "CSS, Sass, Tailwind CSS",
+        "RESTful APIs & GraphQL",
+        "Performance optimization"
+      ]
+    },
+    {
+      "date": "20 Jan, 2025",
+      "company": "Amazon",
+      "title": "Senior UI/UX Designer",
+      "type": "Part Time",
+      "level": "Senior Level",
+      "logo": "amazonLogo",
+      "color": "#e7edeb",
+      "location": ["San Francisco, USA", "Berlin, Germany"],
+      "experience": "5+ years",
+      "salary": "$85,000 - $115,000 per year",
+      "key_responsibilities": [
+        "Lead UI/UX design projects and deliver high-quality designs.",
+        "Conduct A/B testing and analyze user behavior to improve design decisions.",
+        "Develop design systems and maintain consistency across platforms.",
+        "Work closely with developers to ensure seamless implementation.",
+        "Create visual concepts, icons, and illustrations for digital products."
+      ],
+      "skills_required": [
+        "Adobe XD, Figma, Photoshop",
+        "UX research & user testing",
+        "Prototyping & wireframing",
+        "HTML, CSS, JavaScript knowledge",
+        "Data-driven design approach"
+      ]
+    },
+    {
+      "date": "20 Jan, 2025",
+      "company": "Google",
+      "title": "Senior FrontEnd Designer",
+      "type": "On-Site",
+      "level": "Senior Level",
+      "logo": "googleLogo",
+      "color": "#d2e4fc",
+      "location": ["Sydney, Australia", "Toronto, Canada"],
+      "experience": "6+ years",
+      "salary": "$105,000 - $140,000 per year",
+      "key_responsibilities": [
+        "Design and develop front-end architecture using modern frameworks.",
+        "Ensure accessibility and usability best practices in web applications.",
+        "Optimize frontend code for fast performance and SEO compliance.",
+        "Work with cross-functional teams to implement UI enhancements.",
+        "Stay up to date with the latest UI/UX trends and technologies."
+      ],
+      "skills_required": [
+        "React.js, Next.js, Vue.js",
+        "CSS-in-JS, Tailwind CSS, Bootstrap",
+        "JavaScript, TypeScript",
+        "Web performance optimization",
+        "Version control with Git"
+      ]
+    }
+  ]
+  
