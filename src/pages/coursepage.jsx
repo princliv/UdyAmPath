@@ -83,7 +83,7 @@ const CoursePage = () => {
           <h4 style={{ fontSize: "16px", fontWeight: "bold", marginBottom: "5px" }}>Notes Hard to Read?</h4>
           <p style={{ fontSize: "14px", marginBottom: "10px" }}>Discover Visual Diagrams!</p>
           <p style={{ fontSize: "12px", color: "#333" }}>Transform your lengthy notes into easy-to-understand diagrams & tutorials.</p>
-          <button onClick={() => navigate("./src/pages/notespage")} style={{ 
+          <button onClick={() => navigate("/notespage")} style={{ 
             marginTop: "10px", 
             padding: "8px 12px", 
             background: "#004aad", 
