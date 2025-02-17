@@ -1,9 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const CoursePage = () => {
+  const navigate = useNavigate();
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "20px" }}>
-      {/* Top Section with Two Cards */}
+      {/* Top Section */}
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         {/* Left Rectangle */}
         <div style={{ 
@@ -64,7 +67,32 @@ const CoursePage = () => {
         </div>
       </div>
 
-      {/* Details Section Below */}
+      {/* Sidebar Section */}
+      <div style={{ width: "250px", background: "#f4f4f4", padding: "15px", borderRadius: "10px", marginTop: "20px" }}>
+        <h3 style={{ fontSize: "18px", fontWeight: "bold", marginBottom: "10px" }}>Categories</h3>
+        <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+          <button style={{ background: "#e4deff", padding: "10px", border: "none", borderRadius: "5px", textAlign: "left", cursor: "pointer" }}>Computer Science</button>
+          <button style={{ background: "#e4deff", padding: "10px", border: "none", borderRadius: "5px", textAlign: "left", cursor: "pointer" }}>Information Technology</button>
+          <button style={{ background: "#e4deff", padding: "10px", border: "none", borderRadius: "5px", textAlign: "left", cursor: "pointer" }}>Data Science</button>
+          <button style={{ background: "#e4deff", padding: "10px", border: "none", borderRadius: "5px", textAlign: "left", cursor: "pointer" }}>Language Learning</button>
+          <button style={{ background: "#e4deff", padding: "10px", border: "none", borderRadius: "5px", textAlign: "left", cursor: "pointer" }}>Business</button>
+          <button style={{ background: "#d1c4ff", padding: "10px", border: "none", borderRadius: "5px", textAlign: "left", cursor: "pointer", marginTop: "5px" }}>More</button>
+        </div>
+        <div style={{ background: "#e4deff", padding: "10px", borderRadius: "10px", marginTop: "20px", textAlign: "center" }}>
+          <h4 style={{ fontSize: "16px", fontWeight: "bold", marginBottom: "5px" }}>Notes Hard to Read?</h4>
+          <p style={{ fontSize: "14px", marginBottom: "10px" }}>Discover Visual Diagrams!</p>
+          <p style={{ fontSize: "12px", color: "#333" }}>Transform your lengthy notes into easy-to-understand diagrams & tutorials.</p>
+          <button onClick={() => navigate("./src/pages/notespage")} style={{ 
+            marginTop: "10px", 
+            padding: "8px 12px", 
+            background: "#004aad", 
+            color: "white", 
+            border: "none", 
+            borderRadius: "5px", 
+            cursor: "pointer" 
+          }}>Explore</button>
+        </div>
+      </div>
     </div>
   );
 };
