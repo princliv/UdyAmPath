@@ -1,0 +1,47 @@
+[
+    {
+      "company": "Amazon",
+      "title": "Software Engineer",
+      "date": "2023-12-01",
+      "type": "Full-time",
+      "level": "Senior",
+      "color": "#ffffff",
+      "duration": "2 years",
+      "image": "/assets/coursepage/java.jpg",
+      "logo": "/assets/amazon-logo.png"
+    },
+    {
+      "company": "Google",
+      "title": "Product Manager",
+      "date": "2023-11-15",
+      "type": "Full-time",
+      "level": "Mid",
+      "color": "#ffffff",
+      "duration": "1 year",
+      "image": "/assets/coursepage/python.jpg",
+      "logo": "/assets/google-logo.png"
+    },
+    {
+      "company": "Apple",
+      "title": "Data Scientist",
+      "date": "2023-10-20",
+      "type": "Internship",
+      "level": "Junior",
+      "color": "#ffffff",
+      "duration": "6 months",
+      "image": "/assets/coursepage/R.jpg",
+      "logo": "/assets/apple-logo.png"
+    },
+    {
+      "company": "Google",
+      "title": "Product Manager",
+      "date": "2023-11-15",
+      "type": "Full-time",
+      "level": "Mid",
+      "color": "#ffffff",
+      "duration": "1 year",
+      "image": "/assets/coursepage/sql.png",
+      "logo": "/assets/google-logo.png"
+    }
+]
+  
