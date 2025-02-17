@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -93,8 +94,10 @@ const CoursePage = () => {
           }}>Explore</button>
         </div>
       </div>
+
     </div>
   );
 };
+
 
 export default CoursePage;
