@@ -41,12 +41,12 @@ const Details = () => {
   };
 
   return (
-    <div style={{ display: "flex", gap: "65px", padding: "20px" }}>
+    <div style={{ display: "flex", gap: "20px", padding: "0px" }}>
 
       {/* Left Filter Sidebar */}
-      <div style={{ width: "200px", border: "1px solid #ccc", borderRadius: "10px", padding: "10px" }}>
+      <div style={{ width: "270px", border: "1px solid #ccc", borderRadius: "10px", padding: "10px" }}>
         <h3 style={{ textAlign: "center" }}>Filters</h3>
-        <div style={{ height: "5px", backgroundColor: "#ccc", margin: "10px 0" }}></div>
+        <div style={{ height: "5px", backgroundColor: "#ccc" }}></div>
       </div>
 
       {/* Right Main Section */}
@@ -86,7 +86,7 @@ const Details = () => {
         </div>
 
         {/* Job Cards Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "20px" }}>
           {jobs.map((job, index) => (
             <div
               key={index}
@@ -97,7 +97,7 @@ const Details = () => {
                 boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
                 display: "flex",
                 flexDirection: "column",
-                gap: "10px",
+                gap: "5px",
               }}
             >
               <span style={{ fontSize: "12px", color: "#555" }}>{job.date}</span>
