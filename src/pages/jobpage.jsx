@@ -1,5 +1,6 @@
 import React from "react";
 import Details from "../components/jobpage/details";
+import headerBg from '../assets/jobpage/headerbg.png';
 
 const JobPage = () => {
   return (
@@ -31,7 +32,10 @@ const JobPage = () => {
 
         {/* Right Rectangle */}
         <div style={{ 
-          background: "#f5f5f5", 
+          backgroundImage: `url(${headerBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
           padding: "20px", 
           borderRadius: "10px", 
           flex: 1, 
