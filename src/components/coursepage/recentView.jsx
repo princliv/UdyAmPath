@@ -3,11 +3,22 @@ import { useNavigate } from "react-router-dom";
 import amazonLogo from "../../assets/coursepage/amazon.png";
 import googleLogo from "../../assets/coursepage/google.png";
 import appleLogo from "../../assets/coursepage/apple.png";
+import javaImage from "../../assets/coursepage/java.jpg";
+import pythonImage from "../../assets/coursepage/python.jpg";
+import rLangImage from "../../assets/coursepage/R.jpg";
+import sqlImage from "../../assets/coursepage/sql.png";
 
 const logoMap = {
   "Amazon": amazonLogo,
   "Google": googleLogo,
   "Apple": appleLogo,
+};
+
+const courseImageMap = {
+  "Java": javaImage,
+  "Python": pythonImage,
+  "R Language": rLangImage,
+  "SQL": sqlImage,
 };
 
 const Details = () => {
@@ -16,12 +27,13 @@ const Details = () => {
   const [selectedTab, setSelectedTab] = useState("course");
 
   useEffect(() => {
-    fetch("/coursedata.json") // Fetch from public folder
+    fetch("/coursedata.json")
       .then((response) => response.json())
       .then((data) => {
         const updatedCourses = data.map((course) => ({
           ...course,
-          logo: logoMap[course.company] || null, // Fallback to null if logo is missing
+          logo: logoMap[course.company] || null, 
+          image: courseImageMap[course.title] || null, // Assign course image dynamically
         }));
         setCourses(updatedCourses);
       })
@@ -104,14 +116,14 @@ const Details = () => {
         </div>
 
         {/* Course Cards Container */}
-        <div style={{ padding: "20px", backgroundColor: "#f4f4f4", borderRadius: "10px" }}>
+        <div style={{ padding: "20px" }}>
           {/* Recently Viewed Products Text */}
           <div style={{ marginBottom: "10px", fontSize: "25px", fontWeight: "bold", color: "#333" }}>
             Recently Viewed Products
           </div>
 
           {/* Course Cards Grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "20px", backgroundColor: "#f4f4f4", padding: "20px", borderRadius: "10px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "20px", padding: "20px" }}>
             {courses.map((course, index) => (
               <div
                 key={index}

@@ -6,6 +6,7 @@ import JobPage from "./pages/jobpage";
 import ToolsPage from "./pages/toolspage";
 import NotesPage from "./pages/notespage";
 import CourseDetail from "./pages/coursedetail";
+import BasePage from "./components/jobpage/basePage";
 //import Contact from "";
 import Profile from "./pages/profile";
 import backgroud from "./assets/background.png";
@@ -77,6 +78,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/notespage" element={<NotesPage />} />
         <Route path="/coursedetail" element={<CourseDetail />} />
+        <Route path="/base" element={<BasePage />} />
 
       </Routes>
 
