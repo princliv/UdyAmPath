@@ -1,9 +1,9 @@
 import React from "react";
-import Details from "../components/coursepage/details";
+import RecentView from "../components/coursepage/recentView";
+import MostPopular from "../components/coursepage/mostPopular";
 import headerBg from '../assets/coursepage/headerbg.png';
 
 const CoursePage = () => {
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "20px" }}>
       {/* Top Section */}
@@ -70,7 +70,8 @@ const CoursePage = () => {
       </div>
 
       {/* Details Section Below */}
-      <Details />
+      <RecentView />
+      <MostPopular />
 
     </div>
   );
