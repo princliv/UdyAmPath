@@ -1,6 +1,8 @@
 import React from "react";
 import successGif from "../../assets/toolpage/success.gif";
 import interviewImg from "../../assets/toolpage/interview.png";
+import SoftSkill from "../toolspage/softSkill";
+import Project from "./project";
 
 const Interview = () => {
   const interviewData = [
@@ -34,7 +36,7 @@ const Interview = () => {
         }}
       >
         Cracking the Code: Your Ultimate Tech Interview Prep
-        <img src={successGif} alt="Success Icon" style={{ width: "60px", height: "60px" }} />
+        <img src={successGif} alt="Success Icon" style={{ width: "74px", height: "74px" }} />
       </h2>
 
       {/* Interview Boxes */}
@@ -68,7 +70,10 @@ const Interview = () => {
           </div>
         ))}
       </div>
+      <SoftSkill />
+      <Project />
     </div>
+    
   );
 };
 
