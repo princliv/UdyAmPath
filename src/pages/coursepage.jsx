@@ -1,6 +1,5 @@
 import React from "react";
 import RecentView from "../components/coursepage/recentView";
-import MostPopular from "../components/coursepage/mostPopular";
 import headerBg from '../assets/coursepage/headerbg.png';
 
 const CoursePage = () => {
@@ -71,8 +70,6 @@ const CoursePage = () => {
 
       {/* Details Section Below */}
       <RecentView />
-      <MostPopular />
-
     </div>
   );
 };

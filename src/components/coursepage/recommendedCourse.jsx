@@ -12,7 +12,7 @@ const courseImageMap = {
   "SQL": sqlImage,
 };
 
-const Details = () => {
+const Recommended = () => {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
 
@@ -39,7 +39,7 @@ const Details = () => {
       <div style={{ width: "100%", backgroundColor: "#e4deff", padding: "20px" }}>
         {/* Heading */}
         <div style={{ marginBottom: "10px", fontSize: "25px", fontWeight: "bold", color: "#333" }}>
-          Most Popular Courses
+          Recommended Courses
         </div>
 
         {/* Course Grid */}
@@ -47,7 +47,6 @@ const Details = () => {
           display: "grid", 
           gridTemplateColumns: "1fr 1fr 1fr 1fr", 
           gap: "20px", 
-          backgroundColor: "#e4deff", 
           padding: "20px", 
           borderRadius: "10px" 
         }}>
@@ -131,4 +130,4 @@ const Details = () => {
   );
 };
 
-export default Details;
+export default Recommended;
