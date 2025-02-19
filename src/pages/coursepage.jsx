@@ -1,9 +1,11 @@
 import React from "react";
+import RecentView from "../components/coursepage/recentView";
+import headerBg from '../assets/coursepage/headerbg.png';
 
 const CoursePage = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "20px" }}>
-      {/* Top Section with Two Cards */}
+      {/* Top Section */}
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         {/* Left Rectangle */}
         <div style={{ 
@@ -14,7 +16,7 @@ const CoursePage = () => {
           width: "250px", 
           textAlign: "left" 
         }}>
-          <h2>Customized Learning Path to reduce the duration of the Specialization</h2>
+          <h2>Customized Path to reduce the duration of the Specialization</h2>
           <button style={{ 
             marginTop: "10px", 
             padding: "10px 15px", 
@@ -30,12 +32,14 @@ const CoursePage = () => {
 
         {/* Right Rectangle */}
         <div style={{ 
-          background: "#e4deff", 
+          backgroundImage: `url(${headerBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
           padding: "20px", 
           borderRadius: "10px", 
           flex: 1, 
-          marginLeft: "20px", 
-          paddingTop: "40px",
+          marginLeft: "20px",
         }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <h2 style={{ fontSize: "30px" }}>
@@ -65,8 +69,10 @@ const CoursePage = () => {
       </div>
 
       {/* Details Section Below */}
+      <RecentView />
     </div>
   );
 };
+
 
 export default CoursePage;

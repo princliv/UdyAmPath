@@ -1,7 +1,11 @@
 import React from "react";
 import Details from "../components/jobpage/details";
+import headerBg from '../assets/jobpage/headerbg.png';
+import { useNavigate } from "react-router-dom";
 
 const JobPage = () => {
+  const navigate = useNavigate(); // 
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "20px" }}>
       {/* Top Section with Two Cards */}
@@ -16,22 +20,28 @@ const JobPage = () => {
           textAlign: "center" 
         }}>
           <h2>Know the Cost of Living Around You</h2>
-          <button style={{ 
-            marginTop: "10px", 
-            padding: "10px 15px", 
-            background: "white", 
-            color: "#131346", 
-            border: "none", 
-            borderRadius: "5px", 
-            cursor: "pointer" 
-          }}>
+          <button 
+            style={{ 
+              marginTop: "10px", 
+              padding: "10px 15px", 
+              background: "white", 
+              color: "#131346", 
+              border: "none", 
+              borderRadius: "5px", 
+              cursor: "pointer" 
+            }} 
+            onClick={() => navigate("/base")} // 
+          >
             Learn More
           </button>
         </div>
 
         {/* Right Rectangle */}
         <div style={{ 
-          background: "#f5f5f5", 
+          backgroundImage: `url(${headerBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
           padding: "20px", 
           borderRadius: "10px", 
           flex: 1, 
