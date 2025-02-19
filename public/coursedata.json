@@ -1,0 +1,47 @@
+[
+    {
+      "company": "Amazon",
+      "title": "Java",
+      "date": "2023-12-01",
+      "type": "Full-time",
+      "level": "Senior",
+      "color": "#ffffff",
+      "duration": "2 years",
+      "image": "javaImage",
+      "logo": "/assets/amazon-logo.png"
+    },
+    {
+      "company": "Google",
+      "title": "Python",
+      "date": "2023-11-15",
+      "type": "Full-time",
+      "level": "Mid",
+      "color": "#ffffff",
+      "duration": "1 year",
+      "image": "pythonImage",
+      "logo": "/assets/google-logo.png"
+    },
+    {
+      "company": "Apple",
+      "title": "R Language",
+      "date": "2023-10-20",
+      "type": "Internship",
+      "level": "Junior",
+      "color": "#ffffff",
+      "duration": "6 months",
+      "image": "rLangImage",
+      "logo": "/assets/apple-logo.png"
+    },
+    {
+      "company": "Google",
+      "title": "SQL",
+      "date": "2023-11-15",
+      "type": "Full-time",
+      "level": "Mid",
+      "color": "#ffffff",
+      "duration": "1 year",
+      "image": "sqlImage",
+      "logo": "/assets/google-logo.png"
+    }
+]
+  
