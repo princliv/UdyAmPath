@@ -13,7 +13,7 @@ const BasePage = () => {
           <img 
             src={confusedGif} 
             alt="Confused Icon" 
-            style={{ width: "70px", height: "70px", verticalAlign: "middle", marginLeft: "10px" }} 
+            style={{ width: "100px", height: "100px", verticalAlign: "middle", marginLeft: "10px" }} 
             />
 
         </h2>
