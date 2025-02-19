@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import MostPopular from "../coursepage/mostPopular";
+import NewOnUdyam from "../coursepage/newOnUdyamPath";
+import RecommendedCourse from "../coursepage/recommendedCourse";
 import amazonLogo from "../../assets/coursepage/amazon.png";
 import googleLogo from "../../assets/coursepage/google.png";
 import appleLogo from "../../assets/coursepage/apple.png";
@@ -116,7 +119,7 @@ const Details = () => {
         </div>
 
         {/* Course Cards Container */}
-        <div style={{ padding: "20px" }}>
+        <div style={{ width: "97%", padding: "20px" }}>
           {/* Recently Viewed Products Text */}
           <div style={{ marginBottom: "10px", fontSize: "25px", fontWeight: "bold", color: "#333" }}>
             Recently Viewed Products
@@ -199,6 +202,9 @@ const Details = () => {
             </div>
           </div>
         </div>
+        <MostPopular />
+        <NewOnUdyam />
+        <RecommendedCourse />
       </div>
     </div>
   );
