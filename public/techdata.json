@@ -1,0 +1,115 @@
+{
+    "interview_questions": {
+      "Python": [
+        {
+          "question": "What are Python's key features?",
+          "answer": "Python is an interpreted, high-level, dynamically-typed, and garbage-collected programming language. It supports multiple programming paradigms, including procedural, object-oriented, and functional programming."
+        },
+        {
+          "question": "What is the difference between deep copy and shallow copy?",
+          "answer": "A shallow copy creates a new object but inserts references into it, while a deep copy creates a new object and recursively copies all objects found in the original."
+        },
+        {
+          "question": "What is the purpose of the 'self' keyword in Python?",
+          "answer": "The 'self' keyword represents the instance of a class and allows access to its attributes and methods. It must be explicitly declared in instance methods."
+        },
+        {
+          "question": "How does Python handle memory management?",
+          "answer": "Python uses automatic memory management with reference counting and a garbage collector for cyclic references."
+        },
+        {
+          "question": "What are Python decorators?",
+          "answer": "Decorators are functions that modify the behavior of another function or class method. They are commonly used for logging, authentication, and performance measurement."
+        }
+      ],
+      "React": [
+        {
+          "question": "What is the virtual DOM in React?",
+          "answer": "The virtual DOM is a lightweight representation of the real DOM that React uses to optimize rendering and improve performance by updating only changed components."
+        },
+        {
+          "question": "What are React hooks?",
+          "answer": "Hooks allow functional components to use state and lifecycle methods without converting them to class components. Examples include useState, useEffect, and useContext."
+        },
+        {
+          "question": "What is the purpose of useEffect in React?",
+          "answer": "useEffect is used to handle side effects in functional components, such as fetching data, subscribing to events, or manipulating the DOM."
+        },
+        {
+          "question": "What is the difference between state and props in React?",
+          "answer": "State is managed within a component and can change over time, whereas props are passed from a parent component and are immutable."
+        },
+        {
+          "question": "What is JSX?",
+          "answer": "JSX is a syntax extension for JavaScript that allows writing HTML-like code within React components. It simplifies UI development by combining markup and logic."
+        }
+      ],
+      ".NET": [
+        {
+          "question": "What is .NET?",
+          "answer": ".NET is a software framework developed by Microsoft that supports multiple programming languages and provides libraries for building applications, including web, desktop, and mobile applications."
+        },
+        {
+          "question": "What is the difference between .NET Framework and .NET Core?",
+          "answer": ".NET Framework is Windows-only and supports legacy applications, while .NET Core is cross-platform and designed for modern cloud-based applications."
+        },
+        {
+          "question": "What is the Common Language Runtime (CLR)?",
+          "answer": "CLR is the execution engine for .NET applications, providing services like memory management, security, and exception handling."
+        },
+        {
+          "question": "What is ASP.NET?",
+          "answer": "ASP.NET is a web framework within .NET for building dynamic web applications and APIs."
+        },
+        {
+          "question": "What is garbage collection in .NET?",
+          "answer": "Garbage collection in .NET automatically reclaims unused memory, preventing memory leaks and improving application efficiency."
+        }
+      ],
+      "Data Structure": [
+        {
+          "question": "What is the difference between an array and a linked list?",
+          "answer": "An array is a fixed-size, contiguous block of memory, while a linked list is a collection of nodes connected by pointers, allowing dynamic resizing."
+        },
+        {
+          "question": "What is a stack and how does it work?",
+          "answer": "A stack is a LIFO (Last In, First Out) data structure where elements are added and removed from the top. It uses push and pop operations."
+        },
+        {
+          "question": "What is a queue?",
+          "answer": "A queue is a FIFO (First In, First Out) data structure where elements are added at the rear and removed from the front."
+        },
+        {
+          "question": "What is a binary search tree (BST)?",
+          "answer": "A BST is a tree data structure where each node has at most two children, and the left child contains values smaller than the parent, while the right child contains values greater than the parent."
+        },
+        {
+          "question": "What is dynamic programming?",
+          "answer": "Dynamic programming is an optimization technique that breaks problems into smaller subproblems and stores their solutions to avoid redundant computations."
+        }
+      ],
+      "Java Programming": [
+        {
+          "question": "What is the difference between JDK, JRE, and JVM?",
+          "answer": "JDK (Java Development Kit) includes tools for developing Java applications, JRE (Java Runtime Environment) provides libraries to run Java applications, and JVM (Java Virtual Machine) executes Java bytecode."
+        },
+        {
+          "question": "What are Java access modifiers?",
+          "answer": "Java has four access modifiers: public (accessible everywhere), private (accessible within the class), protected (accessible within the package and subclasses), and default (accessible within the package)."
+        },
+        {
+          "question": "What is the difference between abstract class and interface in Java?",
+          "answer": "An abstract class can have both abstract and concrete methods, whereas an interface can only have abstract methods (until Java 8, which introduced default methods)."
+        },
+        {
+          "question": "What is multithreading in Java?",
+          "answer": "Multithreading in Java allows concurrent execution of two or more threads to improve application performance and responsiveness."
+        },
+        {
+          "question": "What is the difference between HashMap and TreeMap?",
+          "answer": "HashMap is unordered and provides O(1) time complexity for basic operations, while TreeMap maintains sorted order and provides O(log n) time complexity."
+        }
+      ]
+    }
+  }
+  
