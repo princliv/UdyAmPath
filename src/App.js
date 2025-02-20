@@ -8,6 +8,8 @@ import NotesPage from "./pages/notespage";
 import CourseDetail from "./pages/coursedetail";
 import BasePage from "./components/jobpage/basePage";
 import BaseDetails from "./components/jobpage/baseDetails";
+import TechInterview from "./components/toolspage/techInterview";
+import HrInterview from "./components/toolspage/hrInterview";
 //import Contact from "";
 import Profile from "./pages/profile";
 import backgroud from "./assets/background.png";
@@ -82,6 +84,8 @@ function App() {
         <Route path="/coursedetail" element={<CourseDetail />} />
         <Route path="/base" element={<BasePage />} />
         <Route path="/basedetails" element={<BaseDetails />} />
+        <Route path="/techInterview" element={<TechInterview />} />
+        <Route path="/hrInterview" element={<HrInterview />} />
 
       </Routes>
 

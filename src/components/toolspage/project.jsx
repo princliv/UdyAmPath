@@ -1,6 +1,8 @@
 import React from "react";
 import ideaGif from "../../assets/toolpage/idea.gif";
-import project1 from "../../assets/toolpage/project1.webp";
+import project1 from "../../assets/toolpage/project1.png";
+import project2 from "../../assets/toolpage/project2.png";
+import project3 from "../../assets/toolpage/project3.png";
 
 const projects = [
   {
@@ -12,13 +14,13 @@ const projects = [
   {
     title: "AI-Powered Job Recommendation System",
     description: "AI-based job recommendations using NLP and sentiment analysis.",
-    image: project1, // Using project1 image for now
+    image: project2,
     link: "#",
   },
   {
     title: "E-Commerce Chatbot with NLP",
     description: "NLP-powered chatbot for personalized e-commerce shopping experience.",
-    image: project1, // Using project1 image for now
+    image: project3,
     link: "#",
   },
 ];
@@ -27,13 +29,30 @@ const Project = () => {
   return (
     <div style={{ textAlign: "center", padding: "30px" }}>
       {/* Heading with GIF */}
-      <h2 style={{ fontSize: "24px", fontWeight: "bold", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
+      <h2
+        style={{
+          fontSize: "24px",
+          fontWeight: "bold",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "10px",
+        }}
+      >
         Top Project Picks: Must-Have Ideas for Your Portfolio
         <img src={ideaGif} alt="Idea Gif" style={{ width: "74px", height: "74px" }} />
       </h2>
 
       {/* Project Boxes */}
-      <div style={{ display: "flex", justifyContent: "center", gap: "20px", marginTop: "20px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "20px",
+          marginTop: "20px",
+          flexWrap: "wrap",
+        }}
+      >
         {projects.map((project, index) => (
           <a
             key={index}
@@ -65,11 +84,13 @@ const Project = () => {
               alt={project.title}
               style={{
                 width: "100%",
+                height: "180px",
+                objectFit: "cover",
                 borderRadius: "10px",
               }}
             />
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
+            <h3 style={{ fontSize: "16px", margin: "10px 0 5px", fontWeight: "bold" }}>{project.title}</h3>
+            <p style={{ fontSize: "14px", margin: "0 0 10px" }}>{project.description}</p>
           </a>
         ))}
       </div>
