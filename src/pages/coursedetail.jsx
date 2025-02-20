@@ -10,6 +10,44 @@ const CourseDetail = () => {
   }
 
   return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "20px" }}>
+      {/* Top Section */}
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {/* Left Rectangle */}
+        <div style={{ 
+          background: "#e4deff", 
+          color: "black", 
+          padding: "20px", 
+          borderRadius: "10px", 
+          width: "250px", 
+          textAlign: "left" 
+        }}>
+          <h2>Customized Path to reduce the duration of the Specialization</h2>
+          <button style={{ 
+            marginTop: "10px", 
+            padding: "10px 15px", 
+            background: "white", 
+            color: "#131346", 
+            border: "none", 
+            borderRadius: "5px", 
+            cursor: "pointer" 
+          }}>
+            Learn More
+          </button>
+        </div>
+
+        {/* Right Rectangle */}
+        <div style={{ 
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          padding: "20px", 
+          borderRadius: "10px", 
+          flex: 1, 
+          marginLeft: "20px",
+        }}>
+        </div>
+      </div>
     <div style={{ padding: "30px", display: "flex", flexDirection: "column", gap: "20px", alignItems: "center" }}>
       
       {/* Course Info Section */}
@@ -45,7 +83,9 @@ const CourseDetail = () => {
         </div>
       </div>
     </div>
+    </div>
   );
 };
 
 export default CourseDetail;
+
