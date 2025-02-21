@@ -12,22 +12,25 @@ const CourseDetail = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "20px" }}>
       {/* Top Section */}
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        {/* Left Rectangle */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "stretch", gap: "20px" }}>
+        {/* Left Rectangle - Customized Path */}
         <div style={{ 
           background: "#e4deff", 
           color: "black", 
           padding: "20px", 
           borderRadius: "10px", 
-          width: "250px", 
-          textAlign: "left" 
+          width: "30%", 
+          textAlign: "left", 
+          display: "flex", 
+          flexDirection: "column", 
+          justifyContent: "center" 
         }}>
           <h2>Customized Path to reduce the duration of the Specialization</h2>
           <button style={{ 
             marginTop: "10px", 
             padding: "10px 15px", 
-            background: "white", 
-            color: "#131346", 
+            background: "#131346", 
+            color: "white", 
             border: "none", 
             borderRadius: "5px", 
             cursor: "pointer" 
@@ -36,45 +39,60 @@ const CourseDetail = () => {
           </button>
         </div>
 
-        {/* Right Rectangle */}
+        {/* Right Rectangle - Course Info */}
         <div style={{ 
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
+          display: "flex", 
+          gap: "20px", 
+          width: "70%", 
+          alignItems: "center", 
+          background: "#e4deff", 
           padding: "20px", 
           borderRadius: "10px", 
-          flex: 1, 
-          marginLeft: "20px",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" 
         }}>
-        </div>
-      </div>
-    <div style={{ padding: "30px", display: "flex", flexDirection: "column", gap: "20px", alignItems: "center" }}>
-      
-      {/* Course Info Section */}
-      <div style={{ display: "flex", gap: "20px", width: "80%", alignItems: "center", background: "#e4deff", padding: "20px", borderRadius: "10px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}>
-        {/* Course Image */}
-        <img 
-          src={course.image} 
-          alt={course.title} 
-          style={{ width: "200px", height: "150px", borderRadius: "10px", objectFit: "cover" }} 
-        />
+          {/* Course Image */}
+          <img 
+            src={course.image} 
+            alt={course.title} 
+            style={{ width: "150px", height: "100px", borderRadius: "10px", objectFit: "cover" }} 
+          />
 
-        {/* Course Details */}
-        <div style={{ flex: 1 }}>
-          <h2 style={{ color: "#004aad", fontSize: "24px", marginBottom: "10px" }}>{course.title}</h2>
-          <p style={{ fontSize: "16px", color: "#555" }}><b>Company:</b> {course.company}</p>
-          <p style={{ fontSize: "16px", color: "#555" }}><b>Duration:</b> {course.duration}</p>
-          <p style={{ fontSize: "14px", color: "#666", marginTop: "10px" }}>{course.description}</p>
+          {/* Course Details */}
+          <div>
+            <h2 style={{ color: "#004aad", fontSize: "20px", marginBottom: "5px" }}>{course.title}</h2>
+            <p style={{ fontSize: "14px", color: "#555" }}><b>Company:</b> {course.company}</p>
+            <p style={{ fontSize: "14px", color: "#555" }}><b>Duration:</b> {course.duration}</p>
+          </div>
         </div>
       </div>
 
-      {/* Course Pathway Section */}
-      <div style={{ width: "80%", background: "#f0f0f0", padding: "20px", borderRadius: "10px", textAlign: "center", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}>
+      {/* Learning Pathway Section (same width as Course Info) */}
+      <div style={{ 
+        width: "65%",  /* Match Course Info Width */
+        background: "#f0f0f0", 
+        padding: "20px", 
+        borderRadius: "10px", 
+        textAlign: "center", 
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", 
+        margin: "0 480px"  /* Center it */
+      }}>
         <h3 style={{ color: "#004aad", marginBottom: "15px" }}>Learning Pathway</h3>
         <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
           {course.pathway?.map((step, index) => (
             <div key={index} style={{ textAlign: "center", flex: 1 }}>
-              <div style={{ width: "50px", height: "50px", borderRadius: "50%", background: "#004aad", color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", fontWeight: "bold", margin: "0 auto" }}>
+              <div style={{ 
+                width: "50px", 
+                height: "50px", 
+                borderRadius: "50%", 
+                background: "#004aad", 
+                color: "white", 
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "center", 
+                fontSize: "18px", 
+                fontWeight: "bold", 
+                margin: "0 auto" 
+              }}>
                 {index + 1}
               </div>
               <p style={{ fontSize: "14px", marginTop: "5px", color: "#333" }}>{step}</p>
@@ -83,9 +101,7 @@ const CourseDetail = () => {
         </div>
       </div>
     </div>
-    </div>
   );
 };
 
 export default CourseDetail;
-
