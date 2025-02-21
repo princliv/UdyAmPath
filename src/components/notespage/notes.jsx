@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import flowImage from '../../assets/flow.png';
 
 const Notes = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -18,39 +19,59 @@ const Notes = () => {
 
   return (
     <div style={styles.container}>
-      {/* Heading Section */}
-      <h1 style={styles.heading}>
-        Transform Your Notes <br /> <span style={styles.highlight}>into Diagrams ✨</span>
-      </h1>
-      <p style={styles.subheading}>Get a Flowchart or Mind Map Instantly!</p>
-
-      <div style={styles.content}>
-        {/* Diagram Section */}
-        <div style={styles.diagramContainer}>
-          <img src="/diagram-example.png" alt="Flowchart Example" style={styles.diagramImage} />
-          <button style={styles.exploreButton}>Explore</button>
+      {/* Header Section */}
+      <div style={styles.header}>
+        <div>
+          <h1 style={styles.heading}>
+            Transform Your Notes <br /> <span style={styles.highlight}>into Diagrams ✨</span>
+          </h1>
+          <p style={styles.subheading}>Get a Flowchart or Mind Map Instantly!</p>
         </div>
 
-        {/* Upload Section */}
         <div style={styles.uploadContainer}>
           <h3 style={styles.uploadTitle}>Get your notes</h3>
           <label style={styles.uploadBox}>
             <input type="file" multiple onChange={handleFileUpload} style={{ display: 'none' }} />
             <button style={styles.browseButton}>📂 Browse files</button>
-            <p>or drag and drop it here</p>
+            <p style={styles.uploadText}>or drag and drop it here</p>
           </label>
         </div>
       </div>
 
-      {/* How-To Steps */}
-      <div style={styles.stepsContainer}>
-        <h3>How to get your notes Convert into Flowchart</h3>
-        <ol style={styles.stepsList}>
-          <li><strong>Upload your notes</strong></li>
-          <li>Select your diagram</li>
-          <li>Preview the diagram</li>
-          <li>Download</li>
-        </ol>
+      {/* Content Section */}
+      <div style={styles.content}>
+        {/* Diagram Section */}
+        <div style={styles.diagramContainer}>
+          <div style={styles.overlay}></div>
+          <img src={flowImage} alt="Flowchart Example" style={styles.diagramImage} />
+          <button style={styles.exploreButton}>Explore</button>
+        </div>
+
+        {/* Steps Section */}
+        <div style={styles.stepsContainer}>
+          <h3 style={{ fontSize: '1.8rem' }}>How to Convert Your Notes into a Flowchart</h3>
+          <ol style={styles.stepsList}>
+            {/* Step 1 with box */}
+            <li style={styles.stepBox}>
+              <span style={styles.stepNumber}>1</span>
+              <div style={styles.stepContent}>
+                <strong style={styles.stepTitle}>Upload your notes</strong>
+                <p style={styles.stepSubtitle}>Upload your notes first</p>
+              </div>
+            </li>
+
+            {/* Steps 2, 3, and 4 */}
+            <li style={styles.stepWithoutBox}>
+              <span style={styles.stepNumberWithoutBox}>2</span> Select your diagram
+            </li>
+            <li style={styles.stepWithoutBox}>
+              <span style={styles.stepNumberWithoutBox}>3</span> Preview the diagram
+            </li>
+            <li style={styles.stepWithoutBox}>
+              <span style={styles.stepNumberWithoutBox}>4</span> Download
+            </li>
+          </ol>
+        </div>
       </div>
 
       {/* Uploaded Notes List */}
@@ -75,56 +96,36 @@ const Notes = () => {
 const styles = {
   container: {
     padding: '40px',
-    maxWidth: '900px',
+    maxWidth: '1100px',
     margin: 'auto',
   },
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   heading: {
-    fontSize: '2rem',
+    fontSize: '2.5rem',
     fontWeight: 'bold',
-    textAlign: 'center',
   },
   highlight: {
     color: '#007bff',
   },
   subheading: {
-    textAlign: 'center',
-    fontSize: '1.2rem',
+    fontSize: '1.5rem',
     marginBottom: '30px',
   },
-  content: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  diagramContainer: {
-    backgroundColor: '#fff',
-    padding: '20px',
-    borderRadius: '10px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    textAlign: 'center',
-  },
-  diagramImage: {
-    width: '250px',
-    borderRadius: '8px',
-  },
-  exploreButton: {
-    marginTop: '10px',
-    padding: '8px 15px',
-    backgroundColor: '#ffcc00',
-    borderRadius: '5px',
-    border: 'none',
-    cursor: 'pointer',
-  },
   uploadContainer: {
-    border: '1px dashed #007bff',
-    borderRadius: '10px',
+    border: '4px dashed #CCCCCC',
+    borderRadius: '20px',
     padding: '20px',
     textAlign: 'center',
     width: '300px',
     backgroundColor: '#f9f9f9',
+    marginLeft: '5px',
   },
   uploadTitle: {
-    fontSize: '1.2rem',
+    fontSize: '1.5rem',
     fontWeight: 'bold',
     marginBottom: '10px',
   },
@@ -134,60 +135,126 @@ const styles = {
     alignItems: 'center',
     cursor: 'pointer',
   },
+  uploadText: { 
+    color: '#777',
+    fontSize: '1.2rem',
+    marginTop: '5px',
+  },
   browseButton: {
     backgroundColor: '#007bff',
     color: '#fff',
     border: 'none',
-    padding: '8px 15px',
-    borderRadius: '5px',
+    padding: '8px 25px',
+    borderRadius: '25px',
     cursor: 'pointer',
     marginBottom: '5px',
   },
-  stepsContainer: {
-    marginTop: '30px',
-    padding: '20px',
-    backgroundColor: '#fff',
-    borderRadius: '10px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-  },
-  stepsList: {
-    paddingLeft: '20px',
-  },
-  notesList: {
-    marginTop: '20px',
-  },
-  noteItem: {
-    backgroundColor: '#f4f4f4',
-    padding: '10px',
-    borderRadius: '5px',
+  content: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: '10px',
+    marginTop: '30px',
   },
-  unitText: {
-    fontSize: '0.9rem',
-    color: '#666',
+  diagramContainer: {
+    position: 'relative',
+    backgroundColor: '#fff',
+    padding: '40px 20px 20px',
+    borderRadius: '20px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    textAlign: 'center',
+    border: '3px solid #CCCCCC',
+    display: 'inline-block',
+    overflow: 'hidden',
+    marginTop: '20px',
   },
-  actions: {
+  overlay: {
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100%',
+    background: 'rgba(255, 255, 255, 0.6)',
+    zIndex: '1',
+  },
+  diagramImage: {
+    width: '100%',
+    maxWidth: '450px',
+    borderRadius: '8px',
+  },
+  exploreButton: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: '#ffcc00',
+    color: '#000',
+    fontWeight: 'bold',
+    padding: '10px 35px',
+    borderRadius: '20px',
+    border: 'none',
+    cursor: 'pointer',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    zIndex: '2',
+  },
+  stepsContainer: {
+    padding: '20px',
+    backgroundColor: '#fff',
+    borderRadius: '10px',
+    width: '45%',
+    fontSize: '1.2rem',
+    fontWeight: 'bold',
+    color: '#222',
+  },
+  stepsList: {
+    paddingLeft: '0',
+    listStyle: 'none',
+    marginTop: '10px',
+  },
+  stepBox: {
     display: 'flex',
+    alignItems: 'center',
+    border: '2px solid black',
+    borderRadius: '10px',
+    padding: '15px',
+    backgroundColor: '#fff',
+    width: '100%',
+    gap: '15px',
+  },
+  stepNumber: {
+    fontSize: '2rem',
+    fontWeight: 'bold',
+    color: '#000',
+    backgroundColor: '#fff',
+    border: '2px solid black',
+    borderRadius: '10px',
+    padding: '5px 15px',
+  },
+  stepContent: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  stepTitle: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+  },
+  stepSubtitle: {
+    fontSize: '1rem',
+    color: '#777',
+  },
+  stepWithoutBox: {
+    fontSize: '1.5rem',
+    marginBottom: '20px',
+    display: 'flex',
+    alignItems: 'center',
     gap: '10px',
+    fontWeight: 'bold',
+    paddingLeft: '36px',
   },
-  viewButton: {
-    backgroundColor: '#007bff',
-    color: 'white',
-    border: 'none',
-    padding: '5px 10px',
-    borderRadius: '5px',
-    cursor: 'pointer',
-  },
-  deleteButton: {
-    backgroundColor: '#ff4d4d',
-    color: 'white',
-    border: 'none',
-    padding: '5px 10px',
-    borderRadius: '5px',
-    cursor: 'pointer',
+  stepNumberWithoutBox: {
+    fontSize: '1.8rem',
+    fontWeight: 'bold',
+    color: '#000',
+    marginRight: '25px',
   },
 };
 
