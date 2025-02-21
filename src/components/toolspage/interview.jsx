@@ -1,15 +1,19 @@
 import React from "react";
 import successGif from "../../assets/toolpage/success.gif";
 import interviewImg from "../../assets/toolpage/interview.png";
+import hrInterview from "../../assets/toolpage/hrinterview.png";
+import groupDiscussion from "../../assets/toolpage/groupDicussion.png";
+import placement from "../../assets/toolpage/placement.png";
 import SoftSkill from "../toolspage/softSkill";
 import Project from "./project";
 
+
 const Interview = () => {
   const interviewData = [
-    { title: "Software Developer", desc: "Get interview questions", img: interviewImg },
-    { title: "Software Developer", desc: "Get interview questions", img: interviewImg },
-    { title: "Software Developer", desc: "Get interview questions", img: interviewImg },
-    { title: "Software Developer", desc: "Get interview questions", img: interviewImg },
+    { title: "Technical Interview", desc: "Prepare with technical questions", img: interviewImg, link: "/techInterview" },
+    { title: "HR Interview", desc: "Practice common HR questions", img: hrInterview, link: "/hrInterview" },
+    { title: "Group Discussion", desc: "Enhance your discussion skills", img: groupDiscussion, link: "/groupdiscussion" },
+    { title: "Placement Papers", desc: "Access previous exam papers", img: placement, link: "/placement-papers" },
   ];
 
   return (
@@ -18,8 +22,8 @@ const Interview = () => {
         border: "2px solid #ccc",
         borderRadius: "10px",
         padding: "20px",
-        textAlign: "flex-end",
-        maxWidth: "1500px", // Increased width
+        textAlign: "center",
+        maxWidth: "1500px",
         margin: "auto",
         background: "#fff",
       }}
@@ -53,7 +57,7 @@ const Interview = () => {
           <div
             key={index}
             style={{
-              width: "220px", // Slightly increased card width
+              width: "220px",
               background: "#fff",
               padding: "15px",
               borderRadius: "10px",
@@ -61,11 +65,19 @@ const Interview = () => {
               textAlign: "center",
             }}
           >
-            <img src={item.img} alt={item.title} style={{ width: "100%", borderRadius: "5px" }} />
+            {/* Fixed Image Size */}
+            <img 
+              src={item.img} 
+              alt={item.title} 
+              style={{ width: "100%", height: "150px", objectFit: "cover", borderRadius: "5px" }} 
+            />
             <h3 style={{ fontSize: "16px", margin: "10px 0 5px", fontWeight: "bold" }}>{item.title}</h3>
             <p style={{ fontSize: "14px", margin: "0 0 10px" }}>{item.desc}</p>
-            <a href="#" style={{ fontSize: "14px", color: "#007bff", textDecoration: "none", fontWeight: "bold" }}>
-              View more
+            <a 
+              href={item.link} 
+              style={{ fontSize: "14px", color: "#007bff", textDecoration: "none", fontWeight: "bold" }}
+            >
+              View
             </a>
           </div>
         ))}
@@ -73,7 +85,6 @@ const Interview = () => {
       <SoftSkill />
       <Project />
     </div>
-    
   );
 };
 

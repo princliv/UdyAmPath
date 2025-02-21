@@ -1,53 +1,74 @@
-import React from "react";
-import ideaGif from "../../assets/toolpage/idea.gif";
-import project1 from "../../assets/toolpage/project1.webp";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ideaGif from "../../assets/toolpage/idea.gif"; // Ensure ideaGif is imported locally
+import project1 from "../../assets/toolpage/project1.png";
+import project2 from "../../assets/toolpage/project2.png";
+import project3 from "../../assets/toolpage/project3.png";
 
-const projects = [
-  {
-    title: "SmartHealth Monitoring System",
-    description: "Real-time health tracking with IoT and data analytics.",
-    image: project1,
-    link: "#",
-  },
-  {
-    title: "AI-Powered Job Recommendation System",
-    description: "AI-based job recommendations using NLP and sentiment analysis.",
-    image: project1, // Using project1 image for now
-    link: "#",
-  },
-  {
-    title: "E-Commerce Chatbot with NLP",
-    description: "NLP-powered chatbot for personalized e-commerce shopping experience.",
-    image: project1, // Using project1 image for now
-    link: "#",
-  },
-];
+// Map keys in JSON to locally imported images
+const imageMapping = {
+  image1: project1,
+  image2: project2,
+  image3: project3,
+};
 
 const Project = () => {
+  const [projectsData, setProjectsData] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch the JSON file from the public folder
+    fetch("/project.json")
+      .then((res) => res.json())
+      .then((data) => setProjectsData(data))
+      .catch((error) => console.error("Error fetching projects data:", error));
+  }, []);
+
+  // Handle project click to navigate to ProjectModal page
+  const handleProjectClick = (project) => {
+    navigate("/projectModal", { state: project });
+  };
+
   return (
     <div style={{ textAlign: "center", padding: "30px" }}>
       {/* Heading with GIF */}
-      <h2 style={{ fontSize: "24px", fontWeight: "bold", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
+      <h2
+        style={{
+          fontSize: "24px",
+          fontWeight: "bold",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "10px",
+        }}
+      >
         Top Project Picks: Must-Have Ideas for Your Portfolio
         <img src={ideaGif} alt="Idea Gif" style={{ width: "74px", height: "74px" }} />
       </h2>
 
       {/* Project Boxes */}
-      <div style={{ display: "flex", justifyContent: "center", gap: "20px", marginTop: "20px" }}>
-        {projects.map((project, index) => (
-          <a
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "20px",
+          marginTop: "20px",
+          flexWrap: "wrap",
+        }}
+      >
+        {projectsData.map((project, index) => (
+          <div
             key={index}
-            href={project.link}
+            onClick={() => handleProjectClick(project)}
             style={{
               width: "280px",
               padding: "15px",
               background: "#fff",
               borderRadius: "10px",
               textAlign: "center",
-              textDecoration: "none",
-              color: "#000",
               boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
               transition: "transform 0.3s ease, background 0.3s ease",
+              cursor: "pointer",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "scale(1.05)";
@@ -61,16 +82,20 @@ const Project = () => {
             }}
           >
             <img
-              src={project.image}
+              src={imageMapping[project.image]}
               alt={project.title}
               style={{
                 width: "100%",
+                height: "180px",
+                objectFit: "cover",
                 borderRadius: "10px",
               }}
             />
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
-          </a>
+            <h3 style={{ fontSize: "16px", margin: "10px 0 5px", fontWeight: "bold" }}>
+              {project.title}
+            </h3>
+            <p style={{ fontSize: "14px", margin: "0" }}>{project.description}</p>
+          </div>
         ))}
       </div>
     </div>
