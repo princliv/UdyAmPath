@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import javaImage from "../../assets/coursepage/java.jpg";
+import javaImage from "../../assets/coursepage/React.png";
 import pythonImage from "../../assets/coursepage/python.jpg";
 import rLangImage from "../../assets/coursepage/R.jpg";
 import sqlImage from "../../assets/coursepage/sql.png";
 
 const courseImageMap = {
-  "Java": javaImage,
+  "React": reactImage,
   "Python": pythonImage,
   "R Language": rLangImage,
   "SQL": sqlImage,
