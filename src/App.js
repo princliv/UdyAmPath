@@ -1,20 +1,22 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, NavLink, Link } from "react-router-dom";
-import Homepage from "./pages/homepage";
-import CoursePage from "./pages/coursepage";
-import JobPage from "./pages/jobpage";
-import ToolsPage from "./pages/toolspage";
-import NotesPage from "./pages/notespage";
-import CourseDetail from "./pages/coursedetail";
-import BasePage from "./components/jobpage/basePage";
+import { BrowserRouter as Router, Link, NavLink, Route, Routes } from "react-router-dom";
 import BaseDetails from "./components/jobpage/baseDetails";
-import TechInterview from "./components/toolspage/techInterview";
-import HrInterview from "./components/toolspage/hrInterview";
+import BasePage from "./components/jobpage/basePage";
+import Notes from "./components/notespage/notes";
 import GroupDiscussion from "./components/toolspage/groupDiscussion";
+import HrInterview from "./components/toolspage/hrInterview";
 import ProjectModal from "./components/toolspage/projectModal";
+import TechInterview from "./components/toolspage/techInterview";
+import CourseDetail from "./pages/coursedetail";
+import CoursePage from "./pages/coursepage";
+import Homepage from "./pages/homepage";
+import JobPage from "./pages/jobpage";
+import NotesPage from "./pages/notespage";
+import ToolsPage from "./pages/toolspage";
+
 //import Contact from "";
-import Profile from "./pages/profile";
 import backgroud from "./assets/background.png";
+import Profile from "./pages/profile";
 
 
 
@@ -90,6 +92,8 @@ function App() {
         <Route path="/hrInterview" element={<HrInterview />} />
         <Route path="/groupdiscussion" element={<GroupDiscussion />} />
         <Route path="/projectModal" element={<ProjectModal />} />
+        <Route path="/notes" element={<Notes/>} />
+
 
       </Routes>
 
