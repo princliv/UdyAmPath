@@ -1,31 +1,34 @@
-import React from "react";
-import ideaGif from "../../assets/toolpage/idea.gif";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ideaGif from "../../assets/toolpage/idea.gif"; // Ensure ideaGif is imported locally
 import project1 from "../../assets/toolpage/project1.png";
 import project2 from "../../assets/toolpage/project2.png";
 import project3 from "../../assets/toolpage/project3.png";
 
-const projects = [
-  {
-    title: "SmartHealth Monitoring System",
-    description: "Real-time health tracking with IoT and data analytics.",
-    image: project1,
-    link: "#",
-  },
-  {
-    title: "AI-Powered Job Recommendation System",
-    description: "AI-based job recommendations using NLP and sentiment analysis.",
-    image: project2,
-    link: "#",
-  },
-  {
-    title: "E-Commerce Chatbot with NLP",
-    description: "NLP-powered chatbot for personalized e-commerce shopping experience.",
-    image: project3,
-    link: "#",
-  },
-];
+// Map keys in JSON to locally imported images
+const imageMapping = {
+  image1: project1,
+  image2: project2,
+  image3: project3,
+};
 
 const Project = () => {
+  const [projectsData, setProjectsData] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch the JSON file from the public folder
+    fetch("/project.json")
+      .then((res) => res.json())
+      .then((data) => setProjectsData(data))
+      .catch((error) => console.error("Error fetching projects data:", error));
+  }, []);
+
+  // Handle project click to navigate to ProjectModal page
+  const handleProjectClick = (project) => {
+    navigate("/projectModal", { state: project });
+  };
+
   return (
     <div style={{ textAlign: "center", padding: "30px" }}>
       {/* Heading with GIF */}
@@ -53,20 +56,19 @@ const Project = () => {
           flexWrap: "wrap",
         }}
       >
-        {projects.map((project, index) => (
-          <a
+        {projectsData.map((project, index) => (
+          <div
             key={index}
-            href={project.link}
+            onClick={() => handleProjectClick(project)}
             style={{
               width: "280px",
               padding: "15px",
               background: "#fff",
               borderRadius: "10px",
               textAlign: "center",
-              textDecoration: "none",
-              color: "#000",
               boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
               transition: "transform 0.3s ease, background 0.3s ease",
+              cursor: "pointer",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "scale(1.05)";
@@ -80,7 +82,7 @@ const Project = () => {
             }}
           >
             <img
-              src={project.image}
+              src={imageMapping[project.image]}
               alt={project.title}
               style={{
                 width: "100%",
@@ -89,9 +91,11 @@ const Project = () => {
                 borderRadius: "10px",
               }}
             />
-            <h3 style={{ fontSize: "16px", margin: "10px 0 5px", fontWeight: "bold" }}>{project.title}</h3>
-            <p style={{ fontSize: "14px", margin: "0 0 10px" }}>{project.description}</p>
-          </a>
+            <h3 style={{ fontSize: "16px", margin: "10px 0 5px", fontWeight: "bold" }}>
+              {project.title}
+            </h3>
+            <p style={{ fontSize: "14px", margin: "0" }}>{project.description}</p>
+          </div>
         ))}
       </div>
     </div>
