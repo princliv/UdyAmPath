@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import dsImage from '../assets/ds-image.jpeg';
+import javaImage from '../assets/java-image.webp';
 import oopsImage from '../assets/oops-image.jpeg';
 import osImage from '../assets/os-image.png';
 
@@ -59,6 +60,11 @@ const NotesPage = () => {
           <div style={styles.bookCard}>
             <img src={dsImage} alt="Data Structure" style={styles.bookImage} />
             <p style={styles.bookTitle}>Data Structure</p>
+            <a href="#" style={styles.exploreLink}>Explore the book</a>
+          </div>
+          <div style={styles.bookCard}>
+            <img src={javaImage} alt="Java" style={styles.bookImage} />
+            <p style={styles.bookTitle}>Java</p>
             <a href="#" style={styles.exploreLink}>Explore the book</a>
           </div>
         </div>
@@ -157,7 +163,7 @@ const styles = {
     cursor: 'pointer',
   },
   insights: {
-    fontSize: '1.2rem',
+    fontSize: '1.5rem',
     marginBottom: '10px',
     marginLeft: '20px',
   },
@@ -188,7 +194,7 @@ const styles = {
   },
   booksContainer: {
     display: 'flex',
-    gap: '70px',
+    gap: '100px',
     marginBottom: '20px',
     justifyContent: 'flex-start',
     flexWrap: 'wrap',
