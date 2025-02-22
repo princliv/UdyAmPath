@@ -30,7 +30,16 @@ const ProfileEditModal = ({
           <input type="file" accept="image/*" onChange={handleProfileChange} id="profile-upload" hidden />
           <label htmlFor="profile-upload" className="profile-upload-button">
             <div className="profile-image-container">
-              <img src={profileImage || defaultProfileImage} alt="Profile" className="profile-preview" />
+                <img 
+                    src={profileImage || defaultProfileImage} 
+                    alt="Profile" 
+                    className="profile-preview" 
+                    style={{
+                        width: "120px",
+                        height: "120px",
+                    }}
+
+                />
               <div className="profile-actions">
                 <label htmlFor="profile-upload" className="edit-profile-button">
                   <FiEdit2 size={16} />
@@ -53,8 +62,8 @@ const ProfileEditModal = ({
 
         {/* Buttons */}
         <div className="modal-buttons">
+        <button className="cancel-button" onClick={toggleModal}>Cancel</button>
           <button className="save-button" onClick={toggleModal}>Save</button>
-          <button className="cancel-button" onClick={toggleModal}>Cancel</button>
         </div>
       </div>
     </div>

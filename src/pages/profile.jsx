@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { FiPlus } from "react-icons/fi"; // Import the plus icon
 import ProfileEditModal from "../components/profile/ProfileEditModal"; // Import modal component
 import defaultProfileImage from "../assets/profile/profilePhoto.png"; // Default profile photo path
 
@@ -94,7 +95,8 @@ const ProfilePage = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          border: bannerImage ? "none" : "2px dashed #ccc" // Border only when no image is set
+          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+          border: bannerImage ? "none" : "2px solid #f0f0f0" // Border only when no image is set
         }}>
 
           <input 
@@ -107,15 +109,24 @@ const ProfilePage = () => {
           
           {/* Upload Button (Initially) */}
           {!bannerImage && (
-            <label htmlFor="upload-banner" style={{ 
-              cursor: "pointer", 
-              padding: "10px 15px", 
-              background: "#004aad", 
-              color: "white", 
-              borderRadius: "5px",
-              textAlign: "center"
-            }}>
-              Upload Banner
+            <label 
+              htmlFor="upload-banner" 
+              style={{ 
+                cursor: "pointer", 
+                padding: "10px 15px", 
+                background: "#004aad", 
+                color: "white", 
+                borderRadius: "20px",
+                textAlign: "center",
+                display: "flex",
+                alignItems: "center",
+                gap: "5px",
+                transition: "background 0.3s", // Smooth transition
+              }}
+              onMouseEnter={(e) => e.target.style.background = "#00368c"} // Darker color on hover
+              onMouseLeave={(e) => e.target.style.background = "#004aad"} // Restore original color
+            >
+              <FiPlus size={16} /> Upload Banner
             </label>
           )}
 
