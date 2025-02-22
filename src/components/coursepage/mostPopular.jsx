@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import javaImage from "../../assets/coursepage/React.png";
-import pythonImage from "../../assets/coursepage/python.jpg";
-import rLangImage from "../../assets/coursepage/R.jpg";
-import sqlImage from "../../assets/coursepage/sql.png";
+import javaImage from "../../assets/coursepage/react.png.webp";
+import pythonImage from "../../assets/coursepage/android.png.webp";
+import rLangImage from "../../assets/coursepage/machine-learning.png.webp";
+import sqlImage from "../../assets/coursepage/hacking.png.webp";
 
 const courseImageMap = {
-  "React": reactImage,
+  "Java": javaImage,
   "Python": pythonImage,
   "R Language": rLangImage,
   "SQL": sqlImage,
