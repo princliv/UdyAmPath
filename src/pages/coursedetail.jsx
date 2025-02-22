@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const CourseDetail = () => {
   const location = useLocation();
   const course = location.state?.course;
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   if (!course) {
     return <h2 style={{ textAlign: "center", marginTop: "20px", color: "#ff4d4d" }}>Course not found!</h2>;
@@ -66,36 +67,48 @@ const CourseDetail = () => {
         </div>
       </div>
 
-      {/* Learning Pathway Section (same width as Course Info) */}
+      {/* Learning Pathway Section */}
       <div style={{ 
-        width: "65%",  /* Match Course Info Width */
+        width: "65%",  
         background: "#f0f0f0", 
         padding: "20px", 
         borderRadius: "10px", 
         textAlign: "center", 
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", 
-        margin: "0 480px"  /* Center it */
+        margin: "0 auto"  
       }}>
         <h3 style={{ color: "#004aad", marginBottom: "15px" }}>Learning Pathway</h3>
-        <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           {course.pathway?.map((step, index) => (
-            <div key={index} style={{ textAlign: "center", flex: 1 }}>
-              <div style={{ 
-                width: "50px", 
-                height: "50px", 
-                borderRadius: "50%", 
-                background: "#004aad", 
-                color: "white", 
-                display: "flex", 
-                alignItems: "center", 
-                justifyContent: "center", 
-                fontSize: "18px", 
-                fontWeight: "bold", 
-                margin: "0 auto" 
-              }}>
-                {index + 1}
+            <div 
+              key={index} 
+              style={{ 
+                background: "#fff", 
+                padding: "15px", 
+                borderRadius: "10px", 
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", 
+                cursor: "pointer", 
+                position: "relative", 
+                transition: "background 0.3s" 
+              }}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <h4 style={{ margin: 0, color: "#004aad" }}>{step.title}</h4>
+                <span style={{ fontSize: "20px", cursor: "pointer" }}>▼</span>
               </div>
-              <p style={{ fontSize: "14px", marginTop: "5px", color: "#333" }}>{step}</p>
+              {hoveredIndex === index && (
+                <div style={{ 
+                  marginTop: "10px", 
+                  padding: "10px", 
+                  background: "#e4deff", 
+                  borderRadius: "5px", 
+                  fontSize: "14px" 
+                }}>
+                  {step.details}
+                </div>
+              )}
             </div>
           ))}
         </div>
