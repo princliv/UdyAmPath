@@ -1,0 +1,200 @@
+/* General Styling */
+.detail-form-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.sidebar {
+  width: 290px;
+  background-color: #ffffff;
+}
+
+.sidebar-box {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: solid 1px #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  background: #f1f1f1;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.icon {
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+.edit-icon {
+  font-size: 14px;
+  color: blue;
+  cursor: pointer;
+  float: right;
+}
+
+.links-list {
+  list-style: none;
+  padding: 0;
+}
+
+.links-list li {
+  margin-bottom: 5px;
+}
+
+.links-list a {
+  text-decoration: none;
+  color: #0073e6;
+}
+
+.links-list a:hover {
+  text-decoration: underline;
+}
+
+.form-section {
+  flex: 1;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.tabs {
+  display: flex;
+  gap: 15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  background: transparent;
+  color: gray;
+}
+
+.tabs .active {
+  background: #007bff;
+  color: white;
+  border-radius: 5px;
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.required {
+  color: red;
+}
+
+input, textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Gender Buttons */
+.Gender-options {
+  display: flex;
+  gap: 10px;
+}
+
+.Gender-options button {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #f8f9fa;
+  cursor: pointer;
+}
+
+.Gender-options .selected {
+  background: #007bff;
+  color: white;
+}
+
+/* Save Button */
+.save-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+  float: right;
+}
+
+.edit-button {
+  background-color: #ffffff; /* Yellow */
+  color: rgb(22, 1, 114);
+  padding: 10px 20px;
+  border: solid 1px rgb(22, 1, 114);
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+.edit-button:hover {
+  background-color: #ffffff;
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 300px;
+}
+
+.modal button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
