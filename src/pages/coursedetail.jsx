@@ -69,13 +69,13 @@ const CourseDetail = () => {
 
       {/* Learning Pathway Section */}
       <div style={{ 
-        width: "65%",  
+        width: "66%",  
         background: "#f0f0f0", 
         padding: "20px", 
         borderRadius: "10px", 
         textAlign: "center", 
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", 
-        margin: "0 auto"  
+        margin: "0 530px"  
       }}>
         <h3 style={{ color: "#004aad", marginBottom: "15px" }}>Learning Pathway</h3>
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
