@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Import images locally
 import amazonIcon from "../../assets/jobpage/amazon.png";
@@ -16,6 +17,15 @@ const PlacementPaper = () => {
   const [companiesData, setCompaniesData] = useState([]);
   const [practiceData, setPracticeData] = useState({});
   const [activeTab, setActiveTab] = useState("");
+  const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    setCategories(Object.entries(practiceData)); // Convert JSON into array
+  }, []);
+
+  const handleClick = (paper) => {
+    navigate("/placeTest", { state: { title: paper.title, description: paper.description, questions: paper.questions } });
+  };
 
   // Fetch the JSON data from the public folder
   useEffect(() => {
@@ -216,6 +226,7 @@ const PlacementPaper = () => {
                   e.currentTarget.style.boxShadow =
                     "0 3px 5px rgba(0, 0, 0, 0.2)";
                 }}
+                onClick={handleClick}
               >
                 Start Test
               </button>

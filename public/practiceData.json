@@ -1,24 +1,56 @@
 {
-    "Tech": [
-      { "title": "Aptitude Test", "description": "Sharpen your aptitude skills" },
-      { "title": "Coding Round", "description": "Practice coding questions" },
-      { "title": "System Design", "description": "Master system design concepts" }
-    ],
-    "Cognitive": [
-      { "title": "Logical Reasoning", "description": "Enhance logical thinking" },
-      { "title": "Analytical Skills", "description": "Boost your analysis power" }
-    ],
-    "Management": [
-      { "title": "Case Study", "description": "Solve business case studies" },
-      { "title": "Situational Judgement", "description": "Learn management scenarios" }
-    ],
-    "Exam Prep": [
-      { "title": "GATE Mock", "description": "GATE exam practice" },
-      { "title": "CAT Mock", "description": "CAT exam practice" }
-    ],
-    "Gamified Assessments": [
-      { "title": "Trivia Challenge", "description": "Fun quiz-based learning" },
-      { "title": "Puzzle Mania", "description": "Engaging puzzle solving" }
-    ]
-  }
-  
+  "Tech": [
+    { "title": "Aptitude Test", "description": "Sharpen your aptitude skills", "questions": [
+      { "question": "What is the next number in the series: 2, 6, 12, 20, ?", "options": ["28", "30", "32", "36"], "answer": "30" },
+      { "question": "If a car travels 60 km in 1.5 hours, what is its speed?", "options": ["30 km/h", "40 km/h", "50 km/h", "60 km/h"], "answer": "40 km/h" }
+    ]},
+    { "title": "Coding Round", "description": "Practice coding questions", "questions": [
+      { "question": "What is the output of: print(2 ** 3)?", "options": ["6", "8", "9", "12"], "answer": "8" },
+      { "question": "Which data structure follows FIFO order?", "options": ["Stack", "Queue", "Tree", "Graph"], "answer": "Queue" }
+    ]},
+    { "title": "System Design", "description": "Master system design concepts", "questions": [
+      { "question": "Which database is best for handling large-scale unstructured data?", "options": ["MySQL", "MongoDB", "PostgreSQL", "SQLite"], "answer": "MongoDB" },
+      { "question": "What does a load balancer do?", "options": ["Stores data", "Routes traffic", "Processes requests", "Manages logs"], "answer": "Routes traffic" }
+    ]}
+  ],
+  "Cognitive": [
+    { "title": "Logical Reasoning", "description": "Enhance logical thinking", "questions": [
+      { "question": "If all cats are mammals and some mammals are not dogs, can all cats be dogs?", "options": ["Yes", "No", "Maybe", "Insufficient data"], "answer": "No" },
+      { "question": "Which shape has the least number of sides?", "options": ["Triangle", "Square", "Pentagon", "Hexagon"], "answer": "Triangle" }
+    ]},
+    { "title": "Analytical Skills", "description": "Boost your analysis power", "questions": [
+      { "question": "Which is the odd one out: Apple, Banana, Mango, Carrot?", "options": ["Apple", "Banana", "Mango", "Carrot"], "answer": "Carrot" },
+      { "question": "What is 25% of 200?", "options": ["25", "50", "75", "100"], "answer": "50" }
+    ]}
+  ],
+  "Management": [
+    { "title": "Case Study", "description": "Solve business case studies", "questions": [
+      { "question": "What is SWOT analysis used for?", "options": ["Marketing", "Strategic planning", "HR management", "Financial audit"], "answer": "Strategic planning" },
+      { "question": "Which is not a financial metric?", "options": ["ROI", "Market Share", "EBITDA", "Net Profit"], "answer": "Market Share" }
+    ]},
+    { "title": "Situational Judgement", "description": "Learn management scenarios", "questions": [
+      { "question": "A team member misses deadlines frequently. What is the best action?", "options": ["Fire them", "Talk to them", "Ignore it", "Assign more work"], "answer": "Talk to them" },
+      { "question": "What is the best way to handle workplace conflict?", "options": ["Avoidance", "Direct communication", "Escalation", "Blaming others"], "answer": "Direct communication" }
+    ]}
+  ],
+  "Exam Prep": [
+    { "title": "GATE Mock", "description": "GATE exam practice", "questions": [
+      { "question": "What is the time complexity of quicksort in the worst case?", "options": ["O(n log n)", "O(n^2)", "O(n)", "O(log n)"], "answer": "O(n^2)" },
+      { "question": "Which logic gate gives a high output when both inputs are different?", "options": ["AND", "OR", "XOR", "NAND"], "answer": "XOR" }
+    ]},
+    { "title": "CAT Mock", "description": "CAT exam practice", "questions": [
+      { "question": "If the price of an item increases by 20%, how much should the quantity reduce to keep the cost the same?", "options": ["20%", "16.67%", "25%", "10%"], "answer": "16.67%" },
+      { "question": "What is the synonym of 'ephemeral'?", "options": ["Eternal", "Short-lived", "Dull", "Strong"], "answer": "Short-lived" }
+    ]}
+  ],
+  "Gamified Assessments": [
+    { "title": "Trivia Challenge", "description": "Fun quiz-based learning", "questions": [
+      { "question": "Who invented the telephone?", "options": ["Alexander Graham Bell", "Thomas Edison", "Nikola Tesla", "Isaac Newton"], "answer": "Alexander Graham Bell" },
+      { "question": "Which planet is known as the Red Planet?", "options": ["Venus", "Mars", "Jupiter", "Saturn"], "answer": "Mars" }
+    ]},
+    { "title": "Puzzle Mania", "description": "Engaging puzzle solving", "questions": [
+      { "question": "What comes next in the pattern: 1, 4, 9, 16, ?", "options": ["20", "25", "30", "36"], "answer": "25" },
+      { "question": "If a clock shows 3:15, what is the angle between the hour and minute hands?", "options": ["0°", "15°", "7.5°", "30°"], "answer": "7.5°" }
+    ]}
+  ]
+}
