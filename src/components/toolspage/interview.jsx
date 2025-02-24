@@ -13,7 +13,7 @@ const Interview = () => {
     { title: "Technical Interview", desc: "Prepare with technical questions", img: interviewImg, link: "/techInterview" },
     { title: "HR Interview", desc: "Practice common HR questions", img: hrInterview, link: "/hrInterview" },
     { title: "Group Discussion", desc: "Enhance your discussion skills", img: groupDiscussion, link: "/groupdiscussion" },
-    { title: "Placement Papers", desc: "Access previous exam papers", img: placement, link: "/placement-papers" },
+    { title: "Placement Papers", desc: "Access previous exam papers", img: placement, link: "/placementpapers" },
   ];
 
   return (

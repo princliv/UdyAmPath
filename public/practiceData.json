@@ -1,0 +1,24 @@
+{
+    "Tech": [
+      { "title": "Aptitude Test", "description": "Sharpen your aptitude skills" },
+      { "title": "Coding Round", "description": "Practice coding questions" },
+      { "title": "System Design", "description": "Master system design concepts" }
+    ],
+    "Cognitive": [
+      { "title": "Logical Reasoning", "description": "Enhance logical thinking" },
+      { "title": "Analytical Skills", "description": "Boost your analysis power" }
+    ],
+    "Management": [
+      { "title": "Case Study", "description": "Solve business case studies" },
+      { "title": "Situational Judgement", "description": "Learn management scenarios" }
+    ],
+    "Exam Prep": [
+      { "title": "GATE Mock", "description": "GATE exam practice" },
+      { "title": "CAT Mock", "description": "CAT exam practice" }
+    ],
+    "Gamified Assessments": [
+      { "title": "Trivia Challenge", "description": "Fun quiz-based learning" },
+      { "title": "Puzzle Mania", "description": "Engaging puzzle solving" }
+    ]
+  }
+  
