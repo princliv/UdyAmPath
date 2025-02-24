@@ -3,6 +3,7 @@ import { FiEdit2, FiTrash2 } from "react-icons/fi";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FiPlus } from "react-icons/fi"; // Import the plus icon
 import ProfileEditModal from "../components/profile/ProfileEditModal"; // Import modal component
+import DetailForm from "../components/profile/detailform"; // Import form component
 import defaultProfileImage from "../assets/profile/profilePhoto.png"; // Default profile photo path
 
 const ProfilePage = () => {
@@ -192,6 +193,9 @@ const ProfilePage = () => {
         setLocation={setLocation}
         defaultProfileImage={defaultProfileImage} // Pass default image as prop
       />
+      
+      {/* Detail Form */}
+      <DetailForm />
     </div>
   );
 };
