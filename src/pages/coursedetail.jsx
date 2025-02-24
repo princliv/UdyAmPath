@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import courses from "../components/coursepage/CourseList"; // Adjust path if needed
 
-const CourseDetail = () => {
-  const location = useLocation();
-  const course = location.state?.course;
+const CourseDetail = ({ courseId = 1 }) => {
+  // Find the selected course by ID
+  const course = courses.find(course => course.id === courseId) || courses[0]; // Default to first course if not found
+
   const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  if (!course) {
-    return <h2 style={{ textAlign: "center", marginTop: "20px", color: "#ff4d4d" }}>Course not found!</h2>;
-  }
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "20px" }}>
@@ -75,11 +72,11 @@ const CourseDetail = () => {
         borderRadius: "10px", 
         textAlign: "center", 
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", 
-        margin: "0 530px"  
+        margin: "auto"  
       }}>
         <h3 style={{ color: "#004aad", marginBottom: "15px" }}>Learning Pathway</h3>
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-          {course.pathway?.map((step, index) => (
+          {course.pathway.map((step, index) => (
             <div 
               key={index} 
               style={{ 

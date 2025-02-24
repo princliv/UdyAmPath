@@ -1,43 +1,28 @@
-import { useNavigate } from "react-router-dom";
-
-const CourseList = () => {
-  const navigate = useNavigate();
-
-  const course = {
-    title: "Full Stack Web Development",
-    company: "Coursera",
-    duration: "6 months",
+const courses = [
+  {
+    id: 1,
+    title: "React for Beginners",
+    company: "Udemy",
+    duration: "4 weeks",
     image: "https://via.placeholder.com/150",
     pathway: [
-      "HTML & CSS Basics",
-      "JavaScript Fundamentals",
-      "React & Redux",
-      "Backend with Node.js",
-      "Databases & APIs"
+      { title: "Introduction to React", details: "Learn about React basics and setup." },
+      { title: "JSX and Components", details: "Understand JSX and how to build components." },
+      { title: "State & Props", details: "Learn how state and props work in React." }
     ]
-  };
+  },
+  {
+    id: 2,
+    title: "Full Stack Web Development",
+    company: "Coursera",
+    duration: "6 weeks",
+    image: "https://via.placeholder.com/150",
+    pathway: [
+      { title: "Frontend Basics", details: "Learn HTML, CSS, and JavaScript." },
+      { title: "Backend Development", details: "Understand Node.js, Express, and databases." },
+      { title: "Deploying Applications", details: "Learn about cloud deployment and hosting." }
+    ]
+  }
+];
 
-  return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <button 
-        onClick={() => navigate("/coursedetail", { state: { course } })}
-        style={{
-          padding: "12px 20px",
-          background: "#004aad",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          fontSize: "16px",
-          cursor: "pointer",
-          transition: "background 0.3s",
-        }}
-        onMouseOver={(e) => e.target.style.background = "#002d6b"}
-        onMouseOut={(e) => e.target.style.background = "#004aad"}
-      >
-        View Course Details
-      </button>
-    </div>
-  );
-};
-
-export default CourseList;
+export default courses;
