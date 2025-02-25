@@ -14,6 +14,7 @@ import JobPage from "./pages/jobpage";
 import NotesPage from "./pages/notespage";
 import ToolsPage from "./pages/toolspage";
 import Placement from "./components/toolspage/placementpaper";
+import PlaceTest from "./components/toolspage/placeTest";
 
 //import Contact from "";
 import backgroud from "./assets/background.png";
@@ -95,7 +96,7 @@ function App() {
         <Route path="/projectModal" element={<ProjectModal />} />
         <Route path="/notes" element={<Notes/>} />
         <Route path="/placementpapers" element={<Placement/>} />
-
+        <Route path="/placeTest" element={<PlaceTest/>} />
 
       </Routes>
 
