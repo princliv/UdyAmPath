@@ -9,8 +9,8 @@ import defaultProfileImage from "../assets/profile/profilePhoto.png"; // Default
 const ProfilePage = () => {
   const [bannerImage, setBannerImage] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
-  const [name, setName] = useState("Ankit Kumar");
-  const [location, setLocation] = useState("Roorkee, India");
+  const [name, setName] = useState("Your Name");
+  const [location, setLocation] = useState("City, Country");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleImageChange = (event) => {
