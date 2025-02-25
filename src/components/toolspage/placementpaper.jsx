@@ -24,7 +24,7 @@ const PlacementPaper = () => {
   }, []);
 
   const handleClick = (paper) => {
-    navigate("/placeTest", { state: { title: paper.title, description: paper.description, questions: paper.questions } });
+    navigate("/placeTest", { state: { title: paper.title, description: paper.description } });
   };
 
   // Fetch the JSON data from the public folder
@@ -157,83 +157,84 @@ const PlacementPaper = () => {
 
       {/* Practice Papers Cards for Active Tab */}
       <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "20px",
-          flexWrap: "wrap",
-          padding: "0 20px",
-        }}
-      >
-        {practiceData[activeTab] &&
-          practiceData[activeTab].map((paper, index) => (
-            <div
-              key={index}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: "20px",
+        flexWrap: "wrap",
+        padding: "0 20px",
+      }}
+    >
+      {practiceData[activeTab] &&
+        practiceData[activeTab].map((paper, index) => (
+          <div
+            key={index}
+            style={{
+              width: "220px",
+              border: "1px solid #ccc",
+              borderRadius: "10px",
+              textAlign: "center",
+              boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+              padding: "15px",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {/* Example placeholder image */}
+            <img
+              src="https://via.placeholder.com/220x150.png?text=Mock+Test"
+              alt={paper.title}
               style={{
-                width: "220px",
-                border: "1px solid #ccc",
-                borderRadius: "10px",
-                textAlign: "center",
-                boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-                padding: "15px",
-                position: "relative",
-                overflow: "hidden",
+                width: "100%",
+                height: "120px",
+                objectFit: "cover",
+                borderRadius: "5px",
+              }}
+            />
+            <h3 style={{ fontSize: "16px", margin: "10px 0" }}>
+              {paper.title}
+            </h3>
+            <p
+              style={{
+                fontSize: "14px",
+                color: "#666",
+                marginBottom: "15px",
               }}
             >
-              {/* Example placeholder image */}
-              <img
-                src="https://via.placeholder.com/220x150.png?text=Mock+Test"
-                alt={paper.title}
-                style={{
-                  width: "100%",
-                  height: "120px",
-                  objectFit: "cover",
-                  borderRadius: "5px",
-                }}
-              />
-              <h3 style={{ fontSize: "16px", margin: "10px 0" }}>
-                {paper.title}
-              </h3>
-              <p
-                style={{
-                  fontSize: "14px",
-                  color: "#666",
-                  marginBottom: "15px",
-                }}
-              >
-                {paper.description}
-              </p>
-              {/* Fancy Start Test Button */}
-              <button
-                style={{
-                  background: "linear-gradient(to right, #F6D365, #FDA085)",
-                  color: "#fff",
-                  padding: "10px 20px",
-                  border: "none",
-                  borderRadius: "25px",
-                  cursor: "pointer",
-                  fontWeight: "bold",
-                  boxShadow: "0 3px 5px rgba(0, 0, 0, 0.2)",
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.transform = "translateY(-3px)";
-                  e.currentTarget.style.boxShadow =
-                    "0 6px 10px rgba(0, 0, 0, 0.2)";
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow =
-                    "0 3px 5px rgba(0, 0, 0, 0.2)";
-                }}
-                onClick={handleClick}
-              >
-                Start Test
-              </button>
-            </div>
-          ))}
-      </div>
-    </div>
+              {paper.description}
+            </p>
+            {/* Fancy Start Test Button */}
+            <button
+              style={{
+                background: "linear-gradient(to right, #F6D365, #FDA085)",
+                color: "#fff",
+                padding: "10px 20px",
+                border: "none",
+                borderRadius: "25px",
+                cursor: "pointer",
+                fontWeight: "bold",
+                boxShadow: "0 3px 5px rgba(0, 0, 0, 0.2)",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.boxShadow =
+                  "0 6px 10px rgba(0, 0, 0, 0.2)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow =
+                  "0 3px 5px rgba(0, 0, 0, 0.2)";
+              }}
+              onClick={() => handleClick(paper)}
+            >
+              Start Test
+            </button>
+          </div>
+        ))}
+    </div>   
+  </div> 
+    
   );
 };
 
