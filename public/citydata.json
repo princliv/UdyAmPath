@@ -1,0 +1,92 @@
+[
+    {
+      "city": "Bengalore",
+      "image": "Bangalore",
+      "monthly_rent": 25000,
+      "food_expense": 8000,
+      "transport": 3000,
+      "utilities": 4000,
+      "miscellaneous": 5000,
+      "other": 2000
+    },
+    {
+      "city": "Hyderabad",
+      "image": "Hyderabad",
+      "monthly_rent": 18000,
+      "food_expense": 7000,
+      "transport": 2500,
+      "utilities": 3500,
+      "miscellaneous": 4500,
+      "other": 1800
+    },
+    {
+      "city": "Chennai",
+      "image": "Chennai",
+      "monthly_rent": 20000,
+      "food_expense": 7500,
+      "transport": 2800,
+      "utilities": 3800,
+      "miscellaneous": 4700,
+      "other": 1900
+    },
+    {
+      "city": "Pune",
+      "image": "Pune",
+      "monthly_rent": 22000,
+      "food_expense": 7200,
+      "transport": 2700,
+      "utilities": 3900,
+      "miscellaneous": 4800,
+      "other": 1850
+    },
+    {
+      "city": "Gurgaon",
+      "image": "Gurgaon",
+      "monthly_rent": 28000,
+      "food_expense": 8500,
+      "transport": 3500,
+      "utilities": 4200,
+      "miscellaneous": 5300,
+      "other": 2500
+    },
+    {
+      "city": "Noida",
+      "image": "Noida",
+      "monthly_rent": 24000,
+      "food_expense": 7800,
+      "transport": 3200,
+      "utilities": 4000,
+      "miscellaneous": 5000,
+      "other": 2100
+    },
+    {
+      "city": "Mumbai",
+      "image": "Mumbai",
+      "monthly_rent": 35000,
+      "food_expense": 9000,
+      "transport": 4000,
+      "utilities": 5000,
+      "miscellaneous": 6000,
+      "other": 3000
+    },
+    {
+      "city": "Kolkata",
+      "image": "Kolkata",
+      "monthly_rent": 15000,
+      "food_expense": 6800,
+      "transport": 2300,
+      "utilities": 3200,
+      "miscellaneous": 4200,
+      "other": 1600
+    },
+    {
+      "city": "Ahmedabad",
+      "image": "Ahmedabad",
+      "monthly_rent": 17000,
+      "food_expense": 6900,
+      "transport": 2400,
+      "utilities": 3300,
+      "miscellaneous": 4300,
+      "other": 1750
+    }
+  ]

@@ -1,0 +1,287 @@
+/* General Styling */
+.detail-form-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.sidebar {
+  width: 290px;
+  background-color: #ffffff;
+}
+
+.sidebar-box {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: solid 1px #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  background: #f1f1f1;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.icon {
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+.edit-icon {
+  font-size: 14px;
+  color: blue;
+  cursor: pointer;
+  float: right;
+}
+
+.links-list {
+  list-style: none;
+  padding: 0;
+}
+
+.links-list li {
+  margin-bottom: 5px;
+}
+
+.links-list a {
+  text-decoration: none;
+  color: #0073e6;
+}
+
+.links-list a:hover {
+  text-decoration: underline;
+}
+
+.form-section {
+  flex: 1;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.tabs {
+  display: flex;
+  gap: 15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  background: transparent;
+  color: gray;
+}
+
+.tabs .active {
+  background: #007bff;
+  color: white;
+  border-radius: 5px;
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.required {
+  color: red;
+}
+
+input, textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Gender Buttons */
+.Gender-options {
+  display: flex;
+  gap: 10px;
+}
+
+.Gender-options button {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #f8f9fa;
+  cursor: pointer;
+}
+
+.Gender-options .selected {
+  background: #007bff;
+  color: white;
+}
+
+/* Buttons */
+.form-navigation {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+/* Save Button */
+.save-button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+}
+
+.save-button:hover {
+  background-color: #0056b3;
+}
+
+/* Next Button (Same as Save Button) */
+.next-button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+  margin-left: 10px;
+}
+
+.next-button:hover {
+  background-color: #0056b3;
+}
+
+/* Edit Button */
+.edit-button {
+  background-color: #ffffff;
+  color: rgb(2, 66, 170);
+  padding: 5px 10px;
+  border: solid 3px rgb(2, 66, 170);
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+.edit-button:hover {
+  background-color: #ffffff;
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 300px;
+}
+
+.modal button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Documents Section */
+.add-button {
+  padding: 10px 15px;
+  background: #05bb1a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+  float: right;
+}
+
+.add-button:hover {
+  background-color: #0b871a;
+}
+
+.documents-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.documents-table th, .documents-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.documents-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.view-button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view-button:hover {
+  background-color: #0056b3;
+}
+
+.delete-button {
+  padding: 5px 10px;
+  background: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #cc0000;
+} 
