@@ -1,8 +1,56 @@
 {
   "Tech": [
     { "title": "Aptitude Test", "description": "Sharpen your aptitude skills", "questions": [
-      { "question": "What is the next number in the series: 2, 6, 12, 20, ?", "options": ["28", "30", "32", "36"], "answer": "30" },
-      { "question": "If a car travels 60 km in 1.5 hours, what is its speed?", "options": ["30 km/h", "40 km/h", "50 km/h", "60 km/h"], "answer": "40 km/h" }
+      {
+        "question": "What is the next number in the series: 2, 6, 12, 20, ?",
+        "options": ["28", "30", "32", "36"],
+        "answer": "30"
+      },
+      {
+        "question": "If a car travels 60 km in 1.5 hours, what is its speed?",
+        "options": ["30 km/h", "40 km/h", "50 km/h", "60 km/h"],
+        "answer": "40 km/h"
+      },
+      {
+        "question": "What is the square root of 144?",
+        "options": ["10", "11", "12", "13"],
+        "answer": "12"
+      },
+      {
+        "question": "If the price of an item is increased by 20% and then decreased by 20%, what is the overall change?",
+        "options": ["0%", "4% decrease", "4% increase", "20% decrease"],
+        "answer": "4% decrease"
+      },
+      {
+        "question": "What is the value of 3³?",
+        "options": ["6", "9", "27", "81"],
+        "answer": "27"
+      },
+      {
+        "question": "Solve for x: 2x + 5 = 13.",
+        "options": ["3", "4", "5", "6"],
+        "answer": "4"
+      },
+      {
+        "question": "If 5 workers can build a wall in 8 days, how many days will 10 workers take to build the same wall?",
+        "options": ["4 days", "5 days", "8 days", "16 days"],
+        "answer": "4 days"
+      },
+      {
+        "question": "What is the next number in the series: 1, 1, 2, 3, 5, ?",
+        "options": ["5", "6", "7", "8"],
+        "answer": "8"
+      },
+      {
+        "question": "A man buys a book for $50 and sells it for $60. What is his profit percentage?",
+        "options": ["10%", "15%", "20%", "25%"],
+        "answer": "20%"
+      },
+      {
+        "question": "What is the average of the numbers: 4, 8, 12, 16, 20?",
+        "options": ["10", "12", "14", "16"],
+        "answer": "12"
+      }
     ]},
     { "title": "Coding Round", "description": "Practice coding questions", "questions": [
       { "question": "What is the output of: print(2 ** 3)?", "options": ["6", "8", "9", "12"], "answer": "8" },
