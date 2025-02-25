@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Edit2 } from "lucide-react"; // Importing Edit Icon
 import "./css/DetailForm.css";
+import errorGif from "../../assets/profile/error.gif";  // Adjust the path as per your project structure
+import submitGif from "../../assets/profile/submit.gif";
+import RenderForm from "../../components/profile/renderForm";
+
 
 const DetailForm = () => {
   const [activeTab, setActiveTab] = useState("Personal Info");
@@ -14,6 +18,22 @@ const DetailForm = () => {
     City: "",
     PinCode: "",
     About: "",
+    University: "",
+    Institute: "",
+    Course: "",
+    Branch: "",
+    StartDate: "",
+    EndDate: "",
+    Percentage: "",
+    Company: "",
+    Position: "",
+    CurrentSalary: "",
+    ExpectedSalary: "",
+    currentlyWorking: "",
+    From: "",
+    To: "",
+    TechnicalSkills: "",
+    SoftSkills: ""
   });
   const [modalMessage, setModalMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -25,14 +45,47 @@ const DetailForm = () => {
   const [links, setLinks] = useState({ LinkedIn: "", Portfolio: "", GitHub: "" });
   const [showLinksModal, setShowLinksModal] = useState(false);
 
+  const [documentName, setDocumentName] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [documents, setDocuments] = useState([]);
+
+  const handleAddDocument = () => {
+    if (!documentName || !selectedFile) {
+      alert("Please enter document name and select a file.");
+      return;
+    }
+    setDocuments([...documents, { name: documentName, file: selectedFile }]);
+    setDocumentName("");
+    setSelectedFile(null);
+  };
+
+  const handleViewDocument = (doc) => {
+    const fileURL = URL.createObjectURL(doc.file);
+    window.open(fileURL, "_blank");
+  };
+
+  const handleRemoveDocument = (index) => {
+    setDocuments((prevDocuments) => prevDocuments.filter((_, i) => i !== index));
+  };  
+
   const tabs = ["Personal Info", "Education", "Experience", "Skills", "Documents"];
 
   const handleSave = () => {
-    if (!formData.FullName || !formData.DateOfBirth || !formData.Gender || !formData.Phone || !formData.Country) {
-      setModalMessage("Please fill all the required sections to save");
+    if (!formData.FullName || !formData.DateOfBirth || !formData.Gender || !formData.Phone || !formData.Country || !formData.University || !formData.Institute || !formData.Course || !formData.Branch || !formData.StartDate ) {
+        setModalMessage(
+            <div>
+                <img src={errorGif} alt="Error" style={{ width: "200px", height: "150px" }} />
+                <p>Please fill all the required sections to save</p>
+            </div>
+        );
     } else {
-      setModalMessage("Saved Successfully");
-      setIsSaved(true);
+        setModalMessage(
+            <div>
+                <img src={submitGif} alt="Success" style={{ width: "200px", height: "150px" }} />
+                <p>Saved Successfully</p>
+            </div>
+        );
+        setIsSaved(true);
     }
     setShowModal(true);
   };
@@ -116,84 +169,42 @@ const DetailForm = () => {
         </div>
         
         {/* Render Form */}
-        {(() => {
-          switch (activeTab) {
-            case "Personal Info":
-              return (
-                <div className="form-grid">
-                  {["FullName", "DateOfBirth", "Phone"].map((field) => (
-                    <div className="form-group" key={field}>
-                      <label>
-                        {field.replace(/([A-Z])/g, " $1").trim()} <span className="required">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        placeholder={field.replace(/([A-Z])/g, " $1").trim()}
-                        value={formData[field]}
-                        onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
-                        disabled={isSaved}
-                      />
-                    </div>
-                  ))}
-                  <div className="form-group">
-                    <label>Gender <span className="required">*</span></label>
-                    <div className="Gender-options">
-                      {["Male", "Female", "More Options"].map((Gender) => (
-                        <button
-                          key={Gender}
-                          onClick={() => setFormData({ ...formData, Gender })}
-                          className={formData.Gender === Gender ? "selected" : ""}
-                          disabled={isSaved}
-                        >
-                          {Gender}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label>Country <span className="required">*</span></label>
-                    <input
-                      type="text"
-                      value={formData.Country}
-                      onChange={(e) => setFormData({ ...formData, Country: e.target.value })}
-                      disabled={isSaved}
-                    />
-                  </div>
-                  {["State", "City", "PinCode"].map((field) => (
-                    <div className="form-group" key={field}>
-                      <label>{field.replace(/([A-Z])/g, " $1").trim()}</label>
-                      <input
-                        type="text"
-                        value={formData[field]}
-                        onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
-                        disabled={isSaved}
-                      />
-                    </div>
-                  ))}
-                  <div className="form-group full-width">
-                    <label>About</label>
-                    <textarea
-                      placeholder="About"
-                      value={formData.About}
-                      onChange={(e) => setFormData({ ...formData, About: e.target.value })}
-                      disabled={isSaved}
-                    ></textarea>
-                  </div>
-                </div>
-              );
-            default:
-              return <p className="tab-content">{activeTab} section content goes here.</p>;
-          }
-        })()}
+        <RenderForm
+          activeTab={activeTab}
+          formData={formData}
+          setFormData={setFormData}
+          isSaved={isSaved}
+          documentName={documentName}
+          setDocumentName={setDocumentName}
+          selectedFile={selectedFile}
+          setSelectedFile={setSelectedFile}
+          documents={documents}
+          handleAddDocument={handleAddDocument}
+          handleViewDocument={handleViewDocument}
+          handleRemoveDocument={handleRemoveDocument}
+        />
 
-        {/* Save & Edit Buttons */}
-        {isSaved ? (
-          <button className="edit-button" onClick={handleEdit}>EDIT</button>
-        ) : (
-          <button onClick={handleSave} className="save-button">SAVE</button>
-        )}
+        {/* Navigation Buttons */}
+        <div className="form-navigation">
+          {activeTab !== "Documents" ? (
+            <button 
+              onClick={() => setActiveTab(tabs[tabs.indexOf(activeTab) + 1])} 
+              className="next-button"
+            >
+              NEXT
+            </button>
+          ) : (
+            isSaved ? (
+              <>
+                <button className="edit-button" onClick={handleEdit}>EDIT</button>
+              </>
+            ) : (
+              <button onClick={handleSave} className="save-button">SAVE</button>
+            )
+          )}
+        </div>
       </div>
-
+       
       {/* Save Modal */}
       {showModal && (
         <div className="modal-overlay">
