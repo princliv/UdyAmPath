@@ -6,10 +6,10 @@ import rLangImage from "../../assets/coursepage/machine-learning.png.webp";
 import sqlImage from "../../assets/coursepage/hacking.png.webp";
 
 const courseImageMap = {
-  "Java": javaImage,
-  "Python": pythonImage,
-  "R Language": rLangImage,
-  "SQL": sqlImage,
+  "React": javaImage, // Updated
+  "Android": pythonImage, // Updated
+  "Machine Learning": rLangImage, // Updated
+  "Ethical Hacking": sqlImage, // Updated
 };
 
 const Details = () => {
@@ -22,7 +22,6 @@ const Details = () => {
       .then((data) => {
         const updatedCourses = data.map((course) => ({
           ...course,
-          
           image: courseImageMap[course.title] || null,
         }));
         setCourses(updatedCourses);

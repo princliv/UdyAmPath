@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 
 const CourseDetails = () => {
   const location = useLocation();
-  const course = location.state?.course; // Getting course data from navigation state
+  const course = location.state?.course;
 
   if (!course) {
     return <p style={{ textAlign: "center", fontSize: "18px", color: "#555" }}>No course data available.</p>;
@@ -14,16 +14,23 @@ const CourseDetails = () => {
       <div style={styles.courseBox}>
         <img src={course.image} alt={course.title} style={styles.image} />
         <div style={styles.details}>
-          <h2 style={styles.title}>{course.title}</h2>
+          <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
+            <img src={course.logo} alt={course.title} style={{ width: "40px", height: "40px", borderRadius: "50%", marginRight: "10px" }} />
+            <h2 style={styles.title}>{course.title}</h2>
+          </div>
           <div style={styles.detailGrid}>
             <div>
-              <p><strong>Company:</strong> {course.instructor}</p>
+              <p><strong>Instructor:</strong> {course.instructor}</p>
               <p><strong>Category:</strong> {course.category}</p>
             </div>
             <div>
               <p><strong>Duration:</strong> {course.duration}</p>
               <p><strong>Level:</strong> {course.level}</p>
             </div>
+          </div>
+          <div style={styles.additionalInfo}>
+            <p><strong>Exercises:</strong> 136 coding exercises</p>
+            <p><strong>Projects:</strong> 6 projects</p>
           </div>
         </div>
       </div>
@@ -32,6 +39,16 @@ const CourseDetails = () => {
       <div style={styles.descriptionBox}>
         <h3>Description</h3>
         <p>{course.description}</p>
+      </div>
+
+      {/* Skills Gained Section */}
+      <div style={styles.skillsBox}>
+        <h3>Skills Gained</h3>
+        <ul style={styles.skillsList}>
+          {course.skillsGained?.map((skill, index) => (
+            <li key={index} style={styles.skill}>{skill}</li>
+          ))}
+        </ul>
       </div>
 
       {/* Pathway Section */}
@@ -56,7 +73,7 @@ const styles = {
   },
   courseBox: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-start",
     backgroundColor: "#ffffff",
     padding: "20px",
     borderRadius: "12px",
@@ -64,7 +81,7 @@ const styles = {
     border: "1px solid #ddd",
   },
   image: {
-    width: "220px",
+    width: "250px",
     height: "180px",
     borderRadius: "10px",
     marginRight: "20px",
@@ -79,12 +96,16 @@ const styles = {
   title: {
     margin: "0 0 10px",
     color: "#1A237E",
-    fontSize: "22px",
+    fontSize: "24px",
   },
   detailGrid: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
     gap: "10px",
+  },
+  additionalInfo: {
+    marginTop: "10px",
+    color: "#555",
   },
   descriptionBox: {
     backgroundColor: "#f9f9f9",
@@ -105,6 +126,25 @@ const styles = {
     margin: "0",
   },
   step: {
+    backgroundColor: "#BBDEFB",
+    padding: "10px",
+    borderRadius: "8px",
+    marginBottom: "8px",
+    listStyle: "none",
+    fontSize: "14px",
+  },
+  skillsBox: {
+    backgroundColor: "#f9f9f9",
+    padding: "15px",
+    borderRadius: "10px",
+    marginTop: "20px",
+    border: "1px solid #ddd",
+  },
+  skillsList: {
+    padding: "0",
+    margin: "0",
+  },
+  skill: {
     backgroundColor: "#BBDEFB",
     padding: "10px",
     borderRadius: "8px",
