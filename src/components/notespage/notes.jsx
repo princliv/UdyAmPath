@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import flowImage from '../../assets/flow.png';
+import Modal from './Modal'; // Import the Modal component
 
 const Notes = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [hoveredStep, setHoveredStep] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleFileUpload = (event) => {
     const files = event.target.files;
@@ -17,9 +20,15 @@ const Notes = () => {
     setUploadedFiles(uploadedFiles.filter((_, i) => i !== index));
   };
 
+  const stepSubheadings = {
+    1: "Start by uploading your notes to begin the conversion process.",
+    2: "Choose the flowchart style that best represents your notes.",
+    3: "Review the generated flowchart for accuracy and clarity.",
+    4: "Save your finalized flowchart for easy access and sharing.",
+  };
+
   return (
     <div style={styles.container}>
-      {/* Header Section */}
       <div style={styles.header}>
         <div>
           <h1 style={styles.heading}>
@@ -31,50 +40,56 @@ const Notes = () => {
         <div style={styles.uploadContainer}>
           <h3 style={styles.uploadTitle}>Get your notes</h3>
           <label style={styles.uploadBox}>
-            <input type="file" multiple onChange={handleFileUpload} style={{ display: 'none' }} />
-            <button style={styles.browseButton}>📂 Browse files</button>
+            <button style={styles.browseButton} onClick={() => setIsModalOpen(true)}>📂 Browse files</button>
             <p style={styles.uploadText}>or drag and drop it here</p>
           </label>
         </div>
       </div>
 
-      {/* Content Section */}
+      {/* Modal Component */}
+      {isModalOpen && (
+        <Modal
+          onClose={() => setIsModalOpen(false)}
+          onFileUpload={handleFileUpload}
+        />
+      )}
+
       <div style={styles.content}>
-        {/* Diagram Section */}
         <div style={styles.diagramContainer}>
           <div style={styles.overlay}></div>
           <img src={flowImage} alt="Flowchart Example" style={styles.diagramImage} />
           <button style={styles.exploreButton}>Explore</button>
         </div>
 
-        {/* Steps Section */}
         <div style={styles.stepsContainer}>
-          <h3 style={{ fontSize: '1.8rem' }}>How to Convert Your Notes into a Flowchart</h3>
+          <h3 style={{ fontSize: '1.8rem', marginBottom: '25px' }}>
+            How to Convert Your Notes into a Flowchart
+          </h3>
           <ol style={styles.stepsList}>
-            {/* Step 1 with box */}
-            <li style={styles.stepBox}>
-              <span style={styles.stepNumber}>1</span>
-              <div style={styles.stepContent}>
-                <strong style={styles.stepTitle}>Upload your notes</strong>
-                <p style={styles.stepSubtitle}>Upload your notes first</p>
-              </div>
-            </li>
-
-            {/* Steps 2, 3, and 4 */}
-            <li style={styles.stepWithoutBox}>
-              <span style={styles.stepNumberWithoutBox}>2</span> Select your diagram
-            </li>
-            <li style={styles.stepWithoutBox}>
-              <span style={styles.stepNumberWithoutBox}>3</span> Preview the diagram
-            </li>
-            <li style={styles.stepWithoutBox}>
-              <span style={styles.stepNumberWithoutBox}>4</span> Download
-            </li>
+            {Object.entries(stepSubheadings).map(([step, subheading]) => (
+              <li
+                key={step}
+                style={{
+                  ...styles.stepWithoutBox,
+                  ...(hoveredStep === step ? styles.stepWithoutBoxHover : {}),
+                }}
+                onMouseEnter={() => setHoveredStep(step)}
+                onMouseLeave={() => setHoveredStep(null)}
+              >
+                <span style={styles.stepNumberWithoutBox}>{step}</span>
+                <div>
+                  {step === "1" && "Upload your notes"}
+                  {step === "2" && "Select your diagram"}
+                  {step === "3" && "Preview the diagram"}
+                  {step === "4" && "Download"}
+                  {hoveredStep === step && <p style={styles.stepSubheading}>{subheading}</p>}
+                </div>
+              </li>
+            ))}
           </ol>
         </div>
       </div>
 
-      {/* Uploaded Notes List */}
       <div style={styles.notesList}>
         {uploadedFiles.map((file, index) => (
           <div key={index} style={styles.noteItem}>
@@ -135,7 +150,7 @@ const styles = {
     alignItems: 'center',
     cursor: 'pointer',
   },
-  uploadText: { 
+  uploadText: {
     color: '#777',
     fontSize: '1.2rem',
     marginTop: '5px',
@@ -152,7 +167,7 @@ const styles = {
   content: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     marginTop: '30px',
   },
   diagramContainer: {
@@ -160,12 +175,12 @@ const styles = {
     backgroundColor: '#fff',
     padding: '40px 20px 20px',
     borderRadius: '20px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     textAlign: 'center',
     border: '3px solid #CCCCCC',
     display: 'inline-block',
     overflow: 'hidden',
-    marginTop: '20px',
+    marginTop: '70px',
+    marginRight: '20px',
   },
   overlay: {
     position: 'absolute',
@@ -178,7 +193,7 @@ const styles = {
   },
   diagramImage: {
     width: '100%',
-    maxWidth: '450px',
+    maxWidth: '550px',
     borderRadius: '8px',
   },
   exploreButton: {
@@ -193,68 +208,49 @@ const styles = {
     borderRadius: '20px',
     border: 'none',
     cursor: 'pointer',
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
     zIndex: '2',
   },
   stepsContainer: {
-    padding: '20px',
+    padding: '30px',
     backgroundColor: '#fff',
     borderRadius: '10px',
     width: '45%',
     fontSize: '1.2rem',
     fontWeight: 'bold',
     color: '#222',
+    marginLeft: '200px',
   },
   stepsList: {
     paddingLeft: '0',
     listStyle: 'none',
     marginTop: '10px',
   },
-  stepBox: {
-    display: 'flex',
-    alignItems: 'center',
-    border: '2px solid black',
-    borderRadius: '10px',
-    padding: '15px',
-    backgroundColor: '#fff',
-    width: '100%',
-    gap: '15px',
-  },
-  stepNumber: {
-    fontSize: '2rem',
-    fontWeight: 'bold',
-    color: '#000',
-    backgroundColor: '#fff',
-    border: '2px solid black',
-    borderRadius: '10px',
-    padding: '5px 15px',
-  },
-  stepContent: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  stepTitle: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-  },
-  stepSubtitle: {
-    fontSize: '1rem',
-    color: '#777',
-  },
   stepWithoutBox: {
+    cursor: 'pointer',
     fontSize: '1.5rem',
-    marginBottom: '20px',
+    marginBottom: '35px',
     display: 'flex',
-    alignItems: 'center',
-    gap: '10px',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: '20px',
     fontWeight: 'bold',
-    paddingLeft: '36px',
+    padding: '15px',
+    borderRadius: '12px',
+    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+  },
+  stepWithoutBoxHover: {
+    backgroundColor: '#fff',
+    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
   },
   stepNumberWithoutBox: {
     fontSize: '1.8rem',
     fontWeight: 'bold',
     color: '#000',
-    marginRight: '25px',
+  },
+  stepSubheading: {
+    fontSize: '1rem',
+    color: 'grey',
+    marginTop: '5px',
   },
 };
 

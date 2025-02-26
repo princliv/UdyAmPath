@@ -1,10 +1,14 @@
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import React from "react";
 import { BrowserRouter as Router, Link, NavLink, Route, Routes } from "react-router-dom";
 import BaseDetails from "./components/jobpage/baseDetails";
 import BasePage from "./components/jobpage/basePage";
+import Books from "./components/notespage/books";
 import Notes from "./components/notespage/notes";
 import GroupDiscussion from "./components/toolspage/groupDiscussion";
 import HrInterview from "./components/toolspage/hrInterview";
+import Placement from "./components/toolspage/placementpaper";
+import PlaceTest from "./components/toolspage/placeTest";
 import ProjectModal from "./components/toolspage/projectModal";
 import TechInterview from "./components/toolspage/techInterview";
 import CourseDetail from "./pages/coursedetail";
@@ -13,8 +17,6 @@ import Homepage from "./pages/homepage";
 import JobPage from "./pages/jobpage";
 import NotesPage from "./pages/notespage";
 import ToolsPage from "./pages/toolspage";
-import Placement from "./components/toolspage/placementpaper";
-import PlaceTest from "./components/toolspage/placeTest";
 
 //import Contact from "";
 import backgroud from "./assets/background.png";
@@ -97,6 +99,7 @@ function App() {
         <Route path="/notes" element={<Notes/>} />
         <Route path="/placementpapers" element={<Placement/>} />
         <Route path="/placeTest" element={<PlaceTest/>} />
+        <Route path="/books" element={<Books/>}/>
 
       </Routes>
 
