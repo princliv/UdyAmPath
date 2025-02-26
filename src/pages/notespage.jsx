@@ -1,18 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // Import Link
 import dsImage from '../assets/ds-image.jpeg';
 import javaImage from '../assets/java-image.webp';
 import oopsImage from '../assets/oops-image.jpeg';
 import osImage from '../assets/os-image.png';
 
 const NotesPage = () => {
+  const handleMouseOver = (e) => {
+    e.currentTarget.style.transform = "translateY(-2px)";
+    e.currentTarget.style.boxShadow = "0 6px 10px rgba(0, 0, 0, 0.2)";
+  };
+
+  const handleMouseOut = (e) => {
+    e.currentTarget.style.transform = "translateY(0)";
+    e.currentTarget.style.boxShadow = "0 3px 5px rgba(0, 0, 0, 0.2)";
+  };
+
   return (
     <div style={styles.container}>
       <div style={styles.sidebar}>
         <div style={styles.notesSection}>
           <h2 style={styles.notesTitle}>📄 NOTES</h2>
           <Link to="/notes">
-            <button style={styles.exploreButton}>Explore</button>
+            <button
+              style={styles.exploreButton}
+              onMouseOver={handleMouseOver}
+              onMouseOut={handleMouseOut}
+            >
+              Explore
+            </button>
           </Link>
         </div>
         <div style={styles.notificationSection}>
@@ -69,7 +85,16 @@ const NotesPage = () => {
           </div>
         </div>
 
-        <button style={styles.exploreMoreButton}>Explore More</button>
+        {/* Replace the button with a Link */}
+        <Link to="/books" style={{ textDecoration: 'none' }}>
+          <button
+            style={styles.exploreMoreButton}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+          >
+            Explore More
+          </button>
+        </Link>
       </div>
     </div>
   );
@@ -104,6 +129,8 @@ const styles = {
     borderRadius: '20px',
     border: 'none',
     cursor: 'pointer',
+    boxShadow: '0 3px 5px rgba(0, 0, 0, 0.2)',
+    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
   },
   notificationSection: {
     backgroundColor: '#fff',
@@ -199,7 +226,6 @@ const styles = {
     justifyContent: 'flex-start',
     flexWrap: 'wrap',
     marginLeft: '80px',
-
   },
   bookCard: {
     backgroundColor: '#fff',
@@ -209,15 +235,13 @@ const styles = {
     minHeight: '180px',
     width: '250px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-
   },
   bookImage: {
     width: '100%',
     height: '150px',
     objectFit: 'cover',
-    borderRadius: '8px'
+    borderRadius: '8px',
   },
-  
   exploreLink: {
     color: '#007bff',
     textDecoration: 'none',
@@ -234,6 +258,8 @@ const styles = {
     margin: '0 auto',
     textAlign: 'center',
     cursor: 'pointer',
+    boxShadow: '0 3px 5px rgba(0, 0, 0, 0.2)',
+    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
   },
 };
 
