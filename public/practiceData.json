@@ -53,22 +53,229 @@
       }
     ]},
     { "title": "Coding Round", "description": "Practice coding questions", "questions": [
-      { "question": "What is the output of: print(2 ** 3)?", "options": ["6", "8", "9", "12"], "answer": "8" },
-      { "question": "Which data structure follows FIFO order?", "options": ["Stack", "Queue", "Tree", "Graph"], "answer": "Queue" }
+      {
+        "question": "What is the output of: print(2 ** 3)?",
+        "options": ["6", "8", "9", "12"],
+        "answer": "8"
+      },
+      {
+        "question": "Which data structure follows FIFO order?",
+        "options": ["Stack", "Queue", "Tree", "Graph"],
+        "answer": "Queue"
+      },
+      {
+        "question": "What is the output of: print(10 // 3)?",
+        "options": ["3", "3.33", "4", "3.0"],
+        "answer": "3"
+      },
+      {
+        "question": "What is the result of the expression: len('Hello')?",
+        "options": ["4", "5", "6", "Error"],
+        "answer": "5"
+      },
+      {
+        "question": "Which of the following is NOT a programming paradigm?",
+        "options": ["Object-Oriented", "Procedural", "Functional", "Sequential"],
+        "answer": "Sequential"
+      },
+      {
+        "question": "In Python, which keyword is used to define a function?",
+        "options": ["def", "func", "function", "define"],
+        "answer": "def"
+      },
+      {
+        "question": "What is the output of: print('Python'[1])?",
+        "options": ["P", "y", "t", "h"],
+        "answer": "y"
+      },
+      {
+        "question": "Which data type is immutable in Python?",
+        "options": ["List", "Dictionary", "Set", "Tuple"],
+        "answer": "Tuple"
+      },
+      {
+        "question": "What is the purpose of the 'return' statement in a function?",
+        "options": [
+          "Exit a loop",
+          "Stop execution of function and return a value",
+          "Create a new function",
+          "None of the above"
+        ],
+        "answer": "Stop execution of function and return a value"
+      },
+      {
+        "question": "What will be the output of the following code snippet?\n\nx = [1, 2, 3]\nprint(x * 2)",
+        "options": ["[2, 4, 6]", "[1, 2, 3, 1, 2, 3]", "Error", "[1, 2, 3, 2, 4, 6]"],
+        "answer": "[1, 2, 3, 1, 2, 3]"
+      }
     ]},
     { "title": "System Design", "description": "Master system design concepts", "questions": [
-      { "question": "Which database is best for handling large-scale unstructured data?", "options": ["MySQL", "MongoDB", "PostgreSQL", "SQLite"], "answer": "MongoDB" },
-      { "question": "What does a load balancer do?", "options": ["Stores data", "Routes traffic", "Processes requests", "Manages logs"], "answer": "Routes traffic" }
+      {
+        "question": "Which database is best for handling large-scale unstructured data?",
+        "options": ["MySQL", "MongoDB", "PostgreSQL", "SQLite"],
+        "answer": "MongoDB"
+      },
+      {
+        "question": "What does a load balancer do?",
+        "options": ["Stores data", "Routes traffic", "Processes requests", "Manages logs"],
+        "answer": "Routes traffic"
+      },
+      {
+        "question": "What is the main advantage of a microservices architecture?",
+        "options": ["Single codebase", "Scalability", "Monolithic design", "Tight coupling"],
+        "answer": "Scalability"
+      },
+      {
+        "question": "Which of the following is NOT a benefit of caching?",
+        "options": ["Reduced latency", "Increased load on the database", "Improved throughput", "Cost efficiency"],
+        "answer": "Increased load on the database"
+      },
+      {
+        "question": "What is a common use case for a message queue in system design?",
+        "options": ["Real-time analytics", "Data storage", "Asynchronous processing", "Database backup"],
+        "answer": "Asynchronous processing"
+      },
+      {
+        "question": "Which design pattern helps a system remain available even if some services fail?",
+        "options": ["Circuit Breaker", "Singleton", "Factory", "Proxy"],
+        "answer": "Circuit Breaker"
+      },
+      {
+        "question": "What does CDN stand for in system design?",
+        "options": ["Content Delivery Network", "Central Data Node", "Content Distribution Node", "Customer Delivery Network"],
+        "answer": "Content Delivery Network"
+      },
+      {
+        "question": "What is horizontal scaling?",
+        "options": ["Adding more resources to a single node", "Adding more nodes to a system", "Optimizing code performance", "Upgrading hardware components"],
+        "answer": "Adding more nodes to a system"
+      },
+      {
+        "question": "Which of the following is a NoSQL database?",
+        "options": ["Oracle", "SQL Server", "Cassandra", "DB2"],
+        "answer": "Cassandra"
+      },
+      {
+        "question": "In system design, what is the purpose of sharding?",
+        "options": ["Backup data", "Split a database into smaller, more manageable parts", "Increase security", "Reduce latency"],
+        "answer": "Split a database into smaller, more manageable parts"
+      }
     ]}
   ],
   "Cognitive": [
     { "title": "Logical Reasoning", "description": "Enhance logical thinking", "questions": [
-      { "question": "If all cats are mammals and some mammals are not dogs, can all cats be dogs?", "options": ["Yes", "No", "Maybe", "Insufficient data"], "answer": "No" },
-      { "question": "Which shape has the least number of sides?", "options": ["Triangle", "Square", "Pentagon", "Hexagon"], "answer": "Triangle" }
+      {
+        "question": "If all cats are mammals and some mammals are not dogs, can all cats be dogs?",
+        "options": ["Yes", "No", "Maybe", "Insufficient data"],
+        "answer": "No"
+      },
+      {
+        "question": "Which shape has the least number of sides?",
+        "options": ["Triangle", "Square", "Pentagon", "Hexagon"],
+        "answer": "Triangle"
+      },
+      {
+        "question": "If John is taller than Mark and Mark is taller than Luke, who is the shortest?",
+        "options": ["John", "Mark", "Luke", "Can't tell"],
+        "answer": "Luke"
+      },
+      {
+        "question": "If all roses are flowers and some flowers fade quickly, can it be concluded that some roses fade quickly?",
+        "options": ["Yes", "No", "Maybe", "Insufficient data"],
+        "answer": "Insufficient data"
+      },
+      {
+        "question": "Which is heavier: a pound of feathers or a pound of bricks?",
+        "options": ["Feathers", "Bricks", "They weigh the same", "Depends on the container"],
+        "answer": "They weigh the same"
+      },
+      {
+        "question": "What is the missing number in the series: 1, 4, 9, 16, ?, 36",
+        "options": ["20", "22", "25", "30"],
+        "answer": "25"
+      },
+      {
+        "question": "If you rearrange the letters 'CIFAIPC', you would have the name of a(n):",
+        "options": ["City", "Animal", "Ocean", "Country"],
+        "answer": "Ocean"
+      },
+      {
+        "question": "Which of the following conclusions is logically correct? All birds have wings. Penguins are birds. Therefore:",
+        "options": ["Penguins can fly", "Penguins have wings", "Penguins are mammals", "Penguins do not exist"],
+        "answer": "Penguins have wings"
+      },
+      {
+        "question": "If every A is B and every B is C, then which of the following must be true?",
+        "options": [
+          "Some A are not C",
+          "Every C is A",
+          "Every A is C",
+          "Some C are not A"
+        ],
+        "answer": "Every A is C"
+      },
+      {
+        "question": "If it rains, the ground gets wet. The ground is wet. Can we conclude that it rained?",
+        "options": [
+          "Yes, definitely",
+          "No, because there could be other reasons",
+          "Maybe, if it rained recently",
+          "Only if there is no sunlight"
+        ],
+        "answer": "No, because there could be other reasons"
+      }
     ]},
     { "title": "Analytical Skills", "description": "Boost your analysis power", "questions": [
-      { "question": "Which is the odd one out: Apple, Banana, Mango, Carrot?", "options": ["Apple", "Banana", "Mango", "Carrot"], "answer": "Carrot" },
-      { "question": "What is 25% of 200?", "options": ["25", "50", "75", "100"], "answer": "50" }
+      {
+        "question": "Which is the odd one out: Apple, Banana, Mango, Carrot?",
+        "options": ["Apple", "Banana", "Mango", "Carrot"],
+        "answer": "Carrot"
+      },
+      {
+        "question": "What is 25% of 200?",
+        "options": ["25", "50", "75", "100"],
+        "answer": "50"
+      },
+      {
+        "question": "Find the next number in the sequence: 3, 6, 12, 24, ?",
+        "options": ["36", "42", "48", "50"],
+        "answer": "48"
+      },
+      {
+        "question": "If a = 2 and b = 3, what is the value of a * b + b?",
+        "options": ["7", "8", "9", "10"],
+        "answer": "9"
+      },
+      {
+        "question": "If a train travels 150 km in 3 hours, what is its average speed?",
+        "options": ["30 km/h", "40 km/h", "50 km/h", "60 km/h"],
+        "answer": "50 km/h"
+      },
+      {
+        "question": "Which number is the median of the set: 3, 7, 9, 15, 21?",
+        "options": ["7", "9", "15", "21"],
+        "answer": "9"
+      },
+      {
+        "question": "What is the percentage increase from 80 to 100?",
+        "options": ["20%", "25%", "30%", "35%"],
+        "answer": "25%"
+      },
+      {
+        "question": "If a rectangle has a length of 10 and a width of 5, what is its area?",
+        "options": ["15", "30", "50", "60"],
+        "answer": "50"
+      },
+      {
+        "question": "Solve for x: 2x + 4 = 12",
+        "options": ["2", "3", "4", "5"],
+        "answer": "4"
+      },
+      {
+        "question": "Which letter completes the sequence: A, C, F, J, ?",
+        "options": ["K", "L", "M", "O"],
+        "answer": "O"
+      }
     ]}
   ],
   "Management": [
