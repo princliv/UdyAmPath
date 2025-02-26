@@ -3,6 +3,7 @@ import flowImage from '../../assets/flow.png';
 
 const Notes = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [hoveredStep, setHoveredStep] = useState(null); // Track hovered step
 
   const handleFileUpload = (event) => {
     const files = event.target.files;
@@ -15,6 +16,14 @@ const Notes = () => {
 
   const handleDelete = (index) => {
     setUploadedFiles(uploadedFiles.filter((_, i) => i !== index));
+  };
+
+  // Subheadings for each step
+  const stepSubheadings = {
+    1: "Start by uploading your notes to begin the conversion process.",
+    2: "Choose the flowchart style that best represents your notes.",
+    3: "Review the generated flowchart for accuracy and clarity.",
+    4: "Save your finalized flowchart for easy access and sharing.",
   };
 
   return (
@@ -49,26 +58,80 @@ const Notes = () => {
 
         {/* Steps Section */}
         <div style={styles.stepsContainer}>
-          <h3 style={{ fontSize: '1.8rem' }}>How to Convert Your Notes into a Flowchart</h3>
+          <h3 style={{ fontSize: '1.8rem', marginBottom: '35px' }}>
+            How to Convert Your Notes into a Flowchart
+          </h3>
           <ol style={styles.stepsList}>
-            {/* Step 1 with box */}
-            <li style={styles.stepBox}>
-              <span style={styles.stepNumber}>1</span>
-              <div style={styles.stepContent}>
-                <strong style={styles.stepTitle}>Upload your notes</strong>
-                <p style={styles.stepSubtitle}>Upload your notes first</p>
+            {/* Step 1 */}
+            <li
+              style={{
+                ...styles.stepWithoutBox,
+                ...(hoveredStep === 1 ? styles.stepWithoutBoxHover : {}),
+              }}
+              onMouseEnter={() => setHoveredStep(1)}
+              onMouseLeave={() => setHoveredStep(null)}
+            >
+              <span style={styles.stepNumberWithoutBox}>1</span>
+              <div>
+                Upload your notes
+                {hoveredStep === 1 && (
+                  <p style={styles.stepSubheading}>{stepSubheadings[1]}</p>
+                )}
               </div>
             </li>
 
-            {/* Steps 2, 3, and 4 */}
-            <li style={styles.stepWithoutBox}>
-              <span style={styles.stepNumberWithoutBox}>2</span> Select your diagram
+            {/* Step 2 */}
+            <li
+              style={{
+                ...styles.stepWithoutBox,
+                ...(hoveredStep === 2 ? styles.stepWithoutBoxHover : {}),
+              }}
+              onMouseEnter={() => setHoveredStep(2)}
+              onMouseLeave={() => setHoveredStep(null)}
+            >
+              <span style={styles.stepNumberWithoutBox}>2</span>
+              <div>
+                Select your diagram
+                {hoveredStep === 2 && (
+                  <p style={styles.stepSubheading}>{stepSubheadings[2]}</p>
+                )}
+              </div>
             </li>
-            <li style={styles.stepWithoutBox}>
-              <span style={styles.stepNumberWithoutBox}>3</span> Preview the diagram
+
+            {/* Step 3 */}
+            <li
+              style={{
+                ...styles.stepWithoutBox,
+                ...(hoveredStep === 3 ? styles.stepWithoutBoxHover : {}),
+              }}
+              onMouseEnter={() => setHoveredStep(3)}
+              onMouseLeave={() => setHoveredStep(null)}
+            >
+              <span style={styles.stepNumberWithoutBox}>3</span>
+              <div>
+                Preview the diagram
+                {hoveredStep === 3 && (
+                  <p style={styles.stepSubheading}>{stepSubheadings[3]}</p>
+                )}
+              </div>
             </li>
-            <li style={styles.stepWithoutBox}>
-              <span style={styles.stepNumberWithoutBox}>4</span> Download
+
+            {/* Step 4 */}
+            <li
+              style={{
+                ...styles.stepWithoutBox,
+                ...(hoveredStep === 4 ? styles.stepWithoutBoxHover : {}),
+              }}
+              onMouseEnter={() => setHoveredStep(4)}
+              onMouseLeave={() => setHoveredStep(null)}
+            >
+              <span style={styles.stepNumberWithoutBox}>4</span>
+              <div>
+                Download
+                {hoveredStep === 4 && (
+                  <p style={styles.stepSubheading}>{stepSubheadings[4]}</p>
+                )}
+              </div>
             </li>
           </ol>
         </div>
@@ -160,7 +223,6 @@ const styles = {
     backgroundColor: '#fff',
     padding: '40px 20px 20px',
     borderRadius: '20px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     textAlign: 'center',
     border: '3px solid #CCCCCC',
     display: 'inline-block',
@@ -193,11 +255,10 @@ const styles = {
     borderRadius: '20px',
     border: 'none',
     cursor: 'pointer',
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
     zIndex: '2',
   },
   stepsContainer: {
-    padding: '20px',
+    padding: '30px',
     backgroundColor: '#fff',
     borderRadius: '10px',
     width: '45%',
@@ -210,51 +271,32 @@ const styles = {
     listStyle: 'none',
     marginTop: '10px',
   },
-  stepBox: {
-    display: 'flex',
-    alignItems: 'center',
-    border: '2px solid black',
-    borderRadius: '10px',
-    padding: '15px',
-    backgroundColor: '#fff',
-    width: '100%',
-    gap: '15px',
-  },
-  stepNumber: {
-    fontSize: '2rem',
-    fontWeight: 'bold',
-    color: '#000',
-    backgroundColor: '#fff',
-    border: '2px solid black',
-    borderRadius: '10px',
-    padding: '5px 15px',
-  },
-  stepContent: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  stepTitle: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-  },
-  stepSubtitle: {
-    fontSize: '1rem',
-    color: '#777',
-  },
   stepWithoutBox: {
+    cursor:'pointer',
     fontSize: '1.5rem',
-    marginBottom: '20px',
+    marginBottom: '35px',
     display: 'flex',
-    alignItems: 'center',
-    gap: '10px',
+    flexDirection: 'row', // Align items horizontally
+    alignItems: 'flex-start', // Align items to the top
+    gap: '20px', // Increased gap between number and text
     fontWeight: 'bold',
-    paddingLeft: '36px',
+    padding: '15px',
+    borderRadius: '12px',
+    transition: 'all 0.5s ease', // Slower hover effect
+  },
+  stepWithoutBoxHover: {
+    backgroundColor: '#fff',
+    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
   },
   stepNumberWithoutBox: {
     fontSize: '1.8rem',
     fontWeight: 'bold',
     color: '#000',
-    marginRight: '25px',
+  },
+  stepSubheading: {
+    fontSize: '1rem',
+    color: 'grey',
+    marginTop: '5px',
   },
 };
 
