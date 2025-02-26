@@ -131,7 +131,7 @@ const BasePage = () => {
         </div>
       )}
 
-      <BaseDetails />
+    <BaseDetails cityData={selectedCity} />
     </div>
   );
 };
