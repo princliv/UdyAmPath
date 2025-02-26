@@ -1,13 +1,19 @@
 import React from "react";
+import rentIcon from "../../assets/jobpage/rent.png";
+import foodIcon from "../../assets/jobpage/food.png";
+import transportIcon from "../../assets/jobpage/tranport.png";
+import utilitiesIcon from "../../assets/jobpage/Utilities.png";
+import miscIcon from "../../assets/jobpage/miscellaneous.png";
+import otherIcon from "../../assets/jobpage/other.png";
 
 const BaseDetails = ({ cityData }) => {
   const expenseDetails = [
-    { label: "Monthly Rent", key: "monthly_rent", icon: "/assets/rent.png" },
-    { label: "Food Expense", key: "food_expense", icon: "/assets/food.png" },
-    { label: "Transport", key: "transport", icon: "/assets/transport.png" },
-    { label: "Utilities", key: "utilities", icon: "/assets/utilities.png" },
-    { label: "Miscellaneous", key: "miscellaneous", icon: "/assets/misc.png" },
-    { label: "Other", key: "other", icon: "/assets/other.png" },
+    { label: "Monthly Rent", key: "monthly_rent", icon: rentIcon },
+    { label: "Food Expense", key: "food_expense", icon: foodIcon },
+    { label: "Transport", key: "transport", icon: transportIcon },
+    { label: "Utilities", key: "utilities", icon: utilitiesIcon },
+    { label: "Miscellaneous", key: "miscellaneous", icon: miscIcon },
+    { label: "Other", key: "other", icon: otherIcon },
   ];
 
   const heading = cityData ? "Here are the details" : "What will you know?";
@@ -48,17 +54,30 @@ const BaseDetails = ({ cityData }) => {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
+              position: "relative",
+              overflow: "hidden",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "translateY(-5px)";
               e.currentTarget.style.background = "#A9A9A9";
+              e.currentTarget.querySelector("img").style.transform = "translateY(-20px)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "translateY(0)";
               e.currentTarget.style.background = colors[index % colors.length];
+              e.currentTarget.querySelector("img").style.transform = "translateY(0)";
             }}
           >
-            <img src={item.icon} alt={item.label} style={{ width: "50px", height: "50px", marginBottom: "10px" }} />
+            <img
+              src={item.icon}
+              alt={item.label}
+              style={{
+                width: "200px",
+                height: "100px",
+                marginBottom: "10px",
+                transition: "transform 0.3s ease",
+              }}
+            />
             <p style={{ fontSize: "18px", margin: "5px 0" }}>{item.label}</p>
             {cityData && (
               <p style={{ fontSize: "20px", fontWeight: "bold" }}>
