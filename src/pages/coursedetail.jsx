@@ -5,7 +5,11 @@ const CourseDetails = () => {
   const course = location.state?.course;
 
   if (!course) {
-    return <p style={{ textAlign: "center", fontSize: "18px", color: "#555" }}>No course data available.</p>;
+    return (
+      <p style={{ textAlign: "center", fontSize: "18px", color: "#555" }}>
+        No course data available.
+      </p>
+    );
   }
 
   return (
@@ -14,41 +18,34 @@ const CourseDetails = () => {
       <div style={styles.courseBox}>
         <img src={course.image} alt={course.title} style={styles.image} />
         <div style={styles.details}>
-          <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-            <img src={course.logo} alt={course.title} style={{ width: "40px", height: "40px", borderRadius: "50%", marginRight: "10px" }} />
-            <h2 style={styles.title}>{course.title}</h2>
+          <div style={styles.header}>
+            <img src={course.logo} alt={course.title} style={styles.logo} />
+            <h1 style={styles.title}>{course.title}</h1>
           </div>
-          <div style={styles.detailGrid}>
-            <div>
-              <p><strong>Instructor:</strong> {course.instructor}</p>
-              <p><strong>Category:</strong> {course.category}</p>
-            </div>
-            <div>
-              <p><strong>Duration:</strong> {course.duration}</p>
-              <p><strong>Level:</strong> {course.level}</p>
-            </div>
-          </div>
+          
+          {/* Additional Info Section */}
           <div style={styles.additionalInfo}>
-            <p><strong>Exercises:</strong> 136 coding exercises</p>
-            <p><strong>Projects:</strong> 6 projects</p>
+            <div style={styles.infoItem}><strong>Start Date:</strong> {course.date}</div>
+            <div style={styles.infoItem}><strong>Type:</strong> {course.type}</div>
+            <div style={styles.infoItem}><strong>Level:</strong> {course.level}</div>
+            <div style={styles.infoItem}><strong>Duration:</strong> {course.duration}</div>
+          </div>
+          
+          <div style={styles.info}>
+            <p style={styles.infoText}>{course.duration} • {course.exercises} coding exercises • {course.projects} projects</p>
+            <p style={styles.description}>{course.description}</p>
           </div>
         </div>
       </div>
 
-      {/* Description Section */}
-      <div style={styles.descriptionBox}>
-        <h3>Description</h3>
-        <p>{course.description}</p>
-      </div>
-
       {/* Skills Gained Section */}
       <div style={styles.skillsBox}>
-        <h3>Skills Gained</h3>
-        <ul style={styles.skillsList}>
+        <h3 style={styles.skillsTitle}>Skills you will gain</h3>
+        <div style={styles.skillsContainer}>
           {course.skillsGained?.map((skill, index) => (
-            <li key={index} style={styles.skill}>{skill}</li>
+            <span key={index} style={styles.skill}>{skill}</span>
           ))}
-        </ul>
+        </div>
       </div>
 
       {/* Pathway Section */}
@@ -67,9 +64,14 @@ const CourseDetails = () => {
 // Internal CSS Styles
 const styles = {
   container: {
-    width: "80%",
-    margin: "20px auto",
+    width: "90%",
+    maxWidth: "1200px",
+    margin: "50px auto",
     fontFamily: "Arial, sans-serif",
+    backgroundColor: "#f2f2f2",
+    padding: "20px",
+    borderRadius: "8px",
+    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
   },
   courseBox: {
     display: "flex",
@@ -77,8 +79,8 @@ const styles = {
     backgroundColor: "#ffffff",
     padding: "20px",
     borderRadius: "12px",
-    boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.1)",
-    border: "1px solid #ddd",
+    boxShadow: "0 1px 4px rgba(0, 0, 0, 0.1)",
+    marginBottom: "20px",
   },
   image: {
     width: "250px",
@@ -86,65 +88,89 @@ const styles = {
     borderRadius: "10px",
     marginRight: "20px",
     objectFit: "cover",
-    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
   },
   details: {
     display: "flex",
     flexDirection: "column",
     flexGrow: 1,
   },
-  title: {
-    margin: "0 0 10px",
-    color: "#1A237E",
-    fontSize: "24px",
+  header: {
+    display: "flex",
+    alignItems: "center",
+    marginBottom: "10px",
   },
-  detailGrid: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap: "10px",
+  logo: {
+    width: "40px",
+    height: "40px",
+    borderRadius: "50%",
+    marginRight: "10px",
+  },
+  title: {
+    margin: "0",
+    fontSize: "28px",
+    color: "#333",
   },
   additionalInfo: {
+    display: "grid",
+    gridTemplateColumns: "repeat(2, 1fr)",
+    gap: "10px",
+    backgroundColor: "#f9f9f9",
+    padding: "10px",
+    borderRadius: "8px",
+    marginBottom: "10px",
+  },
+  infoItem: {
+    fontSize: "14px",
+    color: "#555",
+    backgroundColor: "#e3f2fd",
+    padding: "8px 12px",
+    borderRadius: "6px",
+  },
+  info: {
     marginTop: "10px",
     color: "#555",
   },
-  descriptionBox: {
-    backgroundColor: "#f9f9f9",
-    padding: "15px",
-    borderRadius: "10px",
-    marginTop: "20px",
-    border: "1px solid #ddd",
+  infoText: {
+    fontSize: "16px",
+    fontWeight: "500",
   },
-  pathwayBox: {
-    backgroundColor: "#E3F2FD",
-    padding: "15px",
-    borderRadius: "10px",
-    marginTop: "20px",
-    border: "1px solid #ddd",
-  },
-  pathwayList: {
-    padding: "0",
-    margin: "0",
-  },
-  step: {
-    backgroundColor: "#BBDEFB",
-    padding: "10px",
-    borderRadius: "8px",
-    marginBottom: "8px",
-    listStyle: "none",
+  description: {
     fontSize: "14px",
+    marginTop: "10px",
   },
   skillsBox: {
     backgroundColor: "#f9f9f9",
     padding: "15px",
     borderRadius: "10px",
     marginTop: "20px",
-    border: "1px solid #ddd",
   },
-  skillsList: {
+  skillsTitle: {
+    marginBottom: "10px",
+    fontSize: "22px",
+  },
+  skillsContainer: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "10px",
+  },
+  skill: {
+    backgroundColor: "#BBDEFB",
+    padding: "8px 12px",
+    borderRadius: "20px",
+    fontSize: "14px",
+    color: "#1A237E",
+  },
+  pathwayBox: {
+    backgroundColor: "#E3F2FD",
+    padding: "15px",
+    borderRadius: "10px",
+    marginTop: "20px",
+  },
+  pathwayList: {
     padding: "0",
     margin: "0",
   },
-  skill: {
+  step: {
     backgroundColor: "#BBDEFB",
     padding: "10px",
     borderRadius: "8px",

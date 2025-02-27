@@ -1,18 +1,19 @@
+// src/components/coursepage/mostPopular.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import javaImage from "../../assets/coursepage/react.png.webp";
-import pythonImage from "../../assets/coursepage/android.png.webp";
-import rLangImage from "../../assets/coursepage/machine-learning.png.webp";
-import sqlImage from "../../assets/coursepage/hacking.png.webp";
+import reactImage from "../../assets/coursepage/react.png";
+import androidImage from "../../assets/coursepage/android.png.webp";
+import mlImage from "../../assets/coursepage/machine-learning.png.webp";
+import ethicalHackingImage from "../../assets/coursepage/hacking.png.webp";
 
 const courseImageMap = {
-  "React": javaImage, // Updated
-  "Android": pythonImage, // Updated
-  "Machine Learning": rLangImage, // Updated
-  "Ethical Hacking": sqlImage, // Updated
+  "React": reactImage,
+  "Android": androidImage,
+  "Machine Learning": mlImage,
+  "Ethical Hacking": ethicalHackingImage,
 };
 
-const Details = () => {
+const MostPopular = () => {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
 
@@ -20,11 +21,13 @@ const Details = () => {
     fetch("/coursedata.json")
       .then((response) => response.json())
       .then((data) => {
-        const updatedCourses = data.map((course) => ({
+        const popularCourses = data.filter(course => 
+          ["React", "Android", "Machine Learning", "Ethical Hacking"].includes(course.title)
+        ).map(course => ({
           ...course,
           image: courseImageMap[course.title] || null,
         }));
-        setCourses(updatedCourses);
+        setCourses(popularCourses);
       })
       .catch((error) => console.error("Error loading course data:", error));
   }, []);
@@ -36,12 +39,9 @@ const Details = () => {
   return (
     <div style={{ display: "flex", justifyContent: "flex-end" }}>
       <div style={{ width: "100%", backgroundColor: "#e4deff", padding: "20px" }}>
-        {/* Heading */}
         <div style={{ marginBottom: "10px", fontSize: "25px", fontWeight: "bold", color: "#333" }}>
           Most Popular Courses
         </div>
-
-        {/* Course Grid */}
         <div style={{ 
           display: "grid", 
           gridTemplateColumns: "1fr 1fr 1fr 1fr", 
@@ -65,7 +65,6 @@ const Details = () => {
                 maxWidth: "250px",
               }}
             >
-              {/* Course Image */}
               <div style={{ flex: 1 }}>
                 <img
                   src={course.image}
@@ -78,8 +77,6 @@ const Details = () => {
                   }}
                 />
               </div>
-
-              {/* Course Details */}
               <div style={{ flex: 1 }}>
                 <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#555" }}>
                   <span>{course.company}</span>
@@ -89,8 +86,6 @@ const Details = () => {
                   {course.title}
                 </h4>
               </div>
-
-              {/* Details Button */}
               <button
                 onClick={() => openCourseDetail(course)}
                 style={{
@@ -106,8 +101,6 @@ const Details = () => {
               </button>
             </div>
           ))}
-          
-          {/* View More Button */}
           <div style={{ gridColumn: "span 4", textAlign: "left" }}>
             <button
               style={{
@@ -130,4 +123,4 @@ const Details = () => {
   );
 };
 
-export default Details;
+export default MostPopular;
