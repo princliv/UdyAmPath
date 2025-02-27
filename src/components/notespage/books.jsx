@@ -1,6 +1,7 @@
 import React from "react";
-import bookImage from "../../assets/book-cover.avif"; // Adjust the path as per your structure
+import bookImage from "../../assets/book-cover.avif";
 import readingPerson from "../../assets/reading-person.jpeg";
+import RecommendedBooks from "./RecommendedBooks";
 
 const Books = () => {
   return (
@@ -24,19 +25,27 @@ const Books = () => {
         {/* Navigation Section */}
         <div style={styles.navSection}>
           <div style={styles.navItem}>
-            <i className="fas fa-book-open"></i>
-            <h2>GET YOUR BOOKS</h2>
-            <p>Start Reading Today</p>
+            <i className="fas fa-book-open" style={styles.navIcon}></i>
+            <div style={styles.navTextContainer}>
+              <h2 style={styles.navItemTitle}>GET YOUR BOOKS</h2>
+              <p style={styles.navItemText}>Start Reading Today</p>
+            </div>
           </div>
+
           <div style={styles.navItem}>
-            <i className="fas fa-bookmark"></i>
-            <h2>SAVED BOOKS</h2>
-            <p>Your Study Shelf</p>
+            <i className="fas fa-bookmark" style={styles.navIcon}></i>
+            <div style={styles.navTextContainer}>
+              <h2 style={styles.navItemTitle}>SAVED BOOKS</h2>
+              <p style={styles.navItemText}>Your Study Shelf</p>
+            </div>
           </div>
+
           <div style={styles.navItem}>
-            <i className="fas fa-download"></i>
-            <h2>GET PYQ'S FREE</h2>
-            <p>Free Access to PYQ's</p>
+            <i className="fas fa-download" style={styles.navIcon}></i>
+            <div style={styles.navTextContainer}>
+              <h2 style={styles.navItemTitle}>GET PYQ'S FREE</h2>
+              <p style={styles.navItemText}>Free Access to PYQ's</p>
+            </div>
           </div>
         </div>
 
@@ -46,19 +55,20 @@ const Books = () => {
             <img src={readingPerson} alt="Person reading" style={styles.exploreImg} />
           </div>
           <div style={styles.exploreText}>
-            <h2>EXPLORE</h2>
-            <p>
-              Enhance your learning with a daily update of fresh study books. We bring you the latest educational resources to keep your study sessions productive and up-to-date.
+            <h2 style={{ fontSize: "36px", fontWeight: "500" }}>EXPLORE</h2>
+            <p style={{ fontSize: "26px", lineHeight: "1.6", color: "#444", marginTop: "-20px", textAlign: "left" }}>
+              Enhance your learning with a<br /> daily update of fresh study books.<br /> We bring you the latest<br /> educational resources to keep your <br />study sessions productive and <br />up-to-date.
             </p>
             <button style={{ ...styles.btn, ...styles.outlineBlue }}>View all</button>
           </div>
         </div>
       </div>
+      {/* 📚 Recommended Books Section */}
+      <RecommendedBooks />
     </div>
   );
 };
 
-// Internal CSS
 const styles = {
   booksContainer: {
     backgroundColor: "white",
@@ -76,12 +86,13 @@ const styles = {
     flexWrap: "wrap",
   },
   title: {
-    fontSize: "40px",
+    fontSize: "60px",
     fontWeight: "bold",
   },
   subtitle: {
-    fontSize: "18px",
+    fontSize: "30px",
     color: "#666",
+    fontWeight: "500",
   },
   buttonGroup: {
     marginTop: "15px",
@@ -99,28 +110,65 @@ const styles = {
     backgroundColor: "#facc15",
     border: "none",
     color: "black",
+    padding: "10px 35px",
+    borderRadius: "20px",
+    cursor: "pointer",
   },
   outlineBtn: {
     border: "2px solid #facc15",
     background: "white",
-    color: "#facc15",
+    color: "black",
+    padding: "10px 35px",
   },
   profileImg: {
-    width: "240px",
-    height: "240px",
+    width: "340px",
+    height: "340px",
     borderRadius: "50%",
   },
   navSection: {
-    background: "#f9f9f9",
+    background: "white",
     padding: "20px",
-    borderRadius: "10px",
+    borderRadius: "15px",
     display: "flex",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginTop: "30px",
     textAlign: "center",
+    gap: "20px",
+    border: "3px solid #ddd",
   },
   navItem: {
-    textAlign: "center",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    background: "white",
+    padding: "10px 30px",
+    borderRadius: "35px",
+    minWidth: "250px",
+    transition: "all 0.3s ease",
+    gap: "15px",
+    border: "1px solid #ccc",
+    cursor: "pointer",
+  },
+  navIcon: {
+    fontSize: "24px",
+    color: "#000",
+  },
+  navTextContainer: {
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "left",
+  },
+  navItemTitle: {
+    fontSize: "18px",
+    fontWeight: "bold",
+    marginBottom: "2px",
+  },
+  navItemText: {
+    fontSize: "14px",
+    color: "#666",
+    marginTop: "0px",
   },
   exploreSection: {
     display: "flex",
@@ -133,18 +181,26 @@ const styles = {
   },
   exploreImg: {
     width: "100%",
-    maxWidth: "600px",
+    maxWidth: "700px",
     borderRadius: "10px",
   },
   exploreText: {
-    maxWidth: "500px",
+    maxWidth: "600px",
     marginLeft: "20px",
+    position: "relative",
+    top: "-10px",
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
   outlineBlue: {
     marginTop: "15px",
     border: "2px solid #3b82f6",
     background: "white",
     color: "#3b82f6",
+    padding: "10px 35px",
   },
 };
 
