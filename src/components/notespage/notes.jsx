@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import flowImage from '../../assets/flow.png';
+import Modal from './Modal'; // Import the Modal component
 
 const Notes = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  const [hoveredStep, setHoveredStep] = useState(null); // Track hovered step
+  const [hoveredStep, setHoveredStep] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleFileUpload = (event) => {
     const files = event.target.files;
@@ -18,7 +20,6 @@ const Notes = () => {
     setUploadedFiles(uploadedFiles.filter((_, i) => i !== index));
   };
 
-  // Subheadings for each step
   const stepSubheadings = {
     1: "Start by uploading your notes to begin the conversion process.",
     2: "Choose the flowchart style that best represents your notes.",
@@ -28,7 +29,6 @@ const Notes = () => {
 
   return (
     <div style={styles.container}>
-      {/* Header Section */}
       <div style={styles.header}>
         <div>
           <h1 style={styles.heading}>
@@ -40,104 +40,56 @@ const Notes = () => {
         <div style={styles.uploadContainer}>
           <h3 style={styles.uploadTitle}>Get your notes</h3>
           <label style={styles.uploadBox}>
-            <input type="file" multiple onChange={handleFileUpload} style={{ display: 'none' }} />
-            <button style={styles.browseButton}>📂 Browse files</button>
+            <button style={styles.browseButton} onClick={() => setIsModalOpen(true)}>📂 Browse files</button>
             <p style={styles.uploadText}>or drag and drop it here</p>
           </label>
         </div>
       </div>
 
-      {/* Content Section */}
+      {/* Modal Component */}
+      {isModalOpen && (
+        <Modal
+          onClose={() => setIsModalOpen(false)}
+          onFileUpload={handleFileUpload}
+        />
+      )}
+
       <div style={styles.content}>
-        {/* Diagram Section */}
         <div style={styles.diagramContainer}>
           <div style={styles.overlay}></div>
           <img src={flowImage} alt="Flowchart Example" style={styles.diagramImage} />
           <button style={styles.exploreButton}>Explore</button>
         </div>
 
-        {/* Steps Section */}
         <div style={styles.stepsContainer}>
-          <h3 style={{ fontSize: '1.8rem', marginBottom: '35px' }}>
+          <h3 style={{ fontSize: '1.8rem', marginBottom: '25px' }}>
             How to Convert Your Notes into a Flowchart
           </h3>
           <ol style={styles.stepsList}>
-            {/* Step 1 */}
-            <li
-              style={{
-                ...styles.stepWithoutBox,
-                ...(hoveredStep === 1 ? styles.stepWithoutBoxHover : {}),
-              }}
-              onMouseEnter={() => setHoveredStep(1)}
-              onMouseLeave={() => setHoveredStep(null)}
-            >
-              <span style={styles.stepNumberWithoutBox}>1</span>
-              <div>
-                Upload your notes
-                {hoveredStep === 1 && (
-                  <p style={styles.stepSubheading}>{stepSubheadings[1]}</p>
-                )}
-              </div>
-            </li>
-
-            {/* Step 2 */}
-            <li
-              style={{
-                ...styles.stepWithoutBox,
-                ...(hoveredStep === 2 ? styles.stepWithoutBoxHover : {}),
-              }}
-              onMouseEnter={() => setHoveredStep(2)}
-              onMouseLeave={() => setHoveredStep(null)}
-            >
-              <span style={styles.stepNumberWithoutBox}>2</span>
-              <div>
-                Select your diagram
-                {hoveredStep === 2 && (
-                  <p style={styles.stepSubheading}>{stepSubheadings[2]}</p>
-                )}
-              </div>
-            </li>
-
-            {/* Step 3 */}
-            <li
-              style={{
-                ...styles.stepWithoutBox,
-                ...(hoveredStep === 3 ? styles.stepWithoutBoxHover : {}),
-              }}
-              onMouseEnter={() => setHoveredStep(3)}
-              onMouseLeave={() => setHoveredStep(null)}
-            >
-              <span style={styles.stepNumberWithoutBox}>3</span>
-              <div>
-                Preview the diagram
-                {hoveredStep === 3 && (
-                  <p style={styles.stepSubheading}>{stepSubheadings[3]}</p>
-                )}
-              </div>
-            </li>
-
-            {/* Step 4 */}
-            <li
-              style={{
-                ...styles.stepWithoutBox,
-                ...(hoveredStep === 4 ? styles.stepWithoutBoxHover : {}),
-              }}
-              onMouseEnter={() => setHoveredStep(4)}
-              onMouseLeave={() => setHoveredStep(null)}
-            >
-              <span style={styles.stepNumberWithoutBox}>4</span>
-              <div>
-                Download
-                {hoveredStep === 4 && (
-                  <p style={styles.stepSubheading}>{stepSubheadings[4]}</p>
-                )}
-              </div>
-            </li>
+            {Object.entries(stepSubheadings).map(([step, subheading]) => (
+              <li
+                key={step}
+                style={{
+                  ...styles.stepWithoutBox,
+                  ...(hoveredStep === step ? styles.stepWithoutBoxHover : {}),
+                }}
+                onMouseEnter={() => setHoveredStep(step)}
+                onMouseLeave={() => setHoveredStep(null)}
+              >
+                <span style={styles.stepNumberWithoutBox}>{step}</span>
+                <div>
+                  {step === "1" && "Upload your notes"}
+                  {step === "2" && "Select your diagram"}
+                  {step === "3" && "Preview the diagram"}
+                  {step === "4" && "Download"}
+                  {hoveredStep === step && <p style={styles.stepSubheading}>{subheading}</p>}
+                </div>
+              </li>
+            ))}
           </ol>
         </div>
       </div>
 
-      {/* Uploaded Notes List */}
       <div style={styles.notesList}>
         {uploadedFiles.map((file, index) => (
           <div key={index} style={styles.noteItem}>
@@ -198,7 +150,7 @@ const styles = {
     alignItems: 'center',
     cursor: 'pointer',
   },
-  uploadText: { 
+  uploadText: {
     color: '#777',
     fontSize: '1.2rem',
     marginTop: '5px',
@@ -215,7 +167,7 @@ const styles = {
   content: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     marginTop: '30px',
   },
   diagramContainer: {
@@ -227,7 +179,8 @@ const styles = {
     border: '3px solid #CCCCCC',
     display: 'inline-block',
     overflow: 'hidden',
-    marginTop: '20px',
+    marginTop: '70px',
+    marginRight: '20px',
   },
   overlay: {
     position: 'absolute',
@@ -240,7 +193,7 @@ const styles = {
   },
   diagramImage: {
     width: '100%',
-    maxWidth: '450px',
+    maxWidth: '550px',
     borderRadius: '8px',
   },
   exploreButton: {
@@ -265,6 +218,7 @@ const styles = {
     fontSize: '1.2rem',
     fontWeight: 'bold',
     color: '#222',
+    marginLeft: '200px',
   },
   stepsList: {
     paddingLeft: '0',
@@ -272,17 +226,17 @@ const styles = {
     marginTop: '10px',
   },
   stepWithoutBox: {
-    cursor:'pointer',
+    cursor: 'pointer',
     fontSize: '1.5rem',
     marginBottom: '35px',
     display: 'flex',
-    flexDirection: 'row', // Align items horizontally
-    alignItems: 'flex-start', // Align items to the top
-    gap: '20px', // Increased gap between number and text
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: '20px',
     fontWeight: 'bold',
     padding: '15px',
     borderRadius: '12px',
-    transition: 'all 0.5s ease', // Slower hover effect
+    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
   },
   stepWithoutBoxHover: {
     backgroundColor: '#fff',
