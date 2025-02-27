@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import flowImage from '../../assets/flow.png';
-import Modal from './Modal'; // Import the Modal component
+import Modal from './Modal';
 
 const Notes = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
