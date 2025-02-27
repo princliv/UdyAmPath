@@ -20,7 +20,9 @@ const Recommended = () => {
     fetch("/coursedata.json")
       .then((response) => response.json())
       .then((data) => {
-        const updatedCourses = data.map((course) => ({
+        const updatedCourses = data.filter(course => 
+          ["React", "Android", "Machine Learning", "Ethical Hacking"].includes(course.title)
+        ).map(course => ({
           ...course,
           
           image: courseImageMap[course.title] || null,
