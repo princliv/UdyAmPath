@@ -33,10 +33,12 @@ const Details = () => {
     fetch("/coursedata.json")
       .then((response) => response.json())
       .then((data) => {
-        const updatedCourses = data.map((course) => ({
+        const updatedCourses = data.filter(course => 
+          ["Java", "Python", "R Language", "SQL"].includes(course.title)
+        ).map(course => ({
           ...course,
-          logo: logoMap[course.company] || null, 
-          image: courseImageMap[course.title] || null, // Assign course image dynamically
+          logo: logoMap[course.company] || null,
+          image: courseImageMap[course.title] || null, 
         }));
         setCourses(updatedCourses);
       })
@@ -44,30 +46,19 @@ const Details = () => {
   }, []);
 
   const openCourseDetail = (course) => {
-    navigate("/coursedetail", { state: { course } });  // Pass the course data to the new page
+    navigate("/coursedetail", { state: { course } });
   };
 
   return (
     <div style={{ display: "flex", gap: "20px", padding: "0px" }}>
-      {/* Sidebar Section */}
       <div style={{ width: "270px", background: "#f4f4f4", padding: "10px", borderRadius: "10px" }}>
         <h3 style={{ fontSize: "18px", fontWeight: "bold", marginBottom: "10px" }}>Categories</h3>
         <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-          <button style={{ background: "#e4deff", padding: "10px", border: "none", borderRadius: "5px", textAlign: "left", cursor: "pointer" }}>
-            Computer Science
-          </button>
-          <button style={{ background: "#e4deff", padding: "10px", border: "none", borderRadius: "5px", textAlign: "left", cursor: "pointer" }}>
-            Information Technology
-          </button>
-          <button style={{ background: "#e4deff", padding: "10px", border: "none", borderRadius: "5px", textAlign: "left", cursor: "pointer" }}>
-            Data Science
-          </button>
-          <button style={{ background: "#e4deff", padding: "10px", border: "none", borderRadius: "5px", textAlign: "left", cursor: "pointer" }}>
-            Language Learning
-          </button>
-          <button style={{ background: "#e4deff", padding: "10px", border: "none", borderRadius: "5px", textAlign: "left", cursor: "pointer" }}>
-            Business
-          </button>
+          {['Computer Science', 'Information Technology', 'Data Science', 'Language Learning', 'Business'].map(category => (
+            <button key={category} style={{ background: "#e4deff", padding: "10px", border: "none", borderRadius: "5px", textAlign: "left", cursor: "pointer" }}>
+              {category}
+            </button>
+          ))}
           <button style={{ background: "#d1c4ff", padding: "10px", border: "none", borderRadius: "5px", textAlign: "left", cursor: "pointer", marginTop: "5px" }}>
             More
           </button>
@@ -81,51 +72,33 @@ const Details = () => {
           </button>
         </div>
       </div>
-
-      {/* Right Main Section */}
       <div style={{ flex: 1 }}>
-        {/* Top Bar with Course/Specialization Toggle */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
           <div>
-            <button
-              onClick={() => setSelectedTab("Course")}
-              style={{
-                backgroundColor: selectedTab === "Course" ? "#3f92c3" : "#ccc",
-                color: "white",
-                padding: "10px 15px",
-                border: "none",
-                borderRadius: "5px",
-                marginRight: "10px",
-                cursor: "pointer",
-              }}
-            >
-              Course
-            </button>
-            <button
-              onClick={() => setSelectedTab("Specialization")}
-              style={{
-                backgroundColor: selectedTab === "Specialization" ? "#3f92c3" : "#ccc",
-                color: "white",
-                padding: "10px 15px",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-            >
-              Specialization
-            </button>
+            {['Course', 'Specialization'].map(tab => (
+              <button
+                key={tab}
+                onClick={() => setSelectedTab(tab)}
+                style={{
+                  backgroundColor: selectedTab === tab ? "#3f92c3" : "#ccc",
+                  color: "white",
+                  padding: "10px 15px",
+                  border: "none",
+                  borderRadius: "5px",
+                  marginRight: "10px",
+                  cursor: "pointer",
+                }}
+              >
+                {tab}
+              </button>
+            ))}
           </div>
           <span style={{ fontSize: "20px", cursor: "pointer" }}>🔖</span>
         </div>
-
-        {/* Course Cards Container */}
         <div style={{ width: "97%", padding: "20px" }}>
-          {/* Recently Viewed Products Text */}
           <div style={{ marginBottom: "10px", fontSize: "25px", fontWeight: "bold", color: "#333" }}>
             Recently Viewed Products
           </div>
-
-          {/* Course Cards Grid */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "20px", padding: "20px" }}>
             {courses.map((course, index) => (
               <div
@@ -142,21 +115,9 @@ const Details = () => {
                   maxWidth: "250px",
                 }}
               >
-                {/* Top part: Course Image */}
                 <div style={{ flex: 1 }}>
-                  <img
-                    src={course.image}
-                    alt="course-related"
-                    style={{
-                      width: "100%",
-                      height: "150px",
-                      objectFit: "cover",
-                      borderRadius: "10px",
-                    }}
-                  />
+                  <img src={course.image} alt="course-related" style={{ width: "100%", height: "150px", objectFit: "cover", borderRadius: "10px" }} />
                 </div>
-
-                {/* Bottom part: Course Details */}
                 <div style={{ flex: 1 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#555" }}>
                     <span>{course.company}</span>
@@ -166,45 +127,16 @@ const Details = () => {
                     {course.title}
                   </h4>
                 </div>
-
-                {/* Details Button */}
-                <button
-                  onClick={() => openCourseDetail(course)}
-                  style={{
-                    backgroundColor: "#f0f0f0",
-                    border: "none",
-                    padding: "5px 10px",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                    alignSelf: "flex-start",
-                  }}
-                >
+                <button onClick={() => openCourseDetail(course)} style={{ backgroundColor: "#f0f0f0", border: "none", padding: "5px 10px", borderRadius: "5px", cursor: "pointer", alignSelf: "flex-start" }}>
                   Details
                 </button>
               </div>
             ))}
-            {/* View More Button */}
-            <div style={{ gridColumn: "span 4", textAlign: "left" }}>
-              <button
-                style={{
-                  padding: "5px 10px",
-                  backgroundColor: "white",
-                  color: "#004aad",
-                  border: "3px solid #004aad",
-                  borderRadius: "7px",
-                  cursor: "pointer",
-                  fontSize: "12px",
-                }}
-                onClick={() => console.log("View More clicked")}
-              >
-                View More
-              </button>
-            </div>
           </div>
         </div>
-        <MostPopular />
-        <NewOnUdyam />
-        <RecommendedCourse />
+        <MostPopular courses={courses.filter(course => course.category === 'Most Popular')} />
+        <NewOnUdyam courses={courses.filter(course => course.category === 'New')} />
+        <RecommendedCourse courses={courses.filter(course => course.category === 'Recommended')} />
       </div>
     </div>
   );

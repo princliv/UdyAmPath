@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import RecentView from "../components/coursepage/recentView";
 import headerBg from '../assets/coursepage/headerbg.png';
 
 const CoursePage = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleSearchSubmit = () => {
+    // Implement search functionality here
+    console.log("Searching for:", searchTerm);
+  };
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "20px" }}>
       {/* Top Section */}
@@ -16,16 +27,19 @@ const CoursePage = () => {
           width: "250px", 
           textAlign: "left" 
         }}>
-          <h2>Customized Path to reduce the duration of the Specialization</h2>
-          <button style={{ 
-            marginTop: "10px", 
-            padding: "10px 15px", 
-            background: "white", 
-            color: "#131346", 
-            border: "none", 
-            borderRadius: "5px", 
-            cursor: "pointer" 
-          }}>
+          <h2>Customized Path to Reduce the Duration of the Specialization</h2>
+          <button 
+            style={{ 
+              marginTop: "10px", 
+              padding: "10px 15px", 
+              background: "white", 
+              color: "#131346", 
+              border: "none", 
+              borderRadius: "5px", 
+              cursor: "pointer" 
+            }}
+            aria-label="Learn more about specialization"
+          >
             Learn More
           </button>
         </div>
@@ -49,20 +63,27 @@ const CoursePage = () => {
             <input
               type="text"
               placeholder="Search Specialization"
+              value={searchTerm}
+              onChange={handleSearchChange}
               style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "5px", width: "300px"}}
+              aria-label="Search for specialization"
             />
           </div>
-          <button style={{ 
-            marginTop: "10px", 
-            padding: "10px 15px", 
-            background: "#004aad", 
-            color: "white", 
-            border: "none", 
-            borderRadius: "5px", 
-            cursor: "pointer", 
-            width: "100px", 
-            float: "right" 
-          }}>
+          <button 
+            style={{ 
+              marginTop: "10px", 
+              padding: "10px 15px", 
+              background: "#004aad", 
+              color: "white", 
+              border: "none", 
+              borderRadius: "5px", 
+              cursor: "pointer", 
+              width: "100px", 
+              float: "right" 
+            }}
+            onClick={handleSearchSubmit}
+            aria-label="Find specialization"
+          >
             Find
           </button>
         </div>
@@ -73,6 +94,5 @@ const CoursePage = () => {
     </div>
   );
 };
-
 
 export default CoursePage;
