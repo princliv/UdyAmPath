@@ -11,7 +11,24 @@
     "logo": "/assets/amazon-logo.png",
     "description": "Learn Java programming from scratch and build real-world applications.",
     "skillsGained": ["Java Basics", "Object-Oriented Programming", "Data Structures", "Web Development"],
-    "pathway": ["Introduction to Java", "Advanced Java", "Java for Web Development", "Project Work"]
+    "pathway": [
+      {
+        "title": "Introduction to Java",
+        "details": "Learn the basics of Java programming, syntax, and simple applications."
+      },
+      {
+        "title": "Advanced Java",
+        "details": "Understand OOP concepts, multithreading, and advanced Java features."
+      },
+      {
+        "title": "Java for Web Development",
+        "details": "Learn how to build dynamic web applications using Java frameworks."
+      },
+      {
+        "title": "Project Work",
+        "details": "Work on real-world projects to apply your Java knowledge."
+      }
+    ]
   },
   {
     "company": "Google",
@@ -25,7 +42,24 @@
     "logo": "/assets/google-logo.png",
     "description": "Master Python programming and its applications in data science, AI, and automation.",
     "skillsGained": ["Python Basics", "Data Structures", "Machine Learning", "Automation"],
-    "pathway": ["Python Fundamentals", "Data Science with Python", "AI & Machine Learning", "Final Project"]
+    "pathway": [
+      {
+        "title": "Python Fundamentals",
+        "details": "Cover basic Python syntax, loops, and functions."
+      },
+      {
+        "title": "Data Science with Python",
+        "details": "Learn NumPy, Pandas, and data visualization techniques."
+      },
+      {
+        "title": "AI & Machine Learning",
+        "details": "Explore AI concepts and build ML models using Python."
+      },
+      {
+        "title": "Final Project",
+        "details": "Implement a real-world Python-based project."
+      }
+    ]
   },
   {
     "company": "Apple",
@@ -39,7 +73,24 @@
     "logo": "/assets/apple-logo.png",
     "description": "Learn R programming for statistical computing and data visualization.",
     "skillsGained": ["Data Manipulation", "Statistical Analysis", "Machine Learning", "Data Visualization"],
-    "pathway": ["Introduction to R", "Data Analysis with R", "Machine Learning with R", "Project Work"]
+    "pathway": [
+      {
+        "title": "Introduction to R",
+        "details": "Understand basic R syntax and functions."
+      },
+      {
+        "title": "Data Analysis with R",
+        "details": "Perform statistical analysis and visualization using R."
+      },
+      {
+        "title": "Machine Learning with R",
+        "details": "Build ML models and analyze data trends in R."
+      },
+      {
+        "title": "Project Work",
+        "details": "Complete a hands-on R programming project."
+      }
+    ]
   },
   {
     "company": "Google",
@@ -53,7 +104,24 @@
     "logo": "/assets/google-logo.png",
     "description": "Master SQL for database management and data analytics.",
     "skillsGained": ["SQL Basics", "Database Management", "Query Optimization", "Data Analysis"],
-    "pathway": ["SQL Fundamentals", "Advanced SQL Queries", "Database Optimization", "Real-world Applications"]
+    "pathway": [
+      {
+        "title": "SQL Fundamentals",
+        "details": "Learn basic SQL queries and database operations."
+      },
+      {
+        "title": "Advanced SQL Queries",
+        "details": "Write complex queries and optimize database performance."
+      },
+      {
+        "title": "Database Optimization",
+        "details": "Implement indexing, normalization, and performance tuning."
+      },
+      {
+        "title": "Real-world Applications",
+        "details": "Work on practical database projects."
+      }
+    ]
   },
   {
     "company": "Meta",

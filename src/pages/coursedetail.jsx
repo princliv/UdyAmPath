@@ -57,27 +57,63 @@ const CourseDetails = () => {
       </div>
 
       <div style={styles.pathwayBox}>
-        <h3 style={styles.pathwayTitle}>Course Pathway</h3>
-        {course.pathway?.map((step, index) => (
-          <div key={index} style={styles.pathwayItem}>
-            <div
-              style={styles.pathwayHeader}
-              onClick={() => toggleExpand(index)}
-            >
-              <span>{step}</span> {/* Changed from step.title */}
-              <span style={styles.expandIcon}>
-                {expandedIndex === index ? "➖" : "➕"}
-              </span>
-            </div>
-            {expandedIndex === index && (
-              <div style={styles.pathwayDetails}>More details about {step}</div>
-            )}
+      <h3 style={styles.pathwayTitle}>Course Pathway</h3>
+      {course.pathway?.map((step, index) => (
+        <div key={index} style={styles.pathwayItem}>
+          <div
+            style={styles.pathwayHeader}
+            onClick={() => toggleExpand(index)}
+          >
+            <span>{step.title}</span>
+            <span style={styles.expandIcon}>
+              {expandedIndex === index ? "➖" : "➕"}
+            </span>
           </div>
-        ))}
+          {expandedIndex === index && (
+            <div style={styles.pathwayDetails}>{step.details}</div>
+          )}
+        </div>
+      ))}
+    </div>
+
+       {/* AI-powered Support Section */}
+       <div style={styles.aiSupportSection}>
+        <h3 style={styles.aiSupportTitle}>AI-powered support to help you learn</h3>
+        <div style={styles.aiSupportContainer}>
+          {aiSupportData.map((item, index) => (
+            <div key={index} style={styles.aiSupportCard}>
+              <div style={styles.aiSupportText}>
+                <h4 style={styles.aiSupportHeading}>{item.title}</h4>
+                <p style={styles.aiSupportDescription}>{item.description}</p>
+              </div>
+              <div style={styles.aiSupportImageContainer}>
+                <img src={item.image} alt={item.title} style={styles.aiSupportImage} />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
+const aiSupportData = [
+  {
+    title: "AI Mentor",
+    description: "Resolve doubts using AI Mentor. Get explanations and examples to help understand concepts better.",
+    image: "ai-mentor.png",
+  },
+  {
+    title: "Coding Exercises",
+    description: "Practice coding effortlessly with AI-powered hints. Get guidance while coding and learn with personalized feedback.",
+    image: "coding-exercises.png",
+  },
+  {
+    title: "Mock Interviews",
+    description: "Prepare for tech roles with AI-driven feedback and job confidence-building guidance.",
+    image: "mock-interviews.png",
+  },
+];
+
 
 const styles = {
   container: {
@@ -226,6 +262,52 @@ const styles = {
     padding: "10px",
     borderRadius: "6px",
   },
-};
+  aiSupportSection: {
+    backgroundColor: "#f8f9fa",
+    padding: "20px",
+    borderRadius: "12px",
+    marginTop: "30px",
+    textAlign: "center",
+  },
+  aiSupportTitle: {
+    fontSize: "24px",
+    marginBottom: "20px",
+    color: "#2c3e50",
+  },
+  aiSupportContainer: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "20px",
+    justifyContent: "center",
+  },
+  aiSupportCard: {
+    backgroundColor: "#ffffff",
+    borderRadius: "10px",
+    padding: "15px",
+    width: "280px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  aiSupportText: {
+    textAlign: "center",
+    marginBottom: "10px",
+  },
+  aiSupportHeading: {
+    fontSize: "18px",
+    fontWeight: "bold",
+    color: "#34495e",
+  },
+  aiSupportDescription: {
+    fontSize: "14px",
+    color: "#555",
+  },
+  aiSupportImage: {
+    width: "100%",
+    height: "auto",
+    borderRadius: "8px",
+  },
+  };
 
 export default CourseDetails;
