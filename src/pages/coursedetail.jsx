@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CourseDetails = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const course = location.state?.course;
 
   const [expandedIndex, setExpandedIndex] = useState(null);
@@ -21,6 +22,11 @@ const CourseDetails = () => {
 
   return (
     <div style={styles.container}>
+      {/* Go Back Button */}
+      <button onClick={() => navigate(-1)} style={styles.goBackButton}>
+        ⬅ Go Back
+      </button>
+
       <div style={styles.courseBox}>
         <img src={course.image} alt={course.title} style={styles.image} />
         <div style={styles.details}>
@@ -58,13 +64,13 @@ const CourseDetails = () => {
               style={styles.pathwayHeader}
               onClick={() => toggleExpand(index)}
             >
-              <span>{step.title}</span>
+              <span>{step}</span> {/* Changed from step.title */}
               <span style={styles.expandIcon}>
                 {expandedIndex === index ? "➖" : "➕"}
               </span>
             </div>
             {expandedIndex === index && (
-              <div style={styles.pathwayDetails}>{step.details}</div>
+              <div style={styles.pathwayDetails}>More details about {step}</div>
             )}
           </div>
         ))}
@@ -83,6 +89,18 @@ const styles = {
     padding: "25px",
     borderRadius: "12px",
     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+  },
+  goBackButton: {
+    display: "block",
+    marginBottom: "20px",
+    backgroundColor: "#3498db",
+    color: "#ffffff",
+    border: "none",
+    padding: "10px 15px",
+    borderRadius: "5px",
+    cursor: "pointer",
+    fontSize: "16px",
+    fontWeight: "bold",
   },
   courseBox: {
     display: "flex",
