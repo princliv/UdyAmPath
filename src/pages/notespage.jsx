@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link
+import { Link } from 'react-router-dom';
 import dsImage from '../assets/ds-image.jpeg';
 import javaImage from '../assets/java-image.webp';
 import oopsImage from '../assets/oops-image.jpeg';
