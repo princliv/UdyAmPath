@@ -1,6 +1,9 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Link, NavLink, Route, Routes } from "react-router-dom";
+import { auth } from "./firebase/firebase"; // Firebase Auth import
+import { onAuthStateChanged, signOut } from "firebase/auth";
+
 import BaseDetails from "./components/jobpage/baseDetails";
 import BasePage from "./components/jobpage/basePage";
 import Books from "./components/notespage/books";
@@ -17,14 +20,26 @@ import Homepage from "./pages/homepage";
 import JobPage from "./pages/jobpage";
 import NotesPage from "./pages/notespage";
 import ToolsPage from "./pages/toolspage";
-
-//import Contact from "";
+import Login from "./pages/login";  // Login Page Import
+import Signup from "./pages/signup"; // Signup Page Import
+import Profile from "./pages/profile"; // Profile Page Import
 import backgroud from "./assets/background.png";
-import Profile from "./pages/profile";
-
-
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  // Check user authentication state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    await signOut(auth);
+  };
+
   const headerStyle = {
     display: "flex",
     alignItems: "center",
@@ -73,10 +88,27 @@ function App() {
           <NavLink to="/toolspage" style={linkStyle} activeStyle={{ color: "#007bff" }}>
             Tools
           </NavLink>
-          
-          <NavLink to="/profile" style={linkStyle} activeStyle={{ color: "#007bff" }}>
-            Profile
-          </NavLink>
+
+          {/* Show Login & Signup if no user is logged in, otherwise show Profile */}
+          {!user ? (
+            <>
+              <NavLink to="/login" style={linkStyle} activeStyle={{ color: "#4169E1" }}>
+                Login
+              </NavLink>
+              <NavLink to="/signup" style={linkStyle} activeStyle={{ color: "#007bff" }}>
+                Signup
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <NavLink to="/profile" style={linkStyle} activeStyle={{ color: "#007bff" }}>
+                Profile
+              </NavLink>
+              <button onClick={handleLogout} style={{ ...linkStyle, background: "none", border: "none", cursor: "pointer" }}>
+                Logout
+              </button>
+            </>
+          )}
         </nav>
       </header>
 
@@ -96,13 +128,13 @@ function App() {
         <Route path="/hrInterview" element={<HrInterview />} />
         <Route path="/groupdiscussion" element={<GroupDiscussion />} />
         <Route path="/projectModal" element={<ProjectModal />} />
-        <Route path="/notes" element={<Notes/>} />
-        <Route path="/placementpapers" element={<Placement/>} />
-        <Route path="/placeTest" element={<PlaceTest/>} />
-        <Route path="/books" element={<Books/>}/>
-
+        <Route path="/notes" element={<Notes />} />
+        <Route path="/placementpapers" element={<Placement />} />
+        <Route path="/placeTest" element={<PlaceTest />} />
+        <Route path="/books" element={<Books />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
-
     </Router>
   );
 }
