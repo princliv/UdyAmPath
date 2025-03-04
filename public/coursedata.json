@@ -132,7 +132,7 @@
     "color": "#ffffff",
     "duration": "2 years",
     "image": "reactImage",
-    "logo": "/assets/meta-logo.png",
+    "logo": "src/assets/coursepage/meta-logo.png",
     "description": "Learn React for building dynamic and modern web applications.",
     "skillsGained": ["React Basics", "Component Lifecycle", "State Management", "React Hooks"],
     "pathway": ["React Fundamentals", "State & Props", "React with APIs", "Building a Full-stack App"]
