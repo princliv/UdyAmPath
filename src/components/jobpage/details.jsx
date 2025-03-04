@@ -15,6 +15,9 @@ const Details = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState("Job");
+  
+  const [typeFilter, setTypeFilter] = useState(""); // Store selected type
+  const [levelFilter, setLevelFilter] = useState(""); // Store selected level
 
   useEffect(() => {
     fetch("/jobdata.json") // Fetch from public folder
@@ -40,13 +43,44 @@ const Details = () => {
     setSelectedJob(null);
   };
 
+  // Filter jobs based on selected type and level
+  const filteredJobs = jobs.filter((job) => {
+    return (
+      (typeFilter === "" || job.type === typeFilter) &&
+      (levelFilter === "" || job.level === levelFilter)
+    );
+  });
+
   return (
     <div style={{ display: "flex", gap: "20px", padding: "0px" }}>
-
       {/* Left Filter Sidebar */}
       <div style={{ width: "270px", border: "1px solid #ccc", borderRadius: "10px", padding: "10px" }}>
         <h3 style={{ textAlign: "center" }}>Filters</h3>
-        <div style={{ height: "5px", backgroundColor: "#ccc" }}></div>
+        <div style={{ height: "5px", backgroundColor: "#ccc", marginBottom: "10px" }}></div>
+
+        {/* Type Filter */}
+        <label><b>Type:</b></label>
+        <select
+          value={typeFilter}
+          onChange={(e) => setTypeFilter(e.target.value)}
+          style={{ width: "100%", padding: "5px", marginBottom: "10px" }}
+        >
+          <option value="">All</option>
+          <option value="On-Site">On-Site</option>
+          <option value="Part Time">Part Time</option>
+        </select>
+
+        {/* Level Filter */}
+        <label><b>Level:</b></label>
+        <select
+          value={levelFilter}
+          onChange={(e) => setLevelFilter(e.target.value)}
+          style={{ width: "100%", padding: "5px", marginBottom: "10px" }}
+        >
+          <option value="">All</option>
+          <option value="Senior level">Senior Level</option>
+          <option value="Junior level">Junior Level</option>
+        </select>
       </div>
 
       {/* Right Main Section */}
@@ -87,7 +121,7 @@ const Details = () => {
 
         {/* Job Cards Grid */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "20px" }}>
-          {jobs.map((job, index) => (
+          {filteredJobs.map((job, index) => (
             <div
               key={index}
               style={{
