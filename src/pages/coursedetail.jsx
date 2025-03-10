@@ -7,9 +7,13 @@ const CourseDetails = () => {
   const course = location.state?.course;
 
   const [expandedIndex, setExpandedIndex] = useState(null);
+  const [faqExpandedIndex, setFaqExpandedIndex] = useState(null);
 
   const toggleExpand = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
+  };
+  const toggleFaqExpand = (index) => {
+    setFaqExpandedIndex(faqExpandedIndex === index ? null : index);
   };
 
   if (!course) {
@@ -93,6 +97,18 @@ const CourseDetails = () => {
           ))}
         </div>
       </div>
+      <div style={styles.faqBox}>
+        <h3 style={styles.faqTitle}>Frequently Asked Questions</h3>
+        {faqData.map((faq, index) => (
+          <div key={index} style={styles.faqItem}>
+            <div style={styles.faqHeader} onClick={() => toggleFaqExpand(index)}>
+              <span>{faq.question}</span>
+              <span style={styles.expandIcon}>{faqExpandedIndex === index ? "➖" : "➕"}</span>
+            </div>
+            {faqExpandedIndex === index && <div style={styles.faqAnswer}>{faq.answer}</div>}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -112,6 +128,13 @@ const aiSupportData = [
     description: "Prepare for tech roles with AI-driven feedback and job confidence-building guidance.",
     image: "mock-interviews.png",
   },
+];
+const faqData = [
+  { question: "Why should I take this course?", answer: "This course provides in-depth knowledge and practical skills, helping you excel in your field." },
+  { question: "What are the prerequisites for this course?", answer: "Most courses are beginner-friendly, but some may require prior knowledge. Check the course details for specifics." },
+  { question: "Will I get a certificate after completing the course?", answer: "Yes, upon successful completion, you will receive a certificate to showcase your skills." },
+  { question: "How does this course help in career growth?", answer: "It enhances your skills, making you more competitive in the job market and opening up better opportunities." },
+  { question: "Can I access the course materials after completion?", answer: "Yes, you get lifetime access to the course materials so you can revisit them anytime." },
 ];
 
 
@@ -308,6 +331,14 @@ const styles = {
     height: "auto",
     borderRadius: "8px",
   },
+  container: { width: "85%", maxWidth: "1100px", margin: "50px auto", fontFamily: "Arial, sans-serif" },
+  goBackButton: { marginBottom: "20px", backgroundColor: "#3498db", color: "#ffffff", border: "none", padding: "10px 15px", borderRadius: "5px", cursor: "pointer", fontSize: "16px", fontWeight: "bold" },
+  faqBox: { backgroundColor: "#f8f9fa", padding: "20px", borderRadius: "10px", marginTop: "20px" },
+  faqTitle: { fontSize: "22px", marginBottom: "10px" },
+  faqItem: { backgroundColor: "#ffffff", padding: "12px", borderRadius: "8px", marginBottom: "8px", boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)", cursor: "pointer" },
+  faqHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "16px", fontWeight: "bold", color: "#2c3e50" },
+  faqAnswer: { marginTop: "10px", fontSize: "14px", color: "#555", backgroundColor: "#f1f8ff", padding: "10px", borderRadius: "6px" },
+  expandIcon: { fontSize: "18px" },
   };
 
 export default CourseDetails;
