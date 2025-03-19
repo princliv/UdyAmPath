@@ -144,48 +144,116 @@ const Details = () => {
         </div>
 
         {/* Job Cards Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "20px" }}>
-          {filteredJobs.map((job, index) => (
-            <div
-              key={index}
-              style={{
-                backgroundColor: job.color,
-                padding: "20px",
-                borderRadius: "15px",
-                boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-                display: "flex",
-                flexDirection: "column",
-                gap: "5px",
-              }}
-            >
-              <span style={{ fontSize: "12px", color: "#555" }}>{job.date}</span>
-              <h3>{job.company}</h3>
-              <h4>{job.title}</h4>
-              <p style={{ fontSize: "14px", color: "#666" }}>
-                <span style={{ backgroundColor: "#fff", padding: "3px 8px", borderRadius: "5px", marginRight: "5px" }}>
-                  {job.type}
-                </span>
-                <span style={{ backgroundColor: "#fff", padding: "3px 8px", borderRadius: "5px" }}>{job.level}</span>
-              </p>
-              {job.logo && (
-                <img src={job.logo} alt="company logo" style={{ width: "30px", alignSelf: "flex-end" }} />
-              )}
-              <button
-                onClick={() => openModal(job)}
-                style={{
-                  backgroundColor: "#fff",
-                  border: "none",
-                  padding: "5px 10px",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  alignSelf: "flex-start",
-                }}
-              >
-                Details
-              </button>
-            </div>
-          ))}
+        <div style={{ 
+  display: "grid", 
+  gridTemplateColumns: "repeat(4, 1fr)", 
+  gap: "20px" 
+}}>
+  {filteredJobs.map((job, index) => (
+    <div
+      key={index}
+      style={{
+        backgroundColor: "#fff",
+        borderRadius: "15px",
+        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+        padding: "15px",
+        position: "relative",
+        width: "100%",
+        maxWidth: "280px",
+      }}
+    >
+      {/* Background Color Bar */}
+      <div style={{
+        backgroundColor: job.color,
+        height: "80px",
+        borderRadius: "15px 15px 0 0",
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        padding: "10px",
+      }}>
+        <span style={{
+          backgroundColor: "#fff",
+          color: "#333",
+          padding: "3px 8px",
+          borderRadius: "5px",
+          fontSize: "12px",
+          position: "absolute",
+          top: "10px",
+          left: "10px",
+          boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)"
+        }}>
+          {job.type}
+        </span>
+        {job.logo && (
+          <img 
+            src={job.logo} 
+            alt="Company Logo" 
+            style={{
+              width: "50px",
+              height: "50px",
+              borderRadius: "10px",
+              position: "absolute",
+              right: "10px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              backgroundColor: "#fff",
+              padding: "5px",
+              boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)"
+            }} 
+          />
+        )}
+      </div>
+
+      {/* Job Details */}
+      <div style={{ padding: "15px", textAlign: "left" }}>
+        <h4 style={{ color: "#0073b1", margin: "5px 0" }}>{job.title}</h4>
+        <p style={{ color: "#555", fontSize: "14px", marginBottom: "10px" }}>{job.company}</p>
+
+        <div style={{ display: "flex", alignItems: "center", gap: "5px", fontSize: "14px", color: "#777" }}>
+          <span>👀 {job.views} Views</span>
+          <span>⏳ {job.daysLeft} days left</span>
         </div>
+
+        {/* Level and Detail Button */}
+        <div style={{ 
+          display: "flex", 
+          justifyContent: "space-between", 
+          alignItems: "center", 
+          marginTop: "10px"
+        }}>
+          <span style={{
+            backgroundColor: "#eef3f8",
+            padding: "5px 10px",
+            borderRadius: "5px",
+            fontSize: "12px",
+            color: "#333"
+          }}>
+            {job.level}
+          </span>
+          <button
+            onClick={() => openModal(job)}
+            style={{
+              backgroundColor: "#0073b1",
+              color: "#fff",
+              border: "none",
+              padding: "8px 12px",
+              borderRadius: "50%",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "16px"
+            }}
+          >
+            ➜
+          </button>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
       </div>
 
       {/* Details Modal */}
