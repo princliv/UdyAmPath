@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Details from "../components/jobpage/details";
-import headerBg from '../assets/jobpage/headerbg.png';
+import headerBg from "../assets/jobpage/headerbg.png";
+import applyGif from "../assets/jobpage/apply.gif"; // Import the GIF
 import { useNavigate } from "react-router-dom";
 
 const JobPage = () => {
-  const navigate = useNavigate(); // 
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleApplyClick = () => {
+    setShowModal(true);
+    setTimeout(() => {
+      setShowModal(false);
+    }, 3000); // Auto close after 2 seconds
+  };
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "20px" }}>
@@ -30,7 +39,7 @@ const JobPage = () => {
               borderRadius: "5px", 
               cursor: "pointer" 
             }} 
-            onClick={() => navigate("/base")} // 
+            onClick={() => navigate("/base")}
           >
             Learn More
           </button>
@@ -58,17 +67,20 @@ const JobPage = () => {
               style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "5px", width: "300px" }}
             />
           </div>
-          <button style={{ 
-            marginTop: "10px", 
-            padding: "10px 15px", 
-            background: "#004aad", 
-            color: "white", 
-            border: "none", 
-            borderRadius: "5px", 
-            cursor: "pointer", 
-            width: "100px", 
-            float: "right" 
-          }}>
+          <button 
+            style={{ 
+              marginTop: "10px", 
+              padding: "10px 15px", 
+              background: "#004aad", 
+              color: "white", 
+              border: "none", 
+              borderRadius: "5px", 
+              cursor: "pointer", 
+              width: "100px", 
+              float: "right" 
+            }}
+            onClick={handleApplyClick} // Open modal on click
+          >
             Apply
           </button>
         </div>
@@ -76,6 +88,28 @@ const JobPage = () => {
 
       {/* Details Section Below */}
       <Details />
+
+      {/* Modal */}
+      {showModal && (
+        <div style={{
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          background: "white",
+          padding: "20px",
+          borderRadius: "10px",
+          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+          textAlign: "center",
+          width: "300px",
+          zIndex: 1000
+        }}>
+          <h2>Yayy! 😊</h2>
+          <p>We recommended jobs that's best for you</p>
+          <img src={applyGif} alt="Apply GIF" style={{ width: "80px", margin: "10px 0" }} />
+          <p>Click <b>'View Details'</b> to explore insights</p>
+        </div>
+      )}
     </div>
   );
 };
