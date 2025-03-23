@@ -4,6 +4,7 @@ import { auth, googleProvider, signInWithGoogle, signInWithEmail } from "../fire
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FaLinkedin } from "react-icons/fa";
+import loginLogo from "../assets/footerLogo.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const Login = () => {
       <div style={styles.modal}>
         {/* Left Section (Logo) */} 
         <div style={styles.modalLeft}>
-          <img src="/assets/aspiro-logo.png" alt="Aspiro Logo" style={styles.logo} />
+          <img src={loginLogo} alt="Aspiro Logo" style={styles.logo} />
         </div>
 
         {/* Right Section (Login Form) */}
@@ -157,7 +158,6 @@ const styles = {
     width: "100%",
     padding: "10px",
     marginBottom: "10px",
-    border: "none",
     borderRadius: "5px",
     fontSize: "14px",
     cursor: "pointer",

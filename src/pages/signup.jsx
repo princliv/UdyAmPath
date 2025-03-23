@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { auth, database } from "../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, set } from "firebase/database";
+import signupLogo from "../assets/footerLogo.png";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -185,7 +186,7 @@ const Signup = () => {
         </div>
         <div style={styles.imageContainer}>
           <img
-            src="/assets/aspiro-logo.png"
+            src={signupLogo}
             alt="Aspiro Logo"
             style={styles.logo}
           />
@@ -223,7 +224,7 @@ const styles = {
   },
   logo: {
     width: "150px",
-    height: "150px",
+    hight: "auto",
   },
   switchButtons: {
     display: "flex",
