@@ -25,6 +25,7 @@ import Signup from "./pages/signup";
 import Profile from "./pages/profile";
 import backgroud from "./assets/background.png";
 import flogo from "./assets/footerLogo.png";
+import Recruiter from "./pages/recruiter";
 
 function App() {
   return (
@@ -140,6 +141,7 @@ function AppContent() {
         <Route path="/books" element={<Books />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/recruiter" element={<Recruiter />} />
       </Routes>
 
       {/* Footer (Hidden on Login & Signup pages) */}

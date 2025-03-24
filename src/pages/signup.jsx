@@ -28,7 +28,7 @@ const Signup = () => {
       alert("Passwords do not match!");
       return;
     }
-
+  
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -36,22 +36,30 @@ const Signup = () => {
         formData.password
       );
       const user = userCredential.user;
-
-      // Save user info in the database
+  
+      // Save user info in Firebase Database
       await set(ref(database, "users/" + user.uid), {
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
         phone: formData.phone,
         gender: formData.gender,
-        userType: userType,
+        userType: userType, // Store user type
       });
-
+  
       alert("Signup Successful");
-      navigate("/login");
+  
+      // Redirect based on user type
+      if (userType === "Recruiter") {
+        navigate("/recruiter");
+      } else {
+        navigate("/login");
+      }
     } catch (error) {
       alert(error.message);
     }
+  
+  
   };
 
   return (
