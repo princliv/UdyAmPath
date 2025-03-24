@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { auth, database } from "../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, set } from "firebase/database";
+import signupLogo from "../assets/footerLogo.png";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const Signup = () => {
       alert("Passwords do not match!");
       return;
     }
-
+  
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -35,22 +36,30 @@ const Signup = () => {
         formData.password
       );
       const user = userCredential.user;
-
-      // Save user info in the database
+  
+      // Save user info in Firebase Database
       await set(ref(database, "users/" + user.uid), {
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
         phone: formData.phone,
         gender: formData.gender,
-        userType: userType,
+        userType: userType, // Store user type
       });
-
+  
       alert("Signup Successful");
-      navigate("/login");
+  
+      // Redirect based on user type
+      if (userType === "Recruiter") {
+        navigate("/recruiter");
+      } else {
+        navigate("/login");
+      }
     } catch (error) {
       alert(error.message);
     }
+  
+  
   };
 
   return (
@@ -185,7 +194,7 @@ const Signup = () => {
         </div>
         <div style={styles.imageContainer}>
           <img
-            src="/assets/aspiro-logo.png"
+            src={signupLogo}
             alt="Aspiro Logo"
             style={styles.logo}
           />
@@ -223,7 +232,7 @@ const styles = {
   },
   logo: {
     width: "150px",
-    height: "150px",
+    hight: "auto",
   },
   switchButtons: {
     display: "flex",

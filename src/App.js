@@ -1,7 +1,7 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Link, NavLink, Route, Routes } from "react-router-dom";
-import { auth } from "./firebase/firebase"; // Firebase Auth import
+import { BrowserRouter as Router, Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
+import { auth } from "./firebase/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
 import BaseDetails from "./components/jobpage/baseDetails";
@@ -20,15 +20,25 @@ import Homepage from "./pages/homepage";
 import JobPage from "./pages/jobpage";
 import NotesPage from "./pages/notespage";
 import ToolsPage from "./pages/toolspage";
-import Login from "./pages/login";  // Login Page Import
-import Signup from "./pages/signup"; // Signup Page Import
-import Profile from "./pages/profile"; // Profile Page Import
+import Login from "./pages/login";
+import Signup from "./pages/signup";
+import Profile from "./pages/profile";
 import backgroud from "./assets/background.png";
+import flogo from "./assets/footerLogo.png";
+import Recruiter from "./pages/recruiter";
 
 function App() {
-  const [user, setUser] = useState(null);
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
+}
 
-  // Check user authentication state
+function AppContent() {
+  const [user, setUser] = useState(null);
+  const location = useLocation(); // Now correctly inside Router
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -72,8 +82,7 @@ function App() {
   };
 
   return (
-    <Router>
-      {/* Header inside App.js */}
+    <>
       <header style={headerStyle}>
         <Link to="/homepage">
           <img src={backgroud} alt="Logo" style={logoStyle} />
@@ -89,7 +98,6 @@ function App() {
             Tools
           </NavLink>
 
-          {/* Show Login & Signup if no user is logged in, otherwise show Profile */}
           {!user ? (
             <>
               <NavLink to="/login" style={linkStyle} activeStyle={{ color: "#4169E1" }}>
@@ -112,7 +120,6 @@ function App() {
         </nav>
       </header>
 
-      {/* Page Routes */}
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/homepage" element={<Homepage />} />
@@ -134,8 +141,63 @@ function App() {
         <Route path="/books" element={<Books />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/recruiter" element={<Recruiter />} />
       </Routes>
-    </Router>
+
+      {/* Footer (Hidden on Login & Signup pages) */}
+      {location.pathname !== "/login" && location.pathname !== "/signup" && (
+        <footer style={{ backgroundColor: "#1181c8", color: "white", textAlign: "left", padding: "40px 20px", marginTop: "40px" }}>
+        <div style={{
+          maxWidth: "1100px",
+          margin: "auto",
+          display: "flex",
+          flexWrap: "nowrap",  // Ensures all columns stay in one row
+          justifyContent: "space-between",
+          gap: "20px"
+        }}>
+          {/* Column 1 (Doubled Width) */}
+          <div style={{ flex: 2, minWidth: "400px" }}>
+            <img src={flogo} alt="Company Logo" style={{ width: "300px", height: "auto", marginBottom: "10px" }} />
+            <p>A complete solution for learning, time management, mental wellness, and career growth..</p>
+          </div>
+          
+          {/* Column 2 */}
+          <div style={{ flex: 1, minWidth: "200px" }}>
+            <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Products</h6>
+            <p>MDBootstrap</p>
+            <p>MDWordPress</p>
+            <p>BrandFlow</p>
+            <p>Bootstrap Angular</p>
+          </div>
+      
+          {/* Column 3 */}
+          <div style={{ flex: 1, minWidth: "200px" }}>
+            <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Useful Links</h6>
+            <p>Your Account</p>
+            <p>Become an Affiliate</p>
+            <p>Shipping Rates</p>
+            <p>Help</p>
+          </div>
+      
+          {/* Column 4 */}
+          <div style={{ flex: 1, minWidth: "200px" }}>
+            <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Contact</h6>
+            <p><i className="fas fa-home"></i> Roorkee, Uttarakhand, Bihar, 247667, India</p>
+            <p><i className="fas fa-envelope"></i> ankitkumar1990asap@gmail.com</p>
+            <p><i className="fas fa-phone"></i> +91 969 312 093</p>
+            <p><i className="fas fa-print"></i> +01 234 567 89</p>
+          </div>
+        </div>
+      
+        <hr style={{ margin: "20px 0", width: "100%", borderColor: "white" }} />
+      
+        <div>
+          <p>© 2025 Copyright: <a href="https://yourwebsite.com" style={{ color: "white", textDecoration: "none" }}>YourWebsite.com</a></p>
+        </div>
+      </footer>
+      
+      )}
+    </>
   );
 }
 
