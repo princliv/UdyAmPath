@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaLinkedin } from "react-icons/fa";
 import loginLogo from "../assets/footerLogo.png";
 
-const Login = () => {
+const Login = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -17,7 +17,8 @@ const Login = () => {
     try {
       await signInWithGoogle(auth, googleProvider);
       alert("Google Login Successful");
-      navigate("/homepage"); // Redirect after login
+      onClose(); // Close modal after login
+      navigate("/homepage"); 
     } catch (error) {
       alert(error.message);
     }
@@ -29,15 +30,21 @@ const Login = () => {
     try {
       await signInWithEmail(auth, email, password);
       alert("Login Successful");
+      onClose(); // Close modal after login
       navigate("/homepage");
     } catch (error) {
       alert(error.message);
     }
   };
 
+  if (!isOpen) return null; // Don't render the modal if it's closed
+
   return (
     <div style={styles.overlay}>
       <div style={styles.modal}>
+        {/* 🔹 Close Button */}
+        <button style={styles.closeButton} onClick={onClose}>✖</button>
+
         {/* Left Section (Logo) */} 
         <div style={styles.modalLeft}>
           <img src={loginLogo} alt="Aspiro Logo" style={styles.logo} />
@@ -46,12 +53,6 @@ const Login = () => {
         {/* Right Section (Login Form) */}
         <div style={styles.modalRight}>
           <h2>Log in</h2>
-
-          {/* Candidate / Recruiter Toggle */}
-          <div style={styles.toggleContainer}>
-            <button style={{ ...styles.toggleBtn, background: "#1d3480", color: "white" }}>As Candidate</button>
-            <button style={styles.toggleBtn}>As Recruiter</button>
-          </div>
 
           {/* Google & LinkedIn Login */}
           <button style={styles.socialButton} onClick={handleGoogleLogin}>
@@ -92,7 +93,9 @@ const Login = () => {
           {/* Signup Redirect */}
           <p style={styles.signupText}>
             Don't have an account?{" "}
-            <button style={styles.signupLink} onClick={() => navigate("/signup")}>Sign up</button>
+            <button style={styles.signupLink} onClick={() => { onClose(); navigate("/signup"); }}>
+              Sign up
+            </button>
           </p>
         </div>
       </div>
@@ -115,10 +118,20 @@ const styles = {
   },
   modal: {
     display: "flex",
+    position: "relative",
     width: "700px",
     background: "white",
     borderRadius: "10px",
     overflow: "hidden",
+  },
+  closeButton: {
+    position: "absolute",
+    top: "10px",
+    right: "10px",
+    background: "none",
+    border: "none",
+    fontSize: "18px",
+    cursor: "pointer",
   },
   modalLeft: {
     width: "40%",
@@ -136,20 +149,6 @@ const styles = {
     width: "60%",
     padding: "30px",
     textAlign: "center",
-  },
-  toggleContainer: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "10px",
-    marginBottom: "20px",
-  },
-  toggleBtn: {
-    padding: "8px 15px",
-    border: "none",
-    borderRadius: "20px",
-    cursor: "pointer",
-    fontWeight: "bold",
-    background: "#e0e0e0",
   },
   socialButton: {
     display: "flex",
