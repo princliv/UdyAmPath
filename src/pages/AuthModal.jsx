@@ -20,36 +20,33 @@ const AuthModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null; // Don't render if modal is closed
 
   // Google Login
-  const handleGoogleLogin = async () => {
-    try {
-      await signInWithGoogle(auth, googleProvider);
-      alert("Google Login Successful");
-      onClose(); // Close modal
-    } catch (error) {
-      alert(error.message);
-    }
-  };
+const handleGoogleLogin = async () => {
+  try {
+    await signInWithGoogle(auth, googleProvider);
+    setTimeout(() => onClose(), 500); // Delay to ensure auth completes
+  } catch (error) {
+    alert(error.message);
+  }
+};
 
-  // Email Login/Signup
-  const handleAuth = async (e) => {
-    e.preventDefault();
-    try {
-      if (isSignup) {
-        if (password !== confirmPassword) {
-          alert("Passwords do not match!");
-          return;
-        }
-        await auth.createUserWithEmailAndPassword(email, password);
-        alert(`Signup Successful as ${userType}`);
-      } else {
-        await signInWithEmail(auth, email, password);
-        alert("Login Successful");
+// Email Login/Signup
+const handleAuth = async (e) => {
+  e.preventDefault();
+  try {
+    if (isSignup) {
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
       }
-      onClose();
-    } catch (error) {
-      alert(error.message);
+      await auth.createUserWithEmailAndPassword(email, password);
+    } else {
+      await signInWithEmail(auth, email, password);
     }
-  };
+    setTimeout(() => onClose(), 500); // Delay ensures UI updates smoothly
+  } catch (error) {
+    alert(error.message);
+  }
+};
 
   return (
     <div style={styles.overlay}>
