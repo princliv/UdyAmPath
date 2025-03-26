@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, set } from "firebase/database";
 import signupLogo from "../assets/footerLogo.png";
 
-const Signup = () => {
+const Signup = ({ onClose }) => {
   const navigate = useNavigate();
   const [userType, setUserType] = useState("Candidate");
   const [formData, setFormData] = useState({
@@ -24,19 +24,16 @@ const Signup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
-  
+
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        formData.email,
-        formData.password
-      );
+      const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
       const user = userCredential.user;
-  
+
       // Save user info in Firebase Database
       await set(ref(database, "users/" + user.uid), {
         firstName: formData.firstName,
@@ -44,160 +41,85 @@ const Signup = () => {
         email: formData.email,
         phone: formData.phone,
         gender: formData.gender,
-        userType: userType, // Store user type
+        userType: userType,
       });
-  
+
       alert("Signup Successful");
-  
-      // Redirect based on user type
-      if (userType === "Recruiter") {
-        navigate("/recruiter");
-      } else {
-        navigate("/login");
-      }
+
+      // Close the modal and navigate to respective page
+      onClose();  
+      navigate(userType === "Recruiter" ? "/recruiter" : "/homepage");
+
     } catch (error) {
       alert(error.message);
     }
-  
-  
   };
 
   return (
-    <div style={styles.modal}>
-      <div style={styles.container}>
-        <div style={styles.formContainer}>
-          <h2>Sign up</h2>
-          <div style={styles.switchButtons}>
-            <button
-              style={{
-                ...styles.switchButton,
-                backgroundColor: userType === "Candidate" ? "#196795" : "#fff",
-                color: userType === "Candidate" ? "#fff" : "#196795",
-              }}
-              onClick={() => setUserType("Candidate")}
-            >
-              As Candidate
-            </button>
-            <button
-              style={{
-                ...styles.switchButton,
-                backgroundColor: userType === "Recruiter" ? "#196795" : "#fff",
-                color: userType === "Recruiter" ? "#fff" : "#196795",
-              }}
-              onClick={() => setUserType("Recruiter")}
-            >
-              As Recruiter
-            </button>
+    <div style={styles.overlay}>
+      <div style={styles.modal}>
+        <div style={styles.container}>
+          {/* Close Button */}
+          <button onClick={onClose} style={styles.closeButton}>&times;</button>
+
+          <div style={styles.formContainer}>
+            <h2>Sign up</h2>
+            <div style={styles.switchButtons}>
+              <button
+                style={{
+                  ...styles.switchButton,
+                  backgroundColor: userType === "Candidate" ? "#196795" : "#fff",
+                  color: userType === "Candidate" ? "#fff" : "#196795",
+                }}
+                onClick={() => setUserType("Candidate")}
+              >
+                As Candidate
+              </button>
+              <button
+                style={{
+                  ...styles.switchButton,
+                  backgroundColor: userType === "Recruiter" ? "#196795" : "#fff",
+                  color: userType === "Recruiter" ? "#fff" : "#196795",
+                }}
+                onClick={() => setUserType("Recruiter")}
+              >
+                As Recruiter
+              </button>
+            </div>
+
+            <form onSubmit={handleSignup}>
+              <div style={styles.row}>
+                <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} required style={styles.input} />
+                <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} required style={styles.input} />
+              </div>
+              <input type="email" name="email" placeholder="Email Id" value={formData.email} onChange={handleChange} required style={styles.input} />
+              <input type="tel" name="phone" placeholder="Phone No" value={formData.phone} onChange={handleChange} required style={styles.input} />
+              
+              <div style={styles.genderContainer}>
+                <label><input type="radio" name="gender" value="Male" onChange={handleChange} /> Male</label>
+                <label><input type="radio" name="gender" value="Female" onChange={handleChange} /> Female</label>
+                <label><input type="radio" name="gender" value="Other" onChange={handleChange} /> More Options</label>
+              </div>
+
+              <div style={styles.row}>
+                <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required style={styles.input} />
+                <input type="password" name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} required style={styles.input} />
+              </div>
+
+              <button type="submit" style={styles.signupButton}>Signup</button>
+            </form>
+
+            <p>
+              Already have an account?{" "}
+              <span style={styles.link} onClick={() => { onClose(); navigate("/login"); }}>
+                Login
+              </span>
+            </p>
           </div>
 
-          <form onSubmit={handleSignup}>
-            <div style={styles.row}>
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                value={formData.firstName}
-                onChange={handleChange}
-                required
-                style={styles.input}
-              />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                value={formData.lastName}
-                onChange={handleChange}
-                required
-                style={styles.input}
-              />
-            </div>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Id"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              style={styles.input}
-            />
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Phone No"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-              style={styles.input}
-            />
-            <div style={styles.genderContainer}>
-              <label>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="Male"
-                  onChange={handleChange}
-                />
-                Male
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="Female"
-                  onChange={handleChange}
-                />
-                Female
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="Other"
-                  onChange={handleChange}
-                />
-                More Options
-              </label>
-            </div>
-            <div style={styles.row}>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-                style={styles.input}
-              />
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm Password"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-                style={styles.input}
-              />
-            </div>
-            <button type="submit" style={styles.signupButton}>
-              Signup
-            </button>
-          </form>
-          <p>
-            Don't have an account?{" "}
-            <span
-              style={styles.link}
-              onClick={() => navigate("/login")}
-            >
-              Login
-            </span>
-          </p>
-        </div>
-        <div style={styles.imageContainer}>
-          <img
-            src={signupLogo}
-            alt="Aspiro Logo"
-            style={styles.logo}
-          />
+          <div style={styles.imageContainer}>
+            <img src={signupLogo} alt="Signup Logo" style={styles.logo} />
+          </div>
         </div>
       </div>
     </div>
@@ -205,19 +127,37 @@ const Signup = () => {
 };
 
 const styles = {
-  modal: {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    minHeight: "100vh",
-    backgroundColor: "rgba(0,0,0,0.5)",
+    zIndex: 1000,
   },
-  container: {
-    display: "flex",
+  modal: {
     width: "700px",
     backgroundColor: "#fff",
     borderRadius: "10px",
     overflow: "hidden",
+    position: "relative",
+  },
+  closeButton: {
+    position: "absolute",
+    top: "10px",
+    right: "15px",
+    fontSize: "24px",
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+  },
+  container: {
+    display: "flex",
+    width: "100%",
   },
   formContainer: {
     flex: 1,
@@ -232,7 +172,7 @@ const styles = {
   },
   logo: {
     width: "150px",
-    hight: "auto",
+    height: "auto",
   },
   switchButtons: {
     display: "flex",

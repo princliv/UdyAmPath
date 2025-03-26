@@ -2,7 +2,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
 import { auth } from "./firebase/firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 
 import BaseDetails from "./components/jobpage/baseDetails";
 import BasePage from "./components/jobpage/basePage";
@@ -26,6 +26,7 @@ import Profile from "./pages/profile";
 import backgroud from "./assets/background.png";
 import flogo from "./assets/footerLogo.png";
 import Recruiter from "./pages/recruiter";
+import AuthModal from "./pages/AuthModal";
 
 function App() {
   return (
@@ -38,17 +39,14 @@ function App() {
 function AppContent() {
   const [user, setUser] = useState(null);
   const location = useLocation(); // Now correctly inside Router
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSignup] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsubscribe();
+    onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
   }, []);
 
-  const handleLogout = async () => {
-    await signOut(auth);
-  };
+  
 
   const headerStyle = {
     display: "flex",
@@ -80,6 +78,23 @@ function AppContent() {
     padding: "8px 12px",
     transition: "color 0.3s",
   };
+  const loginButtonStyle = {
+    background: "#1d3480",
+    color: "white",
+    padding: "8px 16px",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    fontWeight: "bold",
+  };
+  
+  const profileLinkStyle = {
+    textDecoration: "none",
+    color: "#1d3480",
+    fontSize: "16px",
+    fontWeight: "bold",
+  };
+  
 
   return (
     <>
@@ -99,26 +114,17 @@ function AppContent() {
           </NavLink>
 
           {!user ? (
-            <>
-              <NavLink to="/login" style={linkStyle} activeStyle={{ color: "#4169E1" }}>
-                Login
-              </NavLink>
-              <NavLink to="/signup" style={linkStyle} activeStyle={{ color: "#007bff" }}>
-                Signup
-              </NavLink>
-            </>
+            <button onClick={() => setIsModalOpen(true)} style={loginButtonStyle}>
+              Login
+            </button>
           ) : (
-            <>
-              <NavLink to="/profile" style={linkStyle} activeStyle={{ color: "#007bff" }}>
-                Profile
-              </NavLink>
-              <button onClick={handleLogout} style={{ ...linkStyle, background: "none", border: "none", cursor: "pointer" }}>
-                Logout
-              </button>
-            </>
+            <Link to="/profile" style={profileLinkStyle}>
+              Profile
+            </Link>
           )}
         </nav>
       </header>
+
 
       <Routes>
         <Route path="/" element={<Homepage />} />
@@ -143,6 +149,7 @@ function AppContent() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/recruiter" element={<Recruiter />} />
       </Routes>
+      <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isSignup={isSignup} />
 
       {/* Footer (Hidden on Login & Signup pages) */}
       {location.pathname !== "/login" && location.pathname !== "/signup" && (
