@@ -88,12 +88,6 @@ function AppContent() {
     fontWeight: "bold",
   };
   
-  const profileLinkStyle = {
-    textDecoration: "none",
-    color: "#1d3480",
-    fontSize: "16px",
-    fontWeight: "bold",
-  };
   
 
   return (
@@ -118,7 +112,7 @@ function AppContent() {
               Login
             </button>
           ) : (
-            <Link to="/profile" style={profileLinkStyle}>
+            <Link to="/profile" style={linkStyle}>
               Profile
             </Link>
           )}

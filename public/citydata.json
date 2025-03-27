@@ -1,5 +1,5 @@
 [
-    {
+  {
       "city": "Bengalore",
       "image": "Bangalore",
       "monthly_rent": 25000,
@@ -7,9 +7,10 @@
       "transport": 3000,
       "utilities": 4000,
       "miscellaneous": 5000,
-      "other": 2000
-    },
-    {
+      "other": 2000,
+      "total_expense": 47000
+  },
+  {
       "city": "Hyderabad",
       "image": "Hyderabad",
       "monthly_rent": 18000,
@@ -17,9 +18,10 @@
       "transport": 2500,
       "utilities": 3500,
       "miscellaneous": 4500,
-      "other": 1800
-    },
-    {
+      "other": 1800,
+      "total_expense": 37300
+  },
+  {
       "city": "Chennai",
       "image": "Chennai",
       "monthly_rent": 20000,
@@ -27,9 +29,10 @@
       "transport": 2800,
       "utilities": 3800,
       "miscellaneous": 4700,
-      "other": 1900
-    },
-    {
+      "other": 1900,
+      "total_expense": 40700
+  },
+  {
       "city": "Pune",
       "image": "Pune",
       "monthly_rent": 22000,
@@ -37,9 +40,10 @@
       "transport": 2700,
       "utilities": 3900,
       "miscellaneous": 4800,
-      "other": 1850
-    },
-    {
+      "other": 1850,
+      "total_expense": 42450
+  },
+  {
       "city": "Gurgaon",
       "image": "Gurgaon",
       "monthly_rent": 28000,
@@ -47,9 +51,10 @@
       "transport": 3500,
       "utilities": 4200,
       "miscellaneous": 5300,
-      "other": 2500
-    },
-    {
+      "other": 2500,
+      "total_expense": 52000
+  },
+  {
       "city": "Noida",
       "image": "Noida",
       "monthly_rent": 24000,
@@ -57,9 +62,10 @@
       "transport": 3200,
       "utilities": 4000,
       "miscellaneous": 5000,
-      "other": 2100
-    },
-    {
+      "other": 2100,
+      "total_expense": 46100
+  },
+  {
       "city": "Mumbai",
       "image": "Mumbai",
       "monthly_rent": 35000,
@@ -67,9 +73,10 @@
       "transport": 4000,
       "utilities": 5000,
       "miscellaneous": 6000,
-      "other": 3000
-    },
-    {
+      "other": 3000,
+      "total_expense": 62000
+  },
+  {
       "city": "Kolkata",
       "image": "Kolkata",
       "monthly_rent": 15000,
@@ -77,9 +84,10 @@
       "transport": 2300,
       "utilities": 3200,
       "miscellaneous": 4200,
-      "other": 1600
-    },
-    {
+      "other": 1600,
+      "total_expense": 34100
+  },
+  {
       "city": "Ahmedabad",
       "image": "Ahmedabad",
       "monthly_rent": 17000,
@@ -87,6 +95,7 @@
       "transport": 2400,
       "utilities": 3300,
       "miscellaneous": 4300,
-      "other": 1750
-    }
-  ]
+      "other": 1750,
+      "total_expense": 37550
+  }
+]
