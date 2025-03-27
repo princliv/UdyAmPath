@@ -147,7 +147,7 @@ function AppContent() {
 
       {/* Footer (Hidden on Login & Signup pages) */}
       {location.pathname !== "/login" && location.pathname !== "/signup" && (
-        <footer style={{ backgroundColor: "#1181c8", color: "white", textAlign: "left", padding: "40px 20px", marginTop: "40px" }}>
+        <footer style={{ backgroundColor: "#1181c8", color: "white", textAlign: "left", padding: "40px 20px", marginTop: "0px" }}>
         <div style={{
           maxWidth: "1100px",
           margin: "auto",
@@ -165,25 +165,25 @@ function AppContent() {
           {/* Column 2 */}
           <div style={{ flex: 1, minWidth: "200px" }}>
             <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Products</h6>
-            <p>MDBootstrap</p>
-            <p>MDWordPress</p>
-            <p>BrandFlow</p>
-            <p>Bootstrap Angular</p>
+            <p>Courses</p>
+            <p>Specializations</p>
+            <p>Notes</p>
+            <p>Jobs</p>
           </div>
       
           {/* Column 3 */}
           <div style={{ flex: 1, minWidth: "200px" }}>
-            <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Useful Links</h6>
-            <p>Your Account</p>
-            <p>Become an Affiliate</p>
-            <p>Shipping Rates</p>
-            <p>Help</p>
+            <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Tools</h6>
+            <p>Interview Practice</p>
+            <p>Project Listing</p>
+            <p>Mentora</p>
+            <p>Career Supportive Tools</p>
           </div>
       
           {/* Column 4 */}
           <div style={{ flex: 1, minWidth: "200px" }}>
             <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Contact</h6>
-            <p><i className="fas fa-home"></i> Roorkee, Uttarakhand, Bihar, 247667, India</p>
+            <p><i className="fas fa-home"></i> Roorkee, Uttarakhand, 247667, India</p>
             <p><i className="fas fa-envelope"></i> ankitkumar1990asap@gmail.com</p>
             <p><i className="fas fa-phone"></i> +91 969 312 093</p>
             <p><i className="fas fa-print"></i> +01 234 567 89</p>
