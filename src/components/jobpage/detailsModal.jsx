@@ -15,32 +15,54 @@ const DetailsModal = ({ job, onClose }) => {
         borderRadius: "10px",
         boxShadow: "0 5px 15px rgba(0,0,0,0.3)",
         zIndex: 1000,
-        width: "500px",
+        width: "600px",
         fontFamily: "Arial, sans-serif",
       }}
     >
       {/* Header Section */}
-      <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-        <img src={job.logo} alt={job.company} style={{ width: "50px", height: "50px", marginRight: "10px" }} />
-        <div>
-          <h2 style={{ margin: 0 }}>{job.title}</h2>
-          <p style={{ margin: 0, color: "gray" }}>{job.company}</p>
+      <div style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        borderBottom: "2px solid #eee",
+        paddingBottom: "10px",
+      }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img src={job.logo} alt={job.company} style={{ width: "50px", height: "50px", marginRight: "10px" }} />
+          <div>
+            <h2 style={{ margin: 0 }}>{job.title}</h2>
+            <p style={{ margin: 0, color: "gray" }}>{job.company}</p>
+          </div>
         </div>
+        <button onClick={onClose} style={{ border: "none", background: "none", fontSize: "18px", cursor: "pointer" }}>✕</button>
       </div>
 
       {/* Job Details */}
-      <p><strong>Location:</strong> {job.location.join(", ")}</p>
-      <p><strong>Experience:</strong> {job.experience}</p>
-      <p><strong>Salary:</strong> {job.salary}</p>
-      <p><strong>Date:</strong> {job.date}</p>
-      <button style={{
-        backgroundColor: "#196795",
-        color: "white",
-        padding: "10px 15px",
-        border: "none",
-        borderRadius: "5px",
-        cursor: "pointer",
-      }}>Apply Now</button>
+      <div style={{ marginTop: "15px", display: "flex", justifyContent: "space-between" }}>
+        <div>
+          <p><strong>Location:</strong> {job.location.join(", ")}</p>
+          <p><strong>Experience:</strong> {job.experience}</p>
+          <p><strong>Salary:</strong> <span style={{ color: "#196795", fontWeight: "bold" }}>{job.salary}</span></p>
+          <p><strong>Posted:</strong> {job.date}</p>
+        </div>
+        <div style={{
+          backgroundColor: "#f8f9fa",
+          padding: "15px",
+          borderRadius: "10px",
+          textAlign: "center",
+        }}>
+          <p style={{ margin: 0, fontSize: "18px", fontWeight: "bold" }}>{job.salary}</p>
+          <p style={{ margin: "5px 0", fontSize: "14px", color: "gray" }}>Avg. Salary</p>
+          <button style={{
+            backgroundColor: "#196795",
+            color: "white",
+            padding: "10px 15px",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}>Apply for this job</button>
+        </div>
+      </div>
 
       {/* Key Responsibilities */}
       <h3 style={{ marginTop: "20px" }}>Key Responsibilities:</h3>

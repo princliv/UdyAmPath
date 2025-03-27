@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import DetailsModal from "../jobpage/detailsModal"; 
 import amazonLogo from "../../assets/jobpage/amazon.png";
 import googleLogo from "../../assets/jobpage/google.png";
 import appleLogo from "../../assets/jobpage/apple.png";
+import doneImg from "../../assets/jobpage/done.png";
 
 const logoMap = {
   "Amazon": amazonLogo,
@@ -15,6 +17,9 @@ const Details = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState("Job");
+  
+  const [typeFilter, setTypeFilter] = useState(""); // Store selected type
+  const [levelFilter, setLevelFilter] = useState(""); // Store selected level
 
   useEffect(() => {
     fetch("/jobdata.json") // Fetch from public folder
@@ -40,14 +45,91 @@ const Details = () => {
     setSelectedJob(null);
   };
 
+  // Filter jobs based on selected type and level
+  const filteredJobs = jobs.filter((job) => {
+    return (
+      (typeFilter === "" || job.type === typeFilter) &&
+      (levelFilter === "" || job.level === levelFilter)
+    );
+  });
+  
+  const { city } = useParams(); // Get city from URL
+  const [cityInfo, setCityInfo] = useState(null);
+
+  useEffect(() => {
+    fetch(`/citydata.json`) // Replace with your API
+      .then((res) => res.json())
+      .then((data) => {
+        const selectedCity = data.find((c) => c.name === city);
+        setCityInfo(selectedCity);
+      })
+      .catch((error) => console.error("Error fetching city data:", error));
+  }, [city]);
+
+  if (!cityInfo) return <p>Loading city details...</p>;
+  
+  const { total_expense } = cityInfo;
+
+  filteredJobs.forEach((job) => {
+    job.isAffordable = job.salary > total_expense;
+  });
+  
+
   return (
     <div style={{ display: "flex", gap: "20px", padding: "0px" }}>
-
       {/* Left Filter Sidebar */}
-      <div style={{ width: "270px", border: "1px solid #ccc", borderRadius: "10px", padding: "10px" }}>
-        <h3 style={{ textAlign: "center" }}>Filters</h3>
-        <div style={{ height: "5px", backgroundColor: "#ccc" }}></div>
+      <div style={{ width: "270px", border: "1px solid #ccc", borderRadius: "10px", padding: "15px", backgroundColor: "#f9f9f9" }}>
+      <h3 style={{ textAlign: "center", marginBottom: "10px" }}>Filters</h3>
+      <div style={{ height: "5px", backgroundColor: "#ccc", marginBottom: "10px", borderRadius: "5px" }}></div>
+
+      {/* Type Filter - Checkboxes */}
+      <label><b>Type:</b></label>
+      <div style={{ display: "flex", flexDirection: "column", marginBottom: "10px" }}>
+        <label>
+          <input
+            type="checkbox"
+            value="On-Site"
+            checked={typeFilter === "On-Site"}
+            onChange={() => setTypeFilter(typeFilter === "On-Site" ? "" : "On-Site")}
+          />
+          On-Site
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            value="Part Time"
+            checked={typeFilter === "Part Time"}
+            onChange={() => setTypeFilter(typeFilter === "Part Time" ? "" : "Part Time")}
+          />
+          Part Time
+        </label>
       </div>
+
+      {/* Level Filter - Radio Buttons */}
+      <label><b>Level:</b></label>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <label>
+          <input
+            type="radio"
+            name="level"
+            value="Senior Level"
+            checked={levelFilter === "Senior Level"}
+            onChange={(e) => setLevelFilter(e.target.value)}
+          />
+          Senior Level
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="level"
+            value="Junior Level"
+            checked={levelFilter === "Junior Level"}
+            onChange={(e) => setLevelFilter(e.target.value)}
+          />
+          Junior Level
+        </label>
+      </div>
+    </div>
 
       {/* Right Main Section */}
       <div style={{ flex: 1 }}>
@@ -86,48 +168,55 @@ const Details = () => {
         </div>
 
         {/* Job Cards Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "20px" }}>
-          {jobs.map((job, index) => (
-            <div
-              key={index}
-              style={{
-                backgroundColor: job.color,
-                padding: "20px",
-                borderRadius: "15px",
-                boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-                display: "flex",
-                flexDirection: "column",
-                gap: "5px",
-              }}
-            >
-              <span style={{ fontSize: "12px", color: "#555" }}>{job.date}</span>
-              <h3>{job.company}</h3>
-              <h4>{job.title}</h4>
-              <p style={{ fontSize: "14px", color: "#666" }}>
-                <span style={{ backgroundColor: "#fff", padding: "3px 8px", borderRadius: "5px", marginRight: "5px" }}>
-                  {job.type}
-                </span>
-                <span style={{ backgroundColor: "#fff", padding: "3px 8px", borderRadius: "5px" }}>{job.level}</span>
-              </p>
-              {job.logo && (
-                <img src={job.logo} alt="company logo" style={{ width: "30px", alignSelf: "flex-end" }} />
-              )}
-              <button
-                onClick={() => openModal(job)}
-                style={{
-                  backgroundColor: "#fff",
-                  border: "none",
-                  padding: "5px 10px",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  alignSelf: "flex-start",
-                }}
-              >
-                Details
-              </button>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px" }}>
+      {filteredJobs.map((job, index) => (
+        <div key={index} style={{ backgroundColor: "#fff", borderRadius: "15px", boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", padding: "15px", position: "relative", width: "100%", maxWidth: "280px" }}>
+          
+          {/* Background Color Bar */}
+          <div style={{ backgroundColor: job.color, height: "80px", borderRadius: "15px 15px 0 0", position: "relative", display: "flex", alignItems: "center", padding: "10px" }}>
+            <span style={{ backgroundColor: "#fff", color: "#333", padding: "3px 8px", borderRadius: "5px", fontSize: "12px", position: "absolute", top: "10px", left: "10px", boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)" }}>
+              {job.type}
+            </span>
+            {job.logo && (
+              <img src={job.logo} alt="Company Logo" style={{ width: "50px", height: "50px", borderRadius: "10px", position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)", backgroundColor: "#fff", padding: "5px", boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)" }} />
+            )}
+          </div>
+
+          {/* Job Details */}
+          <div style={{ padding: "15px", textAlign: "left" }}>
+            <h4 style={{ color: "#0073b1", margin: "5px 0" }}>{job.title}</h4>
+            <p style={{ color: "#555", fontSize: "14px", marginBottom: "10px" }}>{job.company}</p>
+
+            <div style={{ display: "flex", alignItems: "center", gap: "5px", fontSize: "14px", color: "#777" }}>
+              <span>👀 {job.views} Views</span>
+              <span>⏳ {job.daysLeft} days left</span>
             </div>
-          ))}
+
+            {/* Level and Detail Button */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "10px" }}>
+              <span style={{ backgroundColor: "#eef3f8", padding: "5px 10px", borderRadius: "5px", fontSize: "12px", color: "#333" }}>
+                {job.level}
+              </span>
+              <button 
+              style={{ backgroundColor: "#0073b1", color: "#fff", border: "none", padding: "8px 12px", borderRadius: "50%", cursor: "pointer" }} 
+              onClick={() => openModal(job)} 
+            >
+              ➜ 
+            </button>
+
+            </div>
+
+            {/* If job is affordable, show 'done.png' */} 
+            {job.isAffordable && (
+              <div style={{ textAlign: "center", marginTop: "10px" }}>
+                <img src={doneImg} alt="Done" style={{ width: "50px" }} />
+              </div>
+            )}
+
+          </div>
         </div>
+      ))}
+    </div>
       </div>
 
       {/* Details Modal */}
