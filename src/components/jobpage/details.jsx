@@ -197,7 +197,13 @@ const Details = () => {
               <span style={{ backgroundColor: "#eef3f8", padding: "5px 10px", borderRadius: "5px", fontSize: "12px", color: "#333" }}>
                 {job.level}
               </span>
-              <button style={{ backgroundColor: "#0073b1", color: "#fff", border: "none", padding: "8px 12px", borderRadius: "50%", cursor: "pointer" }} onClick={() => openModal}> ➜ </button>
+              <button 
+              style={{ backgroundColor: "#0073b1", color: "#fff", border: "none", padding: "8px 12px", borderRadius: "50%", cursor: "pointer" }} 
+              onClick={() => openModal(job)} 
+            >
+              ➜ 
+            </button>
+
             </div>
 
             {/* If job is affordable, show 'done.png' */} 
