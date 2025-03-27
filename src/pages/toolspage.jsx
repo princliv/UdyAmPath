@@ -1,13 +1,25 @@
 import React from "react";
-import headerBg from '../assets/jobpage/headerbg.png';
-import Interview from "../components/toolspage/interview";
 import { useNavigate } from "react-router-dom";
+import headerBg from '../assets/jobpage/headerbg.png';
+import ptBg from '../assets/toolpage/pt_bg.jpg'; // Import the background image
+import Interview from "../components/toolspage/interview";
 
 const JobPage = () => {
-  const navigate = useNavigate(); // 
+  const navigate = useNavigate();
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "20px" }}>
+    <div 
+      style={{ 
+        display: "flex", 
+        flexDirection: "column", 
+        gap: "20px", 
+        padding: "20px", 
+        backgroundImage: `url(${ptBg})`,  // Set background image
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh" // Ensure it covers the full viewport height
+      }}
+    >
       {/* Top Section with Two Cards */}
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         {/* Left Rectangle */}
@@ -30,7 +42,7 @@ const JobPage = () => {
               borderRadius: "5px", 
               cursor: "pointer" 
             }} 
-            onClick={() => navigate("")} // 
+            onClick={() => navigate("")}
           >
             Mentora
           </button>
@@ -50,7 +62,7 @@ const JobPage = () => {
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <h2 style={{ fontSize: "30px" }}>
               Get your dream job with<span style={{ color: "#004aad" }}> Interview Prep</span> and<br /> 
-             <span style={{ color: "#004aad" }}>projects </span>
+              <span style={{ color: "#004aad" }}>projects </span>
             </h2>
             <input
               type="text"
