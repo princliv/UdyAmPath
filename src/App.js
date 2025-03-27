@@ -27,6 +27,7 @@ import backgroud from "./assets/background.png";
 import flogo from "./assets/footerLogo.png";
 import Recruiter from "./pages/recruiter";
 import AuthModal from "./pages/AuthModal";
+import { signOut } from "firebase/auth";
 
 function App() {
   return (
@@ -45,7 +46,11 @@ function AppContent() {
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
   }, []);
-
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => setUser(null))  // Clears the user state
+      .catch((error) => console.error("Logout error:", error));
+  };
   
 
   const headerStyle = {
@@ -112,9 +117,14 @@ function AppContent() {
               Login
             </button>
           ) : (
-            <Link to="/profile" style={linkStyle}>
-              Profile
-            </Link>
+            <>
+              <Link to="/profile" style={linkStyle}>
+                Profile
+              </Link>
+              <button onClick={handleLogout} style={loginButtonStyle}>
+                Logout
+              </button>
+            </>
           )}
         </nav>
       </header>
