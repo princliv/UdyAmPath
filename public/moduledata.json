@@ -1,0 +1,15 @@
+[
+    {
+      "moduleTitle": "Introduction to Java",
+      "video": "https://www.example.com/java-intro-video",
+      "reading": "https://www.example.com/java-intro-reading",
+      "quiz": "https://www.example.com/java-intro-quiz"
+    },
+    {
+      "moduleTitle": "Control Flow and Loops",
+      "video": "https://www.example.com/control-flow-video",
+      "reading": "https://www.example.com/control-flow-reading",
+      "quiz": "https://www.example.com/control-flow-quiz"
+    }
+  ]
+  

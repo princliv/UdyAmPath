@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import javaImage from "../../assets/coursepage/java.jpg";
 import pythonImage from "../../assets/coursepage/python.jpg";
 import rLangImage from "../../assets/coursepage/R.jpg";
-import sqlImage from "../../assets/coursepage/sql.png";
+import ethicalHackingImage from "../../assets/coursepage/hacking.png.webp";
 
 const courseImageMap = {
-  "Java": javaImage,
-  "Python": pythonImage,
-  "R Language": rLangImage,
-  "SQL": sqlImage,
+  "Financial Marketing": javaImage,
+  "Front End Development": pythonImage,
+  "Human Resource Management": rLangImage,
+  "Ethical Hacking": ethicalHackingImage,
 };
 
 const Recommended = () => {
@@ -21,7 +21,7 @@ const Recommended = () => {
       .then((response) => response.json())
       .then((data) => {
         const updatedCourses = data.filter(course => 
-          ["React", "Android", "Machine Learning", "Ethical Hacking"].includes(course.title)
+          ["Financial Marketing", "Front End Development", "Human Resource Management", "Ethical Hacking"].includes(course.title)
         ).map(course => ({
           ...course,
           

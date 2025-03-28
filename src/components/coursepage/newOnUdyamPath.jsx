@@ -6,10 +6,10 @@ import rLangImage from "../../assets/coursepage/R.jpg";
 import sqlImage from "../../assets/coursepage/sql.png";
 
 const courseImageMap = {
-  "Java": javaImage,
-  "Python": pythonImage,
-  "R Language": rLangImage,
-  "SQL": sqlImage,
+  "Generative AI Fundamentals": javaImage,
+  "Cybersecurity for Everyone": pythonImage,
+  "UI/UX": rLangImage,
+  "DevOps": sqlImage,
 };
 
 const New = () => {
@@ -21,7 +21,7 @@ const New = () => {
       .then((response) => response.json())
       .then((data) => {
         const updatedCourses = data.filter(course => 
-          ["React", "Android", "Machine Learning", "Ethical Hacking"].includes(course.title)
+          ["Generative AI Fundamentals", "Cybersecurity for Everyone", "UI/UX", "DevOps"].includes(course.title)
         ).map(course => ({
           ...course,
           
