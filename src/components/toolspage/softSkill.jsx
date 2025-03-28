@@ -8,8 +8,8 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const images = [
   { src: communicationImg, alt: "Communication", link: "/communication" },
-  { src: adaptabilityImg, alt: "Adaptability", link: "#" },
-  { src: timeImg, alt: "Time Management", link: "#" },
+  { src: adaptabilityImg, alt: "Adaptability", link: "/adaptability" },
+  { src: timeImg, alt: "Time Management", link: "/timemanage" },
 ];
 
 const SoftSkill = () => {

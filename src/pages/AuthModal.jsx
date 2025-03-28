@@ -1,15 +1,19 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+
 import { auth, googleProvider, signInWithGoogle, signInWithEmail } from "../firebase/firebase";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FaLinkedin } from "react-icons/fa";
 
 const AuthModal = ({ isOpen, onClose }) => {
+  const navigate = useNavigate();
   const [isSignup, setIsSignup] = useState(false); // Toggle Login/Signup
   const [userType, setUserType] = useState("candidate"); // Toggle Candidate/Recruiter
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+  const [ setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -18,16 +22,20 @@ const AuthModal = ({ isOpen, onClose }) => {
   const [gender, setGender] = useState("");
 
   if (!isOpen) return null; // Don't render if modal is closed
-
+  
   // Google Login
-const handleGoogleLogin = async () => {
-  try {
-    await signInWithGoogle(auth, googleProvider);
-    setTimeout(() => onClose(), 500); // Delay to ensure auth completes
-  } catch (error) {
-    alert(error.message);
-  }
-};
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    try {
+      await signInWithGoogle(auth, googleProvider);
+      navigate(userType === "recruiter" ? "/recruiter" : "/homepage");
+      setTimeout(onClose, 500);
+    } catch (error) {
+      alert(error.message);
+    }
+    setLoading(false);
+  };
+
 
 // Email Login/Signup
 const handleAuth = async (e) => {
@@ -42,12 +50,16 @@ const handleAuth = async (e) => {
     } else {
       await signInWithEmail(auth, email, password);
     }
-    setTimeout(() => onClose(), 500); // Delay ensures UI updates smoothly
+
+    // Redirect based on userType
+    const redirectPath = userType === "recruiter" ? "/recruiter" : "/homepage";
+    navigate(redirectPath);
+
+    setTimeout(() => onClose(), 500); // Close modal after a slight delay
   } catch (error) {
     alert(error.message);
   }
 };
-
   return (
     <div style={styles.overlay}>
       <div style={styles.modal}>
