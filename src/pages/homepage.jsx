@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import home1 from "../assets/home1.png";
 import home2 from "../assets/home2.png";
 import home3 from "../assets/home3.png";
@@ -9,6 +9,8 @@ import HomeTool from "../components/homepage/hometool";
 import Event from "../components/homepage/event";
 
 const Homepage = () => {
+  const navigate = useNavigate();
+
   return (
     <div style={styles.container}>
       {/* Content Wrapper */}
@@ -20,7 +22,12 @@ const Homepage = () => {
           </p>
           <div style={styles.buttonContainer}>
             <button style={styles.seeMoreBtn}>See More</button>
-            <button style={styles.exploreBtn}>Explore</button>
+            <button 
+              style={styles.exploreBtn} 
+              onClick={() => navigate("/recruiter")}
+            >
+              Hire Talent
+            </button>
           </div>
         </div>
 
