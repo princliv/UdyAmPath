@@ -27,6 +27,7 @@ import backgroud from "./assets/background.png";
 import flogo from "./assets/footerLogo.png";
 import Recruiter from "./pages/recruiter";
 import AuthModal from "./pages/AuthModal";
+import Communication from "./components/toolspage/communication";
 import { signOut } from "firebase/auth";
 
 function App() {
@@ -152,6 +153,7 @@ function AppContent() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/recruiter" element={<Recruiter />} />
+        <Route path="/communication" element={<Communication />} />
       </Routes>
       <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isSignup={isSignup} />
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import softGif from "../../assets/toolpage/soft.gif";
 import communicationImg from "../../assets/toolpage/communication.jpg";
 import timeImg from "../../assets/toolpage/time.jpg";
@@ -6,7 +7,7 @@ import adaptabilityImg from "../../assets/toolpage/adaptability.jpeg";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const images = [
-  { src: communicationImg, alt: "Communication", link: "#" },
+  { src: communicationImg, alt: "Communication", link: "/communication" },
   { src: adaptabilityImg, alt: "Adaptability", link: "#" },
   { src: timeImg, alt: "Time Management", link: "#" },
 ];
@@ -68,7 +69,7 @@ const SoftSkill = () => {
           {[0, 1].map((offset) => {
             const index = (currentIndex + offset) % images.length;
             return (
-              <a key={index} href={images[index].link} target="_blank" rel="noopener noreferrer">
+              <Link key={index} to={images[index].link}>
                 <img
                   src={images[index].src}
                   alt={images[index].alt}
@@ -79,7 +80,7 @@ const SoftSkill = () => {
                     boxShadow: "0px 4px 8px rgba(0,0,0,0.1)",
                   }}
                 />
-              </a>
+              </Link>
             );
           })}
         </div>
