@@ -27,9 +27,9 @@ const CourseDetails = () => {
   return (
     <div style={styles.container}>
       {/* Go Back Button */}
-      <button onClick={() => navigate(-1)} style={styles.goBackButton}>
-        ⬅ Go Back
-      </button>
+      {/* <button onClick={() => navigate(-1)} style={styles.goBackButton}>
+        ⬅
+      </button> */}
 
       <div style={styles.courseBox}>
         <img src={course.image} alt={course.title} style={styles.image} />
@@ -61,50 +61,68 @@ const CourseDetails = () => {
       </div>
 
       <div style={styles.pathwayBox}>
-        <h3 style={styles.pathwayTitle}>Course Modules</h3>
-        {course.pathway?.map((step, index) => (
-          <div key={index} style={styles.pathwayItem}>
-            <div
-              style={styles.pathwayHeader}
-              onClick={() => toggleExpand(index)}
-            >
-              <span>{step.title}</span>
-              <span style={styles.expandIcon}>
-                {expandedIndex === index ? "➖" : "➕"}
-              </span>
-            </div>
-            {expandedIndex === index && (
-              <div style={styles.pathwayDetails}>
-                <p>{step.details}</p>
-                <button
-                  onClick={() => navigate("/module", { state: { module: step } })}
-                  style={styles.startModuleButton}
-                >
-                  Start Module
-                </button>
-              </div>
-            )}
-          </div>
-        ))}
+  <h3 style={styles.pathwayTitle}>Course Modules</h3>
+  {course.pathway?.map((step, index) => (
+    <div key={index} style={styles.pathwayItem}>
+      <div style={styles.pathwayHeader} onClick={() => toggleExpand(index)}>
+        <span>{step.title}</span>
+        <span style={styles.expandIcon}>
+          {expandedIndex === index ? "➖" : "➕"}
+        </span>
       </div>
+      {expandedIndex === index && (
+        <div style={styles.pathwayDetails}>
+          {step.details.split("\n\nTopics Covered:\n-").map((section, i) => (
+            i === 0 ? <p key={i}>{section}</p> : 
+            <ul key={i}>
+              {section.split("\n-").map((point, j) => (
+                <li key={j}>{point.trim()}</li>
+              ))}
+            </ul>
+          ))}
+          <button
+            onClick={() => navigate("/module", { state: { module: step } })}
+            style={styles.startModuleButton}
+          >
+            Start Module
+          </button>
+        </div>
+      )}
+    </div>
+  ))}
+</div>
+
 
        {/* AI-powered Support Section */}
        <div style={styles.aiSupportSection}>
-        <h3 style={styles.aiSupportTitle}>AI-powered support to help you learn</h3>
-        <div style={styles.aiSupportContainer}>
-          {aiSupportData.map((item, index) => (
-            <div key={index} style={styles.aiSupportCard}>
-              <div style={styles.aiSupportText}>
-                <h4 style={styles.aiSupportHeading}>{item.title}</h4>
-                <p style={styles.aiSupportDescription}>{item.description}</p>
-              </div>
-              <div style={styles.aiSupportImageContainer}>
-                <img src={item.image} alt={item.title} style={styles.aiSupportImage} />
-              </div>
+      {aiSupportData.map((item, index) => (
+        <div key={index} style={{ ...styles.aiSupportCard, backgroundColor: item.bgColor }}>
+          <h4 style={styles.aiSupportHeading}>{item.title}</h4>
+          <p style={styles.aiSupportDescription}>{item.description}</p>
+
+          {/* Show Avatars if available */}
+          {item.avatars && (
+            <div style={styles.avatarsContainer}>
+              {item.avatars.map((avatar, idx) => (
+                <img key={idx} src={avatar} alt="Expert" style={styles.avatar} />
+              ))}
             </div>
-          ))}
+          )}
+
+          {/* Show Tags if available */}
+          {item.tags && (
+            <div style={styles.tagContainer}>
+              {item.tags.map((tag, idx) => (
+                <span key={idx} style={styles.tag}>{tag}</span>
+              ))}
+            </div>
+          )}
+
+          {/* Separator "+" except for the last item */}
+          {index !== aiSupportData.length - 1 && <div style={styles.separator}>+</div>}
         </div>
-      </div>
+      ))}
+    </div>
       <div style={styles.faqBox}>
         <h3 style={styles.faqTitle}>Frequently Asked Questions</h3>
         {faqData.map((faq, index) => (
@@ -124,17 +142,20 @@ const aiSupportData = [
   {
     title: "AI Mentor",
     description: "Resolve doubts using AI Mentor. Get explanations and examples to help understand concepts better.",
-    image: "ai-mentor.png",
+    bgColor: "#E7F3FF",
+    tags: ["Mock Interview", "Guided Projects", "Coding Exercises"],
   },
   {
     title: "Coding Exercises",
     description: "Practice coding effortlessly with AI-powered hints. Get guidance while coding and learn with personalized feedback.",
-    image: "coding-exercises.png",
+    bgColor: "#FFF7DB",
+    tags: ["Mock Interview", "Guided Projects", "Coding Exercises"],
   },
   {
     title: "Mock Interviews",
     description: "Prepare for tech roles with AI-driven feedback and job confidence-building guidance.",
-    image: "mock-interviews.png",
+    bgColor: "#E6FCE8",
+    tags: ["24/7 Doubt resolution", "Coding hints"],
   },
 ];
 const faqData = [
@@ -270,50 +291,60 @@ const styles = {
     borderRadius: "6px",
   },
   aiSupportSection: {
-    backgroundColor: "#f8f9fa",
-    padding: "20px",
-    borderRadius: "12px",
-    marginTop: "30px",
-    textAlign: "center",
-  },
-  aiSupportTitle: {
-    fontSize: "24px",
-    marginBottom: "20px",
-    color: "#2c3e50",
-  },
-  aiSupportContainer: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "20px",
-    justifyContent: "center",
-  },
-  aiSupportCard: {
-    backgroundColor: "#ffffff",
-    borderRadius: "10px",
-    padding: "15px",
-    width: "280px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    gap: "20px",
+    marginTop: "30px",
   },
-  aiSupportText: {
+  aiSupportCard: {
+    width: "900px",
+    padding: "20px",
+    borderRadius: "12px",
+    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
     textAlign: "center",
-    marginBottom: "10px",
+    position: "relative",
   },
   aiSupportHeading: {
-    fontSize: "18px",
+    fontSize: "20px",
     fontWeight: "bold",
-    color: "#34495e",
+    color: "#2c3e50",
+    marginBottom: "5px",
   },
   aiSupportDescription: {
     fontSize: "14px",
     color: "#555",
+    marginBottom: "10px",
   },
-  aiSupportImage: {
-    width: "100%",
-    height: "auto",
-    borderRadius: "8px",
+    tagContainer: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "8px",
+    justifyContent: "center",
+    marginTop: "10px",
+  },
+  tag: {
+    backgroundColor: "#fff",
+    padding: "6px 10px",
+    borderRadius: "20px",
+    fontSize: "12px",
+    color: "#333",
+    border: "1px solid #ddd",
+  },
+  separator: {
+    position: "absolute",
+    bottom: "-15px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    backgroundColor: "#fff",
+    color: "#333",
+    fontSize: "20px",
+    fontWeight: "bold",
+    borderRadius: "50%",
+    width: "30px",
+    height: "30px",
+    lineHeight: "30px",
+    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
   },
   container: { width: "85%", maxWidth: "1100px", margin: "50px auto", fontFamily: "Arial, sans-serif" },
   goBackButton: { marginBottom: "20px", backgroundColor: "#3498db", color: "#ffffff", border: "none", padding: "10px 15px", borderRadius: "5px", cursor: "pointer", fontSize: "16px", fontWeight: "bold" },

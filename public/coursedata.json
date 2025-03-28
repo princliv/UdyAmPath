@@ -10,25 +10,66 @@
     "image": "javaImage",
     "logo": "/assets/amazon-logo.png",
     "description": "Learn Java programming from scratch and build real-world applications.",
-    "skillsGained": ["Java Basics", "Object-Oriented Programming", "Data Structures", "Web Development"],
+    "skillsGained": [
+        "Java Basics",
+        "Object-Oriented Programming",
+        "Data Structures",
+        "Web Development",
+        "Spring Boot",
+        "Microservices",
+        "Database Connectivity",
+        "RESTful APIs"
+    ],
     "pathway": [
-      {
-        "title": "Introduction to Java",
-        "details": "Learn the basics of Java programming, syntax, and simple applications."
-      },
-      {
-        "title": "Advanced Java",
-        "details": "Understand OOP concepts, multithreading, and advanced Java features."
-      },
-      {
-        "title": "Java for Web Development",
-        "details": "Learn how to build dynamic web applications using Java frameworks."
-      },
-      {
-        "title": "Project Work",
-        "details": "Work on real-world projects to apply your Java knowledge."
-      }
-    ]
+        {
+            "title": "Introduction to Java",
+            "details": "Learn the basics of Java programming, syntax, data types, and simple applications."
+        },
+        {
+            "title": "Control Flow and Loops",
+            "details": "Understand conditional statements, loops, and exception handling in Java."
+        },
+        {
+            "title": "Object-Oriented Programming (OOP)",
+            "details": "Learn OOP principles like encapsulation, inheritance, polymorphism, and abstraction."
+        },
+        {
+            "title": "Data Structures and Algorithms",
+            "details": "Understand linked lists, stacks, queues, trees, and sorting/searching algorithms using Java."
+        },
+        {
+            "title": "Java Collections Framework",
+            "details": "Explore ArrayList, HashMap, HashSet, and other built-in Java collection classes."
+        },
+        {
+            "title": "Multithreading and Concurrency",
+            "details": "Learn how to implement multi-threading, synchronization, and concurrent programming."
+        },
+        {
+            "title": "File Handling and I/O Streams",
+            "details": "Understand file handling, serialization, and input/output stream operations in Java."
+        },
+        {
+            "title": "Database Connectivity with JDBC",
+            "details": "Connect Java applications to databases using JDBC and perform CRUD operations."
+        },
+        {
+            "title": "Java for Web Development",
+            "details": "Learn how to build dynamic web applications using JSP, Servlets, and Java frameworks."
+        },
+        {
+            "title": "Spring Boot and RESTful APIs",
+            "details": "Develop microservices using Spring Boot and build RESTful APIs."
+        },
+        {
+            "title": "Microservices Architecture",
+            "details": "Understand the fundamentals of microservices, API gateway, and cloud deployments."
+        },
+        {
+            "title": "Project Work",
+            "details": "Apply your Java knowledge in real-world projects, including web applications and API development."
+        }
+    ] 
   },
   {
     "company": "Google",
