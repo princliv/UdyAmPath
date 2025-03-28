@@ -61,24 +61,32 @@ const CourseDetails = () => {
       </div>
 
       <div style={styles.pathwayBox}>
-      <h3 style={styles.pathwayTitle}>Course Pathway</h3>
-      {course.pathway?.map((step, index) => (
-        <div key={index} style={styles.pathwayItem}>
-          <div
-            style={styles.pathwayHeader}
-            onClick={() => toggleExpand(index)}
-          >
-            <span>{step.title}</span>
-            <span style={styles.expandIcon}>
-              {expandedIndex === index ? "➖" : "➕"}
-            </span>
+        <h3 style={styles.pathwayTitle}>Course Modules</h3>
+        {course.pathway?.map((step, index) => (
+          <div key={index} style={styles.pathwayItem}>
+            <div
+              style={styles.pathwayHeader}
+              onClick={() => toggleExpand(index)}
+            >
+              <span>{step.title}</span>
+              <span style={styles.expandIcon}>
+                {expandedIndex === index ? "➖" : "➕"}
+              </span>
+            </div>
+            {expandedIndex === index && (
+              <div style={styles.pathwayDetails}>
+                <p>{step.details}</p>
+                <button
+                  onClick={() => navigate("/module", { state: { module: step } })}
+                  style={styles.startModuleButton}
+                >
+                  Start Module
+                </button>
+              </div>
+            )}
           </div>
-          {expandedIndex === index && (
-            <div style={styles.pathwayDetails}>{step.details}</div>
-          )}
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
 
        {/* AI-powered Support Section */}
        <div style={styles.aiSupportSection}>
@@ -139,44 +147,20 @@ const faqData = [
 
 
 const styles = {
-  container: {
-    width: "85%",
-    maxWidth: "1100px",
-    margin: "50px auto",
-    fontFamily: "Arial, sans-serif",
-    backgroundColor: "#ffffff",
-    padding: "25px",
-    borderRadius: "12px",
-    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-  },
-  goBackButton: {
-    display: "block",
-    marginBottom: "20px",
-    backgroundColor: "#3498db",
-    color: "#ffffff",
-    border: "none",
-    padding: "10px 15px",
-    borderRadius: "5px",
-    cursor: "pointer",
-    fontSize: "16px",
-    fontWeight: "bold",
-  },
-  courseBox: {
-    display: "flex",
-    alignItems: "flex-start",
-    backgroundColor: "#f8f9fa",
-    padding: "20px",
-    borderRadius: "10px",
-    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-    marginBottom: "20px",
-  },
-  image: {
-    width: "220px",
-    height: "160px",
-    borderRadius: "8px",
-    marginRight: "20px",
-    objectFit: "cover",
-  },
+  container: { padding: "20px", maxWidth: "800px", margin: "auto" },
+  goBackButton: { marginBottom: "15px", cursor: "pointer" },
+  courseBox: { display: "flex", alignItems: "center", gap: "20px" },
+  image: { width: "80px", height: "80px" },
+  title: { fontSize: "24px", fontWeight: "bold" },
+  description: { color: "#555" },
+  pathwayBox: { marginTop: "30px" },
+  pathwayTitle: { fontSize: "20px", fontWeight: "bold" },
+  pathwayItem: { borderBottom: "1px solid #ddd", padding: "10px 0" },
+  pathwayHeader: { display: "flex", justifyContent: "space-between", cursor: "pointer" },
+  pathwayDetails: { padding: "10px", background: "#f9f9f9" },
+  startModuleButton: {
+     marginTop: "10px", cursor: "pointer", background: "blue", color: "white", padding: "5px 10px", borderRadius: "5px"},
+
   details: {
     display: "flex",
     flexDirection: "column",
