@@ -1,68 +1,59 @@
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 const ModulePage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [moduleData, setModuleData] = useState(null);
-  const module = location.state?.module;
+  const moduleData = location.state?.module;
+
+  const [moduleDetails, setModuleDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (module) {
-      fetch("/path-to/moduledata.json")
-        .then((res) => res.json())
-        .then((data) => {
-          const foundModule = data.find((m) => m.moduleTitle === module.title);
-          setModuleData(foundModule);
-        })
-        .catch((error) => console.error("Error fetching module data:", error));
+    if (!moduleData) {
+      // If no module data is passed, navigate back
+      navigate(-1);
+      return;
     }
-  }, [module]);
 
-  if (!moduleData) {
-    return (
-      <p style={{ textAlign: "center", fontSize: "18px", color: "#555" }}>
-        No module data available.
-      </p>
-    );
+    // Fetch module data based on the module title
+    fetch(`/moduledata.json`)
+      .then((response) => response.json())
+      .then((data) => {
+        const foundModule = data.find((mod) => mod.title === moduleData.title);
+        setModuleDetails(foundModule);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error loading module data:", error);
+        setLoading(false);
+      });
+  }, [moduleData, navigate]);
+
+  if (loading) {
+    return <p>Loading module details...</p>;
+  }
+
+  if (!moduleDetails) {
+    return <p>No module data available.</p>;
   }
 
   return (
     <div style={styles.container}>
-      <button onClick={() => navigate(-1)} style={styles.goBackButton}>
-        ⬅ Back to Course
+      <h1 style={styles.title}>{moduleDetails.title}</h1>
+      <p style={styles.description}>{moduleDetails.description}</p>
+      <h3 style={styles.subTitle}>Topics Covered:</h3>
+      <ul style={styles.topicList}>
+        {moduleDetails.topics.map((topic, index) => (
+          <li key={index} style={styles.topicItem}>{topic}</li>
+        ))}
+      </ul>
+      <button
+        onClick={() => navigate(-1)}
+        style={styles.backButton}
+      >
+        Go Back
       </button>
-
-      <h1 style={styles.moduleTitle}>{moduleData.moduleTitle}</h1>
-      <p style={styles.moduleDetails}>{moduleData.moduleDetails}</p>
-
-      {/* Additional Content */}
-      <div style={styles.moduleContent}>
-        <h3>Learning Materials</h3>
-        <ul>
-          {moduleData.video && (
-            <li>
-              <a href={moduleData.video} target="_blank" rel="noopener noreferrer">
-                Video Lecture
-              </a>
-            </li>
-          )}
-          {moduleData.readings && (
-            <li>
-              <a href={moduleData.readings} target="_blank" rel="noopener noreferrer">
-                Reading Materials
-              </a>
-            </li>
-          )}
-          {moduleData.quiz && (
-            <li>
-              <a href={moduleData.quiz} target="_blank" rel="noopener noreferrer">
-                Quiz & Exercises
-              </a>
-            </li>
-          )}
-        </ul>
-      </div>
     </div>
   );
 };
@@ -74,30 +65,37 @@ const styles = {
     margin: "auto",
     fontFamily: "Arial, sans-serif",
   },
-  goBackButton: {
-    background: "#007BFF",
-    color: "#fff",
-    border: "none",
-    padding: "10px 15px",
-    cursor: "pointer",
-    borderRadius: "5px",
-    marginBottom: "15px",
-  },
-  moduleTitle: {
+  title: {
     fontSize: "28px",
     fontWeight: "bold",
+    color: "#2c3e50",
+  },
+  description: {
+    fontSize: "16px",
+    color: "#555",
+    marginBottom: "20px",
+  },
+  subTitle: {
+    fontSize: "24px",
+    fontWeight: "bold",
+    marginTop: "20px",
+  },
+  topicList: {
+    listStyleType: "disc",
+    paddingLeft: "20px",
+  },
+  topicItem: {
+    fontSize: "16px",
     color: "#333",
   },
-  moduleDetails: {
-    fontSize: "18px",
-    color: "#666",
-    marginTop: "10px",
-  },
-  moduleContent: {
+  backButton: {
     marginTop: "20px",
-    padding: "15px",
-    background: "#f9f9f9",
-    borderRadius: "8px",
+    padding: "10px 15px",
+    backgroundColor: "#3498db",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
   },
 };
 
