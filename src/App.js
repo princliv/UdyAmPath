@@ -27,6 +27,9 @@ import backgroud from "./assets/background.png";
 import flogo from "./assets/footerLogo.png";
 import Recruiter from "./pages/recruiter";
 import AuthModal from "./pages/AuthModal";
+import Communication from "./components/toolspage/communication";
+import Adaptability from "./components/toolspage/adaptability";
+import TimeManagement from "./components/toolspage/timemanage";
 import { signOut } from "firebase/auth";
 
 function App() {
@@ -97,39 +100,39 @@ function AppContent() {
 
   return (
     <>
-      <header style={headerStyle}>
-        <Link to="/homepage">
-          <img src={backgroud} alt="Logo" style={logoStyle} />
-        </Link>
-        <nav style={navStyle}>
-          <NavLink to="/coursepage" style={linkStyle} activeStyle={{ color: "#007bff" }}>
-            Courses
-          </NavLink>
-          <NavLink to="/jobpage" style={linkStyle} activeStyle={{ color: "#007bff" }}>
-            Jobs/Internship
-          </NavLink>
-          <NavLink to="/toolspage" style={linkStyle} activeStyle={{ color: "#007bff" }}>
-            Tools
-          </NavLink>
+      {location.pathname !== "/recruiter" && (
+        <header style={headerStyle}>
+          <Link to="/homepage">
+            <img src={backgroud} alt="Logo" style={logoStyle} />
+          </Link>
+          <nav style={navStyle}>
+            <NavLink to="/coursepage" style={linkStyle} activeStyle={{ color: "#007bff" }}>
+              Courses
+            </NavLink>
+            <NavLink to="/jobpage" style={linkStyle} activeStyle={{ color: "#007bff" }}>
+              Jobs/Internship
+            </NavLink>
+            <NavLink to="/toolspage" style={linkStyle} activeStyle={{ color: "#007bff" }}>
+              Tools
+            </NavLink>
 
-          {!user ? (
-            <button onClick={() => setIsModalOpen(true)} style={loginButtonStyle}>
-              Login
-            </button>
-          ) : (
-            <>
-              <Link to="/profile" style={linkStyle}>
-                Profile
-              </Link>
-              <button onClick={handleLogout} style={loginButtonStyle}>
-                Logout
+            {!user ? (
+              <button onClick={() => setIsModalOpen(true)} style={loginButtonStyle}>
+                Login
               </button>
-            </>
-          )}
-        </nav>
-      </header>
-
-
+            ) : (
+              <>
+                <Link to="/profile" style={linkStyle}>
+                  Profile
+                </Link>
+                <button onClick={handleLogout} style={loginButtonStyle}>
+                  Logout
+                </button>
+              </>
+            )}
+          </nav>
+        </header>
+      )}
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/homepage" element={<Homepage />} />
@@ -152,6 +155,10 @@ function AppContent() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/recruiter" element={<Recruiter />} />
+        <Route path="/communication" element={<Communication />} />
+        <Route path="/adaptability" element={<Adaptability />} />
+        <Route path="/timemanage" element={<TimeManagement />} />
+
       </Routes>
       <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isSignup={isSignup} />
 
