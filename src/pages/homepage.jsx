@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import home1 from "../assets/home1.png";
 import home2 from "../assets/home2.png";
 import home3 from "../assets/home3.png";
@@ -7,8 +7,12 @@ import NewFeature from "../components/homepage/newFeature";
 import Popular from "../components/homepage/popular";
 import HomeTool from "../components/homepage/hometool";
 import Event from "../components/homepage/event";
+import { useMediaQuery } from "react-responsive";
 
 const Homepage = () => {
+  const navigate = useNavigate();
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   return (
     <div style={styles.container}>
       {/* Content Wrapper */}
@@ -20,43 +24,64 @@ const Homepage = () => {
           </p>
           <div style={styles.buttonContainer}>
             <button style={styles.seeMoreBtn}>See More</button>
-            <button style={styles.exploreBtn}>Explore</button>
+            <button 
+              style={styles.exploreBtn} 
+              onClick={() => navigate("/recruiter")}
+            >
+              Hire Talent
+            </button>
           </div>
         </div>
 
         {/* Right Section */}
         <div style={styles.rightSection}>
-          <Link to="/jobpage" style={{ ...styles.box, backgroundColor: "#9be6c1" }}>
+          {/** Jobs Box */}
+          <Link to="/jobpage" style={{ ...styles.box, backgroundColor: "#9be6c1" }} className="box">
             <div style={styles.textContainer}>
               <h3 style={styles.heading}>Jobs and Internships</h3>
               <p style={styles.subHeading}>Explore and Achieve</p>
             </div>
-            <img src={home1} alt="Jobs and Internships" style={styles.image} />
+            <img src={home1} alt="Jobs and Internships" style={styles.image(isMobile)} />
           </Link>
 
-          <Link to="/coursepage" style={{ ...styles.box, backgroundColor: "#c8bbff" }}>
+          {/** Courses Box */}
+          <Link to="/coursepage" style={{ ...styles.box, backgroundColor: "#c8bbff" }} className="box">
             <div style={styles.textContainer}>
               <h3 style={styles.heading}>Courses</h3>
               <p style={styles.subHeading}>Refine Your Knowledge</p>
             </div>
-            <img src={home2} alt="Courses" style={styles.image} />
+            <img src={home2} alt="Courses" style={styles.image(isMobile)} />
           </Link>
 
-          <Link to="/toolspage" style={{ ...styles.box, backgroundColor: "#fbc5ff" }}>
+          {/** Productivity Tools Box */}
+          <Link to="/toolspage" style={{ ...styles.box, backgroundColor: "#fbc5ff" }} className="box">
             <div style={styles.textContainer}>
               <h3 style={styles.heading}>Productivity Tools</h3>
               <p style={styles.subHeading}>Enjoy and Explore</p>
             </div>
-            <img src={home3} alt="Productivity Tools" style={styles.image} />
+            <img src={home3} alt="Productivity Tools" style={styles.image(isMobile)} />
           </Link>
         </div>
       </div>
 
-      {/* NewFeature Section BELOW */}
+      {/* Additional Sections */}
       <NewFeature />
       <Popular />
       <HomeTool />
       <Event />
+
+      {/* Adding Hover Animation using CSS */}
+      <style>
+        {`
+          .box {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
+          .box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+          }
+        `}
+      </style>
     </div>
   );
 };
@@ -64,14 +89,14 @@ const Homepage = () => {
 const styles = {
   container: {
     display: "flex",
-    flexDirection: "column", // Ensures content stacks vertically
+    flexDirection: "column",
     alignItems: "center",
     padding: "40px",
   },
   contentWrapper: {
     display: "flex",
     justifyContent: "space-between",
-    width: "100%", 
+    width: "100%",
   },
   leftSection: {
     flex: 1,
@@ -125,18 +150,18 @@ const styles = {
     flex: 1,
   },
   heading: {
-    fontSize: "18px",
+    fontSize: "25px",
     fontWeight: "bold",
   },
   subHeading: {
     fontSize: "14px",
     marginTop: "5px",
   },
-  image: {
-    width: "80px",
-    height: "80px",
+  image: (isMobile) => ({
+    width: isMobile ? "90px" : "230px",
+    height: isMobile ? "90px" : "120px",
     objectFit: "cover",
-  },
+  }),
 };
 
 export default Homepage;
