@@ -1,105 +1,36 @@
-[
-  {
-    "title": "Introduction to Java",
-    "description": "Learn the basics of Java programming, syntax, data types, and simple applications.",
-    "topics": [
-      "Java Basics",
-      "Data Types",
-      "Control Structures",
-      "Simple Applications"
-    ]
-  },
-  {
-    "title": "Control Flow and Loops",
-    "description": "Understand conditional statements, loops, and exception handling in Java.",
-    "topics": [
-      "If-Else Statements",
-      "Switch Case",
-      "For Loops",
-      "While Loops",
-      "Try-Catch Blocks"
-    ]
-  },
-  {
-    "title": "Object-Oriented Programming (OOP)",
-    "description": "Learn OOP principles like encapsulation, inheritance, polymorphism, and abstraction.",
-    "topics": [
-      "Classes and Objects",
-      "Inheritance",
-      "Polymorphism",
-      "Encapsulation",
-      "Abstraction"
-    ]
-  },
-  {
-    "title": "Data Structures and Algorithms",
-    "description": "Understand linked lists, stacks, queues, trees, and sorting/searching algorithms using Java.",
-    "topics": [
-      "Linked Lists",
-      "Stacks",
-      "Queues",
-      "Binary Trees",
-      "Sorting Algorithms"
-    ]
-  },
-  {
-    "title": "Python Fundamentals",
-    "description": "Cover basic Python syntax, loops, and functions.",
-    "topics": [
-      "Python Syntax",
-      "Data Types",
-      "Control Flow",
-      "Functions"
-    ]
-  },
-  {
-    "title": "Data Science with Python",
-    "description": "Learn NumPy, Pandas, and data visualization techniques.",
-    "topics": [
-      "NumPy Basics",
-      "Pandas DataFrames",
-      "Data Visualization with Matplotlib",
-      "Data Cleaning Techniques"
-    ]
-  },
-  {
-    "title": "Introduction to R",
-    "description": "Learn the basics of R programming, including syntax, variables, and data types.",
-    "topics": [
-      "R Syntax",
-      "Data Types",
-      "Basic Functions",
-      "Control Structures"
-    ]
-  },
-  {
-    "title": "Data Wrangling with R",
-    "description": "Explore data manipulation techniques using dplyr and tidyr.",
-    "topics": [
-      "Data Cleaning",
-      "Data Transformation",
-      "Data Aggregation",
-      "Data Visualization"
-    ]
-  },
-  {
-    "title": "SQL Fundamentals",
-    "description": "Learn basic SQL queries, data types, and database operations.",
-    "topics": [
-      "SELECT Statements",
-      "WHERE Clause",
-      "JOIN Operations",
-      "GROUP BY and ORDER BY"
-    ]
-  },
-  {
-    "title": "Working with Tables and Joins",
-    "description": "Understand how to create, modify, and join tables using SQL.",
-    "topics": [
-      "Creating Tables",
-      "Inserting Data",
-      "Updating Data",
-      "Joining Tables"
-    ]
-  }
-]
+{
+  "Java": [
+    {
+      "title": "Introduction to Java",
+      "details": "Learn Java syntax, data types, and simple applications.",
+      "image": "/assets/java_intro.png"
+    },
+    {
+      "title": "Control Flow and Loops",
+      "details": "Understand loops and conditional statements in Java.",
+      "image": "/assets/java_loops.png"
+    },
+    {
+      "title": "Object-Oriented Programming (OOP)",
+      "details": "Explore encapsulation, inheritance, polymorphism, and abstraction.",
+      "image": "/assets/java_oop.png"
+    }
+  ],
+  "Python": [
+    {
+      "title": "Introduction to Python",
+      "details": "Learn Python basics, syntax, and simple applications.",
+      "image": "/assets/python_intro.png"
+    },
+    {
+      "title": "Control Flow and Functions",
+      "details": "Understand loops, conditionals, and function writing in Python.",
+      "image": "/assets/python_flow.png"
+    },
+    {
+      "title": "OOP in Python",
+      "details": "Learn classes, objects, inheritance, and polymorphism in Python.",
+      "image": "/assets/python_oop.png"
+    }
+  ]
+}
