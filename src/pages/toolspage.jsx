@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import headerBg from '../assets/jobpage/headerbg.png';
-import ptBg from '../assets/toolpage/pt_bg.jpg'; // Import the background image
+import headerBg from '../assets/jobpage/headerbg.png'; // Import the background image
 import Interview from "../components/toolspage/interview";
 
 const JobPage = () => {
@@ -13,8 +12,7 @@ const JobPage = () => {
         display: "flex", 
         flexDirection: "column", 
         gap: "20px", 
-        padding: "20px", 
-        backgroundImage: `url(${ptBg})`,  // Set background image
+        padding: "20px",  // Set background image
         backgroundSize: "cover",
         backgroundPosition: "center",
         minHeight: "100vh" // Ensure it covers the full viewport height
