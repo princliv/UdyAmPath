@@ -21,18 +21,20 @@ const Popular = () => {
 
       {/* Right Section - Scrolling Courses */}
       <div style={styles.courseWrapper}>
-        <motion.div
-          style={styles.courseContainer}
-          initial={{ x: "100%" }} // Initial position off-screen
-          animate={{
-            x: ["100%", "0%", "-100%"], // Move from right to left
-          }}
-          transition={{
-            repeat: Infinity, // Repeat the animation infinitely
-            duration: 20, // Duration to loop the course list
-            ease: "easeInOut", // Ease-in and ease-out for a smooth motion
-          }}
-        >
+      <motion.div
+        style={styles.courseContainer}
+        initial={{ x: "100%" }} // Start off-screen
+        animate={{
+          x: ["100%", "100%", "0%", "-100%"], // Add a pause at the start
+        }}
+        transition={{
+          repeat: Infinity, // Keep looping
+          duration: 10, // Faster animation
+          ease: "linear", // Smooth scrolling
+          times: [0, 0.1, 0.5, 1], // Pause briefly before moving
+        }}
+      >
+
           {courseData.map((course, index) => (
             <React.Fragment key={index}>
               <div
