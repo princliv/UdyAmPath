@@ -46,19 +46,19 @@ const cardData = [
     image: homeSection3,
     title: "Notes Hard to Read? Discover Visual Diagrams!",
     description: "Transform your lengthy notes into easy-to-understand diagrams in seconds.",
-    link: "#"
+    link: "/notes"
   },
   {
     image: homeSection2,
     title: "Know the Cost of Living Around You",
     description: "Get real-time reports tailored to your location and make informed decisions.",
-    link: "#"
+    link: "/base"
   },
   {
     image: homeSection4,
     title: "Skip What You Know, Learn What You Don’t",
     description: "Start a course customized to your knowledge level—no repetition, just growth.",
-    link: "#"
+    link: "/coursepage"
   }
 ];
 
