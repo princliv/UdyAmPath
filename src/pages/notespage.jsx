@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import dsImage from '../assets/ds-image.jpeg';
 import javaImage from '../assets/java-image.webp';
@@ -15,6 +15,45 @@ const NotesPage = () => {
     e.currentTarget.style.transform = "translateY(0)";
     e.currentTarget.style.boxShadow = "0 3px 5px rgba(0, 0, 0, 0.2)";
   };
+
+  // Notification messages
+  const notifications = [
+    "Premium members get exclusive study resources!",
+    "Based on your interests, we found these for you!",
+    "Daily study update available - check it out!"
+  ];
+
+  // Refs for each notification container
+  const notificationRefs = useRef([]);
+
+  useEffect(() => {
+    const animateNotifications = () => {
+      notificationRefs.current.forEach((container, index) => {
+        if (!container) return;
+        
+        const text = container.querySelector('span');
+        if (!text) return;
+        
+        const containerWidth = container.offsetWidth;
+        const textWidth = text.offsetWidth;
+        
+        if (textWidth > containerWidth) {
+          let position = 0;
+          const animation = () => {
+            position -= 0.5;
+            if (position < -textWidth) {
+              position = containerWidth;
+            }
+            text.style.transform = `translateX(${position}px)`;
+            requestAnimationFrame(animation);
+          };
+          animation();
+        }
+      });
+    };
+
+    animateNotifications();
+  }, []);
 
   return (
     <div style={styles.container}>
@@ -33,16 +72,22 @@ const NotesPage = () => {
         </div>
         <div style={styles.notificationSection}>
           <h3 style={styles.notificationTitle}>Notification</h3>
-          <div style={styles.notificationPlaceholder}></div>
-          <div style={styles.notificationPlaceholder}></div>
-          <div style={styles.notificationPlaceholder}></div>
+          {notifications.map((notification, index) => (
+            <div 
+              key={index} 
+              style={{...styles.notificationContainer, cursor: 'pointer'}}
+              ref={el => notificationRefs.current[index] = el}
+            >
+              <span style={styles.notificationText}>{notification}</span>
+            </div>
+          ))}
         </div>
       </div>
       <div style={styles.mainContent}>
         <div style={styles.searchContainer}>
           <h2 style={styles.searchText}>
             Search your <span style={styles.highlight}>Diagrammatic</span> notes,<br />
-            Books and PYQ’s
+            Books and PYQ's
           </h2>
           <div style={styles.searchBox}>
             <input type="text" placeholder="Search" style={styles.searchInput} />
@@ -66,26 +111,25 @@ const NotesPage = () => {
           <div style={styles.bookCard}>
             <img src={osImage} alt="Operating System" style={styles.bookImage} />
             <p style={styles.bookTitle}>Operating System</p>
-            <a href="#" style={styles.exploreLink}>Explore the book</a>
+            <a href="/books" style={styles.exploreLink}>Explore the book</a>
           </div>
           <div style={styles.bookCard}>
             <img src={oopsImage} alt="OOPS" style={styles.bookImage} />
             <p style={styles.bookTitle}>OOPS</p>
-            <a href="#" style={styles.exploreLink}>Explore the book</a>
+            <a href="/books" style={styles.exploreLink}>Explore the book</a>
           </div>
           <div style={styles.bookCard}>
             <img src={dsImage} alt="Data Structure" style={styles.bookImage} />
             <p style={styles.bookTitle}>Data Structure</p>
-            <a href="#" style={styles.exploreLink}>Explore the book</a>
+            <a href="/books" style={styles.exploreLink}>Explore the book</a>
           </div>
           <div style={styles.bookCard}>
             <img src={javaImage} alt="Java" style={styles.bookImage} />
             <p style={styles.bookTitle}>Java</p>
-            <a href="#" style={styles.exploreLink}>Explore the book</a>
+            <a href="/books" style={styles.exploreLink}>Explore the book</a>
           </div>
         </div>
 
-        {/* Replace the button with a Link */}
         <Link to="/books" style={{ textDecoration: 'none' }}>
           <button
             style={styles.exploreMoreButton}
@@ -141,12 +185,25 @@ const styles = {
   notificationTitle: {
     fontSize: '1.5rem',
     textAlign: 'center',
+    marginBottom: '15px',
   },
-  notificationPlaceholder: {
+  notificationContainer: {
     backgroundColor: '#f5f5f5',
-    height: '30px',
+    padding: '12px',
     margin: '10px 0',
-    borderRadius: '5px',
+    borderRadius: '6px',
+    fontSize: '14px',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    position: 'relative',
+    height: '20px',
+  },
+  notificationText: {
+    display: 'inline-block',
+    position: 'relative',
+    transition: 'transform 0.5s linear',
+    paddingLeft: '100%',
   },
   mainContent: {
     flex: 1,
@@ -206,7 +263,6 @@ const styles = {
     border: '1px solid #ccc',
     padding: '8px 15px',
     borderRadius: '20px',
-    border: '2px solid #ffcc00',
     cursor: 'pointer',
   },
   plusIcon: {
