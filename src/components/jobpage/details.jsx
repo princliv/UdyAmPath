@@ -152,8 +152,8 @@ const Details = () => {
     {/* Job Cards Grid */}
     <div style={{ 
       display: "grid", 
-      gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", 
-      gap: "20px" 
+      gridTemplateColumns: "repeat(4, 1fr)", 
+      gap: "60px" 
     }}>
       {filteredJobs.map((job, index) => (
         <div 
@@ -226,7 +226,7 @@ const Details = () => {
               style={{ 
                 position: "absolute", 
                 top: "80px", 
-                left: "10px", 
+                left: "20px", 
                 backgroundColor: "rgba(255, 255, 0, 0.5)", 
                 padding: "5px 10px", 
                 borderRadius: "5px", 

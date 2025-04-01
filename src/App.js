@@ -108,13 +108,13 @@ function AppContent() {
             <img src={backgroud} alt="Logo" style={logoStyle} />
           </Link>
           <nav style={navStyle}>
-            <NavLink to="/coursepage" style={linkStyle} activeStyle={{ color: "#007bff" }}>
+            <NavLink to="/coursepage" style={linkStyle} activestyle={{ color: "#007bff" }}>
               Courses
             </NavLink>
-            <NavLink to="/jobpage" style={linkStyle} activeStyle={{ color: "#007bff" }}>
+            <NavLink to="/jobpage" style={linkStyle} activestyle={{ color: "#007bff" }}>
               Jobs/Internship
             </NavLink>
-            <NavLink to="/toolspage" style={linkStyle} activeStyle={{ color: "#007bff" }}>
+            <NavLink to="/toolspage" style={linkStyle} activestyle={{ color: "#007bff" }}>
               Tools
             </NavLink>
 
