@@ -1,20 +1,40 @@
-import React from "react";
+import React, { useRef } from "react";
 import bookImage from "../../assets/book-cover.avif";
 import readingPerson from "../../assets/reading-person.jpeg";
 import RecommendedBooks from "./RecommendedBooks";
 
 const Books = () => {
+  const recommendedBooksRef = useRef(null);
+
+  const scrollToRecommendedBooks = () => {
+    recommendedBooksRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div style={styles.booksContainer}>
       <div style={styles.content}>
         {/* Header Section */}
         <div style={styles.headerSection}>
           <div>
+            <input type="text" placeholder="Search" style={styles.searchInput} />
             <h1 style={styles.title}>Get your Books</h1>
             <p style={styles.subtitle}>Find the Books You Need to Succeed!</p>
             <div style={styles.buttonGroup}>
-              <button style={{ ...styles.btn, ...styles.yellowBtn }}>Learn More</button>
-              <button style={{ ...styles.btn, ...styles.outlineBtn }}>Get PYQ's</button>
+              <button
+                style={{ ...styles.btn, ...styles.yellowBtn }}
+                onMouseEnter={(e) => (e.target.style.transform = "translateY(-5px)")}
+                onMouseLeave={(e) => (e.target.style.transform = "translateY(0)")}
+                onClick={scrollToRecommendedBooks}
+              >
+                Learn More
+              </button>
+              <button
+                style={{ ...styles.btn, ...styles.outlineBtn }}
+                onMouseEnter={(e) => (e.target.style.transform = "translateY(-5px)")}
+                onMouseLeave={(e) => (e.target.style.transform = "translateY(0)")}
+              >
+                Get PYQ's
+              </button>
             </div>
           </div>
           <div>
@@ -24,7 +44,11 @@ const Books = () => {
 
         {/* Navigation Section */}
         <div style={styles.navSection}>
-          <div style={styles.navItem}>
+          <div
+            style={styles.navItem}
+            onMouseEnter={(e) => Object.assign(e.currentTarget.style, styles.navItemHover)}
+            onMouseLeave={(e) => Object.assign(e.currentTarget.style, styles.navItem)}
+          >
             <i className="fas fa-book-open" style={styles.navIcon}></i>
             <div style={styles.navTextContainer}>
               <h2 style={styles.navItemTitle}>GET YOUR BOOKS</h2>
@@ -32,7 +56,11 @@ const Books = () => {
             </div>
           </div>
 
-          <div style={styles.navItem}>
+          <div
+            style={styles.navItem}
+            onMouseEnter={(e) => Object.assign(e.currentTarget.style, styles.navItemHover)}
+            onMouseLeave={(e) => Object.assign(e.currentTarget.style, styles.navItem)}
+          >
             <i className="fas fa-bookmark" style={styles.navIcon}></i>
             <div style={styles.navTextContainer}>
               <h2 style={styles.navItemTitle}>SAVED BOOKS</h2>
@@ -40,7 +68,11 @@ const Books = () => {
             </div>
           </div>
 
-          <div style={styles.navItem}>
+          <div
+            style={styles.navItem}
+            onMouseEnter={(e) => Object.assign(e.currentTarget.style, styles.navItemHover)}
+            onMouseLeave={(e) => Object.assign(e.currentTarget.style, styles.navItem)}
+          >
             <i className="fas fa-download" style={styles.navIcon}></i>
             <div style={styles.navTextContainer}>
               <h2 style={styles.navItemTitle}>GET PYQ'S FREE</h2>
@@ -56,20 +88,39 @@ const Books = () => {
           </div>
           <div style={styles.exploreText}>
             <h2 style={{ fontSize: "36px", fontWeight: "500" }}>EXPLORE</h2>
-            <p style={{ fontSize: "26px", lineHeight: "1.6", color: "#444", marginTop: "-20px", textAlign: "left" }}>
-              Enhance your learning with a<br /> daily update of fresh study books.<br /> We bring you the latest<br /> educational resources to keep your <br />study sessions productive and <br />up-to-date.
+            <p
+              style={{
+                fontSize: "26px",
+                lineHeight: "1.6",
+                color: "#444",
+                marginTop: "-20px",
+                textAlign: "left",
+              }}
+            >
+              Enhance your learning with a
+              <br /> daily update of fresh study books.
+              <br /> We bring you the latest
+              <br /> educational resources to keep your <br />
+              study sessions productive and <br />
+              up-to-date.
             </p>
-            <button style={{ ...styles.btn, ...styles.outlineBlue }}>View all</button>
           </div>
         </div>
       </div>
       {/* 📚 Recommended Books Section */}
-      <RecommendedBooks />
+      <RecommendedBooks ref={recommendedBooksRef} />
     </div>
   );
 };
 
 const styles = {
+  searchInput: {
+    padding: "10px",
+    borderRadius: "5px",
+    border: "3px solid #ccc",
+    width: "400px",
+    marginBottom: "0px",
+  },
   booksContainer: {
     backgroundColor: "white",
     color: "#333",
@@ -105,10 +156,10 @@ const styles = {
     cursor: "pointer",
     transition: "all 0.3s ease",
     marginRight: "10px",
+    border: "none",
   },
   yellowBtn: {
     backgroundColor: "#facc15",
-    border: "none",
     color: "black",
     padding: "10px 35px",
     borderRadius: "20px",
@@ -150,6 +201,9 @@ const styles = {
     gap: "15px",
     border: "1px solid #ccc",
     cursor: "pointer",
+  },
+  navItemHover: {
+    border: "2px solid #555",
   },
   navIcon: {
     fontSize: "24px",
@@ -194,13 +248,6 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-  },
-  outlineBlue: {
-    marginTop: "15px",
-    border: "2px solid #3b82f6",
-    background: "white",
-    color: "#3b82f6",
-    padding: "10px 35px",
   },
 };
 

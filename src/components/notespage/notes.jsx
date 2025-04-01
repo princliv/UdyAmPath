@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import flowImage from '../../assets/flow.png';
+import DiagramViewer from './DiagramViewer';
 import Modal from './Modal';
 
 const Notes = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [hoveredStep, setHoveredStep] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [savedDiagrams, setSavedDiagrams] = useState([]);
+  const [viewingDiagram, setViewingDiagram] = useState(null);
 
   const handleFileUpload = (event) => {
     const files = event.target.files;
@@ -16,8 +19,26 @@ const Notes = () => {
     setUploadedFiles([...uploadedFiles, ...newFiles]);
   };
 
-  const handleDelete = (index) => {
-    setUploadedFiles(uploadedFiles.filter((_, i) => i !== index));
+
+  const handleDiagramSave = (diagramData) => {
+    const diagramWithTimestamp = {
+      ...diagramData,
+      timestamp: new Date().getTime() // Add timestamp
+    };
+    // Add new diagram to beginning of array to show most recent first
+    setSavedDiagrams([diagramWithTimestamp, ...savedDiagrams]);
+  };
+
+  const handleDiagramDelete = (index) => {
+    setSavedDiagrams(savedDiagrams.filter((_, i) => i !== index));
+  };
+
+  const handleViewDiagram = (diagram) => {
+    setViewingDiagram(diagram);
+  };
+
+  const handleCloseViewer = () => {
+    setViewingDiagram(null);
   };
 
   const stepSubheadings = {
@@ -46,11 +67,11 @@ const Notes = () => {
         </div>
       </div>
 
-      {/* Modal Component */}
       {isModalOpen && (
         <Modal
           onClose={() => setIsModalOpen(false)}
           onFileUpload={handleFileUpload}
+          onDiagramSave={handleDiagramSave}
         />
       )}
 
@@ -90,20 +111,45 @@ const Notes = () => {
         </div>
       </div>
 
-      <div style={styles.notesList}>
-        {uploadedFiles.map((file, index) => (
-          <div key={index} style={styles.noteItem}>
-            <div>
-              <strong>{file.name}</strong>
-              <p style={styles.unitText}>{file.unit}</p>
-            </div>
-            <div style={styles.actions}>
-              <button style={styles.viewButton}>View</button>
-              <button style={styles.deleteButton} onClick={() => handleDelete(index)}>Delete</button>
-            </div>
-          </div>
-        ))}
+      <div style={styles.savedDiagramsContainer}>
+        <h3 style={styles.savedDiagramsTitle}>Your Notes</h3>
+        <div style={styles.diagramsList}>
+          {savedDiagrams
+            .sort((a, b) => b.timestamp - a.timestamp) // Sort by timestamp (newest first)
+            .map((diagram, index) => (
+              <div key={index} style={styles.diagramItem}>
+                <div style={styles.diagramContent}>
+                  <h4 style={styles.diagramTitle}>{diagram.name || 'Untitled Diagram'}</h4>
+                  <p style={styles.diagramUnit}>Title: {diagram.title}</p>
+                  <p style={styles.diagramDate}>
+                    Date : {new Date(diagram.timestamp).toLocaleString()}
+                  </p>
+                </div>
+                <div style={styles.diagramActions}>
+                  <button 
+                    style={styles.viewButton} 
+                    onClick={() => handleViewDiagram(diagram)}
+                  >
+                    View
+                  </button>
+                  <button 
+                    style={styles.deleteButton} 
+                    onClick={() => handleDiagramDelete(index)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
+        </div>
       </div>
+
+      {viewingDiagram && (
+        <DiagramViewer 
+          diagram={viewingDiagram} 
+          onClose={handleCloseViewer} 
+        />
+      )}
     </div>
   );
 };
@@ -118,17 +164,20 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginBottom: '40px',
   },
   heading: {
     fontSize: '2.5rem',
     fontWeight: 'bold',
+    margin: 0,
   },
   highlight: {
     color: '#007bff',
   },
   subheading: {
     fontSize: '1.5rem',
-    marginBottom: '30px',
+    margin: '10px 0 0 0',
+    color: '#555',
   },
   uploadContainer: {
     border: '4px dashed #CCCCCC',
@@ -137,12 +186,12 @@ const styles = {
     textAlign: 'center',
     width: '300px',
     backgroundColor: '#f9f9f9',
-    marginLeft: '5px',
   },
   uploadTitle: {
     fontSize: '1.5rem',
     fontWeight: 'bold',
     marginBottom: '10px',
+    color: '#333',
   },
   uploadBox: {
     display: 'flex',
@@ -162,6 +211,7 @@ const styles = {
     padding: '8px 25px',
     borderRadius: '25px',
     cursor: 'pointer',
+    fontSize: '1rem',
     marginBottom: '5px',
   },
   content: {
@@ -169,6 +219,7 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     marginTop: '30px',
+    marginBottom: '50px',
   },
   diagramContainer: {
     position: 'relative',
@@ -181,6 +232,7 @@ const styles = {
     overflow: 'hidden',
     marginTop: '70px',
     marginRight: '20px',
+    width: '500px',
   },
   overlay: {
     position: 'absolute',
@@ -193,7 +245,6 @@ const styles = {
   },
   diagramImage: {
     width: '100%',
-    maxWidth: '550px',
     borderRadius: '8px',
   },
   exploreButton: {
@@ -251,6 +302,71 @@ const styles = {
     fontSize: '1rem',
     color: 'grey',
     marginTop: '5px',
+  },
+  savedDiagramsContainer: {
+    marginTop: '50px',
+    padding: '20px',
+    backgroundColor: '#f9f9f9',
+    borderRadius: '10px',
+  },
+  savedDiagramsTitle: {
+    fontSize: '1.8rem',
+    marginBottom: '20px',
+    color: '#333',
+  },
+  diagramsList: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '15px',
+  },
+  diagramItem: {
+    backgroundColor: '#fff',
+    borderRadius: '10px',
+    padding: '20px',
+    boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  diagramContent: {
+    flex: 1,
+  },
+  diagramTitle: {
+    fontSize: '1.2rem',
+    fontWeight: 'bold',
+    margin: '0 0 5px 0',
+  },
+  diagramUnit: {
+    fontSize: '1rem',
+    color: '#555',
+    margin: '0 0 5px 0',
+  },
+  diagramDate: {
+    fontSize: '0.9rem',
+    color: '#777',
+    margin: 0,
+  },
+  diagramActions: {
+    display: 'flex',
+    gap: '10px',
+  },
+  viewButton: {
+    backgroundColor: '#007bff',
+    color: '#fff',
+    border: 'none',
+    padding: '8px 15px',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    fontSize: '0.9rem',
+  },
+  deleteButton: {
+    backgroundColor: '#dc3545',
+    color: '#fff',
+    border: 'none',
+    padding: '8px 15px',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    fontSize: '0.9rem',
   },
 };
 
