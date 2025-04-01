@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const ModulePage = () => {
-  const location = useLocation();
-  const course = location.state?.course || {}; // Get selected course data from navigation state
-
+  const { courseTitle } = useParams(); // Extract courseTitle from the URL
   const [modules, setModules] = useState([]); // Modules for sidebar
   const [selectedModuleIndex, setSelectedModuleIndex] = useState(0); // For selected module
   const [moduleDetails, setModuleDetails] = useState(null); // Details of the selected module
@@ -12,34 +10,40 @@ const ModulePage = () => {
 
   // Fetch modules for the selected course from moduledata.json
   useEffect(() => {
-    if (course.title) {
-      console.log("Fetching moduledata.json for:", course.title);
+    if (courseTitle) {
+      console.log("Fetching moduledata.json for:", courseTitle);
       fetch("/moduledata.json")
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
         .then((data) => {
           console.log("Moduledata.json response:", data);
-          if (data[course.title]) {
-            setModules(data[course.title]); // Set modules for the selected course
+          if (data[courseTitle]) {
+            setModules(data[courseTitle]); // Set modules for the selected course
             setSelectedModuleIndex(0); // Default to the first module
           } else {
-            console.error("No modules found for course:", course.title);
+            console.error("No modules found for course:", courseTitle);
             setModules([]); // Ensure modules are empty if not found
           }
         })
         .catch((error) => {
           console.error("Error loading module data:", error);
           setModules([]); // Clear modules in case of error
+        })
+        .finally(() => {
+          setLoading(false); // Stop loading after fetching
         });
     }
-  }, [course]);
+  }, [courseTitle]);
 
   // Fetch module details based on selected module
   useEffect(() => {
     if (modules.length > 0) {
-      console.log("Fetching details for selected module:", modules[selectedModuleIndex].title);
       const selectedModule = modules[selectedModuleIndex];
       setModuleDetails(selectedModule || null); // Set module details
-      setLoading(false); // Stop loading when details are fetched
     }
   }, [modules, selectedModuleIndex]);
 

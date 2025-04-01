@@ -1,14 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import javaImage from "../../assets/coursepage/java.jpg";
-import pythonImage from "../../assets/coursepage/python.jpg";
-import rLangImage from "../../assets/coursepage/R.jpg";
+import financeImage from "../../assets/coursepage/finance.png";
+import fedImage from "../../assets/coursepage/fed.png.webp";
+import hrImage from "../../assets/coursepage/hr.png.webp";
 import ethicalHackingImage from "../../assets/coursepage/hacking.png.webp";
+import googleLogo from "../../assets/coursepage/google.png";
+import financeLogo from "../../assets/coursepage/finance.png";
+import techLogo from "../../assets/coursepage/tech_uni.png";
+import metaLogo from "../../assets/coursepage/meta-logo.png";
 
+
+const logoMap = {
+  "Google": googleLogo,
+  "Finance Academy": financeLogo,
+  "Tech University": techLogo,
+  "Meta": metaLogo,
+};
 const courseImageMap = {
-  "Financial Marketing": javaImage,
-  "Front End Development": pythonImage,
-  "Human Resource Management": rLangImage,
+  "Financial Marketing": financeImage,
+  "Front End Development": fedImage,
+  "Human Resource Management": hrImage,
   "Ethical Hacking": ethicalHackingImage,
 };
 
@@ -24,7 +35,7 @@ const Recommended = () => {
           ["Financial Marketing", "Front End Development", "Human Resource Management", "Ethical Hacking"].includes(course.title)
         ).map(course => ({
           ...course,
-          
+          logo: logoMap[course.company] || null,
           image: courseImageMap[course.title] || null,
         }));
         setCourses(updatedCourses);
