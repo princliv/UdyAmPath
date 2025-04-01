@@ -205,7 +205,7 @@ function AppContent() {
           <div style={{ flex: 1, minWidth: "200px" }}>
             <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Contact</h6>
             <p><i className="fas fa-home"></i> Roorkee, Uttarakhand, 247667, India</p>
-            <p><i className="fas fa-envelope"></i> ankitkumar1990asap@gmail.com</p>
+            <p><i className="fas fa-envelope"></i> udyampath@gmail.com</p>
             <p><i className="fas fa-phone"></i> +91 969 312 093</p>
             <p><i className="fas fa-print"></i> +01 234 567 89</p>
           </div>
