@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import javaImage from "../../assets/coursepage/java.jpg";
-import pythonImage from "../../assets/coursepage/python.jpg";
-import rLangImage from "../../assets/coursepage/R.jpg";
-import sqlImage from "../../assets/coursepage/sql.png";
+import genAiImage from "../../assets/coursepage/ai.png.webp";
+import cyberImage from "../../assets/coursepage/cyber.png.webp";
+import devopsImage from "../../assets/coursepage/R.jpg";
+import uiImage from "../../assets/coursepage/uiux.png.webp";
+import courseraLogo from "../../assets/coursepage/cera.png";
+import udemyLogo from "../../assets/coursepage/Udemy.png";
+import skillshareLogo from "../../assets/coursepage/Skillshare.png";
+import linkedInLearninglogo from "../../assets/coursepage/LinkedInLearning.png";
 
+const logoMap = {
+  "Coursera": courseraLogo,
+  "Udemy": udemyLogo,
+  "Skillshare": skillshareLogo,
+  "LinkedIn Learning": linkedInLearninglogo,
+};
 const courseImageMap = {
-  "Java": javaImage,
-  "Python": pythonImage,
-  "R Language": rLangImage,
-  "SQL": sqlImage,
+  "Generative AI Fundamentals": genAiImage,
+  "Cybersecurity for Everyone": cyberImage,
+  "UI/UX": uiImage,
+  "DevOps": devopsImage,
 };
 
 const New = () => {
@@ -21,10 +31,10 @@ const New = () => {
       .then((response) => response.json())
       .then((data) => {
         const updatedCourses = data.filter(course => 
-          ["React", "Android", "Machine Learning", "Ethical Hacking"].includes(course.title)
+          ["Generative AI Fundamentals", "Cybersecurity for Everyone", "UI/UX", "DevOps"].includes(course.title)
         ).map(course => ({
           ...course,
-          
+          logo: logoMap[course.company] || null,
           image: courseImageMap[course.title] || null,
         }));
         setCourses(updatedCourses);

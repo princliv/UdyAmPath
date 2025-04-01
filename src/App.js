@@ -31,6 +31,8 @@ import Communication from "./components/toolspage/communication";
 import Adaptability from "./components/toolspage/adaptability";
 import TimeManagement from "./components/toolspage/timemanage";
 import { signOut } from "firebase/auth";
+import ModulePage from "./components/coursepage/modulePage";
+
 
 function App() {
   return (
@@ -158,6 +160,8 @@ function AppContent() {
         <Route path="/communication" element={<Communication />} />
         <Route path="/adaptability" element={<Adaptability />} />
         <Route path="/timemanage" element={<TimeManagement />} />
+        <Route path="/module" element={<ModulePage />} />
+
 
       </Routes>
       <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isSignup={isSignup} />

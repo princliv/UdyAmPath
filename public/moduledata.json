@@ -1,0 +1,81 @@
+{
+  "Java": [
+    {
+      "title": "Introduction to Java",
+      "details": "Learn Java syntax, data types, and simple applications.",
+      "image": "/assets/java_intro.png"
+    },
+    {
+      "title": "Control Flow and Loops",
+      "details": "Understand loops and conditional statements in Java.",
+      "image": "/assets/java_loops.png"
+    },
+    {
+      "title": "Object-Oriented Programming (OOP)",
+      "details": "Explore encapsulation, inheritance, polymorphism, and abstraction.",
+      "image": "/assets/java_oop.png"
+    },
+    {
+      "title": "Data Structures and Algorithms",
+      "details": "Understand linked lists, stacks, queues, trees, and sorting/searching algorithms using Java.",
+      "image": "/assets/java_data_structures.png"
+    },
+    {
+      "title": "Java Collections Framework",
+      "details": "Explore ArrayList, HashMap, HashSet, and other built-in Java collection classes.",
+      "image": "/assets/java_collections.png"
+    },
+    {
+      "title": "Multithreading and Concurrency",
+      "details": "Learn how to implement multi-threading, synchronization, and concurrent programming.",
+      "image": "/assets/java_multithreading.png"
+    },
+    {
+      "title": "File Handling and I/O Streams",
+      "details": "Understand file handling, serialization, and input/output stream operations in Java.",
+      "image": "/assets/java_file_handling.png"
+    },
+    {
+      "title": "Database Connectivity with JDBC",
+      "details": "Connect Java applications to databases using JDBC and perform CRUD operations.",
+      "image": "/assets/java_jdbc.png"
+    },
+    {
+      "title": "Java for Web Development",
+      "details": "Learn how to build dynamic web applications using JSP, Servlets, and Java frameworks.",
+      "image": "/assets/java_web_development.png"
+    },
+    {
+      "title": "Spring Boot and RESTful APIs",
+      "details": "Develop microservices using Spring Boot and build RESTful APIs.",
+      "image": "/assets/java_spring_boot.png"
+    },
+    {
+      "title": "Microservices Architecture",
+      "details": "Understand the fundamentals of microservices, API gateway, and cloud deployments.",
+      "image": "/assets/java_microservices.png"
+    },
+    {
+      "title": "Project Work",
+      "details": "Apply your Java knowledge in real-world projects, including web applications and API development.",
+      "image": "/assets/java_project_work.png"
+    }
+  ],
+  "Python": [
+    {
+      "title": "Introduction to Python",
+      "details": "Learn Python basics, syntax, and simple applications.",
+      "image": "/assets/python_intro.png"
+    },
+    {
+      "title": "Control Flow and Functions",
+      "details": "Understand loops, conditionals, and function writing in Python.",
+      "image": "/assets/python_flow.png"
+    },
+    {
+      "title": "OOP in Python",
+      "details": "Learn classes, objects, inheritance, and polymorphism in Python.",
+      "image": "/assets/python_oop.png"
+    }
+  ]
+}
