@@ -60,7 +60,7 @@ const Recruiter = () => {
   return (
     <div>
       <header style={headerStyle}>
-        <Link to="/recruiter">
+        <Link to="/homepage">
           <img src={logo} alt="Logo" style={logoStyle} />
         </Link>
         <nav style={navStyle}>
