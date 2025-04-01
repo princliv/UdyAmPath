@@ -122,11 +122,12 @@ const JobInternshipModal = ({ onClose }) => {
 };
 
 // Styles
-const formStyle = { padding: "10px" };
+const formStyle = { padding: "5px" };
 const sectionStyle = { marginBottom: "15px" };
-const labelStyle = { fontWeight: "bold", marginTop: "10px", display: "block" };
+const labelStyle = { fontWeight: "bold", marginTop: "10px", marginBottom: "5px", display: "block" };
 const inputStyle = {
   width: "100%",
+  boxSizing: "border-box",
   padding: "8px",
   margin: "5px 0",
   border: "1px solid #ccc",
@@ -159,5 +160,6 @@ const removeButton = {
   borderRadius: "50%",
   cursor: "pointer",
 };
+
 
 export default JobInternshipModal;

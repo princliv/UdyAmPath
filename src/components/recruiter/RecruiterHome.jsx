@@ -157,6 +157,11 @@ const modalContentStyle = {
   maxHeight: "80vh",
   overflowY: "auto",
   boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+  
+  /* Custom Scrollbar */
+  scrollbarWidth: "thin", 
+  scrollbarColor: "#888 #f1f1f1",
 };
+
 
 export default RecruiterHome;
