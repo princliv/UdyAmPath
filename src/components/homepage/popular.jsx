@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import homeArrow from "../../assets/homearrow.png";
-import homePopular from "../../assets/homepopular.png";
+import homePopular from "../../assets/homepopular.png"; // Imported image
 
 const Popular = () => {
   return (
     <div style={styles.container}>
-      {/* Left Section */}
+      {/* Left Section - Heading */}
       <div style={styles.headingContainer}>
         <h2 style={styles.heading}>
           Most Popular <br /> Courses{" "}
@@ -18,42 +19,138 @@ const Popular = () => {
         </p>
       </div>
 
-      {/* Right Section - Courses */}
-      <div style={styles.courseContainer}>
-        {/* UI/UX Course */}
-        <div style={{ ...styles.courseBox, ...styles.pinkBox }}>
-          <h3 style={styles.courseTitle}>UI/UX Designer</h3>
-          <p>Become an expert in UI/UX</p>
-          <p>
-            <strong>Tools:</strong> Canva, Figma
-          </p>
-          <Link to="/courses/uiux" style={styles.startLearning}>
-            Start Learning
-          </Link>
-        </div>
+      {/* Right Section - Scrolling Courses */}
+      <div style={styles.courseWrapper}>
+      <motion.div
+        style={styles.courseContainer}
+        initial={{ x: "100%" }} // Start off-screen
+        animate={{
+          x: ["100%", "100%", "0%", "-100%"], // Add a pause at the start
+        }}
+        transition={{
+          repeat: Infinity, // Keep looping
+          duration: 10, // Faster animation
+          ease: "linear", // Smooth scrolling
+          times: [0, 0.1, 0.5, 1], // Pause briefly before moving
+        }}
+      >
 
-        {/* Image */}
-        <div style={styles.imageContainer}>
-          <img src={homePopular} alt="Popular Course" style={styles.courseImage} />
-        </div>
+          {courseData.map((course, index) => (
+            <React.Fragment key={index}>
+              <div
+                style={{
+                  ...styles.courseBox,
+                  backgroundColor: course.bgColor,
+                }}
+              >
+                <h3 style={styles.courseTitle}>{course.title}</h3>
+                <p>{course.description}</p>
+                <p>
+                  <strong>{course.label}</strong> {course.tools}
+                </p>
+                <Link to={course.link} style={styles.startLearning}>
+                  Start Learning
+                </Link>
+              </div>
 
-        {/* Full Stack Course */}
-        <div style={{ ...styles.courseBox, ...styles.blueBox }}>
-          <h3 style={styles.courseTitle}>Full Stack Developer</h3>
-          <p>Become a full stack developer</p>
-          <p>
-            <strong>Modules:</strong> HTML, CSS, JS, React, Node.js
-          </p>
-          <Link to="/courses/fullstack" style={styles.startLearning}>
-            Start Learning
-          </Link>
-        </div>
+              {/* Add image after every two courses */}
+              {(index + 1) % 2 === 0 && (
+                <img src={homePopular} alt="Popular Course" style={styles.courseImage} />
+              )}
+            </React.Fragment>
+          ))}
+        </motion.div>
       </div>
+
     </div>
   );
 };
 
-// Inline CSS Styles
+// Course Data
+const courseData = [
+  {
+    title: "UI/UX Designer",
+    description: "Become an expert in UI/UX",
+    label: "Tools:",
+    tools: "Canva, Figma",
+    link: "/courses/uiux",
+    bgColor: "#fabec0",
+  },
+  {
+    title: "Full Stack Developer",
+    description: "Become a full stack developer",
+    label: "Modules:",
+    tools: "HTML, CSS, JS, React, Node.js",
+    link: "/courses/fullstack",
+    bgColor: "#5f98f1",
+  },
+  {
+    title: "Data Science",
+    description: "Learn Data Science & AI",
+    label: "Skills:",
+    tools: "Python, Pandas, ML",
+    link: "/courses/datascience",
+    bgColor: "#fabec0",
+  },
+  {
+    title: "Cyber Security",
+    description: "Secure Networks & Systems",
+    label: "Focus:",
+    tools: "Ethical Hacking, Cyber Defense",
+    link: "/courses/cybersecurity",
+    bgColor: "#5f98f1",
+  },
+  {
+    title: "Cloud Computing",
+    description: "Master Cloud Technologies",
+    label: "Platforms:",
+    tools: "AWS, Azure, GCP",
+    link: "/courses/cloud",
+    bgColor: "#fabec0",
+  },
+  {
+    title: "AI & Machine Learning",
+    description: "Build AI-powered Apps",
+    label: "Tech:",
+    tools: "TensorFlow, PyTorch",
+    link: "/courses/ai",
+    bgColor: "#5f98f1",
+  },
+  {
+    title: "Cloud Computing",
+    description: "Master Cloud Technologies",
+    label: "Platforms:",
+    tools: "AWS, Azure, GCP",
+    link: "/courses/cloud",
+    bgColor: "#fabec0",
+  },
+  {
+    title: "AI & Machine Learning",
+    description: "Build AI-powered Apps",
+    label: "Tech:",
+    tools: "TensorFlow, PyTorch",
+    link: "/courses/ai",
+    bgColor: "#5f98f1",
+  },
+  {
+    title: "UI/UX Designer",
+    description: "Become an expert in UI/UX",
+    label: "Tools:",
+    tools: "Canva, Figma",
+    link: "/courses/uiux",
+    bgColor: "#fabec0",
+  },
+  {
+    title: "Full Stack Developer",
+    description: "Become a full stack developer",
+    label: "Modules:",
+    tools: "HTML, CSS, JS, React, Node.js",
+    link: "/courses/fullstack",
+    bgColor: "#5f98f1",
+  },
+];
+
+// Styles
 const styles = {
   container: {
     display: "flex",
@@ -62,20 +159,19 @@ const styles = {
     backgroundColor: "#d2e4fc",
     padding: "40px",
     width: "100%",
+    overflow: "hidden", // Prevents horizontal scrollbars
     flexWrap: "wrap",
   },
   headingContainer: {
     flex: 1,
     minWidth: "280px",
     textAlign: "left",
-    marginBottom: "20px",
   },
   heading: {
     fontWeight: 900,
     fontSize: "3rem",
     display: "flex",
     alignItems: "center",
-    flexWrap: "wrap",
   },
   arrowIcon: {
     width: "80px",
@@ -84,41 +180,33 @@ const styles = {
   subHeading: {
     fontWeight: 400,
     fontSize: "1rem",
-    maxWidth: "300px",
+    maxWidth: "400px",
+  },
+  courseWrapper: {
+    flex: 2,
+    overflow: "hidden",
+    width: "100%",
   },
   courseContainer: {
     display: "flex",
     gap: "20px",
-    flex: 2,
+    width: "200%", // Ensures enough space for smooth scrolling
     alignItems: "center",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    width: "100%",
   },
   courseBox: {
     padding: "20px",
     borderRadius: "20px",
-    width: "300px",
-    height: "300px",
+    width: "250px",
+    height: "250px",
     textAlign: "center",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    transition: "transform 0.3s ease",
-  },
-  pinkBox: {
-    backgroundColor: "#fabec0",
     borderTopRightRadius: "84px",
     borderBottomLeftRadius: "84px",
     borderTopLeftRadius: "0px",
     borderBottomRightRadius: "0px",
-  },
-  blueBox: {
-    backgroundColor: "#5f98f1",
-    borderTopRightRadius: "84px",
-    borderBottomLeftRadius: "84px",
-    borderTopLeftRadius: "0px",
-    borderBottomRightRadius: "0px",
+    flexShrink: 0, // Prevents shrinking
   },
   courseTitle: {
     fontSize: "1.2rem",
@@ -131,59 +219,12 @@ const styles = {
     color: "black",
     fontWeight: "bold",
   },
-  imageContainer: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-    maxWidth: "300px",
-    height: "300px",
-  },
   courseImage: {
-    width: "100%",
-    height: "100%",
-    borderRadius: "34px",
+    width: "250px",
+    height: "250px",
     objectFit: "cover",
-  },
-
-  // Responsive Styles
-  "@media (max-width: 1024px)": {
-    container: {
-      flexWrap: "wrap",
-      justifyContent: "center",
-    },
-    heading: {
-      fontSize: "2rem",
-      textAlign: "center",
-    },
-    subHeading: {
-      textAlign: "center",
-      margin: "auto",
-    },
-    courseContainer: {
-      justifyContent: "center",
-    },
-  },
-  "@media (max-width: 768px)": {
-    container: {
-      flexDirection: "column",
-      textAlign: "center",
-      padding: "20px",
-    },
-    heading: {
-      fontSize: "1.8rem",
-    },
-    subHeading: {
-      fontSize: "0.9rem",
-    },
-    courseBox: {
-      width: "100%",
-      height: "auto",
-      padding: "15px",
-    },
-    startLearning: {
-      fontSize: "0.9rem",
-    },
+    borderRadius: "20px",
+    flexShrink: 0,
   },
 };
 

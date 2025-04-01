@@ -1,58 +1,66 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import homeSection1 from "../../assets/homeSection1.jpg";
+import { motion } from "framer-motion"; // Import Framer Motion
 import homeSection2 from "../../assets/homeSection2.jpeg";
+import homeSection3 from "../../assets/notes.png";
+import homeSection4 from "../../assets/course.jpg";
 
 const NewFeature = () => {
   return (
-    <div style={styles.container}>
+    <motion.div 
+      initial={{ opacity: 0, y: 50 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      transition={{ duration: 0.8 }}
+      style={styles.container}
+    >
       <h2 style={styles.heading}>What's New for You</h2>
+
       <div style={styles.cardContainer}>
-        {/* Card 1 */}
-        <div style={styles.card}>
-          <img src={homeSection1} alt="Visual Diagrams" style={styles.image} />
-          <div style={styles.textContainer}>
-            <h3 style={styles.cardHeading}>
-              Notes Hard to Read? <br /> Discover Visual Diagrams!
-            </h3>
-            <p style={styles.subHeading}>
-              Transform your lengthy notes into easy-to-understand diagrams in seconds.
-            </p>
-            <Link to="#" style={styles.learnMore}>Learn More</Link>
-          </div>
-        </div>
-
-        {/* Card 2 */}
-        <div style={styles.card}>
-          <img src={homeSection2} alt="Cost of Living" style={styles.image} />
-          <div style={styles.textContainer}>
-            <h3 style={styles.cardHeading}>
-              Know the Cost of Living <br /> Around You
-            </h3>
-            <p style={styles.subHeading}>
-              Get real-time reports tailored to your location and make informed decisions.
-            </p>
-            <Link to="#" style={styles.learnMore}>Learn More</Link>
-          </div>
-        </div>
-
-        {/* Card 3 */}
-        <div style={styles.card}>
-          <img src={homeSection2} alt="Customized Learning" style={styles.image} />
-          <div style={styles.textContainer}>
-            <h3 style={styles.cardHeading}>
-              Skip What You Know, <br /> Learn What You Don’t
-            </h3>
-            <p style={styles.subHeading}>
-              Start a course customized to your knowledge level—no repetition, just growth.
-            </p>
-            <Link to="#" style={styles.learnMore}>Learn More</Link>
-          </div>
-        </div>
+        {cardData.map((item, index) => (
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.05 }} 
+            transition={{ type: "spring", stiffness: 300 }}
+            style={styles.card}
+          >
+            <img src={item.image} alt={item.title} style={styles.image} />
+            <div style={styles.textContainer}>
+              <h3 style={styles.cardHeading}>{item.title}</h3>
+              <p style={styles.subHeading}>{item.description}</p>
+              <motion.div 
+                whileHover={{ x: 5 }} 
+                transition={{ type: "spring", stiffness: 200 }}
+              >
+                <Link to={item.link} style={styles.learnMore}>Learn More →</Link>
+              </motion.div>
+            </div>
+          </motion.div>
+        ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
+
+const cardData = [
+  {
+    image: homeSection3,
+    title: "Notes Hard to Read? Discover Visual Diagrams!",
+    description: "Transform your lengthy notes into easy-to-understand diagrams in seconds.",
+    link: "/notes"
+  },
+  {
+    image: homeSection2,
+    title: "Know the Cost of Living Around You",
+    description: "Get real-time reports tailored to your location and make informed decisions.",
+    link: "/base"
+  },
+  {
+    image: homeSection4,
+    title: "Skip What You Know, Learn What You Don’t",
+    description: "Start a course customized to your knowledge level—no repetition, just growth.",
+    link: "/coursepage"
+  }
+];
 
 const styles = {
   container: {
@@ -75,11 +83,7 @@ const styles = {
     borderRadius: "10px",
     overflow: "hidden",
     boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-    transition: "transform 0.3s ease-in-out",
     cursor: "pointer",
-  },
-  cardHover: {
-    transform: "translateY(-10px)",
   },
   image: {
     width: "100%",
@@ -106,18 +110,5 @@ const styles = {
     textDecoration: "none",
   },
 };
-
-// Add hover effect using CSS-in-JS
-document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll("[style*='cursor: pointer']");
-  cards.forEach((card) => {
-    card.addEventListener("mouseenter", () => {
-      card.style.transform = "translateY(-10px)";
-    });
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "translateY(0)";
-    });
-  });
-});
 
 export default NewFeature;

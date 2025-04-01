@@ -17,7 +17,7 @@ const PlacementPaper = () => {
   const [companiesData, setCompaniesData] = useState([]);
   const [practiceData, setPracticeData] = useState({});
   const [activeTab, setActiveTab] = useState("");
-  const [categories, setCategories] = useState([]);
+  const [ setCategories] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     setCategories(Object.entries(practiceData)); // Convert JSON into array

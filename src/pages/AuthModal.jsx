@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-
 import { auth, googleProvider, signInWithGoogle, signInWithEmail } from "../firebase/firebase";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -13,7 +11,7 @@ const AuthModal = ({ isOpen, onClose }) => {
   const [userType, setUserType] = useState("candidate"); // Toggle Candidate/Recruiter
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [ setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); // Fixed: Declare `loading` and `setLoading` properly
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -22,10 +20,10 @@ const AuthModal = ({ isOpen, onClose }) => {
   const [gender, setGender] = useState("");
 
   if (!isOpen) return null; // Don't render if modal is closed
-  
+
   // Google Login
   const handleGoogleLogin = async () => {
-    setLoading(true);
+    setLoading(true); // Set loading to true when starting the Google login
     try {
       await signInWithGoogle(auth, googleProvider);
       navigate(userType === "recruiter" ? "/recruiter" : "/homepage");
@@ -33,33 +31,33 @@ const AuthModal = ({ isOpen, onClose }) => {
     } catch (error) {
       alert(error.message);
     }
-    setLoading(false);
+    setLoading(false); // Set loading to false after the login process finishes
   };
 
-
-// Email Login/Signup
-const handleAuth = async (e) => {
-  e.preventDefault();
-  try {
-    if (isSignup) {
-      if (password !== confirmPassword) {
-        alert("Passwords do not match!");
-        return;
+  // Email Login/Signup
+  const handleAuth = async (e) => {
+    e.preventDefault();
+    try {
+      if (isSignup) {
+        if (password !== confirmPassword) {
+          alert("Passwords do not match!");
+          return;
+        }
+        await auth.createUserWithEmailAndPassword(email, password);
+      } else {
+        await signInWithEmail(auth, email, password);
       }
-      await auth.createUserWithEmailAndPassword(email, password);
-    } else {
-      await signInWithEmail(auth, email, password);
+
+      // Redirect based on userType
+      const redirectPath = userType === "recruiter" ? "/recruiter" : "/homepage";
+      navigate(redirectPath);
+
+      setTimeout(() => onClose(), 500); // Close modal after a slight delay
+    } catch (error) {
+      alert(error.message);
     }
+  };
 
-    // Redirect based on userType
-    const redirectPath = userType === "recruiter" ? "/recruiter" : "/homepage";
-    navigate(redirectPath);
-
-    setTimeout(() => onClose(), 500); // Close modal after a slight delay
-  } catch (error) {
-    alert(error.message);
-  }
-};
   return (
     <div style={styles.overlay}>
       <div style={styles.modal}>
@@ -83,7 +81,7 @@ const handleAuth = async (e) => {
         </div>
 
         {/* Google & LinkedIn Login */}
-        <button style={styles.socialButton} onClick={handleGoogleLogin}>
+        <button style={styles.socialButton} onClick={handleGoogleLogin} disabled={loading}>
           <FcGoogle style={styles.icon} /> Continue with Google
         </button>
         <button style={{ ...styles.socialButton, background: "#0077b5", color: "white" }}>
@@ -131,7 +129,7 @@ const handleAuth = async (e) => {
           </div>
         )}
 
-        <button style={styles.authButton} onClick={handleAuth}>{isSignup ? "Sign Up" : "Log In"}</button>
+        <button style={styles.authButton} onClick={handleAuth} disabled={loading}>{isSignup ? "Sign Up" : "Log In"}</button>
 
         <p style={styles.switchText}>
           {isSignup ? "Already have an account?" : "Don't have an account?"} 
@@ -157,7 +155,10 @@ const styles = {
   input: { width: "100%", padding: "10px", marginBottom: "10px", border: "1px solid #ccc", borderRadius: "5px", fontSize: "14px" },
   passwordContainer: { position: "relative" },
   eyeIcon: { position: "absolute", right: "10px", top: "35%", cursor: "pointer", fontSize: "16px", color: "gray" },
-  authButton: { width: "100%", background: "#1d3480", color: "white", padding: "10px", border: "none", borderRadius: "5px", fontSize: "16px", cursor: "pointer" },
+  authButton: { width: "100%", background: "#1d3480", color: "white", padding: "10px", border: "none", borderRadius: "5px", cursor: "pointer" },
+  switchText: { marginTop: "10px", fontSize: "14px" },
+  switchButton: { background: "none", border: "none", color: "#1d3480", fontSize: "14px", cursor: "pointer" },
+  genderContainer: { marginBottom: "10px" }
 };
 
 export default AuthModal;
