@@ -8,6 +8,7 @@ import Popular from "../components/homepage/popular";
 import HomeTool from "../components/homepage/hometool";
 import Event from "../components/homepage/event";
 import { useMediaQuery } from "react-responsive";
+import FaqPage from "../components/homepage/FaqPage";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -69,6 +70,7 @@ const Homepage = () => {
       <Popular />
       <HomeTool />
       <Event />
+      <FaqPage />
 
       {/* Adding Hover Animation using CSS */}
       <style>
