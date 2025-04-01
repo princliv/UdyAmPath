@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import genAiImage from "../../assets/coursepage/ai.png.webp";
-import cyberImage from "../../assets/coursepage/cyber.png.webp";
+import genAiImage from "../../assets/coursepage/gen_ai.jpg";
+import cyberImage from "../../assets/coursepage/cybersecurity.jpg";
 import devopsImage from "../../assets/coursepage/R.jpg";
 import uiImage from "../../assets/coursepage/uiux.png.webp";
 import courseraLogo from "../../assets/coursepage/cera.png";
