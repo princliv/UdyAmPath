@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import financeImage from "../../assets/coursepage/finance.png";
+import financeImage from "../../assets/coursepage/finance.jpeg";
 import fedImage from "../../assets/coursepage/fed.png.webp";
-import hrImage from "../../assets/coursepage/hr.png.webp";
-import ethicalHackingImage from "../../assets/coursepage/hacking.png.webp";
+import hrImage from "../../assets/coursepage/hr.jpg";
+import ethicalHackingImage from "../../assets/coursepage/ethical_hacking.png";
 import googleLogo from "../../assets/coursepage/google.png";
 import financeLogo from "../../assets/coursepage/finance.png";
 import techLogo from "../../assets/coursepage/tech_uni.png";

@@ -6,7 +6,7 @@ import RecommendedCourse from "../coursepage/recommendedCourse";
 import amazonLogo from "../../assets/coursepage/amazon.png";
 import googleLogo from "../../assets/coursepage/google.png";
 import appleLogo from "../../assets/coursepage/apple.png";
-import javaImage from "../../assets/coursepage/java.jpg";
+import javaImage from "../../assets/coursepage/java.png";
 import pythonImage from "../../assets/coursepage/python.jpg";
 import rLangImage from "../../assets/coursepage/R.jpg";
 import sqlImage from "../../assets/coursepage/sql.png";
@@ -75,7 +75,7 @@ const Details = () => {
       <div style={{ flex: 1 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
           <div>
-            {['Course', 'Specialization'].map(tab => (
+            {['Course', 'Specialization', 'My Learnings'].map(tab => (
               <button
                 key={tab}
                 onClick={() => setSelectedTab(tab)}

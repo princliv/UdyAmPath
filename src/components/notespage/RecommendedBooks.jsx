@@ -1,9 +1,19 @@
-import React from "react";
+import React, { forwardRef, useState } from "react";
 import { default as pyq1, default as pyq3 } from "../../assets/amcat.jpg";
 import { default as pyq2, default as pyq4 } from "../../assets/cocube.jpg";
 import bookImage from "../../assets/com.avif";
 
-const RecommendedBooks = () => {
+const RecommendedBooks = forwardRef((props, ref) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   const books = [
     {
       title: "Software Engineering",
@@ -42,12 +52,12 @@ const RecommendedBooks = () => {
     bookCard: {
       display: "flex",
       alignItems: "center",
-      background: "#f3e8ff",
+      background: "#FFEBCC",
       padding: "25px",
       borderRadius: "12px",
       transition: "0.3s ease",
       cursor: "pointer",
-      width: "100%",
+      width: "98%",
       minHeight: "150px",
     },
     bookImage: {
@@ -72,11 +82,11 @@ const RecommendedBooks = () => {
     },
     bookIcon: {
       fontSize: "36px",
-      color: "#9333ea",
+      color: "#FFD580",
       transition: "0.3s ease",
     },
     bookIconHover: {
-      color: "#7e22ce",
+      color: "#FFA733",
     },
     pyqSection: {
       marginTop: "40px",
@@ -98,12 +108,31 @@ const RecommendedBooks = () => {
       width: "100%",
       borderRadius: "10px",
       height: "200px",
-      cursor:"pointer",
+      cursor: "pointer",
+    },
+    dividerContainer: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: "20px",
+    },
+    line: {
+      height: "4px",
+      width: "60px",
+      backgroundColor: "#E0E6E9",
+      borderRadius: "10px",
+    },
+    centerLine: {
+      height: "8px",
+      width: "70px",
+      backgroundColor: "#0A52C6",
+      borderRadius: "10px",
+      margin: "0 15px",
     },
   };
 
   return (
-    <div style={styles.container}>
+    <div ref={ref} style={styles.container}>
       <h1 style={styles.heading}>Recommended Books for You</h1>
       <div style={styles.booksList}>
         {books.map((book, index) => (
@@ -122,6 +151,7 @@ const RecommendedBooks = () => {
               onMouseLeave={(e) =>
                 (e.currentTarget.style.color = styles.bookIcon.color)
               }
+              onClick={handleOpenModal}
             ></i>
           </div>
         ))}
@@ -135,9 +165,103 @@ const RecommendedBooks = () => {
             <img key={index} src={image} alt={`PYQ ${index + 1}`} style={styles.pyqImage} />
           ))}
         </div>
+
+        {/* Centered Divider Below Images */}
+        <div style={styles.dividerContainer}>
+          <div style={styles.line}></div>
+          <div style={styles.centerLine}></div>
+          <div style={styles.line}></div>
+        </div>
       </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <>
+          {/* MODAL OVERLAY */}
+          <div
+            onClick={handleCloseModal}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              backdropFilter: "blur(5px)",
+              zIndex: 999,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            {/* MODAL CONTENT */}
+            <div
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                backgroundColor: "#fff",
+                padding: "30px",
+                borderRadius: "12px",
+                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
+                width: "350px",
+                textAlign: "center",
+                zIndex: 1000,
+                animation: "fadeIn 0.3s ease-in-out",
+                position: "relative"
+              }}
+            >
+              {/* Close Button */}
+              <button
+                onClick={handleCloseModal}
+                style={{
+                  position: "absolute",
+                  top: "10px",
+                  right: "10px",
+                  background: "none",
+                  border: "none",
+                  fontSize: "18px",
+                  cursor: "pointer",
+                  color: "#888"
+                }}
+              >
+                ✕
+              </button>
+
+              {/* Modal Header */}
+              <h2 style={{ fontWeight: "bold", color: "#1181c8", marginBottom: "10px" }}>
+                Upgrade to Plus! 🚀
+              </h2>
+
+              {/* Description */}
+              <p style={{ fontSize: "14px", color: "#555", marginBottom: "20px" }}>
+                Get premium access to exclusive mentorship, tools, and career-boosting resources.
+              </p>
+
+              {/* CTA Button */}
+              <button
+                onClick={() => alert("Redirecting to purchase page...")}
+                style={{
+                  backgroundColor: "#1181c8",
+                  color: "#fff",
+                  padding: "10px 20px",
+                  fontSize: "16px",
+                  border: "none",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  transition: "background 0.3s ease",
+                  width: "100%",
+                  fontWeight: "bold"
+                }}
+                onMouseOver={(e) => (e.target.style.backgroundColor = "#0e6ba8")}
+                onMouseOut={(e) => (e.target.style.backgroundColor = "#1181c8")}
+              >
+                Get Plus Now →
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
-};
+});
 
 export default RecommendedBooks;

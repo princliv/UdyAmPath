@@ -152,8 +152,8 @@ const Details = () => {
     {/* Job Cards Grid */}
     <div style={{ 
       display: "grid", 
-      gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", 
-      gap: "20px" 
+      gridTemplateColumns: "repeat(4, 1fr)", 
+      gap: "60px" 
     }}>
       {filteredJobs.map((job, index) => (
         <div 
@@ -220,25 +220,45 @@ const Details = () => {
           </div>
 
           {/* "Done" Image with View Details Button */}
+          {/* "Done" Image with View Details Button */}
           {job.isAffordable && (
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10px", backgroundColor: "yellow", padding: "10px", borderRadius: "5px", minHeight: "50px" }}>
-            <img src={doneImg} alt="Done" style={{ width: "30px", marginRight: "10px" }} />
-            <button 
-              onClick={() => setIsCityModalOpen(true)} 
-              style={{ backgroundColor: "transparent", border: "none", cursor: "pointer", fontWeight: "bold" }}
+            <div 
+              style={{ 
+                position: "absolute", 
+                top: "80px", 
+                left: "20px", 
+                backgroundColor: "rgba(255, 255, 0, 0.5)", 
+                padding: "5px 10px", 
+                borderRadius: "5px", 
+                display: "flex", 
+                alignItems: "center",
+                zIndex: 1 // Lower z-index for the "Done" icon
+              }}
             >
-              View Details
-            </button>
-          </div>
-          
+              <img src={doneImg} alt="Done" style={{ width: "20px", marginRight: "5px" }} />
+              <button 
+                onClick={() => setIsCityModalOpen(true)} 
+                style={{ 
+                  backgroundColor: "transparent", 
+                  border: "none", 
+                  cursor: "pointer", 
+                  fontWeight: "bold", 
+                  color: "#333" 
+                }}
+              >
+                View Details
+              </button>
+            </div>
           )}
+
+
         </div>
       ))}
     </div>
 
-    {/* Details Modal */}
-    {isModalOpen && <DetailsModal job={selectedJob} onClose={closeModal} />}
-    {isCityModalOpen && <CityDetailsModal cityInfo={cityInfo} onClose={() => setIsCityModalOpen(false)} />}
+    {/* Modal styles */}
+    {isModalOpen && <DetailsModal job={selectedJob} onClose={closeModal} style={{ zIndex: 1000 }} />}
+    {isCityModalOpen && <CityDetailsModal cityInfo={cityInfo} onClose={() => setIsCityModalOpen(false)} style={{ zIndex: 1000 }} />}
 
   </div>
 </div>
