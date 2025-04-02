@@ -186,19 +186,35 @@ function AppContent() {
           {/* Column 2 */}
           <div style={{ flex: 1, minWidth: "200px" }}>
             <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Products</h6>
-            <p>Courses</p>
-            <p>Specializations</p>
-            <p>Notes</p>
-            <p>Jobs</p>
+            <a href="/coursepage" style={{ textDecoration: "none", color: "inherit" }}>
+              <p>Courses</p>
+            </a>
+            <a href="/coursepage" style={{ textDecoration: "none", color: "inherit" }}>
+              <p>Specializations</p>
+            </a>
+            <a href="/notespage" style={{ textDecoration: "none", color: "inherit" }}>
+              <p>Notes</p>
+            </a>
+            <a href="/jobpage" style={{ textDecoration: "none", color: "inherit" }}>
+              <p>Jobs</p>
+            </a>
           </div>
       
           {/* Column 3 */}
           <div style={{ flex: 1, minWidth: "200px" }}>
             <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Tools</h6>
-            <p>Interview Practice</p>
-            <p>Project Listing</p>
-            <p>Mentora</p>
-            <p>Career Supportive Tools</p>
+            <a href="/techInterview" style={{ textDecoration: "none", color: "inherit"}}>
+              <p>Interview Practice</p>
+            </a>
+            <a href="/projectModal" style={{ textDecoration: "none", color: "inherit"}}>
+              <p>Project Listing</p>
+            </a>
+            <a href="/toolspage" style={{ textDecoration: "none", color: "inherit"}}>
+              <p>Mentora</p>
+            </a>
+            <a href="/toolspage" style={{ textDecoration: "none", color: "inherit"}}>
+              <p>Career Supportive Tools</p>
+            </a>
           </div>
       
           {/* Column 4 */}
