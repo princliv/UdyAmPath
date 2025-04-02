@@ -1,167 +1,129 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const ModulePage = () => {
-  const { courseTitle } = useParams(); // Extract courseTitle from the URL
-  const [modules, setModules] = useState([]); // Modules for sidebar
-  const [selectedModuleIndex, setSelectedModuleIndex] = useState(0); // For selected module
-  const [moduleDetails, setModuleDetails] = useState(null); // Details of the selected module
-  const [loading, setLoading] = useState(true);
+  const location = useLocation();
+  const moduleData = location.state?.module;
+  const [selectedModuleIndex, setSelectedModuleIndex] = useState(0);
 
-  // Fetch modules for the selected course from moduledata.json
-  useEffect(() => {
-    if (courseTitle) {
-      console.log("Fetching moduledata.json for:", courseTitle);
-      fetch("/moduledata.json")
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("Moduledata.json response:", data);
-          if (data[courseTitle]) {
-            setModules(data[courseTitle]); // Set modules for the selected course
-            setSelectedModuleIndex(0); // Default to the first module
-          } else {
-            console.error("No modules found for course:", courseTitle);
-            setModules([]); // Ensure modules are empty if not found
-          }
-        })
-        .catch((error) => {
-          console.error("Error loading module data:", error);
-          setModules([]); // Clear modules in case of error
-        })
-        .finally(() => {
-          setLoading(false); // Stop loading after fetching
-        });
-    }
-  }, [courseTitle]);
+  if (!moduleData || !moduleData.pathway) {
+    return <p style={styles.errorText}>No module data available.</p>;
+  }
 
-  // Fetch module details based on selected module
-  useEffect(() => {
-    if (modules.length > 0) {
-      const selectedModule = modules[selectedModuleIndex];
-      setModuleDetails(selectedModule || null); // Set module details
-    }
-  }, [modules, selectedModuleIndex]);
-
-  const handleNext = () => {
-    if (selectedModuleIndex < modules.length - 1) {
-      setSelectedModuleIndex((prevIndex) => prevIndex + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (selectedModuleIndex > 0) {
-      setSelectedModuleIndex((prevIndex) => prevIndex - 1);
-    }
+  const handleModuleClick = (index) => {
+    setSelectedModuleIndex(index);
   };
 
   return (
     <div style={styles.container}>
-      {/* Sidebar */}
       <div style={styles.sidebar}>
-        <h3 style={styles.sidebarHeader}>Modules</h3>
-        <ul style={styles.moduleList}>
-          {modules.map((module, index) => (
-            <li
-              key={index}
-              style={{
-                ...styles.moduleItem,
-                backgroundColor: index === selectedModuleIndex ? "#d1c4ff" : "#f4f4f4",
-              }}
-              onClick={() => setSelectedModuleIndex(index)}
-            >
-              {module.title}
-            </li>
-          ))}
-        </ul>
+        <h2 style={styles.sidebarTitle}>Modules</h2>
+        {moduleData.pathway.map((step, index) => (
+          <div
+            key={index}
+            style={{
+              ...styles.moduleItem,
+              backgroundColor: selectedModuleIndex === index ? "#c7b3ff" : "#ece6ff",
+              boxShadow: selectedModuleIndex === index ? "0 4px 6px rgba(0, 0, 0, 0.1)" : "none",
+            }}
+            onClick={() => handleModuleClick(index)}
+          >
+            {step.title}
+          </div>
+        ))}
       </div>
-
-      {/* Module Content */}
       <div style={styles.content}>
-        {loading ? (
-          <p>Loading module details...</p>
-        ) : moduleDetails ? (
-          <>
-            <h2>{moduleDetails.title}</h2>
-            <p>{moduleDetails.details}</p>
-            {moduleDetails.image && (
-              <img src={moduleDetails.image} alt={moduleDetails.title} style={styles.image} />
-            )}
-            <div style={styles.navButtons}>
-              <button style={styles.navButton} onClick={handlePrev} disabled={selectedModuleIndex === 0}>
-                Previous
-              </button>
-              <button
-                style={styles.navButton}
-                onClick={handleNext}
-                disabled={selectedModuleIndex === modules.length - 1}
-              >
-                Next
-              </button>
-            </div>
-          </>
-        ) : (
-          <p>No module details found.</p>
-        )}
+        <h2 style={styles.moduleTitle}>{moduleData.pathway[selectedModuleIndex].title}</h2>
+        <p style={styles.moduleDetails}>{moduleData.pathway[selectedModuleIndex].details}</p>
+        <div style={styles.moduleContent}>
+          {renderModuleContent(moduleData.pathway[selectedModuleIndex].data)}
+        </div>
       </div>
     </div>
   );
 };
 
-// Internal CSS
+const renderModuleContent = (data) => {
+  switch (data.type) {
+    case "text":
+      return <p style={styles.textContent}>{data.content}</p>;
+    case "video":
+      return <video controls style={styles.media} src={data.content} />;
+    case "pdf":
+      return <iframe style={styles.media} src={data.content} title="PDF Document" />;
+    case "image":
+      return <img style={styles.media} src={data.content} alt="Module Content" />;
+    default:
+      return <p style={styles.errorText}>Unsupported content type.</p>;
+  }
+};
+
 const styles = {
   container: {
     display: "flex",
-    height: "100vh",
+    padding: "20px",
+    gap: "20px",
+    backgroundColor: "#faf9ff",
+    minHeight: "100vh",
   },
   sidebar: {
-    width: "250px",
-    backgroundColor: "#e4deff",
-    padding: "20px",
-    overflowY: "auto",
+    width: "270px",
+    background: "#f4f4f4",
+    borderRadius: "12px",
+    padding: "15px",
+    boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.1)",
   },
-  sidebarHeader: {
-    fontSize: "20px",
+  sidebarTitle: {
+    fontSize: "22px",
     fontWeight: "bold",
-    marginBottom: "10px",
-  },
-  moduleList: {
-    listStyleType: "none",
-    padding: 0,
+    marginBottom: "15px",
+    textAlign: "center",
   },
   moduleItem: {
-    padding: "10px",
+    padding: "12px",
+    borderRadius: "6px",
     cursor: "pointer",
-    borderRadius: "5px",
-    marginBottom: "5px",
-    textAlign: "left",
+    marginBottom: "8px",
+    textAlign: "center",
+    transition: "background 0.3s, box-shadow 0.3s",
   },
   content: {
     flex: 1,
-    padding: "20px",
+    background: "#ffffff",
+    borderRadius: "12px",
+    padding: "25px",
+    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
   },
-  image: {
+  moduleTitle: {
+    fontSize: "26px",
+    fontWeight: "bold",
+    marginBottom: "12px",
+    color: "#5a3ec8",
+  },
+  moduleDetails: {
+    fontSize: "30px",
+    marginBottom: "20px",
+    lineHeight: "1.5",
+    color: "#555",
+  },
+  moduleContent: {
+    marginTop: "20px",
+  },
+  media: {
     width: "100%",
-    maxWidth: "600px",
-    borderRadius: "10px",
-    marginTop: "20px",
+    height: "auto",
+    borderRadius: "8px",
+    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
   },
-  navButtons: {
-    marginTop: "20px",
-    display: "flex",
-    justifyContent: "space-between",
+  textContent: {
+    fontSize: "16px",
+    lineHeight: "1.6",
+    color: "#333",
   },
-  navButton: {
-    padding: "10px 15px",
-    backgroundColor: "#3f92c3",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
+  errorText: {
+    textAlign: "center",
+    fontSize: "18px",
+    color: "#555",
   },
 };
 

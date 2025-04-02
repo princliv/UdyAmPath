@@ -23,35 +23,67 @@
     "pathway": [
         {
             "title": "Introduction to Java",
-            "details": "Learn the basics of Java programming, syntax, data types, and simple applications."
-        },
+            "details": "Learn the basics of Java programming, syntax, data types, and simple applications.",
+            "data": {
+              "type": "text",
+              "content": "Java is a high-level, object-oriented programming language developed by Sun Microsystems in 1995. It was designed to be platform-independent, meaning that code written in Java can run on any device that has a Java Virtual Machine (JVM). This principle is often referred to as 'Write Once, Run Anywhere' (WORA). Java has grown to become one of the most popular programming languages in the world, widely used for web development, mobile applications, enterprise software, and even game development.\n\n    Java was originally developed by James Gosling and his team at Sun Microsystems. It was initially called 'Oak' after an oak tree outside Gosling’s office. However, due to trademark issues, the name was later changed to 'Java,' inspired by Java coffee. The language was officially released in 1995, and it quickly gained popularity due to its robust features and cross-platform compatibility.\n\n    Java programs are written using a specific syntax. Below is a simple Java program:\n    ```java\n    public class HelloWorld {\n        public static void main(String[] args) {\n            System.out.println(\"Hello, World!\");\n        }\n    }\n    ```\n    This program prints 'Hello, World!' to the console.\n\n    Java remains a powerful and versatile language with applications across multiple domains. Learning Java opens doors to numerous career opportunities in software development, web development, and mobile app development."
+            }
+          },
         {
             "title": "Control Flow and Loops",
-            "details": "Understand conditional statements, loops, and exception handling in Java."
+            "details": "Understand conditional statements, loops, and exception handling in Java.",
+            "data": {
+                    "type": "video",
+                    "content": "https://www.youtube.com/embed/0bWnwpZt67w?si=BZq2BrEoeKSI2aK1"
+                }
         },
         {
             "title": "Object-Oriented Programming (OOP)",
-            "details": "Learn OOP principles like encapsulation, inheritance, polymorphism, and abstraction."
+            "details": "Learn OOP principles like encapsulation, inheritance, polymorphism, and abstraction.",
+            "data": {
+                    "type": "image",
+                    "content": "/assets/oop-diagram.png"
+                }
         },
         {
             "title": "Data Structures and Algorithms",
-            "details": "Understand linked lists, stacks, queues, trees, and sorting/searching algorithms using Java."
+            "details": "Understand linked lists, stacks, queues, trees, and sorting/searching algorithms using Java.",
+            "data": {
+                    "type": "text",
+                    "content": "Java is a versatile programming language used in various applications."
+                }
         },
         {
             "title": "Java Collections Framework",
-            "details": "Explore ArrayList, HashMap, HashSet, and other built-in Java collection classes."
+            "details": "Explore ArrayList, HashMap, HashSet, and other built-in Java collection classes.",
+            "data": {
+                    "type": "pdf",
+                    "content": "/assets/dsa-java.pdf"
+                }
         },
         {
             "title": "Multithreading and Concurrency",
-            "details": "Learn how to implement multi-threading, synchronization, and concurrent programming."
+            "details": "Learn how to implement multi-threading, synchronization, and concurrent programming.",
+            "data": {
+                    "type": "text",
+                    "content": "Java is a versatile programming language used in various applications."
+                }
         },
         {
             "title": "File Handling and I/O Streams",
-            "details": "Understand file handling, serialization, and input/output stream operations in Java."
+            "details": "Understand file handling, serialization, and input/output stream operations in Java.",
+            "data": {
+                    "type": "text",
+                    "content": "Java is a versatile programming language used in various applications."
+                }
         },
         {
             "title": "Database Connectivity with JDBC",
-            "details": "Connect Java applications to databases using JDBC and perform CRUD operations."
+            "details": "Connect Java applications to databases using JDBC and perform CRUD operations.",
+            "data": {
+                    "type": "pdf",
+                    "content": "/assets/dsa-java.pdf"
+                }
         },
         {
             "title": "Java for Web Development",
@@ -59,15 +91,27 @@
         },
         {
             "title": "Spring Boot and RESTful APIs",
-            "details": "Develop microservices using Spring Boot and build RESTful APIs."
+            "details": "Develop microservices using Spring Boot and build RESTful APIs.",
+            "data": {
+                    "type": "video",
+                    "content": "/assets/java-loops.mp4"
+                }
         },
         {
             "title": "Microservices Architecture",
-            "details": "Understand the fundamentals of microservices, API gateway, and cloud deployments."
+            "details": "Understand the fundamentals of microservices, API gateway, and cloud deployments.",
+            "data": {
+                    "type": "image",
+                    "content": "/assets/oop-diagram.png"
+                }
         },
         {
             "title": "Project Work",
-            "details": "Apply your Java knowledge in real-world projects, including web applications and API development."
+            "details": "Apply your Java knowledge in real-world projects, including web applications and API development.",
+            "data": {
+                    "type": "pdf",
+                    "content": "/assets/dsa-java.pdf"
+                }
         }
     ] 
   },
@@ -86,19 +130,35 @@
     "pathway": [
       {
         "title": "Python Fundamentals",
-        "details": "Cover basic Python syntax, loops, and functions."
+        "details": "Cover basic Python syntax, loops, and functions.",
+        "data": {
+                "type": "text",
+                "content": "Java is a versatile programming language used in various applications."
+            }
       },
       {
         "title": "Data Science with Python",
-        "details": "Learn NumPy, Pandas, and data visualization techniques."
+        "details": "Learn NumPy, Pandas, and data visualization techniques.",
+        "data": {
+                "type": "text",
+                "content": "Java is a versatile programming language used in various applications."
+            }
       },
       {
         "title": "AI & Machine Learning",
-        "details": "Explore AI concepts and build ML models using Python."
+        "details": "Explore AI concepts and build ML models using Python.",
+        "data": {
+                "type": "text",
+                "content": "Java is a versatile programming language used in various applications."
+            }
       },
       {
         "title": "Final Project",
-        "details": "Implement a real-world Python-based project."
+        "details": "Implement a real-world Python-based project.",
+        "data": {
+                "type": "text",
+                "content": "Java is a versatile programming language used in various applications."
+            }
       }
     ]
   },
