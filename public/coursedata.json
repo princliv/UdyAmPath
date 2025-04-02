@@ -1,587 +1,804 @@
 [
-  {
-    "company": "Amazon",
-    "title": "Java",
-    "date": "2023-12-01",
-    "type": "Full-time",
-    "level": "Senior",
-    "color": "#ffffff",
-    "duration": "2 years",
-    "image": "javaImage",
-    "logo": "/assets/amazon-logo.png",
-    "description": "Learn Java programming from scratch and build real-world applications.",
-    "skillsGained": [
-        "Java Basics",
-        "Object-Oriented Programming",
-        "Data Structures",
-        "Web Development",
-        "Spring Boot",
-        "Microservices",
-        "Database Connectivity",
-        "RESTful APIs"
-    ],
-    "pathway": [
-        {
-            "title": "Introduction to Java",
-            "details": "Learn the basics of Java programming, syntax, data types, and simple applications.",
-            "data": {
-              "type": "text",
-              "content": "Java is a high-level, object-oriented programming language developed by Sun Microsystems in 1995. It was designed to be platform-independent, meaning that code written in Java can run on any device that has a Java Virtual Machine (JVM). This principle is often referred to as 'Write Once, Run Anywhere' (WORA). Java has grown to become one of the most popular programming languages in the world, widely used for web development, mobile applications, enterprise software, and even game development.\n\n    Java was originally developed by James Gosling and his team at Sun Microsystems. It was initially called 'Oak' after an oak tree outside Gosling’s office. However, due to trademark issues, the name was later changed to 'Java,' inspired by Java coffee. The language was officially released in 1995, and it quickly gained popularity due to its robust features and cross-platform compatibility.\n\n    Java programs are written using a specific syntax. Below is a simple Java program:\n    ```java\n    public class HelloWorld {\n        public static void main(String[] args) {\n            System.out.println(\"Hello, World!\");\n        }\n    }\n    ```\n    This program prints 'Hello, World!' to the console.\n\n    Java remains a powerful and versatile language with applications across multiple domains. Learning Java opens doors to numerous career opportunities in software development, web development, and mobile app development."
-            }
-          },
-        {
-            "title": "Control Flow and Loops",
-            "details": "Understand conditional statements, loops, and exception handling in Java.",
-            "data": {
+    {
+        "company": "Amazon",
+        "title": "Java",
+        "date": "2023-12-01",
+        "type": "Full-time",
+        "level": "Senior",
+        "color": "#ffffff",
+        "duration": "2 months",
+        "image": "javaImage",
+        "logo": "/assets/amazon-logo.png",
+        "description": "Learn Java programming from scratch and build real-world applications.",
+        "skillsGained": [
+            "Java Basics",
+            "Object-Oriented Programming",
+            "Data Structures",
+            "Web Development",
+            "Spring Boot",
+            "Microservices",
+            "Database Connectivity",
+            "RESTful APIs"
+        ],
+        "pathway": [
+            {
+                "title": "Introduction to Java",
+                "details": "Learn the basics of Java programming, syntax, data types, and simple applications.",
+                "data": {
+                    "type": "pdf",
+                    "content": "https://drive.google.com/uc?export=download&id=1ko7kVzWS6DrP6_jzVJvYxUa8_CjMgbnI"
+                }
+            },
+            {
+                "title": "Control Flow and Loops",
+                "details": "Understand conditional statements, loops, and exception handling in Java.",
+                "data": {
                     "type": "video",
                     "content": "https://www.youtube.com/embed/0bWnwpZt67w?si=BZq2BrEoeKSI2aK1"
                 }
-        },
-        {
-            "title": "Object-Oriented Programming (OOP)",
-            "details": "Learn OOP principles like encapsulation, inheritance, polymorphism, and abstraction.",
-            "data": {
-                    "type": "image",
-                    "content": "/assets/oop-diagram.png"
-                }
-        },
-        {
-            "title": "Data Structures and Algorithms",
-            "details": "Understand linked lists, stacks, queues, trees, and sorting/searching algorithms using Java.",
-            "data": {
+            },
+            {
+                "title": "Object-Oriented Programming (OOP)",
+                "details": "Learn OOP principles like encapsulation, inheritance, polymorphism, and abstraction.",
+                "data": {
                     "type": "text",
-                    "content": "Java is a versatile programming language used in various applications."
+                    "content": "<h2>Introduction to OOP</h2><p>Object-Oriented Programming (OOP) is a paradigm centered around objects that contain data and behavior. It enhances code modularity, reusability, and maintainability.</p><h2>Key Principles of OOP</h2><p>OOP is built on four main principles: encapsulation, inheritance, polymorphism, and abstraction.</p><h3>Encapsulation</h3><p>Encapsulation is the bundling of data and methods that operate on that data into a single unit called an object. It restricts direct access to some components and prevents unintended modifications.</p><p><strong>Example of Encapsulation in Java:</strong></p><pre><code>class BankAccount {<br>  private double balance;<br>  public BankAccount(double balance) {<br>    this.balance = balance;<br>  }<br>  public double getBalance() {<br>    return balance;<br>  }<br>  public void deposit(double amount) {<br>    balance += amount;<br>  }<br>}</code></pre><h3>Inheritance</h3><p>Inheritance allows a class (child class) to inherit fields and methods from another class (parent class). This promotes code reuse and establishes relationships between classes.</p><p><strong>Example of Inheritance in Java:</strong></p><pre><code>class Animal {<br>  void makeSound() {<br>    System.out.println(\"Animal makes a sound\");<br>  }<br>}<br><br>class Dog extends Animal {<br>  void bark() {<br>    System.out.println(\"Dog barks\");<br>  }<br>}</code></pre><h3>Polymorphism</h3><p>Polymorphism enables a single interface to represent different underlying data types. It allows methods to perform different tasks based on the object that invokes them.</p><p><strong>Example of Polymorphism in Java:</strong></p><pre><code>class Shape {<br>  void draw() {<br>    System.out.println(\"Drawing a shape\");<br>  }<br>}<br><br>class Circle extends Shape {<br>  void draw() {<br>    System.out.println(\"Drawing a circle\");<br>  }<br>}</code></pre><h3>Abstraction</h3><p>Abstraction hides complex implementation details and exposes only the necessary functionality. This reduces complexity and increases code clarity.</p><p><strong>Example of Abstraction in Java:</strong></p><pre><code>abstract class Vehicle {<br>  abstract void start();<br>}<br><br>class Car extends Vehicle {<br>  void start() {<br>    System.out.println(\"Car is starting\");<br>  }<br>}</code></pre><h2>Benefits of OOP</h2><ul><li>Improved code reusability through inheritance.</li><li>Better modularity using objects and classes.</li><li>Easier maintenance and scalability.</li><li>Enhanced security using encapsulation.</li></ul><h2>OOP in Real-World Applications</h2><p>OOP is widely used in software development, including game development, banking applications, web applications, and enterprise systems.</p><h2>Conclusion</h2><p>Understanding OOP principles is essential for writing scalable and maintainable code. By leveraging encapsulation, inheritance, polymorphism, and abstraction, developers can create efficient and flexible applications.</p>"
                 }
-        },
-        {
-            "title": "Java Collections Framework",
-            "details": "Explore ArrayList, HashMap, HashSet, and other built-in Java collection classes.",
-            "data": {
-                    "type": "pdf",
-                    "content": "/assets/dsa-java.pdf"
-                }
-        },
-        {
-            "title": "Multithreading and Concurrency",
-            "details": "Learn how to implement multi-threading, synchronization, and concurrent programming.",
-            "data": {
+            },
+            {
+                "title": "Data Structures and Algorithms",
+                "details": "Understand linked lists, stacks, queues, trees, and sorting/searching algorithms using Java.",
+                "data": {
                     "type": "text",
-                    "content": "Java is a versatile programming language used in various applications."
+                    "content": "<h2>Introduction to Data Structures and Algorithms</h2><p>Data Structures and Algorithms (DSA) are fundamental concepts in computer science, enabling efficient problem-solving. Data structures help organize data, while algorithms define the steps to process this data efficiently.</p><h2>Common Data Structures in Java</h2><h3>1. Arrays</h3><p>Arrays store elements of the same type in contiguous memory locations.</p><p><strong>Example:</strong></p><pre><code>int[] numbers = {1, 2, 3, 4, 5};<br>System.out.println(numbers[2]); // Output: 3</code></pre><h3>2. Linked List</h3><p>A linked list is a linear data structure where elements (nodes) are connected by pointers.</p><p><strong>Example:</strong></p><pre><code>class Node {<br>  int data;<br>  Node next;<br>  Node(int data) {<br>    this.data = data;<br>    this.next = null;<br>  }<br>}</code></pre><h3>3. Stack</h3><p>A stack follows the Last-In-First-Out (LIFO) principle.</p><p><strong>Example:</strong></p><pre><code>Stack<Integer> stack = new Stack<>();<br>stack.push(10);<br>stack.push(20);<br>System.out.println(stack.pop()); // Output: 20</code></pre><h3>4. Queue</h3><p>A queue follows the First-In-First-Out (FIFO) principle.</p><p><strong>Example:</strong></p><pre><code>Queue<Integer> queue = new LinkedList<>();<br>queue.add(1);<br>queue.add(2);<br>System.out.println(queue.remove()); // Output: 1</code></pre><h3>5. Trees</h3><p>Trees are hierarchical structures where each node has children nodes.</p><p><strong>Example:</strong></p><pre><code>class TreeNode {<br>  int value;<br>  TreeNode left, right;<br>  TreeNode(int value) {<br>    this.value = value;<br>    left = right = null;<br>  }<br>}</code></pre><h2>Common Algorithms</h2><h3>1. Sorting Algorithms</h3><p>Sorting organizes elements in a specific order.</p><p><strong>Example: Bubble Sort</strong></p><pre><code>void bubbleSort(int arr[]) {<br>  int n = arr.length;<br>  for (int i = 0; i < n - 1; i++) {<br>    for (int j = 0; j < n - i - 1; j++) {<br>      if (arr[j] > arr[j + 1]) {<br>        int temp = arr[j];<br>        arr[j] = arr[j + 1];<br>        arr[j + 1] = temp;<br>      }<br>    }<br>  }<br>}</code></pre><h3>2. Searching Algorithms</h3><p>Searching finds elements in a data structure.</p><p><strong>Example: Binary Search</strong></p><pre><code>int binarySearch(int arr[], int left, int right, int key) {<br>  while (left <= right) {<br>    int mid = left + (right - left) / 2;<br>    if (arr[mid] == key)<br>      return mid;<br>    if (arr[mid] < key)<br>      left = mid + 1;<br>    else<br>      right = mid - 1;<br>  }<br>  return -1;<br>}</code></pre><h2>Conclusion</h2><p>Understanding DSA is crucial for writing efficient code. Mastering these concepts enhances problem-solving skills, improves performance, and prepares you for coding interviews.</p>"
                 }
-        },
-        {
-            "title": "File Handling and I/O Streams",
-            "details": "Understand file handling, serialization, and input/output stream operations in Java.",
-            "data": {
+            },
+            {
+                "title": "Java Collections Framework",
+                "details": "Explore ArrayList, HashMap, HashSet, and other built-in Java collection classes.",
+                "data": {
                     "type": "text",
-                    "content": "Java is a versatile programming language used in various applications."
+                    "content": "<h2>Introduction to Java Collections Framework</h2><p>The Java Collections Framework (JCF) provides a set of classes and interfaces for working with groups of objects efficiently. It includes data structures like lists, sets, queues, and maps, offering built-in functionality for manipulation.</p><h2>Key Components of Java Collections Framework</h2><h3>1. List Interface</h3><p>The List interface allows ordered collections that support duplicate elements. The commonly used implementation is <code>ArrayList</code>.</p><p><strong>Example: Using ArrayList</strong></p><pre><code>import java.util.ArrayList;<br>ArrayList<String> list = new ArrayList<>();<br>list.add(\"Apple\");<br>list.add(\"Banana\");<br>list.add(\"Cherry\");<br>System.out.println(list.get(1)); // Output: Banana</code></pre><h3>2. Set Interface</h3><p>The Set interface represents a collection of unique elements. The most commonly used implementation is <code>HashSet</code>.</p><p><strong>Example: Using HashSet</strong></p><pre><code>import java.util.HashSet;<br>HashSet<Integer> set = new HashSet<>();<br>set.add(10);<br>set.add(20);<br>set.add(10); // Duplicate, won't be added<br>System.out.println(set.size()); // Output: 2</code></pre><h3>3. Map Interface</h3><p>The Map interface stores key-value pairs. The most commonly used implementation is <code>HashMap</code>.</p><p><strong>Example: Using HashMap</strong></p><pre><code>import java.util.HashMap;<br>HashMap<Integer, String> map = new HashMap<>();<br>map.put(1, \"One\");<br>map.put(2, \"Two\");<br>System.out.println(map.get(1)); // Output: One</code></pre><h3>4. Queue Interface</h3><p>The Queue interface follows the First-In-First-Out (FIFO) principle. The commonly used implementation is <code>LinkedList</code>.</p><p><strong>Example: Using Queue</strong></p><pre><code>import java.util.LinkedList;<br>Queue<String> queue = new LinkedList<>();<br>queue.add(\"Task1\");<br>queue.add(\"Task2\");<br>System.out.println(queue.poll()); // Output: Task1</code></pre><h2>Advantages of Java Collections Framework</h2><ul><li>Predefined data structures for efficient coding.</li><li>Improved performance using optimized algorithms.</li><li>Flexible and scalable for large data handling.</li></ul><h2>Conclusion</h2><p>The Java Collections Framework simplifies data manipulation, offering efficient implementations of lists, sets, maps, and queues. Mastering these concepts enhances problem-solving and application performance.</p>"
                 }
-        },
-        {
-            "title": "Database Connectivity with JDBC",
-            "details": "Connect Java applications to databases using JDBC and perform CRUD operations.",
-            "data": {
-                    "type": "pdf",
-                    "content": "/assets/dsa-java.pdf"
+            },
+            {
+                "title": "Multithreading and Concurrency",
+                "details": "Learn how to implement multi-threading, synchronization, and concurrent programming.",
+                "data": {
+                    "type": "text",
+                    "content": "<h1>Multithreading and Concurrency in Java</h1><p>Multithreading in Java allows multiple parts of a program to run simultaneously, improving performance and responsiveness. It is an essential feature for applications requiring parallel processing, such as gaming, web servers, and real-time applications.</p><h2>What is a Thread?</h2><p>A thread is a lightweight process that executes a sequence of instructions independently. Java provides built-in support for multithreading using the <code>Thread</code> class and the <code>Runnable</code> interface.</p><h2>Creating a Thread in Java</h2><h3>1. Using the Thread Class</h3><p>You can create a thread by extending the <code>Thread</code> class and overriding the <code>run()</code> method.</p><pre><code>class MyThread extends Thread {<br>    public void run() {<br>        System.out.println(\"Thread is running...\");<br>    }<br>}<br>public class Main {<br>    public static void main(String[] args) {<br>        MyThread t1 = new MyThread();<br>        t1.start();<br>    }<br>}</code></pre><h3>2. Using the Runnable Interface</h3><p>A better way to create a thread is by implementing the <code>Runnable</code> interface, which allows flexibility and avoids extending the <code>Thread</code> class.</p><pre><code>class MyRunnable implements Runnable {<br>    public void run() {<br>        System.out.println(\"Thread running via Runnable...\");<br>    }<br>}<br>public class Main {<br>    public static void main(String[] args) {<br>        Thread t1 = new Thread(new MyRunnable());<br>        t1.start();<br>    }<br>}</code></pre><h2>Thread Synchronization</h2><p>When multiple threads access shared resources, data inconsistency may occur. Synchronization ensures that only one thread can access a critical section at a time.</p><p><strong>Example: Synchronized Method</strong></p><pre><code>class Counter {<br>    private int count = 0;<br>    public synchronized void increment() {<br>        count++;<br>    }<br>    public int getCount() {<br>        return count;<br>    }<br>}<br>public class Main {<br>    public static void main(String[] args) {<br>        Counter counter = new Counter();<br>        Thread t1 = new Thread(() -> { for (int i = 0; i < 1000; i++) counter.increment(); });<br>        Thread t2 = new Thread(() -> { for (int i = 0; i < 1000; i++) counter.increment(); });<br>        t1.start(); t2.start();<br>        try { t1.join(); t2.join(); } catch (InterruptedException e) { }<br>        System.out.println(\"Final count: \" + counter.getCount());<br>    }<br>}</code></pre><h2>Thread States</h2><p>A thread can exist in multiple states during execution:</p><ul><li><strong>NEW</strong>: The thread is created but not yet started.</li><li><strong>RUNNABLE</strong>: The thread is ready to run but waiting for CPU allocation.</li><li><strong>BLOCKED</strong>: The thread is waiting for a locked resource.</li><li><strong>WAITING</strong>: The thread is waiting indefinitely until another thread signals it.</li><li><strong>TIMED_WAITING</strong>: The thread is waiting for a specified time.</li><li><strong>TERMINATED</strong>: The thread has completed execution.</li></ul><h2>Concurrency in Java</h2><p>Java provides the <code>java.util.concurrent</code> package to handle complex multithreading scenarios efficiently. It includes:</p><ul><li><strong>Executors</strong>: A framework for managing thread pools.</li><li><strong>Locks</strong>: Advanced locking mechanisms.</li><li><strong>Atomic Variables</strong>: Thread-safe variables.</li></ul><h2>Example: Using ExecutorService</h2><pre><code>import java.util.concurrent.ExecutorService;<br>import java.util.concurrent.Executors;<br>class Task implements Runnable {<br>    public void run() {<br>        System.out.println(\"Executing task in \" + Thread.currentThread().getName());<br>    }<br>}<br>public class Main {<br>    public static void main(String[] args) {<br>        ExecutorService executor = Executors.newFixedThreadPool(2);<br>        for (int i = 0; i < 5; i++) {<br>            executor.execute(new Task());<br>        }<br>        executor.shutdown();<br>    }<br>}</code></pre><h2>Advantages of Multithreading</h2><ul><li>Increased efficiency and faster execution.</li><li>Better CPU utilization.</li><li>Allows multiple operations to run concurrently.</li><li>Improved application responsiveness.</li></ul><h2>Conclusion</h2><p>Multithreading and concurrency are powerful features in Java that enable efficient execution of parallel tasks. By using threads, synchronization, and the concurrent API, developers can build scalable and high-performance applications.</p>"
                 }
-        },
-        {
-            "title": "Java for Web Development",
-            "details": "Learn how to build dynamic web applications using JSP, Servlets, and Java frameworks."
-        },
-        {
-            "title": "Spring Boot and RESTful APIs",
-            "details": "Develop microservices using Spring Boot and build RESTful APIs.",
-            "data": {
+            },
+            {
+                "title": "File Handling and I/O Streams",
+                "details": "Understand file handling, serialization, and input/output stream operations in Java.",
+                "data": {
                     "type": "video",
-                    "content": "/assets/java-loops.mp4"
+                    "content": "https://www.youtube.com/embed/Vy2l3lGAb2I?si=opo5-iF54lTz9BxZ"
                 }
-        },
-        {
-            "title": "Microservices Architecture",
-            "details": "Understand the fundamentals of microservices, API gateway, and cloud deployments.",
-            "data": {
-                    "type": "image",
-                    "content": "/assets/oop-diagram.png"
-                }
-        },
-        {
-            "title": "Project Work",
-            "details": "Apply your Java knowledge in real-world projects, including web applications and API development.",
-            "data": {
+            },
+            {
+                "title": "Database Connectivity with JDBC",
+                "details": "Connect Java applications to databases using JDBC and perform CRUD operations.",
+                "data": {
                     "type": "pdf",
-                    "content": "/assets/dsa-java.pdf"
+                    "content": "https://drive.google.com/uc?export=download&id=1QEd_hJnv2p2-OL3qovqDcZjC2GlpiEJK"
                 }
-        }
-    ] 
-  },
-  {
-    "company": "Google",
-    "title": "Python",
-    "date": "2023-11-15",
-    "type": "Full-time",
-    "level": "Mid",
-    "color": "#ffffff",
-    "duration": "1 year",
-    "image": "pythonImage",
-    "logo": "/assets/google-logo.png",
-    "description": "Master Python programming and its applications in data science, AI, and automation.",
-    "skillsGained": ["Python Basics", "Data Structures", "Machine Learning", "Automation"],
-    "pathway": [
-      {
-        "title": "Python Fundamentals",
-        "details": "Cover basic Python syntax, loops, and functions.",
-        "data": {
-                "type": "text",
-                "content": "Java is a versatile programming language used in various applications."
+            },
+            {
+                "title": "Java for Web Development",
+                "details": "Learn how to build dynamic web applications using JSP, Servlets, and Java frameworks.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>Introduction to Java for Web Development</h2><p>Java is a powerful programming language widely used for developing dynamic and scalable web applications.<br> With frameworks like JavaServer Pages (JSP), Servlets, and modern frameworks like Spring and Hibernate, Java enables developers to create efficient and secure web applications.<br></p><h2>Understanding Web Development with Java</h2><p>Java provides multiple ways to build web applications.<br> These include JSP, Servlets, and frameworks like Spring Boot, which simplify development.<br> Java web applications are typically deployed on servers such as Apache Tomcat, GlassFish, or JBoss.<br></p><h3>Client-Server Architecture</h3><p>Java web applications follow the client-server model, where a client (browser) sends requests, and the server processes these requests and responds accordingly.<br> Technologies like HTTP, HTTPS, and WebSockets play a crucial role in communication.<br></p><h3>Key Components of Java Web Development</h3><h4>1. JavaServer Pages (JSP)</h4><p>JSP is used to create dynamic web pages using Java code embedded within HTML.<br> It simplifies web development by allowing developers to mix Java and HTML.<br></p><p><strong>Example of JSP Code:</strong><br></p><pre><code>&lt;%@ page language=\"Java\" contentType=\"text/html; charset=UTF-8\" pageEncoding=\"UTF-8\" %&gt;<br>&lt;html&gt;<br>&lt;body&gt;<br>&lt;h2&gt;Welcome to JSP!&lt;/h2&gt;<br>&lt;% out.println(\"Current Date: \" + new java.util.Date()); %&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;</code></pre><h4>2. Servlets</h4><p>Java Servlets handle HTTP requests and generate dynamic web content.<br> Servlets are Java classes that run on a web server and process client requests.<br></p><p><strong>Example of a Simple Servlet:</strong><br></p><pre><code>import java.io.IOException;<br> import javax.servlet.ServletException;<br> import javax.servlet.annotation.WebServlet;<br> import javax.servlet.http.HttpServlet;<br> import javax.servlet.http.HttpServletRequest;<br> import javax.servlet.http.HttpServletResponse;<br> @WebServlet(\"/hello\")<br> public class HelloServlet extends HttpServlet {<br> protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {<br> response.getWriter().println(\"Hello, World from Servlet!\");<br> }}</code></pre><h4>3. JavaServer Faces (JSF)</h4><p>JSF is a component-based UI framework for building Java web applications.<br> It simplifies UI development and integrates well with backend logic.<br></p><h4>4. Spring Framework</h4><p>Spring is a popular framework that simplifies Java web development.<br> It provides dependency injection, MVC architecture, and robust security features.<br></p><p><strong>Example of a Spring Boot REST Controller:</strong><br></p><pre><code>@RestController<br> @RequestMapping(\"/api\")<br> public class HelloController {<br> @GetMapping(\"/hello\")<br> public String sayHello() {<br> return \"Hello from Spring Boot!\";<br> }}</code></pre><h2>Databases and Java Web Applications</h2><p>Java web applications often require databases to store and retrieve data.<br> Java Database Connectivity (JDBC) and ORM frameworks like Hibernate facilitate database interactions.<br></p><p><strong>Example of JDBC Connection:</strong><br></p><pre><code>Connection con = DriverManager.getConnection(\"jdbc:mysql://localhost:3306/mydb\", \"user\", \"password\");<br> Statement stmt = con.createStatement();<br> ResultSet rs = stmt.executeQuery(\"SELECT * FROM users\");</code></pre><h2>Security in Java Web Development</h2><p>Security is crucial in web applications.<br> Java provides authentication, authorization, and encryption mechanisms.<br> The Spring Security framework enhances security with features like OAuth, JWT authentication, and CSRF protection.<br></p><h2>Conclusion</h2><p>Java remains one of the most powerful languages for web development, offering a variety of tools and frameworks for building scalable, secure, and dynamic web applications.<br> Learning JSP, Servlets, and frameworks like Spring Boot can help developers create efficient web solutions.<br></p>"
+                }
+            },
+            {
+                "title": "Spring Boot and RESTful APIs",
+                "details": "Develop microservices using Spring Boot and build RESTful APIs.",
+                "data": {
+                    "type": "video",
+                    "content": "https://www.youtube.com/embed/9brw7UzFdTA?si=5BPj-hbSP3sGddqN"
+                }
+            },
+            {
+                "title": "Microservices Architecture",
+                "details": "Understand the fundamentals of microservices, API gateway, and cloud deployments.",
+                "data": {
+                    "type": "image",
+                    "content": "https://microservices.io/i/Microservice_Architecture.png"
+                }
+            },
+            {
+                "title": "Project Work",
+                "details": "Apply your Java knowledge in real-world projects, including web applications and API development.",
+                "data": {
+                    "type": "pdf",
+                    "content": "https://drive.google.com/uc?export=download&id=1S9QxCDaJ3B51wJ5MKPd6zk_7Em188bVV"
+                }
             }
-      },
-      {
-        "title": "Data Science with Python",
-        "details": "Learn NumPy, Pandas, and data visualization techniques.",
-        "data": {
-                "type": "text",
-                "content": "Java is a versatile programming language used in various applications."
+        ],
+        "Quiz": [
+            {
+                "question": "What is Java primarily used for?",
+                "options": [
+                    "Web Development",
+                    "Data Science",
+                    "Game Development",
+                    "All of the above"
+                ],
+                "answer": "All of the above"
             }
-      },
-      {
-        "title": "AI & Machine Learning",
-        "details": "Explore AI concepts and build ML models using Python.",
-        "data": {
-                "type": "text",
-                "content": "Java is a versatile programming language used in various applications."
+        ]
+    },
+    {
+        "company": "Google",
+        "title": "Python",
+        "date": "2023-11-15",
+        "type": "Full-time",
+        "level": "Mid",
+        "color": "#ffffff",
+        "duration": "3 months",
+        "image": "pythonImage",
+        "logo": "/assets/google-logo.png",
+        "description": "Master Python programming and its applications in data science, AI, and automation.",
+        "skillsGained": [
+            "Python Basics",
+            "Object-Oriented Programming",
+            "Data Structures & Algorithms",
+            "Web Development",
+            "Flask & Django",
+            "Machine Learning",
+            "Database Connectivity",
+            "Automation"
+        ],
+        "pathway": [
+            {
+                "title": "Introduction to Python",
+                "details": "Learn the basics of Python programming, syntax, data types, and simple applications.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>Introduction to Python</h2><p>Python is a high-level, interpreted programming language known for its simplicity and readability.<br> It supports multiple programming paradigms, including procedural, object-oriented, and functional programming.</p><h2>Key Features of Python</h2><p>Python is widely used because of its versatility and ease of use.<br> Some of its key features include:</p><ul><li>Simple and readable syntax</li><li>Dynamic typing and automatic memory management</li><li>Extensive standard library</li><li>Cross-platform compatibility</li></ul><h3>Python Syntax</h3><p>Python’s syntax is designed to be clear and easy to learn.<br> Indentation is used to define code blocks instead of curly braces.</p><p><strong>Example of Python Syntax:</strong></p><pre><code>print(\"Hello, World!\")</code></pre><h3>Data Types in Python</h3><p>Python provides several built-in data types to handle different kinds of data.</p><ul><li><strong>Numeric Types:</strong> int, float, complex</li><li><strong>Sequence Types:</strong> list, tuple, range</li><li><strong>Text Type:</strong> str</li><li><strong>Set Types:</strong> set, frozenset</li><li><strong>Mapping Type:</strong> dict</li><li><strong>Boolean Type:</strong> bool</li></ul><p><strong>Example of Data Types in Python:</strong></p><pre><code>age = 25       # int<br>price = 99.99 # float<br>name = \"Alice\"  # str<br>is_active = True  # bool</code></pre><h3>Control Flow Statements</h3><p>Python provides control flow statements to manage the execution of code.</p><ul><li><strong>Conditional Statements:</strong> if, elif, else</li><li><strong>Looping Statements:</strong> for, while</li></ul><p><strong>Example of Conditional Statement:</strong></p><pre><code>age = 18<br>if age >= 18:<br>    print(\"You are an adult.\")<br>else:<br>    print(\"You are a minor.\")</code></pre><p><strong>Example of Looping:</strong></p><pre><code>for i in range(5):<br>    print(i)  # Prints numbers from 0 to 4</code></pre><h3>Functions in Python</h3><p>Functions in Python allow code reusability and modularity.</p><p><strong>Example of a Function:</strong></p><pre><code>def greet(name):<br>    return \"Hello, \" + name<br><br>print(greet(\"Alice\"))</code></pre><h3>Python Libraries</h3><p>Python has a rich ecosystem of libraries for various applications:</p><ul><li><strong>NumPy & Pandas:</strong> Data analysis and scientific computing</li><li><strong>Flask & Django:</strong> Web development</li><li><strong>TensorFlow & PyTorch:</strong> Machine learning</li></ul><h2>Conclusion</h2><p>Python is a powerful and easy-to-learn language used in various fields, including web development, data science, artificial intelligence, and automation.<br> Mastering Python fundamentals is essential for any aspiring developer.</p>"
+                }
+            },
+            {
+                "title": "Control Flow and Loops",
+                "details": "Understand conditional statements, loops, and error handling in Python.",
+                "data": {
+                    "type": "video",
+                    "content": "https://www.youtube.com/embed/zgX2eza08I4?si=HlCPgCWX7_x1TVlu"
+                }
+            },
+            {
+                "title": "Object-Oriented Programming (OOP)",
+                "details": "Learn OOP principles like encapsulation, inheritance, polymorphism, and abstraction in Python.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>Introduction to OOP in Python</h2><p>Object-Oriented Programming (OOP) helps in structuring code efficiently.<br> Python supports OOP with classes and objects.</p><h2>Key Principles of OOP</h2><p>OOP in Python is based on four key principles:<br> Encapsulation, Inheritance, Polymorphism, and Abstraction.</p><h3>Encapsulation</h3><p>Encapsulation is the process of bundling data and methods within a single unit (class).<br> It restricts direct access to some variables and prevents unintended modifications.</p><p><strong>Example of Encapsulation in Python:</strong></p><pre><code>class BankAccount:<br>    def __init__(self, balance):<br>        self.__balance = balance  # Private attribute<br><br>    def get_balance(self):<br>        return self.__balance<br><br>    def deposit(self, amount):<br>        self.__balance += amount<br><br>account = BankAccount(1000)<br>print(account.get_balance())  # Output: 1000</code></pre><h3>Inheritance</h3><p>Inheritance allows a child class to inherit attributes and methods from a parent class.<br> This promotes code reusability.</p><p><strong>Example of Inheritance in Python:</strong></p><pre><code>class Animal:<br>    def make_sound(self):<br>        print(\"Animal makes a sound\")<br><br>class Dog(Animal):<br>    def bark(self):<br>        print(\"Dog barks\")<br><br>dog = Dog()<br>dog.make_sound()  # Inherited method<br>dog.bark()</code></pre><h3>Polymorphism</h3><p>Polymorphism allows a method to have different behaviors based on the object calling it.</p><p><strong>Example of Polymorphism in Python:</strong></p><pre><code>class Shape:<br>    def draw(self):<br>        print(\"Drawing a shape\")<br><br>class Circle(Shape):<br>    def draw(self):<br>        print(\"Drawing a circle\")<br><br>shape1 = Shape()<br>shape2 = Circle()<br>shape1.draw()<br>shape2.draw()</code></pre><h3>Abstraction</h3><p>Abstraction hides complex implementation details and exposes only the necessary functionality.</p><p><strong>Example of Abstraction in Python:</strong></p><pre><code>from abc import ABC, abstractmethod<br><br>class Vehicle(ABC):<br>    @abstractmethod<br>    def start(self):<br>        pass<br><br>class Car(Vehicle):<br>    def start(self):<br>        print(\"Car is starting\")<br><br>car = Car()<br>car.start()</code></pre><h2>Benefits of OOP in Python</h2><ul><li>Improves code organization and reusability.</li><li>Makes maintenance and scaling easier.</li><li>Enhances security using encapsulation.</li><li>Promotes a modular approach to development.</li></ul><h2>Real-World Applications of OOP</h2><p>OOP is widely used in software development, including game development, data science, AI, and web applications.</p><h2>Conclusion</h2><p>Understanding OOP principles in Python is essential for writing scalable and maintainable code.<br> By applying encapsulation, inheritance, polymorphism, and abstraction, developers can create efficient and flexible applications.</p>"
+                }
+            },
+            {
+                "title": "Data Structures and Algorithms",
+                "details": "Understand lists, dictionaries, stacks, queues, trees, and sorting/searching algorithms using Python.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>Python Data Structures</h2><p>Data structures in Python include lists, tuples, sets, and dictionaries.<br> Mastering these helps in efficient coding.</p><h3>Lists</h3><p>Lists are ordered, mutable collections of elements.<br> They allow duplicate values and support various operations.</p><p><strong>Example of a List:</strong></p><pre><code>numbers = [1, 2, 3, 4, 5]<br>numbers.append(6)<br>print(numbers)  # Output: [1, 2, 3, 4, 5, 6]</code></pre><h3>Tuples</h3><p>Tuples are ordered and immutable collections.<br> They are useful when data should not change.</p><p><strong>Example of a Tuple:</strong></p><pre><code>coordinates = (10, 20)<br>print(coordinates[0])  # Output: 10</code></pre><h3>Sets</h3><p>Sets are unordered collections of unique elements.<br> They are useful for removing duplicates.</p><p><strong>Example of a Set:</strong></p><pre><code>unique_numbers = {1, 2, 3, 3, 4}<br>print(unique_numbers)  # Output: {1, 2, 3, 4}</code></pre><h3>Dictionaries</h3><p>Dictionaries store key-value pairs and allow fast lookups.</p><p><strong>Example of a Dictionary:</strong></p><pre><code>student = {\"name\": \"Alice\", \"age\": 20}<br>print(student[\"name\"])  # Output: Alice</code></pre><h2>Python Algorithms</h2><h3>Sorting Algorithms</h3><p>Sorting arranges elements in a specific order.<br> Common sorting algorithms include Bubble Sort, Merge Sort, and Quick Sort.</p><p><strong>Example of Sorting (Bubble Sort):</strong></p><pre><code>def bubble_sort(arr):<br>    n = len(arr)<br>    for i in range(n):<br>        for j in range(0, n-i-1):<br>            if arr[j] > arr[j+1]:<br>                arr[j], arr[j+1] = arr[j+1], arr[j]<br>    return arr<br><br>numbers = [5, 3, 8, 1, 2]<br>print(bubble_sort(numbers))  # Output: [1, 2, 3, 5, 8]</code></pre><h3>Searching Algorithms</h3><p>Searching algorithms help locate elements in a dataset.<br> Common algorithms include Linear Search and Binary Search.</p><p><strong>Example of Binary Search:</strong></p><pre><code>def binary_search(arr, target):<br>    left, right = 0, len(arr) - 1<br>    while left <= right:<br>        mid = (left + right) // 2<br>        if arr[mid] == target:<br>            return mid<br>        elif arr[mid] < target:<br>            left = mid + 1<br>        else:<br>            right = mid - 1<br>    return -1<br><br>numbers = [1, 2, 3, 4, 5, 6, 7, 8]<br>print(binary_search(numbers, 5))  # Output: 4</code></pre><h3>Stacks</h3><p>Stacks follow the Last In, First Out (LIFO) principle.</p><p><strong>Example of a Stack:</strong></p><pre><code>stack = []<br>stack.append(1)<br>stack.append(2)<br>print(stack.pop())  # Output: 2</code></pre><h3>Queues</h3><p>Queues follow the First In, First Out (FIFO) principle.</p><p><strong>Example of a Queue:</strong></p><pre><code>from collections import deque<br>queue = deque()<br>queue.append(1)<br>queue.append(2)<br>print(queue.popleft())  # Output: 1</code></pre><h3>Trees</h3><p>Trees are hierarchical structures used in various applications.</p><p><strong>Example of a Binary Tree:</strong></p><pre><code>class Node:<br>    def __init__(self, value):<br>        self.value = value<br>        self.left = None<br>        self.right = None<br><br>root = Node(10)<br>root.left = Node(5)<br>root.right = Node(15)</code></pre><h2>Conclusion</h2><p>Understanding data structures and algorithms is crucial for efficient coding.<br> Mastering lists, stacks, queues, and trees, along with sorting and searching algorithms, helps in solving real-world problems efficiently.</p>"
+                }
+            },
+            {
+                "title": "Python Collections Module",
+                "details": "Explore OrderedDict, namedtuple, Counter, and other useful collections in Python.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>Introduction to Python Collections</h2><p>The collections module provides specialized data structures as alternatives to Python's built-in types.<br> These structures help improve performance and make data manipulation easier.</p><h2>Key Data Structures in the Collections Module</h2><h3>1. OrderedDict</h3><p>An OrderedDict remembers the order in which keys were inserted.<br> Unlike a regular dictionary (which is ordered only in Python 3.7+), OrderedDict preserves key order in all versions.</p><p><strong>Example of OrderedDict:</strong></p><pre><code>from collections import OrderedDict<br>ordered_dict = OrderedDict()<br>ordered_dict['a'] = 1<br>ordered_dict['b'] = 2<br>ordered_dict['c'] = 3<br>print(ordered_dict)  # Output: OrderedDict([('a', 1), ('b', 2), ('c', 3)])</code></pre><h3>2. namedtuple</h3><p>namedtuple allows defining lightweight, immutable objects with named fields.<br> It is useful for creating simple data structures without using a class.</p><p><strong>Example of namedtuple:</strong></p><pre><code>from collections import namedtuple<br>Person = namedtuple('Person', ['name', 'age'])<br>p = Person(name='Alice', age=25)<br>print(p.name, p.age)  # Output: Alice 25</code></pre><h3>3. Counter</h3><p>Counter is a dictionary subclass that counts occurrences of elements in an iterable.<br> It is useful for frequency counting.</p><p><strong>Example of Counter:</strong></p><pre><code>from collections import Counter<br>word_count = Counter('hello world')<br>print(word_count)  # Output: Counter({'l': 3, 'o': 2, 'h': 1, 'e': 1, 'w': 1, 'r': 1, 'd': 1})</code></pre><h3>4. defaultdict</h3><p>defaultdict is a dictionary that provides default values for missing keys.<br> It avoids key errors by assigning a default type to new keys.</p><p><strong>Example of defaultdict:</strong></p><pre><code>from collections import defaultdict<br>default_dict = defaultdict(int)<br>default_dict['a'] += 1<br>print(default_dict['a'])  # Output: 1<br>print(default_dict['b'])  # Output: 0 (default value for int)</code></pre><h3>5. deque</h3><p>deque (double-ended queue) provides fast appends and pops from both ends.<br> It is more efficient than lists for queue operations.</p><p><strong>Example of deque:</strong></p><pre><code>from collections import deque<br>d = deque([1, 2, 3])<br>d.append(4)   # Adds 4 to the right end<br>d.appendleft(0)  # Adds 0 to the left end<br>print(d)  # Output: deque([0, 1, 2, 3, 4])</code></pre><h3>6. ChainMap</h3><p>ChainMap groups multiple dictionaries into a single view.<br> It allows searching across multiple dictionaries efficiently.</p><p><strong>Example of ChainMap:</strong></p><pre><code>from collections import ChainMap<br>dict1 = {'a': 1, 'b': 2}<br>dict2 = {'b': 3, 'c': 4}<br>chain = ChainMap(dict1, dict2)<br>print(chain['b'])  # Output: 2 (first occurrence from dict1)</code></pre><h2>Conclusion</h2><p>The collections module in Python provides powerful data structures that enhance efficiency and readability.<br> Understanding OrderedDict, namedtuple, Counter, defaultdict, deque, and ChainMap can help in solving various programming challenges effectively.</p>"
+                }
+            },
+            {
+                "title": "Multithreading and Concurrency",
+                "details": "Learn how to implement multi-threading and concurrent programming in Python.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>Introduction to Multithreading and Concurrency in Python</h2><p>Multithreading and concurrency allow Python programs to perform multiple tasks simultaneously.<br> This improves performance, especially when dealing with I/O-bound or CPU-bound operations.</p><h2>Understanding Multithreading in Python</h2><p>Python provides the <code>threading</code> module to create and manage threads.<br> A thread is a lightweight process that runs in parallel with other threads.</p><p><strong>Example of Creating a Thread:</strong></p><pre><code>import threading<br>def print_numbers():<br>    for i in range(5):<br>        print(i)<br>thread = threading.Thread(target=print_numbers)<br>thread.start()<br>thread.join()  # Wait for the thread to finish</code></pre><h3>Thread Synchronization</h3><p>Python's Global Interpreter Lock (GIL) allows only one thread to execute Python bytecode at a time.<br> To handle shared resources safely, thread synchronization techniques like locks are used.</p><p><strong>Example of Using a Lock:</strong></p><pre><code>import threading<br>lock = threading.Lock()<br>def critical_section():<br>    with lock:<br>        print(\"Thread-safe execution\")<br>thread1 = threading.Thread(target=critical_section)<br>thread2 = threading.Thread(target=critical_section)<br>thread1.start()<br>thread2.start()</code></pre><h2>Multiprocessing in Python</h2><p>To overcome the limitations of GIL for CPU-bound tasks, Python provides the <code>multiprocessing</code> module.<br> This allows running processes in parallel using multiple CPU cores.</p><p><strong>Example of Multiprocessing:</strong></p><pre><code>from multiprocessing import Process<br>def worker():<br>    print(\"Process running\")<br>process = Process(target=worker)<br>process.start()<br>process.join()</code></pre><h2>Asynchronous Programming with asyncio</h2><p>Python’s <code>asyncio</code> module allows asynchronous programming, which is useful for handling I/O-bound tasks efficiently.</p><p><strong>Example of Asynchronous Code:</strong></p><pre><code>import asyncio<br>async def greet():<br>    print(\"Hello\")<br>    await asyncio.sleep(1)<br>    print(\"World\")<br>asyncio.run(greet())</code></pre><h2>Choosing Between Multithreading, Multiprocessing, and Asyncio</h2><ul><li><strong>Use threading</strong> for I/O-bound tasks (e.g., web scraping, network requests).</li><li><strong>Use multiprocessing</strong> for CPU-bound tasks (e.g., data processing, computation).</li><li><strong>Use asyncio</strong> for non-blocking I/O operations (e.g., handling thousands of network requests).</li></ul><h2>Conclusion</h2><p>Python offers multiple ways to handle concurrency.<br> Choosing the right approach depends on whether your application is CPU-bound or I/O-bound.<br> Mastering multithreading, multiprocessing, and asynchronous programming can significantly improve performance.</p>"
+                }
+            },
+            {
+                "title": "File Handling and I/O Operations",
+                "details": "Understand file handling, serialization, and input/output operations in Python.",
+                "data": {
+                    "type": "video",
+                    "content": "https://www.youtube.com/embed/abc7890?si=XYZabcdEF"
+                }
+            },
+            {
+                "title": "Database Connectivity with SQLite & MySQL",
+                "details": "Connect Python applications to databases using SQLite and MySQL.",
+                "data": {
+                    "type": "pdf",
+                    "content": "https://drive.google.com/uc?export=download&id=1ttqtICtWy5c2iF-kerIMp8njeN4jjyZ2"
+                }
+            },
+            {
+                "title": "Web Development with Flask & Django",
+                "details": "Learn to build web applications using Flask and Django frameworks.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>Introduction to Web Development with Flask & Django</h2><p>Flask and Django are two of the most popular web frameworks in Python.<br> They help developers build scalable and secure web applications efficiently.</p><h2>Flask vs Django: Key Differences</h2><p><strong>Flask:</strong> A lightweight, micro-framework designed for flexibility and simplicity.<br><strong>Django:</strong> A full-stack web framework with built-in features for rapid development.</p><table border='1'><tr><th>Feature</th><th>Flask</th><th>Django</th></tr><tr><td>Complexity</td><td>Minimal, easy to learn</td><td>Includes many built-in features</td></tr><tr><td>Flexibility</td><td>Highly customizable</td><td>Follows a specific structure</td></tr><tr><td>Built-in Admin</td><td>No</td><td>Yes</td></tr><tr><td>Database Support</td><td>Uses extensions</td><td>Built-in ORM</td></tr></table><h2>Getting Started with Flask</h2><p>Flask is a micro-framework that allows developers to build web applications quickly.</p><p><strong>Installation:</strong></p><pre><code>pip install flask</code></pre><p><strong>Basic Flask Application:</strong></p><pre><code>from flask import Flask<br>app = Flask(__name__)<br>@app.route('/')<br>def home():<br>    return \"Hello, Flask!\"<br>if __name__ == '__main__':<br>    app.run(debug=True)</code></pre><h2>Getting Started with Django</h2><p>Django is a high-level web framework that promotes rapid development.</p><p><strong>Installation:</strong></p><pre><code>pip install django</code></pre><p><strong>Creating a Django Project:</strong></p><pre><code>django-admin startproject myproject<br>cd myproject<br>python manage.py runserver</code></pre><h3>Django Models and Views</h3><p><strong>Creating a Model:</strong></p><pre><code>from django.db import models<br>class Book(models.Model):<br>    title = models.CharField(max_length=200)<br>    author = models.CharField(max_length=100)</code></pre><p><strong>Creating a View:</strong></p><pre><code>from django.shortcuts import render<br>from .models import Book<br>def book_list(request):<br>    books = Book.objects.all()<br>    return render(request, 'books.html', {'books': books})</code></pre><h2>When to Use Flask vs Django</h2><ul><li><strong>Use Flask</strong> for small to medium-sized projects that require flexibility.</li><li><strong>Use Django</strong> for large applications that need built-in features like authentication and ORM.</li></ul><h2>Conclusion</h2><p>Both Flask and Django are excellent choices for web development.<br> The right framework depends on the project requirements and the level of flexibility needed.</p>"
+                }
+            },
+            {
+                "title": "Machine Learning with Python",
+                "details": "Explore ML concepts and build machine learning models using Python libraries.",
+                "data": {
+                    "type": "video",
+                    "content": "https://www.youtube.com/embed/gmvvaobm7eQ?si=1ZbXvE6fedq12T0v"
+                }
+            },
+            {
+                "title": "Automation with Python",
+                "details": "Learn automation techniques using Python for scripting and task management.",
+                "data": {
+                    "type": "image",
+                    "content": "https://abconsolidate.com/wp-content/uploads/2024/10/Software-Testing5-1.png"
+                }
+            },
+            {
+                "title": "Final Project",
+                "details": "Apply your Python knowledge in a real-world project, including web applications and data science.",
+                "data": {
+                    "type": "pdf",
+                    "content": "https://drive.google.com/uc?export=download&id=1ttqtICtWy5c2iF-kerIMp8njeN4jjyZ2"
+                }
             }
-      },
-      {
-        "title": "Final Project",
-        "details": "Implement a real-world Python-based project.",
-        "data": {
-                "type": "text",
-                "content": "Java is a versatile programming language used in various applications."
+        ],
+        "Quiz": [
+            {
+                "question": "What is Python primarily used for?",
+                "options": [
+                    "Web Development",
+                    "Data Science",
+                    "Automation",
+                    "All of the above"
+                ],
+                "answer": "All of the above"
             }
-      }
-    ]
-  },
-  {
-    "company": "Apple",
-    "title": "R Language",
-    "date": "2023-10-20",
-    "type": "Internship",
-    "level": "Junior",
-    "color": "#ffffff",
-    "duration": "6 months",
-    "image": "rLangImage",
-    "logo": "/assets/apple-logo.png",
-    "description": "Learn R programming for statistical computing and data visualization.",
-    "skillsGained": [
-        "Data Manipulation",
-        "Statistical Analysis",
-        "Machine Learning",
-        "Data Visualization"
-    ],
-    "pathway": [
-        {
-            "title": "Introduction to R",
-            "details": "Learn the basics of R programming, including syntax, variables, and data types."
-        },
-        {
-            "title": "Data Wrangling with R",
-            "details": "Explore data manipulation techniques using dplyr and tidyr."
-        },
-        {
-            "title": "Statistical Analysis with R",
-            "details": "Perform statistical tests, hypothesis testing, and regression analysis."
-        },
-        {
-            "title": "Data Visualization",
-            "details": "Create insightful visualizations using ggplot2 and base R plotting functions."
-        },
-        {
-            "title": "Machine Learning with R",
-            "details": "Build predictive models using popular machine learning packages like caret."
-        },
-        {
-            "title": "Time Series Analysis",
-            "details": "Analyze time-series data and forecasting models using R."
-        },
-        {
-            "title": "Web Scraping with R",
-            "details": "Extract and process data from websites using rvest."
-        },
-        {
-            "title": "R for Big Data",
-            "details": "Work with large datasets using data.table and SparkR."
-        },
-        {
-            "title": "Shiny Web Applications",
-            "details": "Build interactive web apps using Shiny in R."
-        },
-        {
-            "title": "Project Work",
-            "details": "Apply R skills in real-world projects related to data analysis and visualization."
-        }
-    ]
-},
-{
-  "company": "Google",
-  "title": "SQL",
-  "date": "2023-11-15",
-  "type": "Full-time",
-  "level": "Mid",
-  "color": "#ffffff",
-  "duration": "1 year",
-  "image": "sqlImage",
-  "logo": "/assets/google-logo.png",
-  "description": "Master SQL for database management and data analytics.",
-  "skillsGained": [
-      "SQL Basics",
-      "Database Management",
-      "Query Optimization",
-      "Data Analysis",
-      "Stored Procedures",
-      "Data Warehousing",
-      "Performance Tuning",
-      "ETL Processes"
-  ],
-  "pathway": [
-      {
-          "title": "SQL Fundamentals",
-          "details": "Learn basic SQL queries, data types, and database operations."
-      },
-      {
-          "title": "Working with Tables and Joins",
-          "details": "Understand how to create, modify, and join tables using SQL."
-      },
-      {
-          "title": "Aggregate Functions and Subqueries",
-          "details": "Use aggregate functions and nested queries to extract insights from data."
-      },
-      {
-          "title": "Advanced SQL Queries",
-          "details": "Write complex queries using window functions, CTEs, and recursive queries."
-      },
-      {
-          "title": "Database Optimization",
-          "details": "Implement indexing, normalization, and performance tuning techniques."
-      },
-      {
-          "title": "Stored Procedures and Triggers",
-          "details": "Learn how to automate database tasks using stored procedures and triggers."
-      },
-      {
-          "title": "Data Warehousing and ETL",
-          "details": "Understand data warehousing concepts and implement ETL processes."
-      },
-      {
-          "title": "Real-world Applications",
-          "details": "Work on practical database projects, including data analytics and reporting."
-      }
-  ]
-},
-{
-  "company": "Meta",
-  "title": "React",
-  "date": "2023-12-01",
-  "type": "Full-time",
-  "level": "Senior",
-  "color": "#ffffff",
-  "duration": "2 years",
-  "image": "reactImage",
-  "logo": "src/assets/coursepage/meta-logo.png",
-  "description": "Learn React for building dynamic and modern web applications.",
-  "skillsGained": [
-      "React Basics",
-      "Component Lifecycle",
-      "State Management",
-      "React Hooks",
-      "Routing with React Router",
-      "Context API",
-      "Redux for State Management",
-      "Performance Optimization"
-  ],
-  "pathway": [
-      {
-          "title": "React Fundamentals",
-          "details": "Learn the basics of React, JSX, components, and virtual DOM."
-      },
-      {
-          "title": "State & Props",
-          "details": "Understand how state and props work in React and how to manage component data."
-      },
-      {
-          "title": "Component Lifecycle & Hooks",
-          "details": "Explore component lifecycle methods and React Hooks for functional components."
-      },
-      {
-          "title": "Event Handling in React",
-          "details": "Learn how to handle user interactions with event listeners in React."
-      },
-      {
-          "title": "React Router & Navigation",
-          "details": "Implement navigation using React Router and create multi-page applications."
-      },
-      {
-          "title": "React with APIs",
-          "details": "Learn how to fetch and manage data from external APIs using Axios and Fetch API."
-      },
-      {
-          "title": "State Management with Context API & Redux",
-          "details": "Explore advanced state management techniques using Context API and Redux."
-      },
-      {
-          "title": "Performance Optimization",
-          "details": "Optimize React applications using memoization, lazy loading, and code splitting."
-      },
-      {
-          "title": "Testing in React",
-          "details": "Learn how to write unit and integration tests using Jest and React Testing Library."
-      },
-      {
-          "title": "Building a Full-stack App",
-          "details": "Combine React with a backend (Node.js, Firebase, or Django) to build a full-stack application."
-      },
-      {
-          "title": "Project Work",
-          "details": "Apply your React knowledge by building real-world projects."
-      }
-  ]
-},
-{
-  "company": "Google",
-  "title": "Android",
-  "date": "2023-11-15",
-  "type": "Full-time",
-  "level": "Mid",
-  "color": "#ffffff",
-  "duration": "1 year",
-  "image": "androidImage",
-  "logo": "/assets/google-logo.png",
-  "description": "Develop Android applications using Java and Kotlin.",
-  "skillsGained": [
-      "Android Basics",
-      "UI/UX Design",
-      "Database Integration",
-      "App Deployment",
-      "Material Design",
-      "Firebase Integration",
-      "Kotlin for Android",
-      "Testing & Debugging"
-  ],
-  "pathway": [
-      {
-          "title": "Android Studio Setup",
-          "details": "Set up Android Studio, understand project structure, and run a simple app."
-      },
-      {
-          "title": "UI/UX Components",
-          "details": "Learn about layouts, views, RecyclerView, and Material Design principles."
-      },
-      {
-          "title": "Activity & Fragment Lifecycle",
-          "details": "Understand the lifecycle of activities and fragments in Android applications."
-      },
-      {
-          "title": "Working with Intents & Navigation",
-          "details": "Implement explicit and implicit intents for seamless app navigation."
-      },
-      {
-          "title": "Database & APIs",
-          "details": "Connect apps to local (SQLite, Room) and remote (Firebase, REST APIs) databases."
-      },
-      {
-          "title": "Kotlin for Android",
-          "details": "Learn the essentials of Kotlin for modern Android development."
-      },
-      {
-          "title": "Background Tasks & Notifications",
-          "details": "Handle background processing using WorkManager, services, and notifications."
-      },
-      {
-          "title": "Testing & Debugging",
-          "details": "Implement unit and UI testing using JUnit and Espresso."
-      },
-      {
-          "title": "App Deployment & Play Store Publishing",
-          "details": "Prepare apps for release and publish them on Google Play Store."
-      },
-      {
-          "title": "Final App Project",
-          "details": "Apply all learned concepts to build and deploy a complete Android application."
-      }
-  ]
-},
-{
-  "company": "IBM",
-  "title": "Machine Learning",
-  "date": "2023-10-20",
-  "type": "Internship",
-  "level": "Junior",
-  "color": "#ffffff",
-  "duration": "6 months",
-  "image": "mlImage",
-  "logo": "/assets/ibm-logo.png",
-  "description": "Explore machine learning techniques and implement models in Python.",
-  "skillsGained": [
-      "Supervised Learning",
-      "Unsupervised Learning",
-      "Neural Networks",
-      "Model Evaluation",
-      "Feature Engineering",
-      "Deep Learning Basics",
-      "Python for ML",
-      "Data Preprocessing"
-  ],
-  "pathway": [
-      {
-          "title": "ML Basics",
-          "details": "Understand the fundamentals of machine learning, types, and real-world applications."
-      },
-      {
-          "title": "Data Preprocessing & Feature Engineering",
-          "details": "Learn how to clean, preprocess, and engineer features for better model performance."
-      },
-      {
-          "title": "Supervised Learning Algorithms",
-          "details": "Explore regression and classification algorithms like Linear Regression and Decision Trees."
-      },
-      {
-          "title": "Unsupervised Learning Techniques",
-          "details": "Learn about clustering and dimensionality reduction techniques like K-Means and PCA."
-      },
-      {
-          "title": "Neural Networks & Deep Learning",
-          "details": "Understand the basics of neural networks, activation functions, and backpropagation."
-      },
-      {
-          "title": "Model Training & Evaluation",
-          "details": "Train machine learning models and evaluate their performance using metrics like accuracy and F1-score."
-      },
-      {
-          "title": "Hyperparameter Tuning & Optimization",
-          "details": "Learn how to improve model performance using Grid Search and Random Search."
-      },
-      {
-          "title": "ML Deployment & Model Serving",
-          "details": "Deploy trained models using Flask, FastAPI, or cloud-based services."
-      },
-      {
-          "title": "ML Project",
-          "details": "Apply all the learned concepts to build and evaluate a real-world machine learning project."
-      }
-  ]
-},
-  {
-      "company": "Google",
-      "title": "Ethical Hacking",
-      "date": "2023-11-15",
-      "type": "Full-time",
-      "level": "Mid",
-      "color": "#ffffff",
-      "duration": "1 year",
-      "image": "ethicalHackingImage",
-      "logo": "/assets/ethical-hacking-logo.png",
-      "description": "Learn ethical hacking techniques to secure networks and applications.",
-      "skillsGained": [
-          "Penetration Testing",
-          "Network Security",
-          "Cryptography",
-          "Bug Hunting",
-          "Web Application Security",
-          "Reverse Engineering",
-          "Malware Analysis",
-          "Wireless Network Security"
-      ],
-      "pathway": [
-          {
-              "title": "Introduction to Ethical Hacking",
-              "details": "Understand the fundamentals of cybersecurity, ethical hacking principles, and legal aspects."
-          },
-          {
-              "title": "Network Security Basics",
-              "details": "Learn about firewalls, intrusion detection systems, and network defense strategies."
-          },
-          {
-              "title": "Web Application Security",
-              "details": "Explore OWASP Top 10 vulnerabilities and secure web applications from attacks."
-          },
-          {
-              "title": "Advanced Penetration Testing",
-              "details": "Perform advanced penetration testing techniques on different systems and networks."
-          },
-          {
-              "title": "Cryptography & Secure Communication",
-              "details": "Learn encryption techniques, secure protocols, and cryptographic algorithms."
-          },
-          {
-              "title": "Wireless Network Security",
-              "details": "Secure Wi-Fi networks against attacks like packet sniffing and rogue access points."
-          },
-          {
-              "title": "Malware Analysis & Reverse Engineering",
-              "details": "Analyze malware behavior and reverse-engineer malicious code."
-          },
-          {
-              "title": "Final Security Audit",
-              "details": "Conduct a full-scale security assessment and present a detailed audit report."
-          }
-      ]
-  },
-  {
-      "company": "Coursera",
-      "title": "Generative AI Fundamentals",
-      "date": "2023-12-01",
-      "type": "Full-time",
-      "level": "Senior",
-      "color": "#ffffff",
-      "duration": "2 years",
-      "image": "generativeAIImage",
-      "logo": "/assets/coursera-logo.png",
-      "description": "Learn the fundamentals of Generative AI and its applications in real-world scenarios.",
-      "skillsGained": [
-          "AI Fundamentals",
-          "Deep Learning",
-          "Neural Networks",
-          "AI Model Deployment",
-          "Transformer Models",
-          "GANs & VAEs",
-          "Ethics in AI",
-          "AI Application Development"
-      ],
-      "pathway": [
-          {
-              "title": "AI Basics",
-              "details": "Introduction to artificial intelligence, machine learning, and deep learning concepts."
-          },
-          {
-              "title": "Deep Learning Concepts",
-              "details": "Learn about neural networks, backpropagation, and optimization techniques."
-          },
-          {
-              "title": "Transformer Models & LLMs",
-              "details": "Understand Transformer-based architectures like GPT and BERT."
-          },
-          {
-              "title": "Generative Adversarial Networks (GANs)",
-              "details": "Explore how GANs generate new data using adversarial training."
-          },
-          {
-              "title": "Variational Autoencoders (VAEs)",
-              "details": "Learn how VAEs generate new content by encoding and decoding data distributions."
-          },
-          {
-              "title": "Ethics & Bias in AI",
-              "details": "Study the ethical considerations and biases in generative AI applications."
-          },
-          {
-              "title": "AI Model Deployment",
-              "details": "Deploy generative AI models using cloud platforms and APIs."
-          },
-          {
-              "title": "Project Work",
-              "details": "Apply all learned concepts to build and deploy a generative AI-based project."
-          }
-      ]
-  },
+        ]
+    },
+    {
+        "company": "Apple",
+        "title": "R Language",
+        "date": "2023-10-20",
+        "type": "Internship",
+        "level": "Junior",
+        "color": "#ffffff",
+        "duration": "6 months",
+        "image": "rLangImage",
+        "logo": "/assets/apple-logo.png",
+        "description": "Learn R programming for statistical computing and data visualization.",
+        "skillsGained": [
+            "Data Manipulation",
+            "Statistical Analysis",
+            "Machine Learning",
+            "Data Visualization"
+        ],
+        "pathway": [
+            {
+                "title": "Introduction to R",
+                "details": "Learn the basics of R programming, including syntax, variables, and data types.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>Introduction to R</h2><p>R is a powerful programming language widely used in statistical computing, data science, and visualization.<br> It is an open-source language that provides an extensive set of libraries for data analysis.</p><h2>Key Features of R</h2><ul><li>Open-source and widely supported</li><li>Excellent for statistical analysis</li><li>Rich visualization capabilities</li><li>Extensive package ecosystem</li></ul><h2>Basic Syntax in R</h2><pre><code># Assigning a value to a variable<br>x <- 10<br>y <- 5<br>sum <- x + y<br>print(sum)  # Output: 15</code></pre>"
+                }
+            },
+            {
+                "title": "Data Wrangling with R",
+                "details": "Explore data manipulation techniques using dplyr and tidyr.",
+                "data": {
+                    "type": "pdf",
+                    "content": "https://drive.google.com/uc?export=download&id=10iyU0LzX6D7IuPuHCI337qkA-32-vlxQ"
+                }
+            },
+            {
+                "title": "Statistical Analysis with R",
+                "details": "Perform statistical tests, hypothesis testing, and regression analysis.",
+                "data": {
+                    "type": "video",
+                    "content": "https://www.youtube.com/embed/ANMuuq502rE?si=Bq1uXUJpAHDwUVy9"
+                }
+            },
+            {
+                "title": "Data Visualization",
+                "details": "Create insightful visualizations using ggplot2 and base R plotting functions.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>Data Visualization with R</h2><p>Data visualization is crucial for understanding patterns and trends in data.<br> The <strong>ggplot2</strong> package provides powerful tools to create stunning visualizations.</p><h2>Basic Plotting in R</h2><pre><code># Basic scatter plot<br>plot(mtcars$mpg, mtcars$hp, main='MPG vs Horsepower', xlab='MPG', ylab='Horsepower')</code></pre><h2>Using ggplot2</h2><pre><code>library(ggplot2)<br>ggplot(mtcars, aes(x=mpg, y=hp)) + geom_point() + theme_minimal()</code></pre>"
+                }
+            },
+            {
+                "title": "Machine Learning with R",
+                "details": "Build predictive models using popular machine learning packages like caret.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>Machine Learning in R</h2><p>Machine learning in R is facilitated by various packages like <strong>caret</strong>, <strong>randomForest</strong>, and <strong>xgboost</strong>.</p><h2>Example: Linear Regression</h2><pre><code>library(caret)<br>model <- train(mpg ~ ., data=mtcars, method='lm')<br>summary(model)</code></pre><h2>Example: Random Forest</h2><pre><code>library(randomForest)<br>rf_model <- randomForest(mpg ~ ., data=mtcars, ntree=100)<br>print(rf_model)</code></pre>"
+                }
+            },
+            {
+                "title": "Time Series Analysis",
+                "details": "Analyze time-series data and forecasting models using R.",
+                "data": {
+                    "type": "video",
+                    "content": "https://www.youtube.com/embed/wNB8AgZPFLU?si=lTUEPyYzKBdbWI-d"
+                }
+            },
+            {
+                "title": "Web Scraping with R",
+                "details": "Extract and process data from websites using rvest.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>Web Scraping in R</h2><p>Web scraping in R is done using the <strong>rvest</strong> package, which allows extracting data from HTML pages efficiently.</p><h2>Example of Web Scraping</h2><pre><code>library(rvest)<br>url <- 'https://example.com'<br>page <- read_html(url)<br>titles <- page %>% html_nodes('h2') %>% html_text()<br>print(titles)</code></pre>"
+                }
+            },
+            {
+                "title": "R for Big Data",
+                "details": "Work with large datasets using data.table and SparkR.",
+                "data": {
+                    "type": "image",
+                    "content": "https://okanbulut.github.io/bigdata/images/r_and_others.png"
+                }
+            },
+            {
+                "title": "Shiny Web Applications",
+                "details": "Build interactive web apps using Shiny in R.",
+                "data": {
+                    "type": "pdf",
+                    "content": "https://drive.google.com/uc?export=download&id=10iyU0LzX6D7IuPuHCI337qkA-32-vlxQ"
+                }
+            },
+            {
+                "title": "Project Work",
+                "details": "Apply R skills in real-world projects related to data analysis and visualization.",
+                "data": {
+                    "type": "pdf",
+                    "content": "https://drive.google.com/uc?export=download&id=1YgkK5gSe5BrIivqcqO2bZ94CPEX1R7RG"
+                }
+            }
+        ]
+    },
+    {
+        "company": "Google",
+        "title": "SQL",
+        "date": "2023-11-15",
+        "type": "Full-time",
+        "level": "Mid",
+        "color": "#ffffff",
+        "duration": "1 month",
+        "image": "sqlImage",
+        "logo": "/assets/google-logo.png",
+        "description": "Master SQL for database management and data analytics.",
+        "skillsGained": [
+            "SQL Basics",
+            "Database Management",
+            "Query Optimization",
+            "Data Analysis",
+            "Stored Procedures",
+            "Data Warehousing",
+            "Performance Tuning",
+            "ETL Processes"
+        ],
+        "pathway": [
+            {
+                "title": "SQL Fundamentals",
+                "details": "Learn basic SQL queries, data types, and database operations.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>SQL Basics</h2><p>SQL (Structured Query Language) is a powerful tool for managing and manipulating relational databases. It allows users to store, retrieve, update, and delete data efficiently. SQL is widely used in web applications, data analysis, and enterprise systems.</p><p>Some key SQL commands include:</p><ul><li><strong>SELECT:</strong> Retrieve data from one or more tables.</li><li><strong>INSERT:</strong> Add new data to a table.</li><li><strong>UPDATE:</strong> Modify existing records in a table.</li><li><strong>DELETE:</strong> Remove records from a table.</li><li><strong>CREATE TABLE:</strong> Define a new table structure.</li><li><strong>ALTER TABLE:</strong> Modify the structure of an existing table.</li></ul><p>Mastering these basic SQL commands is essential for working with databases effectively.</p>"
+                }
+            },
+            {
+                "title": "Working with Tables and Joins",
+                "details": "Understand how to create, modify, and join tables using SQL.",
+                "data": {
+                    "type": "video",
+                    "content": "https://www.youtube.com/embed/zYH-e6tUYbw?si=WaZK0UzK2p1m1k-x"
+                }
+            },
+            {
+                "title": "Aggregate Functions and Subqueries",
+                "details": "Use aggregate functions and nested queries to extract insights from data.",
+                "data": {
+                    "type": "pdf",
+                    "content": "https://drive.google.com/uc?export=download&id=SQLAggFuncs456"
+                }
+            },
+            {
+                "title": "Advanced SQL Queries",
+                "details": "Write complex queries using window functions, CTEs, and recursive queries.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>Advanced SQL Queries</h2><p>Beyond basic queries, SQL provides powerful features to analyze and manipulate data efficiently. Some advanced techniques include:</p><ul><li><strong>Common Table Expressions (CTEs):</strong> Temporary result sets that can be referenced within a query.</li><li><strong>Recursive Queries:</strong> Queries that reference themselves to process hierarchical data.</li><li><strong>Window Functions:</strong> Functions that perform calculations across a set of table rows related to the current row.</li><li><strong>Indexing:</strong> Used to improve query performance by reducing data retrieval time.</li></ul><p>For example, a CTE can simplify complex queries:</p><pre><code>WITH EmployeeHierarchy AS (SELECT id, name, manager_id FROM employees) SELECT * FROM EmployeeHierarchy;</code></pre><p>Mastering these techniques helps in building efficient and scalable SQL applications.</p>"
+                }
+            },
+            {
+                "title": "Database Optimization",
+                "details": "Implement indexing, normalization, and performance tuning techniques.",
+                "data": {
+                    "type": "video",
+                    "content": "https://www.youtube.com/embed/TyHUU05XKMY?si=nh-bcA9wmAwd8Yz-"
+                }
+            },
+            {
+                "title": "Stored Procedures and Triggers",
+                "details": "Learn how to automate database tasks using stored procedures and triggers.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>Stored Procedures</h2><p>Stored procedures are precompiled SQL statements stored in the database that can be executed repeatedly. They help improve performance and maintainability.</p><p>For example, a stored procedure to retrieve employee details might look like this:</p><pre><code>CREATE PROCEDURE GetEmployeeDetails @EmpID INT AS BEGIN SELECT * FROM Employees WHERE EmployeeID = @EmpID; END;</code></pre><h2>Triggers</h2><p>Triggers are special procedures that execute automatically in response to specific database events such as INSERT, UPDATE, or DELETE.</p><p>For example, a trigger to log deleted records:</p><pre><code>CREATE TRIGGER LogDeletions ON Employees AFTER DELETE AS BEGIN INSERT INTO DeletedRecords SELECT * FROM deleted; END;</code></pre><p>Using stored procedures and triggers enhances data integrity and automation in SQL applications.</p>"
+                }
+            },
+            {
+                "title": "Data Warehousing and ETL",
+                "details": "Understand data warehousing concepts and implement ETL processes.",
+                "data": {
+                    "type": "pdf",
+                    "content": "https://drive.google.com/uc?export=download&id=SQL_ETL101"
+                }
+            },
+            {
+                "title": "Real-world Applications",
+                "details": "Work on practical database projects, including data analytics and reporting.",
+                "data": {
+                    "type": "text",
+                  "content": "<h2>SQL in Practice</h2><p>SQL is used in real-world applications for data analytics, reporting, and application development. Some common use cases include:</p><ul><li><strong>Business Intelligence:</strong> Extracting insights from large datasets using complex queries.</li><li><strong>Data Warehousing:</strong> Storing and managing structured data efficiently.</li><li><strong>Reporting:</strong> Generating automated reports for business decision-making.</li><li><strong>Web Applications:</strong> Handling user authentication, transactions, and data storage.</li></ul><p>For example, an SQL query for generating sales reports:</p><pre><code>SELECT region, SUM(sales) AS total_sales FROM sales_data GROUP BY region ORDER BY total_sales DESC;</code></pre><p>Applying SQL in real-world scenarios helps bridge the gap between theory and practical implementation.</p>"
+  }
+            }
+        ]
+    },
+    {
+        "company": "Meta",
+        "title": "React",
+        "date": "2023-12-01",
+        "type": "Full-time",
+        "level": "Senior",
+        "color": "#ffffff",
+        "duration": "2 years",
+        "image": "reactImage",
+        "logo": "src/assets/coursepage/meta-logo.png",
+        "description": "Learn React for building dynamic and modern web applications.",
+        "skillsGained": [
+            "React Basics",
+            "Component Lifecycle",
+            "State Management",
+            "React Hooks",
+            "Routing with React Router",
+            "Context API",
+            "Redux for State Management",
+            "Performance Optimization"
+        ],
+        "pathway": [
+            {
+                "title": "React Fundamentals",
+                "details": "Learn the basics of React, JSX, components, and virtual DOM.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>Introduction to React</h2><p>React is a JavaScript library for building user interfaces.</p>"
+                }
+            },
+            {
+                "title": "State & Props",
+                "details": "Understand how state and props work in React and how to manage component data.",
+                "data": {
+                    "type": "video",
+                    "content": "https://www.youtube.com/embed/ReactState123"
+                }
+            },
+            {
+                "title": "Component Lifecycle & Hooks",
+                "details": "Explore component lifecycle methods and React Hooks for functional components.",
+                "data": {
+                    "type": "pdf",
+                    "content": "https://drive.google.com/uc?export=download&id=ReactHooks456"
+                }
+            },
+            {
+                "title": "Event Handling in React",
+                "details": "Learn how to handle user interactions with event listeners in React.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>React Events</h2><p>Handling events in React is different from regular HTML events.</p>"
+                }
+            },
+            {
+                "title": "React Router & Navigation",
+                "details": "Implement navigation using React Router and create multi-page applications.",
+                "data": {
+                    "type": "video",
+                    "content": "https://www.youtube.com/embed/ReactRouter789"
+                }
+            },
+            {
+                "title": "React with APIs",
+                "details": "Learn how to fetch and manage data from external APIs using Axios and Fetch API.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>Fetching Data in React</h2><p>Use Fetch API or Axios to get data from an API.</p>"
+                }
+            },
+            {
+                "title": "State Management with Context API & Redux",
+                "details": "Explore advanced state management techniques using Context API and Redux.",
+                "data": {
+                    "type": "pdf",
+                    "content": "https://drive.google.com/uc?export=download&id=ReactRedux101"
+                }
+            },
+            {
+                "title": "Performance Optimization",
+                "details": "Optimize React applications using memoization, lazy loading, and code splitting.",
+                "data": {
+                    "type": "video",
+                    "content": "https://www.youtube.com/embed/ReactPerfOptimize"
+                }
+            },
+            {
+                "title": "Testing in React",
+                "details": "Learn how to write unit and integration tests using Jest and React Testing Library.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>React Testing</h2><p>Use Jest and React Testing Library to test your React apps.</p>"
+                }
+            },
+            {
+                "title": "Building a Full-stack App",
+                "details": "Combine React with a backend (Node.js, Firebase, or Django) to build a full-stack application.",
+                "data": {
+                    "type": "video",
+                    "content": "https://www.youtube.com/embed/FullStackReactApp"
+                }
+            },
+            {
+                "title": "Project Work",
+                "details": "Apply your React knowledge by building real-world projects.",
+                "data": {
+                    "type": "text",
+                    "content": "<h2>React Project</h2><p>Use React to build a complete web application.</p>"
+                }
+            }
+        ]
+    },
+    {
+        "company": "Google",
+        "title": "Android",
+        "date": "2023-11-15",
+        "type": "Full-time",
+        "level": "Mid",
+        "color": "#ffffff",
+        "duration": "1 year",
+        "image": "androidImage",
+        "logo": "/assets/google-logo.png",
+        "description": "Develop Android applications using Java and Kotlin.",
+        "skillsGained": [
+            "Android Basics",
+            "UI/UX Design",
+            "Database Integration",
+            "App Deployment",
+            "Material Design",
+            "Firebase Integration",
+            "Kotlin for Android",
+            "Testing & Debugging"
+        ],
+        "pathway": [
+            {
+                "title": "Android Studio Setup",
+                "details": "Set up Android Studio, understand project structure, and run a simple app."
+            },
+            {
+                "title": "UI/UX Components",
+                "details": "Learn about layouts, views, RecyclerView, and Material Design principles."
+            },
+            {
+                "title": "Activity & Fragment Lifecycle",
+                "details": "Understand the lifecycle of activities and fragments in Android applications."
+            },
+            {
+                "title": "Working with Intents & Navigation",
+                "details": "Implement explicit and implicit intents for seamless app navigation."
+            },
+            {
+                "title": "Database & APIs",
+                "details": "Connect apps to local (SQLite, Room) and remote (Firebase, REST APIs) databases."
+            },
+            {
+                "title": "Kotlin for Android",
+                "details": "Learn the essentials of Kotlin for modern Android development."
+            },
+            {
+                "title": "Background Tasks & Notifications",
+                "details": "Handle background processing using WorkManager, services, and notifications."
+            },
+            {
+                "title": "Testing & Debugging",
+                "details": "Implement unit and UI testing using JUnit and Espresso."
+            },
+            {
+                "title": "App Deployment & Play Store Publishing",
+                "details": "Prepare apps for release and publish them on Google Play Store."
+            },
+            {
+                "title": "Final App Project",
+                "details": "Apply all learned concepts to build and deploy a complete Android application."
+            }
+        ]
+    },
+    {
+        "company": "IBM",
+        "title": "Machine Learning",
+        "date": "2023-10-20",
+        "type": "Internship",
+        "level": "Junior",
+        "color": "#ffffff",
+        "duration": "6 months",
+        "image": "mlImage",
+        "logo": "/assets/ibm-logo.png",
+        "description": "Explore machine learning techniques and implement models in Python.",
+        "skillsGained": [
+            "Supervised Learning",
+            "Unsupervised Learning",
+            "Neural Networks",
+            "Model Evaluation",
+            "Feature Engineering",
+            "Deep Learning Basics",
+            "Python for ML",
+            "Data Preprocessing"
+        ],
+        "pathway": [
+            {
+                "title": "ML Basics",
+                "details": "Understand the fundamentals of machine learning, types, and real-world applications."
+            },
+            {
+                "title": "Data Preprocessing & Feature Engineering",
+                "details": "Learn how to clean, preprocess, and engineer features for better model performance."
+            },
+            {
+                "title": "Supervised Learning Algorithms",
+                "details": "Explore regression and classification algorithms like Linear Regression and Decision Trees."
+            },
+            {
+                "title": "Unsupervised Learning Techniques",
+                "details": "Learn about clustering and dimensionality reduction techniques like K-Means and PCA."
+            },
+            {
+                "title": "Neural Networks & Deep Learning",
+                "details": "Understand the basics of neural networks, activation functions, and backpropagation."
+            },
+            {
+                "title": "Model Training & Evaluation",
+                "details": "Train machine learning models and evaluate their performance using metrics like accuracy and F1-score."
+            },
+            {
+                "title": "Hyperparameter Tuning & Optimization",
+                "details": "Learn how to improve model performance using Grid Search and Random Search."
+            },
+            {
+                "title": "ML Deployment & Model Serving",
+                "details": "Deploy trained models using Flask, FastAPI, or cloud-based services."
+            },
+            {
+                "title": "ML Project",
+                "details": "Apply all the learned concepts to build and evaluate a real-world machine learning project."
+            }
+        ]
+    },
+    {
+        "company": "Google",
+        "title": "Ethical Hacking",
+        "date": "2023-11-15",
+        "type": "Full-time",
+        "level": "Mid",
+        "color": "#ffffff",
+        "duration": "1 year",
+        "image": "ethicalHackingImage",
+        "logo": "/assets/ethical-hacking-logo.png",
+        "description": "Learn ethical hacking techniques to secure networks and applications.",
+        "skillsGained": [
+            "Penetration Testing",
+            "Network Security",
+            "Cryptography",
+            "Bug Hunting",
+            "Web Application Security",
+            "Reverse Engineering",
+            "Malware Analysis",
+            "Wireless Network Security"
+        ],
+        "pathway": [
+            {
+                "title": "Introduction to Ethical Hacking",
+                "details": "Understand the fundamentals of cybersecurity, ethical hacking principles, and legal aspects."
+            },
+            {
+                "title": "Network Security Basics",
+                "details": "Learn about firewalls, intrusion detection systems, and network defense strategies."
+            },
+            {
+                "title": "Web Application Security",
+                "details": "Explore OWASP Top 10 vulnerabilities and secure web applications from attacks."
+            },
+            {
+                "title": "Advanced Penetration Testing",
+                "details": "Perform advanced penetration testing techniques on different systems and networks."
+            },
+            {
+                "title": "Cryptography & Secure Communication",
+                "details": "Learn encryption techniques, secure protocols, and cryptographic algorithms."
+            },
+            {
+                "title": "Wireless Network Security",
+                "details": "Secure Wi-Fi networks against attacks like packet sniffing and rogue access points."
+            },
+            {
+                "title": "Malware Analysis & Reverse Engineering",
+                "details": "Analyze malware behavior and reverse-engineer malicious code."
+            },
+            {
+                "title": "Final Security Audit",
+                "details": "Conduct a full-scale security assessment and present a detailed audit report."
+            }
+        ]
+    },
+    {
+        "company": "Coursera",
+        "title": "Generative AI Fundamentals",
+        "date": "2023-12-01",
+        "type": "Full-time",
+        "level": "Senior",
+        "color": "#ffffff",
+        "duration": "2 years",
+        "image": "generativeAIImage",
+        "logo": "/assets/coursera-logo.png",
+        "description": "Learn the fundamentals of Generative AI and its applications in real-world scenarios.",
+        "skillsGained": [
+            "AI Fundamentals",
+            "Deep Learning",
+            "Neural Networks",
+            "AI Model Deployment",
+            "Transformer Models",
+            "GANs & VAEs",
+            "Ethics in AI",
+            "AI Application Development"
+        ],
+        "pathway": [
+            {
+                "title": "AI Basics",
+                "details": "Introduction to artificial intelligence, machine learning, and deep learning concepts."
+            },
+            {
+                "title": "Deep Learning Concepts",
+                "details": "Learn about neural networks, backpropagation, and optimization techniques."
+            },
+            {
+                "title": "Transformer Models & LLMs",
+                "details": "Understand Transformer-based architectures like GPT and BERT."
+            },
+            {
+                "title": "Generative Adversarial Networks (GANs)",
+                "details": "Explore how GANs generate new data using adversarial training."
+            },
+            {
+                "title": "Variational Autoencoders (VAEs)",
+                "details": "Learn how VAEs generate new content by encoding and decoding data distributions."
+            },
+            {
+                "title": "Ethics & Bias in AI",
+                "details": "Study the ethical considerations and biases in generative AI applications."
+            },
+            {
+                "title": "AI Model Deployment",
+                "details": "Deploy generative AI models using cloud platforms and APIs."
+            },
+            {
+                "title": "Project Work",
+                "details": "Apply all learned concepts to build and deploy a generative AI-based project."
+            }
+        ]
+    },
     {
         "company": "Udemy",
         "title": "Cybersecurity for Everyone",

@@ -1,0 +1,29 @@
+{
+    "Java": [
+        {
+            "question": "What is Java primarily used for?",
+            "options": ["Web Development", "Data Science", "Game Development", "All of the above"],
+            "answer": "All of the above"
+        },
+        {
+            "question": "Which of the following is a Java keyword?",
+            "options": ["public", "function", "define", "None of the above"],
+            "answer": "public"
+        },
+        {
+            "question": "What is the default value of an uninitialized int variable in Java?",
+            "options": ["null", "0", "undefined", "NaN"],
+            "answer": "0"
+        },
+        {
+            "question": "Which Java feature allows running multiple threads simultaneously?",
+            "options": ["Abstraction", "Encapsulation", "Multithreading", "Polymorphism"],
+            "answer": "Multithreading"
+        },
+        {
+            "question": "What does JVM stand for?",
+            "options": ["Java Virtual Machine", "Java Variable Memory", "Java Vendor Module", "None of the above"],
+            "answer": "Java Virtual Machine"
+        }
+    ]
+}
