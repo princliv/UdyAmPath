@@ -50,20 +50,20 @@ const CourseDetails = () => {
             {/* Start Learning Button */}
   {course.pathway?.length > 0 && (
     <button
-      onClick={() => navigate("/module", { state: { module: course.pathway[0] } })}
-      style={{
-        padding: "10px 20px",
-        fontSize: "16px",
-        backgroundColor: "#007bff",
-        color: "#fff",
-        border: "none",
-        borderRadius: "5px",
-        cursor: "pointer",
-        marginTop: "10px",
-      }}
-    >
-      Start Learning
-    </button>
+    onClick={() => navigate("/module", { state: { module: course } })} // Pass the entire course object
+    style={{
+      padding: "10px 20px",
+      fontSize: "16px",
+      backgroundColor: "#007bff",
+      color: "#fff",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer",
+      marginTop: "10px",
+    }}
+  >
+    Start Learning
+  </button>
   )}
           </div>
         </div>
