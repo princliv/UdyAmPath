@@ -108,13 +108,13 @@ function AppContent() {
             <img src={backgroud} alt="Logo" style={logoStyle} />
           </Link>
           <nav style={navStyle}>
-            <NavLink to="/coursepage" style={linkStyle} activeStyle={{ color: "#007bff" }}>
+            <NavLink to="/coursepage" style={linkStyle} activestyle={{ color: "#007bff" }}>
               Courses
             </NavLink>
-            <NavLink to="/jobpage" style={linkStyle} activeStyle={{ color: "#007bff" }}>
+            <NavLink to="/jobpage" style={linkStyle} activestyle={{ color: "#007bff" }}>
               Jobs/Internship
             </NavLink>
-            <NavLink to="/toolspage" style={linkStyle} activeStyle={{ color: "#007bff" }}>
+            <NavLink to="/toolspage" style={linkStyle} activestyle={{ color: "#007bff" }}>
               Tools
             </NavLink>
 
@@ -205,7 +205,7 @@ function AppContent() {
           <div style={{ flex: 1, minWidth: "200px" }}>
             <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Contact</h6>
             <p><i className="fas fa-home"></i> Roorkee, Uttarakhand, 247667, India</p>
-            <p><i className="fas fa-envelope"></i> ankitkumar1990asap@gmail.com</p>
+            <p><i className="fas fa-envelope"></i> udyampath@gmail.com</p>
             <p><i className="fas fa-phone"></i> +91 969 312 093</p>
             <p><i className="fas fa-print"></i> +01 234 567 89</p>
           </div>

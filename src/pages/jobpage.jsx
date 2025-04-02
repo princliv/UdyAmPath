@@ -46,7 +46,7 @@ const JobPage = () => {
             </h2>
             <input
               type="text"
-              placeholder="Enter city name (e.g., New York)"
+              placeholder="Enter city name (e.g., Bengalore)"
               value={city}
               onChange={(e) => setCity(e.target.value)}
               style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "5px", width: "300px" }}
