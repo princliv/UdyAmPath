@@ -1,167 +1,246 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const ModulePage = () => {
-  const { courseTitle } = useParams(); // Extract courseTitle from the URL
-  const [modules, setModules] = useState([]); // Modules for sidebar
-  const [selectedModuleIndex, setSelectedModuleIndex] = useState(0); // For selected module
-  const [moduleDetails, setModuleDetails] = useState(null); // Details of the selected module
-  const [loading, setLoading] = useState(true);
+    const location = useLocation();
+    const moduleData = location.state?.module;
+    const [selectedModuleIndex, setSelectedModuleIndex] = useState(0);
+    const [completedModules, setCompletedModules] = useState([]);
+    const [showCompletionModal, setShowCompletionModal] = useState(false);
+    const [showQuizModal, setShowQuizModal] = useState(false);
 
-  // Fetch modules for the selected course from moduledata.json
-  useEffect(() => {
-    if (courseTitle) {
-      console.log("Fetching moduledata.json for:", courseTitle);
-      fetch("/moduledata.json")
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("Moduledata.json response:", data);
-          if (data[courseTitle]) {
-            setModules(data[courseTitle]); // Set modules for the selected course
-            setSelectedModuleIndex(0); // Default to the first module
-          } else {
-            console.error("No modules found for course:", courseTitle);
-            setModules([]); // Ensure modules are empty if not found
-          }
-        })
-        .catch((error) => {
-          console.error("Error loading module data:", error);
-          setModules([]); // Clear modules in case of error
-        })
-        .finally(() => {
-          setLoading(false); // Stop loading after fetching
-        });
+    if (!moduleData || !moduleData.pathway) {
+        return <p style={styles.errorText}>No module data available.</p>;
     }
-  }, [courseTitle]);
 
-  // Fetch module details based on selected module
-  useEffect(() => {
-    if (modules.length > 0) {
-      const selectedModule = modules[selectedModuleIndex];
-      setModuleDetails(selectedModule || null); // Set module details
-    }
-  }, [modules, selectedModuleIndex]);
+    const handleModuleClick = (index) => {
+        setSelectedModuleIndex(index);
+    };
 
-  const handleNext = () => {
-    if (selectedModuleIndex < modules.length - 1) {
-      setSelectedModuleIndex((prevIndex) => prevIndex + 1);
-    }
-  };
+    const handleNext = () => {
+        if (selectedModuleIndex < moduleData.pathway.length - 1) {
+            setCompletedModules([...new Set([...completedModules, selectedModuleIndex])]);
+            setSelectedModuleIndex(selectedModuleIndex + 1);
+        } else {
+            setShowCompletionModal(true);
+        }
+    };
 
-  const handlePrev = () => {
-    if (selectedModuleIndex > 0) {
-      setSelectedModuleIndex((prevIndex) => prevIndex - 1);
-    }
-  };
+    const handlePrevious = () => {
+        if (selectedModuleIndex > 0) {
+            setSelectedModuleIndex(selectedModuleIndex - 1);
+        }
+    };
 
-  return (
-    <div style={styles.container}>
-      {/* Sidebar */}
-      <div style={styles.sidebar}>
-        <h3 style={styles.sidebarHeader}>Modules</h3>
-        <ul style={styles.moduleList}>
-          {modules.map((module, index) => (
-            <li
-              key={index}
-              style={{
-                ...styles.moduleItem,
-                backgroundColor: index === selectedModuleIndex ? "#d1c4ff" : "#f4f4f4",
-              }}
-              onClick={() => setSelectedModuleIndex(index)}
-            >
-              {module.title}
-            </li>
-          ))}
-        </ul>
-      </div>
+    const handleStartQuiz = () => {
+        setShowCompletionModal(false);
+        setShowQuizModal(true);
+    };
 
-      {/* Module Content */}
-      <div style={styles.content}>
-        {loading ? (
-          <p>Loading module details...</p>
-        ) : moduleDetails ? (
-          <>
-            <h2>{moduleDetails.title}</h2>
-            <p>{moduleDetails.details}</p>
-            {moduleDetails.image && (
-              <img src={moduleDetails.image} alt={moduleDetails.title} style={styles.image} />
-            )}
-            <div style={styles.navButtons}>
-              <button style={styles.navButton} onClick={handlePrev} disabled={selectedModuleIndex === 0}>
-                Previous
-              </button>
-              <button
-                style={styles.navButton}
-                onClick={handleNext}
-                disabled={selectedModuleIndex === modules.length - 1}
-              >
-                Next
-              </button>
+    return (
+        <div style={styles.container}>
+            <div style={styles.sidebar}>
+                <h2 style={styles.sidebarTitle}>Modules</h2>
+                {moduleData.pathway.map((step, index) => (
+                    <div
+                        key={index}
+                        style={{
+                            ...styles.moduleItem,
+                            backgroundColor: selectedModuleIndex === index ? "#c7b3ff" : "#ece6ff",
+                            boxShadow: selectedModuleIndex === index ? "0 4px 6px rgba(0, 0, 0, 0.1)" : "none",
+                        }}
+                        onClick={() => handleModuleClick(index)}
+                    >
+                        {step.title} {completedModules.includes(index) && "✔️"}
+                    </div>
+                ))}
             </div>
-          </>
-        ) : (
-          <p>No module details found.</p>
-        )}
-      </div>
-    </div>
-  );
+            <div style={styles.content}>
+                <div style={styles.navButtons}>
+                    <button style={{ ...styles.navButton, marginRight: "10px" }} onClick={handlePrevious} disabled={selectedModuleIndex === 0}>
+                        Previous
+                    </button>
+                    <button style={styles.navButton} onClick={handleNext}>
+                        Next
+                    </button>
+                </div>
+                <h2 style={styles.moduleTitle}>{moduleData.pathway[selectedModuleIndex].title}</h2>
+                <p style={styles.moduleDetails}>{moduleData.pathway[selectedModuleIndex].details}</p>
+                <div style={styles.moduleContent}>{renderModuleContent(moduleData.pathway[selectedModuleIndex].data)}</div>
+            </div>
+
+            {showCompletionModal && (
+                <div style={styles.modalOverlay}>
+                    <div style={styles.modalContent}>
+                        <h2>Course Completed!</h2>
+                        <p>You have completed the course. Are you ready for the assessment?</p>
+                        <div>
+                            <button style={styles.modalButton} onClick={handleStartQuiz}>Yes</button>
+                            <button style={styles.modalButton} onClick={() => setShowCompletionModal(false)}>No</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {showQuizModal && (
+                <div style={styles.modalOverlay}>
+                    <div style={styles.modalContent}>
+                        <h2>Quiz Time!</h2>
+                        <p>Here would be the quiz questions...</p>
+                        <button style={styles.modalButton} onClick={() => setShowQuizModal(false)}>Close</button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
 };
 
-// Internal CSS
+const renderModuleContent = (data) => {
+    if (!data) return <p style={styles.errorText}>No content available.</p>;
+    
+    switch (data.type) {
+        case "text":
+            return <div style={styles.textContent} dangerouslySetInnerHTML={{ __html: data.content }} />;
+        case "video":
+            return <iframe style={styles.videoPlayer} src={data.content} title="Video Content" allowFullScreen />;
+        case "pdf":
+            return <iframe style={styles.pdfViewer} src={`https://docs.google.com/gview?url=${encodeURIComponent(data.content)}&embedded=true`} title="PDF Document" />;
+        case "image":
+            return <img style={styles.media} src={data.content} alt="Module Content" />;
+        default:
+            return <p style={styles.errorText}>Unsupported content type.</p>;
+    }
+};
 const styles = {
-  container: {
-    display: "flex",
-    height: "100vh",
+    container: {
+        display: "flex",
+        padding: "20px",
+        gap: "20px",
+        background: "linear-gradient(to bottom, #faf9ff, #eae6ff)",
+        minHeight: "100vh",
+    },
+    sidebar: {
+        width: "270px",
+        background: "#fff",
+        borderRadius: "12px",
+        padding: "15px",
+        boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.1)",
+    },
+    sidebarTitle: {
+        fontSize: "22px",
+        fontWeight: "bold",
+        color: "#5a3ec8",
+        textAlign: "center",
+    },
+    moduleItem: {
+        padding: "12px",
+        borderRadius: "8px",
+        cursor: "pointer",
+        marginBottom: "8px",
+        textAlign: "center",
+        transition: "all 0.3s ease-in-out",
+    },
+    content: {
+        flex: 1,
+        background: "#ffffff",
+        borderRadius: "12px",
+        padding: "25px",
+        boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)",
+    },
+    navButtons: {
+        display: "flex",
+        justifyContent: "flex-end",
+        marginBottom: "15px",
+    },
+    navButton: {
+        padding: "12px 18px",
+        border: "none",
+        borderRadius: "8px",
+        cursor: "pointer",
+        background: "linear-gradient(to right, #7b61ff, #5a3ec8)",
+        color: "#fff",
+        fontSize: "16px",
+        transition: "transform 0.2s",
+        disabled: {
+            backgroundColor: "#ccc",
+            cursor: "not-allowed",
+        },
+    },
+    navButtonHover: {
+      transform: "scale(1.05)",
   },
-  sidebar: {
-    width: "250px",
-    backgroundColor: "#e4deff",
+    moduleTitle: {
+        fontSize: "26px",
+        fontWeight: "bold",
+        marginBottom: "12px",
+        color: "#5a3ec8",
+    },
+    moduleDetails: {
+        fontSize: "18px",
+        marginBottom: "20px",
+        lineHeight: "1.5",
+        color: "#555",
+    },
+    moduleContent: {
+        marginTop: "20px",
+    },
+    media: {
+        width: "100%",
+        height: "auto",
+        borderRadius: "8px",
+        boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+    },
+    videoPlayer: {
+        width: "100%",
+        height: "500px",
+        borderRadius: "8px",
+        boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+    },
+    textContent: {
+        fontSize: "16px",
+        lineHeight: "1.6",
+        color: "#333",
+    },
+    errorText: {
+        textAlign: "center",
+        fontSize: "18px",
+        color: "#555",
+    },
+    pdfViewer: {
+        width: "100%",
+        height: "600px",
+        border: "none",
+        overflow: "hidden",
+        borderRadius: "8px",
+        boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+    },
+    modalOverlay: {
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      background: "rgba(0, 0, 0, 0.6)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+  },
+  modalContent: {
+    background: "linear-gradient(to bottom, #ffffff, #f3f0ff)",
     padding: "20px",
-    overflowY: "auto",
+      borderRadius: "10px",
+      boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
+      textAlign: "center",
   },
-  sidebarHeader: {
-    fontSize: "20px",
-    fontWeight: "bold",
-    marginBottom: "10px",
-  },
-  moduleList: {
-    listStyleType: "none",
-    padding: 0,
-  },
-  moduleItem: {
-    padding: "10px",
-    cursor: "pointer",
-    borderRadius: "5px",
-    marginBottom: "5px",
-    textAlign: "left",
-  },
-  content: {
-    flex: 1,
-    padding: "20px",
-  },
-  image: {
-    width: "100%",
-    maxWidth: "600px",
-    borderRadius: "10px",
-    marginTop: "20px",
-  },
-  navButtons: {
-    marginTop: "20px",
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  navButton: {
-    padding: "10px 15px",
-    backgroundColor: "#3f92c3",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
+  modalButton: {
+      margin: "10px",
+      padding: "10px 15px",
+      border: "none",
+      borderRadius: "6px",
+      cursor: "pointer",
+      background: "#7b61ff",
+      color: "#fff",
+      fontSize: "16px",
   },
 };
 

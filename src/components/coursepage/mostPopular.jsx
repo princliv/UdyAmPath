@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import reactImage from "../../assets/coursepage/react.png";
 import androidImage from "../../assets/coursepage/android.png.webp";
 import mlImage from "../../assets/coursepage/machine-learning.png.webp";
-import ethicalHackingImage from "../../assets/coursepage/hacking.png.webp";
+import ethicalHackingImage from "../../assets/coursepage/ethical_hacking.png";
 import metaLogo from "../../assets/coursepage/meta-logo.png";
 import googleLogo from "../../assets/coursepage/google.png";
 import ibmLogo from "../../assets/coursepage/IBM.png";

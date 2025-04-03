@@ -32,7 +32,7 @@ import Adaptability from "./components/toolspage/adaptability";
 import TimeManagement from "./components/toolspage/timemanage";
 import { signOut } from "firebase/auth";
 import ModulePage from "./components/coursepage/modulePage";
-
+import TestPage from "./components/coursepage/TestPage";
 
 function App() {
   return (
@@ -161,6 +161,7 @@ function AppContent() {
         <Route path="/adaptability" element={<Adaptability />} />
         <Route path="/timemanage" element={<TimeManagement />} />
         <Route path="/module" element={<ModulePage />} />
+        <Route path="/test" element={<TestPage />} />
 
 
       </Routes>
@@ -186,26 +187,42 @@ function AppContent() {
           {/* Column 2 */}
           <div style={{ flex: 1, minWidth: "200px" }}>
             <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Products</h6>
-            <p>Courses</p>
-            <p>Specializations</p>
-            <p>Notes</p>
-            <p>Jobs</p>
+            <a href="/coursepage" style={{ textDecoration: "none", color: "inherit" }}>
+              <p>Courses</p>
+            </a>
+            <a href="/coursepage" style={{ textDecoration: "none", color: "inherit" }}>
+              <p>Specializations</p>
+            </a>
+            <a href="/notespage" style={{ textDecoration: "none", color: "inherit" }}>
+              <p>Notes</p>
+            </a>
+            <a href="/jobpage" style={{ textDecoration: "none", color: "inherit" }}>
+              <p>Jobs</p>
+            </a>
           </div>
       
           {/* Column 3 */}
           <div style={{ flex: 1, minWidth: "200px" }}>
             <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Tools</h6>
-            <p>Interview Practice</p>
-            <p>Project Listing</p>
-            <p>Mentora</p>
-            <p>Career Supportive Tools</p>
+            <a href="/techInterview" style={{ textDecoration: "none", color: "inherit"}}>
+              <p>Interview Practice</p>
+            </a>
+            <a href="/projectModal" style={{ textDecoration: "none", color: "inherit"}}>
+              <p>Project Listing</p>
+            </a>
+            <a href="/toolspage" style={{ textDecoration: "none", color: "inherit"}}>
+              <p>Mentora</p>
+            </a>
+            <a href="/toolspage" style={{ textDecoration: "none", color: "inherit"}}>
+              <p>Career Supportive Tools</p>
+            </a>
           </div>
       
           {/* Column 4 */}
           <div style={{ flex: 1, minWidth: "200px" }}>
             <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Contact</h6>
             <p><i className="fas fa-home"></i> Roorkee, Uttarakhand, 247667, India</p>
-            <p><i className="fas fa-envelope"></i> ankitkumar1990asap@gmail.com</p>
+            <p><i className="fas fa-envelope"></i> udyampath@gmail.com</p>
             <p><i className="fas fa-phone"></i> +91 969 312 093</p>
             <p><i className="fas fa-print"></i> +01 234 567 89</p>
           </div>
