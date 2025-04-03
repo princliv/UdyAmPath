@@ -129,7 +129,50 @@
                 ],
                 "answer": "All of the above"
             }
+        ],
+        "Test": [
+            {
+                "question": "What is the default value of an int variable in Java?",
+                "options": ["0", "null", "undefined", "1"],
+                "correctAnswer": "0"
+            },
+            {
+                "question": "Which keyword is used to define a constant variable in Java?",
+                "options": ["static", "final", "const", "immutable"],
+                "correctAnswer": "final"
+            },
+            {
+                "question": "Which of the following is not a Java primitive data type?",
+                "options": ["int", "boolean", "char", "string"],
+                "correctAnswer": "string"
+            },
+            {
+                "question": "What is the parent class of all Java classes?",
+                "options": ["Object", "Main", "Base", "Super"],
+                "correctAnswer": "Object"
+            },
+            {
+                "question": "Which method is called when an object is created in Java?",
+                "options": ["init()", "start()", "constructor", "new()"],
+                "correctAnswer": "constructor"
+            },
+            {
+                "question": "Which of these access modifiers makes a member accessible only within the same package?",
+                "options": ["private", "protected", "public", "default"],
+                "correctAnswer": "default"
+            },
+            {
+                "question": "What is the return type of the main() method in Java?",
+                "options": ["void", "int", "String", "None"],
+                "correctAnswer": "void"
+            },
+            {
+                "question": "Which of these collections allows storing only unique values?",
+                "options": ["ArrayList", "LinkedList", "HashSet", "Queue"],
+                "correctAnswer": "HashSet"
+            }
         ]
+
     },
     {
         "company": "Google",
