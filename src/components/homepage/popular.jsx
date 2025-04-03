@@ -29,7 +29,7 @@ const Popular = () => {
         }}
         transition={{
           repeat: Infinity, // Keep looping
-          duration: 10, // Faster animation
+          duration: 20, // Slower animation
           ease: "linear", // Smooth scrolling
           times: [0, 0.1, 0.5, 1], // Pause briefly before moving
         }}
