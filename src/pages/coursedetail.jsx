@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import TestPage from "../components/coursepage/TestPage";
 
 const CourseDetails = () => {
   const location = useLocation();
@@ -104,6 +105,12 @@ const CourseDetails = () => {
           >
             Start Module
           </button>
+          <button
+              onClick={() => navigate("/test", { state: { courseTitle: course.title } })}
+              style={styles.testButton}
+            >
+              Take Test
+            </button>
         </div>
       )}
     </div>
@@ -210,6 +217,18 @@ const styles = {
     alignItems: "center",
     marginBottom: "12px",
   },
+  testButton: {
+    padding: "10px 20px",
+    fontSize: "16px",
+    backgroundColor: "#28a745",
+    color: "#fff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    marginTop: "10px",
+    marginLeft: "20px", // Adjust this value as needed to shift right
+  },
+
   logo: {
     width: "45px",
     height: "45px",
