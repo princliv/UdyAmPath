@@ -14,6 +14,7 @@ const TestPage = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
 
+  // Load face-api models and video
   useEffect(() => {
     const loadModels = async () => {
       await faceapi.nets.tinyFaceDetector.loadFromUri("/models");
@@ -57,9 +58,73 @@ const TestPage = () => {
         videoRef.current,
         new faceapi.TinyFaceDetectorOptions()
       );
+
       setFaceDetected(detections.length > 0);
+
+      if (detections.length > 1) {
+        alert("Multiple faces detected! Ensure you're the only person in the frame.");
+      }
     }
   };
+
+  const detectNoise = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const audioContext = new AudioContext();
+      const analyser = audioContext.createAnalyser();
+      const microphone = audioContext.createMediaStreamSource(stream);
+      microphone.connect(analyser);
+      analyser.fftSize = 512;
+
+      const dataArray = new Uint8Array(analyser.frequencyBinCount);
+      let lastAlertTime = 0;
+
+      const checkNoise = () => {
+        analyser.getByteFrequencyData(dataArray);
+        const sumSquares = dataArray.reduce((sum, val) => sum + val * val, 0);
+        const rms = Math.sqrt(sumSquares / dataArray.length);
+
+        const currentTime = Date.now();
+        if (rms > 20 && currentTime - lastAlertTime > 10000) {
+          alert("Background noise detected! Please take the test in a quiet environment.");
+          lastAlertTime = currentTime;
+        }
+
+        requestAnimationFrame(checkNoise);
+      };
+
+      checkNoise();
+    } catch (error) {
+      console.error("Error detecting noise:", error);
+    }
+  };
+
+  // ✅ FIXED: detectDevices declared here
+  const detectDevices = async () => {
+    try {
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const videoInputs = devices.filter(device => device.kind === "videoinput");
+      const audioInputs = devices.filter(device => device.kind === "audioinput");
+
+      if (videoInputs.length > 1) {
+        alert("Multiple cameras detected! Please ensure you're using a single camera.");
+      }
+
+      if (audioInputs.length > 1) {
+        alert("Multiple microphones detected! Ensure you are using a single microphone.");
+      }
+    } catch (error) {
+      console.error("Error detecting devices:", error);
+    }
+  };
+
+  useEffect(() => {
+    detectDevices();
+  }, []);
+
+  useEffect(() => {
+    detectNoise();
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(detectFace, 1000);
@@ -129,8 +194,7 @@ const TestPage = () => {
                 onClick={() => handleAnswerSelect(option)}
                 style={{
                   ...styles.optionItem,
-                  backgroundColor:
-                    selectedAnswer === option ? "#007bff" : "#fff",
+                  backgroundColor: selectedAnswer === option ? "#007bff" : "#fff",
                   color: selectedAnswer === option ? "#fff" : "#333",
                 }}
               >
