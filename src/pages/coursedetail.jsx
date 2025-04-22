@@ -226,7 +226,7 @@ const styles = {
     borderRadius: "5px",
     cursor: "pointer",
     marginTop: "10px",
-    marginLeft: "20px", // Adjust this value as needed to shift right
+    marginLeft: "20px", 
   },
 
   logo: {
