@@ -1,13 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const ModulePage = () => {
     const location = useLocation();
-    const moduleData = location.state?.module;
+    const [moduleData, setModuleData] = useState(null);
     const [selectedModuleIndex, setSelectedModuleIndex] = useState(0);
     const [completedModules, setCompletedModules] = useState([]);
     const [showCompletionModal, setShowCompletionModal] = useState(false);
     const [showQuizModal, setShowQuizModal] = useState(false);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("/coursedata.json");
+                const data = await response.json();
+                const selectedModule = data.find(
+                    (mod) => mod.id === location.state?.module?.id
+                );
+                setModuleData(selectedModule);
+            } catch (error) {
+                console.error("Error loading module data:", error);
+            }
+        };
+
+        fetchData();
+    }, [location.state]);
 
     if (!moduleData || !moduleData.pathway) {
         return <p style={styles.errorText}>No module data available.</p>;
@@ -97,7 +114,7 @@ const ModulePage = () => {
 
 const renderModuleContent = (data) => {
     if (!data) return <p style={styles.errorText}>No content available.</p>;
-    
+
     switch (data.type) {
         case "text":
             return <div style={styles.textContent} dangerouslySetInnerHTML={{ __html: data.content }} />;
@@ -111,6 +128,7 @@ const renderModuleContent = (data) => {
             return <p style={styles.errorText}>Unsupported content type.</p>;
     }
 };
+
 const styles = {
     container: {
         display: "flex",
@@ -160,15 +178,7 @@ const styles = {
         background: "linear-gradient(to right, #7b61ff, #5a3ec8)",
         color: "#fff",
         fontSize: "16px",
-        transition: "transform 0.2s",
-        disabled: {
-            backgroundColor: "#ccc",
-            cursor: "not-allowed",
-        },
     },
-    navButtonHover: {
-      transform: "scale(1.05)",
-  },
     moduleTitle: {
         fontSize: "26px",
         fontWeight: "bold",
@@ -215,33 +225,33 @@ const styles = {
         boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
     },
     modalOverlay: {
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      background: "rgba(0, 0, 0, 0.6)",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-  },
-  modalContent: {
-    background: "linear-gradient(to bottom, #ffffff, #f3f0ff)",
-    padding: "20px",
-      borderRadius: "10px",
-      boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
-      textAlign: "center",
-  },
-  modalButton: {
-      margin: "10px",
-      padding: "10px 15px",
-      border: "none",
-      borderRadius: "6px",
-      cursor: "pointer",
-      background: "#7b61ff",
-      color: "#fff",
-      fontSize: "16px",
-  },
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        background: "rgba(0, 0, 0, 0.6)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    modalContent: {
+        background: "linear-gradient(to bottom, #ffffff, #f3f0ff)",
+        padding: "20px",
+        borderRadius: "10px",
+        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
+        textAlign: "center",
+    },
+    modalButton: {
+        margin: "10px",
+        padding: "10px 15px",
+        border: "none",
+        borderRadius: "6px",
+        cursor: "pointer",
+        background: "#7b61ff",
+        color: "#fff",
+        fontSize: "16px",
+    },
 };
 
 export default ModulePage;
