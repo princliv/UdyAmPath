@@ -28,6 +28,7 @@ const CommunicationPractice = () => {
     recognitionRef.current.continuous = false;
     recognitionRef.current.interimResults = true; // Enable interim results for real-time feedback
 
+    
     recognitionRef.current.onstart = () => setIsListening(true);
 
     recognitionRef.current.onresult = (event) => {
