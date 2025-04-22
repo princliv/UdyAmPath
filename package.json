@@ -14,7 +14,7 @@
     "face-api.js": "^0.22.2",
     "firebase": "^11.5.0",
     "fortawesome": "^0.0.1-security",
-    "framer-motion": "^12.6.2",
+    "framer-motion": "^11.18.2",
     "html2canvas": "^1.4.1",
     "lucide-react": "^0.475.0",
     "pdf-lib": "^1.17.1",
@@ -28,6 +28,7 @@
     "react-router-dom": "^7.1.5",
     "react-scripts": "^5.0.1",
     "reactflow": "^11.11.4",
+    "recharts": "^2.15.3",
     "styled-components": "^6.1.16",
     "web-vitals": "^4.2.4"
   },
