@@ -1,0 +1,932 @@
+{
+    "specializations": [
+      {
+        "id": 1,
+        "name": "Artificial Intelligence",
+        "duration": "6 months",
+        "image": "assets/specializationpage/AI.jpg",
+        "description": "Master AI concepts including machine learning, neural networks, and natural language processing.",
+        "courses": [
+        {
+          "name": "Machine Learning Fundamentals",
+          "duration": "4 weeks",
+          "description": "Learn supervised and unsupervised learning algorithms"
+        },
+        {
+          "name": "Deep Learning with TensorFlow",
+          "duration": "6 weeks",
+          "description": "Build neural networks using TensorFlow framework"
+        },
+        {
+          "name": "Computer Vision",
+          "duration": "5 weeks",
+          "description": "Image processing and object detection techniques"
+        },
+        {
+          "name": "Natural Language Processing",
+          "duration": "5 weeks",
+          "description": "Text processing and language models"
+        }
+      ],
+      "companies": ["Google", "OpenAI", "NVIDIA", "Tesla"],
+      "pathway": [
+        {
+          "phase": "Foundation",
+          "duration": "6 weeks",
+          "topics": ["Python Basics", "Linear Algebra", "Probability", "Statistics"]
+        },
+        {
+          "phase": "Core ML",
+          "duration": "8 weeks",
+          "topics": ["Supervised Learning", "Unsupervised Learning", "Model Evaluation"]
+        },
+        {
+          "phase": "Deep Learning",
+          "duration": "6 weeks",
+          "topics": ["Neural Networks", "CNN", "RNN", "Transformers"]
+        },
+        {
+          "phase": "Specialization",
+          "duration": "4 weeks",
+          "topics": ["NLP/CV Project", "Model Deployment", "Ethics in AI"]
+        }
+      ],
+      "careerPaths": [
+        "Machine Learning Engineer",
+        "AI Researcher",
+        "Data Scientist",
+        "Computer Vision Engineer"
+      ]
+      },
+      {
+        "id": 2,
+        "name": "Cloud Computing",
+        "duration": "4 months",
+        "image": "assets/specializationpage/cloud.jpg",
+        "description": "Learn cloud architecture, deployment, and management with AWS, Azure, and GCP.",
+        "courses": [
+        {
+          "name": "AWS Fundamentals",
+          "duration": "4 weeks",
+          "description": "Core AWS services and infrastructure"
+        },
+        {
+          "name": "Azure Architecture",
+          "duration": "4 weeks",
+          "description": "Microsoft Azure cloud solutions"
+        },
+        {
+          "name": "Google Cloud Platform",
+          "duration": "4 weeks",
+          "description": "GCP services and deployment"
+        },
+        {
+          "name": "DevOps for Cloud",
+          "duration": "4 weeks",
+          "description": "CI/CD pipelines in cloud environments"
+        }
+      ],
+      "companies": ["Amazon", "Microsoft", "Google", "IBM"],
+      "pathway": [
+        {
+          "phase": "Cloud Basics",
+          "duration": "4 weeks",
+          "topics": ["Virtualization", "Networking", "Storage", "Security"]
+        },
+        {
+          "phase": "Platform Deep Dive",
+          "duration": "8 weeks",
+          "topics": ["AWS Services", "Azure Services", "GCP Services"]
+        },
+        {
+          "phase": "Advanced Services",
+          "duration": "4 weeks",
+          "topics": ["Serverless", "Containers", "Kubernetes", "IaC"]
+        },
+        {
+          "phase": "Implementation",
+          "duration": "4 weeks",
+          "topics": ["Migration Strategies", "Cost Optimization", "Disaster Recovery"]
+        }
+      ],
+      "careerPaths": [
+        "Cloud Architect",
+        "DevOps Engineer",
+        "Cloud Security Specialist",
+        "Solutions Architect"
+      ]
+      },
+      {
+        "id": 3,
+        "name": "Cybersecurity",
+        "duration": "5 months",
+        "image": "assets/specializationpage/cyber.jpg",
+        "description": "Develop skills to protect systems and networks from digital attacks.",
+        "courses": [
+        {
+          "name": "Ethical Hacking",
+          "duration": "5 weeks",
+          "description": "Penetration testing methodologies"
+        },
+        {
+          "name": "Network Security",
+          "duration": "5 weeks",
+          "description": "Firewalls, IDS/IPS systems"
+        },
+        {
+          "name": "Cryptography",
+          "duration": "4 weeks",
+          "description": "Encryption algorithms and protocols"
+        },
+        {
+          "name": "Incident Response",
+          "duration": "4 weeks",
+          "description": "Handling security breaches"
+        }
+      ],
+      "companies": ["Palo Alto", "Cisco", "Fortinet", "CrowdStrike"],
+      "pathway": [
+        {
+          "phase": "Fundamentals",
+          "duration": "5 weeks",
+          "topics": ["Security Principles", "Threat Landscape", "Risk Management"]
+        },
+        {
+          "phase": "Technical Skills",
+          "duration": "8 weeks",
+          "topics": ["Network Security", "System Hardening", "Vulnerability Assessment"]
+        },
+        {
+          "phase": "Advanced Topics",
+          "duration": "6 weeks",
+          "topics": ["Cryptography", "Malware Analysis", "Digital Forensics"]
+        },
+        {
+          "phase": "Professional Practice",
+          "duration": "4 weeks",
+          "topics": ["Incident Response", "Security Policies", "Compliance"]
+        }
+      ],
+      "careerPaths": [
+        "Security Analyst",
+        "Penetration Tester",
+        "Security Architect",
+        "CISO"
+      ]
+      },
+      {
+        "id": 4,
+        "name": "Data Science",
+        "duration": "6 months",
+        "image": "assets/specializationpage/data.jpg",
+        "description": "Become proficient in data analysis, visualization, and machine learning.",
+        "courses": [
+        {
+          "name": "Python for Data Science",
+          "duration": "5 weeks",
+          "description": "Pandas, NumPy, data manipulation"
+        },
+        {
+          "name": "Statistical Analysis",
+          "duration": "5 weeks",
+          "description": "Hypothesis testing, regression"
+        },
+        {
+          "name": "Data Visualization",
+          "duration": "4 weeks",
+          "description": "Matplotlib, Seaborn, Plotly"
+        },
+        {
+          "name": "Big Data Technologies",
+          "duration": "4 weeks",
+          "description": "Hadoop, Spark, distributed computing"
+        }
+      ],
+      "companies": ["Facebook", "Netflix", "Uber", "Airbnb"],
+      "pathway": [
+        {
+          "phase": "Data Fundamentals",
+          "duration": "6 weeks",
+          "topics": ["Python Basics", "SQL", "Data Wrangling"]
+        },
+        {
+          "phase": "Statistical Modeling",
+          "duration": "8 weeks",
+          "topics": ["Probability", "Statistical Tests", "Regression"]
+        },
+        {
+          "phase": "Machine Learning",
+          "duration": "6 weeks",
+          "topics": ["Supervised Learning", "Unsupervised Learning", "Model Evaluation"]
+        },
+        {
+          "phase": "Big Data & Deployment",
+          "duration": "4 weeks",
+          "topics": ["Spark", "Cloud Platforms", "Model Deployment"]
+        }
+      ],
+      "careerPaths": [
+        "Data Scientist",
+        "Data Analyst",
+        "Business Intelligence Analyst",
+        "Data Engineer"
+      ]
+      },
+      {
+        "id": 5,
+        "name": "Internet of Things",
+        "duration": "4 months",
+        "image": "assets/specializationpage/iot.jpg",
+        "description": "Learn to design and implement connected devices and IoT systems.",
+        "courses": [
+        {
+          "name": "Embedded Systems",
+          "duration": "4 weeks",
+          "description": "Microcontrollers and sensors"
+        },
+        {
+          "name": "IoT Protocols",
+          "duration": "4 weeks",
+          "description": "MQTT, CoAP, Zigbee"
+        },
+        {
+          "name": "Edge Computing",
+          "duration": "4 weeks",
+          "description": "Processing at the edge"
+        },
+        {
+          "name": "IoT Security",
+          "duration": "4 weeks",
+          "description": "Securing IoT devices"
+        }
+      ],
+      "companies": ["Siemens", "Bosch", "Samsung", "Honeywell"],
+      "pathway": [
+        {
+          "phase": "Electronics Basics",
+          "duration": "4 weeks",
+          "topics": ["Circuit Design", "Sensors", "Microcontrollers"]
+        },
+        {
+          "phase": "IoT Architecture",
+          "duration": "6 weeks",
+          "topics": ["Protocols", "Gateways", "Cloud Integration"]
+        },
+        {
+          "phase": "Data Processing",
+          "duration": "6 weeks",
+          "topics": ["Edge Computing", "Data Analytics", "Visualization"]
+        },
+        {
+          "phase": "Implementation",
+          "duration": "4 weeks",
+          "topics": ["Security", "Scalability", "Industry Applications"]
+        }
+      ],
+      "careerPaths": [
+        "IoT Developer",
+        "Embedded Systems Engineer",
+        "IoT Solutions Architect",
+        "Industrial IoT Specialist"
+      ]
+      },
+      {
+        "id": 6,
+        "name": "Blockchain Development",
+        "duration": "5 months",
+        "image": "assets/specializationpage/blockchain.jpg",
+        "description": "Master decentralized applications, smart contracts, and blockchain architecture.",
+        "courses": [
+        {
+          "name": "Ethereum Fundamentals",
+          "duration": "5 weeks",
+          "description": "Smart contracts with Solidity"
+        },
+        {
+          "name": "Smart Contract Development",
+          "duration": "5 weeks",
+          "description": "Writing secure contracts"
+        },
+        {
+          "name": "Cryptography Basics",
+          "duration": "4 weeks",
+          "description": "Hashing, digital signatures"
+        },
+        {
+          "name": "DApp Development",
+          "duration": "4 weeks",
+          "description": "Building decentralized apps"
+        }
+      ],
+      "companies": ["Coinbase", "Binance", "Chainlink", "ConsenSys"],
+      "pathway": [
+        {
+          "phase": "Blockchain Basics",
+          "duration": "5 weeks",
+          "topics": ["Distributed Ledgers", "Consensus Mechanisms", "Cryptography"]
+        },
+        {
+          "phase": "Smart Contracts",
+          "duration": "7 weeks",
+          "topics": ["Solidity", "EVM", "Security Patterns"]
+        },
+        {
+          "phase": "DApp Development",
+          "duration": "6 weeks",
+          "topics": ["Web3.js", "IPFS", "Frontend Integration"]
+        },
+        {
+          "phase": "Advanced Topics",
+          "duration": "4 weeks",
+          "topics": ["Scaling Solutions", "DAOs", "NFT Development"]
+        }
+      ],
+      "careerPaths": [
+        "Blockchain Developer",
+        "Smart Contract Engineer",
+        "DApp Developer",
+        "Blockchain Architect"
+      ]
+      },
+      {
+        "id": 7,
+        "name": "Robotics Engineering",
+        "duration": "7 months",
+        "image": "assets/specializationpage/robotics.jpg",
+        "description": "Design and program autonomous robots and robotic systems.",
+        "courses": [
+        {
+          "name": "Robot Kinematics",
+          "duration": "6 weeks",
+          "description": "Motion planning and control"
+        },
+        {
+          "name": "Computer Vision for Robotics",
+          "duration": "6 weeks",
+          "description": "Object recognition and tracking"
+        },
+        {
+          "name": "Control Systems",
+          "duration": "5 weeks",
+          "description": "PID controllers, state machines"
+        },
+        {
+          "name": "ROS (Robot Operating System)",
+          "duration": "6 weeks",
+          "description": "Robotics middleware framework"
+        }
+      ],
+      "companies": ["Boston Dynamics", "ABB", "Fanuc", "KUKA"],
+      "pathway": [
+        {
+          "phase": "Fundamentals",
+          "duration": "6 weeks",
+          "topics": ["Mechanics", "Electronics", "Basic Programming"]
+        },
+        {
+          "phase": "Core Robotics",
+          "duration": "10 weeks",
+          "topics": ["Kinematics", "Dynamics", "Control Theory"]
+        },
+        {
+          "phase": "Perception",
+          "duration": "8 weeks",
+          "topics": ["Computer Vision", "Sensor Fusion", "SLAM"]
+        },
+        {
+          "phase": "Implementation",
+          "duration": "6 weeks",
+          "topics": ["ROS", "Hardware Integration", "Real-world Applications"]
+        }
+      ],
+      "careerPaths": [
+        "Robotics Engineer",
+        "Automation Engineer",
+        "Mechatronics Engineer",
+        "AI Robotics Specialist"
+      ]
+      },
+      {
+        "id": 8,
+        "name": "Quantum Computing",
+        "duration": "8 months",
+        "image": "assets/specializationpage/quantum.jpg",
+        "description": "Explore quantum algorithms and quantum information processing.",
+        "courses": [
+        {
+          "name": "Quantum Mechanics Basics",
+          "duration": "8 weeks",
+          "description": "Qubits and quantum states"
+        },
+        {
+          "name": "Qiskit Framework",
+          "duration": "6 weeks",
+          "description": "IBM's quantum computing framework"
+        },
+        {
+          "name": "Quantum Algorithms",
+          "duration": "8 weeks",
+          "description": "Shor's, Grover's algorithms"
+        },
+        {
+          "name": "Quantum Cryptography",
+          "duration": "6 weeks",
+          "description": "Quantum key distribution"
+        }
+      ],
+      "companies": ["IBM Quantum", "Google Quantum AI", "D-Wave", "Rigetti"],
+      "pathway": [
+        {
+          "phase": "Math Fundamentals",
+          "duration": "8 weeks",
+          "topics": ["Linear Algebra", "Complex Numbers", "Probability"]
+        },
+        {
+          "phase": "Quantum Basics",
+          "duration": "10 weeks",
+          "topics": ["Qubits", "Quantum Gates", "Simple Circuits"]
+        },
+        {
+          "phase": "Algorithms",
+          "duration": "12 weeks",
+          "topics": ["Quantum Fourier Transform", "Search Algorithms", "Error Correction"]
+        },
+        {
+          "phase": "Applications",
+          "duration": "6 weeks",
+          "topics": ["Chemistry Simulation", "Optimization", "Cryptography"]
+        }
+      ],
+      "careerPaths": [
+        "Quantum Algorithm Developer",
+        "Quantum Software Engineer",
+        "Quantum Research Scientist",
+        "Quantum Hardware Engineer"
+      ]
+      },
+      {
+        "id": 9,
+        "name": "Augmented Reality/Virtual Reality",
+        "duration": "5 months",
+        "image": "assets/specializationpage/ar-vr.jpg",
+        "description": "Develop immersive AR/VR experiences and applications.",
+        "courses": [
+        {
+          "name": "Unity 3D Development",
+          "duration": "6 weeks",
+          "description": "3D environment creation"
+        },
+        {
+          "name": "Unreal Engine",
+          "duration": "5 weeks",
+          "description": "High-fidelity VR development"
+        },
+        {
+          "name": "3D Modeling",
+          "duration": "5 weeks",
+          "description": "Blender/Maya for assets"
+        },
+        {
+          "name": "Spatial Computing",
+          "duration": "4 weeks",
+          "description": "ARCore/ARKit development"
+        }
+      ],
+      "companies": ["Meta", "Microsoft", "Magic Leap", "Valve"],
+      "pathway": [
+        {
+          "phase": "Foundations",
+          "duration": "5 weeks",
+          "topics": ["3D Math", "Graphics Principles", "UX for VR"]
+        },
+        {
+          "phase": "Development Tools",
+          "duration": "8 weeks",
+          "topics": ["Unity", "Unreal", "3D Modeling"]
+        },
+        {
+          "phase": "Platform-Specific",
+          "duration": "7 weeks",
+          "topics": ["Oculus Development", "Hololens", "Mobile AR"]
+        },
+        {
+          "phase": "Advanced Topics",
+          "duration": "4 weeks",
+          "topics": ["Multiplayer VR", "Performance Optimization", "Haptics"]
+        }
+      ],
+      "careerPaths": [
+        "XR Developer",
+        "3D Artist",
+        "VR Engineer",
+        "AR Application Developer"
+      ]
+      },
+      {
+        "id": 10,
+        "name": "Autonomous Systems",
+        "duration": "6 months",
+        "image": "assets/specializationpage/autonomous.jpg",
+        "description": "Learn about self-driving cars, drones, and autonomous navigation.",
+        "courses": [
+        {
+          "name": "Sensor Fusion",
+          "duration": "6 weeks",
+          "description": "Combining LiDAR, radar, camera data"
+        },
+        {
+          "name": "Path Planning",
+          "duration": "5 weeks",
+          "description": "A* algorithm, RRT"
+        },
+        {
+          "name": "Computer Vision for Vehicles",
+          "duration": "6 weeks",
+          "description": "Object detection and tracking"
+        },
+        {
+          "name": "ROS for Autonomous Systems",
+          "duration": "5 weeks",
+          "description": "Robot Operating System"
+        }
+      ],
+      "companies": ["Waymo", "Tesla", "Cruise", "NVIDIA"],
+      "pathway": [
+        {
+          "phase": "Fundamentals",
+          "duration": "6 weeks",
+          "topics": ["Robotics Basics", "Control Theory", "Python for Robotics"]
+        },
+        {
+          "phase": "Perception",
+          "duration": "8 weeks",
+          "topics": ["Computer Vision", "Sensor Fusion", "Localization"]
+        },
+        {
+          "phase": "Decision Making",
+          "duration": "8 weeks",
+          "topics": ["Path Planning", "Behavior Planning", "Control"]
+        },
+        {
+          "phase": "Implementation",
+          "duration": "6 weeks",
+          "topics": ["ROS", "Simulation", "Real-world Testing"]
+        }
+      ],
+      "careerPaths": [
+        "Autonomous Vehicle Engineer",
+        "Robotics Software Engineer",
+        "Perception Engineer",
+        "Systems Integration Engineer"
+      ]
+      },
+      {
+        "id": 11,
+        "name": "Bioinformatics",
+        "duration": "6 months",
+        "image": "assets/specializationpage/bioinformatics.jpg",
+        "description": "Combine biology with data science for genomic analysis and drug discovery.",
+        "courses": [
+        {
+          "name": "Genomic Data Analysis",
+          "duration": "6 weeks",
+          "description": "DNA sequencing analysis"
+        },
+        {
+          "name": "Computational Biology",
+          "duration": "6 weeks",
+          "description": "Biological modeling"
+        },
+        {
+          "name": "Protein Structure Prediction",
+          "duration": "5 weeks",
+          "description": "AlphaFold techniques"
+        },
+        {
+          "name": "Biostatistics",
+          "duration": "5 weeks",
+          "description": "Statistical methods in biology"
+        }
+      ],
+      "companies": ["23andMe", "Illumina", "DNAnexus", "Tempus"],
+      "pathway": [
+        {
+          "phase": "Biology Basics",
+          "duration": "6 weeks",
+          "topics": ["Molecular Biology", "Genetics", "Biochemistry"]
+        },
+        {
+          "phase": "Data Skills",
+          "duration": "8 weeks",
+          "topics": ["Python for Biology", "Data Wrangling", "Statistics"]
+        },
+        {
+          "phase": "Core Bioinformatics",
+          "duration": "8 weeks",
+          "topics": ["Sequence Analysis", "Structural Biology", "Pathway Analysis"]
+        },
+        {
+          "phase": "Applications",
+          "duration": "6 weeks",
+          "topics": ["Drug Discovery", "Personalized Medicine", "Agricultural Bioinfo"]
+        }
+      ],
+      "careerPaths": [
+        "Bioinformatics Scientist",
+        "Computational Biologist",
+        "Genomic Data Analyst",
+        "Pharma Researcher"
+      ]
+      },
+      {
+        "id": 12,
+        "name": "Embedded Systems",
+        "duration": "5 months",
+        "image": "assets/specializationpage/embedded.jpg",
+        "description": "Design and program microcontroller-based systems and firmware.",
+        "courses": [
+        {
+          "name": "RTOS Development",
+          "duration": "5 weeks",
+          "description": "Real-time operating systems"
+        },
+        {
+          "name": "ARM Architecture",
+          "duration": "5 weeks",
+          "description": "ARM Cortex processors"
+        },
+        {
+          "name": "Embedded C/C++",
+          "duration": "6 weeks",
+          "description": "Low-level programming"
+        },
+        {
+          "name": "Hardware-Software Co-Design",
+          "duration": "4 weeks",
+          "description": "FPGA integration"
+        }
+      ],
+      "companies": ["Intel", "Texas Instruments", "STMicroelectronics", "NXP"],
+      "pathway": [
+        {
+          "phase": "Electronics",
+          "duration": "6 weeks",
+          "topics": ["Circuit Design", "Microcontrollers", "Interfacing"]
+        },
+        {
+          "phase": "Firmware",
+          "duration": "8 weeks",
+          "topics": ["Embedded C", "RTOS", "Device Drivers"]
+        },
+        {
+          "phase": "Advanced Topics",
+          "duration": "8 weeks",
+          "topics": ["ARM Architecture", "FPGA Basics", "Power Optimization"]
+        },
+        {
+          "phase": "Integration",
+          "duration": "6 weeks",
+          "topics": ["Testing", "Debugging", "Production Considerations"]
+        }
+      ],
+      "careerPaths": [
+        "Embedded Software Engineer",
+        "Firmware Developer",
+        "IoT Engineer",
+        "Hardware Engineer"
+      ]
+      },
+      {
+        "id": 13,
+        "name": "Computer Networks",
+        "duration": "4 months",
+        "image": "assets/specializationpage/networks.jpg",
+        "description": "Master network architecture, protocols, and security.",
+        "courses": [
+        {
+          "name": "TCP/IP Protocol Suite",
+          "duration": "4 weeks",
+          "description": "Internet protocol stack"
+        },
+        {
+          "name": "Network Security",
+          "duration": "5 weeks",
+          "description": "Firewalls, VPNs, IDS"
+        },
+        {
+          "name": "Software Defined Networking",
+          "duration": "4 weeks",
+          "description": "OpenFlow, network virtualization"
+        },
+        {
+          "name": "Wireless Networks",
+          "duration": "3 weeks",
+          "description": "WiFi, 5G, IoT networks"
+        }
+      ],
+      "companies": ["Cisco", "Juniper", "Arista", "Huawei"],
+      "pathway": [
+        {
+          "phase": "Fundamentals",
+          "duration": "5 weeks",
+          "topics": ["OSI Model", "IP Addressing", "Basic Routing"]
+        },
+        {
+          "phase": "Core Protocols",
+          "duration": "7 weeks",
+          "topics": ["TCP/IP", "DNS", "HTTP/HTTPS", "BGP"]
+        },
+        {
+          "phase": "Advanced Networking",
+          "duration": "6 weeks",
+          "topics": ["SDN", "Cloud Networking", "Wireless Tech"]
+        },
+        {
+          "phase": "Security & Operations",
+          "duration": "6 weeks",
+          "topics": ["Network Security", "Monitoring", "Troubleshooting"]
+        }
+      ],
+      "careerPaths": [
+        "Network Engineer",
+        "Network Architect",
+        "Security Engineer",
+        "Cloud Network Specialist"
+      ]
+      },
+      {
+        "id": 14,
+        "name": "Game Development",
+        "duration": "6 months",
+        "image": "assets/specializationpage/game-dev.jpg",
+        "description": "Learn professional game development techniques and engines.",
+        "courses": [
+        {
+          "name": "Unity Game Development",
+          "duration": "6 weeks",
+          "description": "2D/3D game creation"
+        },
+        {
+          "name": "Unreal Engine Blueprints",
+          "duration": "6 weeks",
+          "description": "Visual scripting"
+        },
+        {
+          "name": "3D Game Physics",
+          "duration": "5 weeks",
+          "description": "Rigidbody dynamics"
+        },
+        {
+          "name": "Multiplayer Networking",
+          "duration": "5 weeks",
+          "description": "Online game architecture"
+        }
+      ],
+      "companies": ["Epic Games", "Ubisoft", "Electronic Arts", "Activision"],
+      "pathway": [
+        {
+          "phase": "Foundations",
+          "duration": "6 weeks",
+          "topics": ["Game Design", "Basic Programming", "Math for Games"]
+        },
+        {
+          "phase": "Engine Basics",
+          "duration": "8 weeks",
+          "topics": ["Unity", "Unreal", "Asset Pipeline"]
+        },
+        {
+          "phase": "Advanced Topics",
+          "duration": "10 weeks",
+          "topics": ["Physics", "AI", "Animation Systems"]
+        },
+        {
+          "phase": "Professional Skills",
+          "duration": "6 weeks",
+          "topics": ["Multiplayer", "Optimization", "Publishing"]
+        }
+      ],
+      "careerPaths": [
+        "Game Programmer",
+        "Game Designer",
+        "Technical Artist",
+        "Gameplay Engineer"
+      ]
+      },
+      {
+        "id": 15,
+        "name": "Computer Graphics",
+        "duration": "5 months",
+        "image": "assets/specializationpage/graphics.jpg",
+        "description": "Master 3D rendering, shaders, and real-time graphics programming.",
+       "courses": [
+        {
+          "name": "OpenGL/Vulkan",
+          "duration": "6 weeks",
+          "description": "Graphics APIs"
+        },
+        {
+          "name": "Shader Programming",
+          "duration": "6 weeks",
+          "description": "GLSL/HLSL"
+        },
+        {
+          "name": "Ray Tracing",
+          "duration": "5 weeks",
+          "description": "Path tracing techniques"
+        },
+        {
+          "name": "GPU Architecture",
+          "duration": "5 weeks",
+          "description": "How GPUs work"
+        }
+      ],
+      "companies": ["NVIDIA", "AMD", "Pixar", "Unity Technologies"],
+      "pathway": [
+        {
+          "phase": "Math Fundamentals",
+          "duration": "6 weeks",
+          "topics": ["Linear Algebra", "Calculus", "Computational Geometry"]
+        },
+        {
+          "phase": "Rendering Pipeline",
+          "duration": "8 weeks",
+          "topics": ["Rasterization", "Shaders", "Texturing"]
+        },
+        {
+          "phase": "Advanced Rendering",
+          "duration": "8 weeks",
+          "topics": ["Ray Tracing", "Global Illumination", "Physically Based Rendering"]
+        },
+        {
+          "phase": "Optimization",
+          "duration": "6 weeks",
+          "topics": ["GPU Architecture", "Performance Tuning", "Real-time Techniques"]
+        }
+      ],
+      "careerPaths": [
+        "Graphics Programmer",
+        "Game Engine Developer",
+        "Rendering Engineer",
+        "Technical Director"
+      ]
+      },
+      {
+        "id": 16,
+        "name": "DevOps Engineering",
+        "duration": "4 months",
+        "image": "assets/specializationpage/devops.jpg",
+        "description": "Bridge development and operations with CI/CD pipelines and cloud infrastructure.",
+        "courses": [
+        {
+          "name": "Docker & Kubernetes",
+          "duration": "5 weeks",
+          "description": "Containerization and orchestration"
+        },
+        {
+          "name": "Terraform",
+          "duration": "4 weeks",
+          "description": "Infrastructure as code"
+        },
+        {
+          "name": "CI/CD Pipelines",
+          "duration": "5 weeks",
+          "description": "Jenkins, GitHub Actions"
+        },
+        {
+          "name": "Monitoring & Logging",
+          "duration": "4 weeks",
+          "description": "Prometheus, ELK stack"
+        }
+      ],
+      "companies": ["GitLab", "GitHub", "Red Hat", "HashiCorp"],
+      "pathway": [
+        {
+          "phase": "Fundamentals",
+          "duration": "5 weeks",
+          "topics": ["Linux Basics", "Networking", "Scripting"]
+        },
+        {
+          "phase": "Core Tools",
+          "duration": "7 weeks",
+          "topics": ["Docker", "Kubernetes", "Cloud Providers"]
+        },
+        {
+          "phase": "Automation",
+          "duration": "8 weeks",
+          "topics": ["CI/CD", "IaC", "Configuration Management"]
+        },
+        {
+          "phase": "Operations",
+          "duration": "6 weeks",
+          "topics": ["Monitoring", "Logging", "Incident Management"]
+        }
+      ],
+      "careerPaths": [
+        "DevOps Engineer",
+        "Site Reliability Engineer",
+        "Platform Engineer",
+        "Cloud Engineer"
+      ]
+      }
+    ]
+  }
