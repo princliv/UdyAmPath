@@ -81,47 +81,88 @@ const Details = () => {
   return (
     <div style={{ display: "flex", gap: "20px", padding: "0px" }}>
   {/* Left Sidebar */}
-  <div style={{ width: "270px", border: "1px solid #ccc", borderRadius: "10px", padding: "15px", backgroundColor: "#f9f9f9" }}>
-    <h3 style={{ textAlign: "center", marginBottom: "10px" }}>Filters</h3>
-    <div style={{ height: "5px", backgroundColor: "#ccc", marginBottom: "10px", borderRadius: "5px" }}></div>
+  <div
+  style={{
+    width: "300px",
+    borderRadius: "16px",
+    background: "#fff",
+    boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)",
+    padding: "24px",
+    fontFamily: "Segoe UI, sans-serif",
+    color: "#333",
+  }}
+>
+  <h2
+    style={{
+      textAlign: "center",
+      fontSize: "20px",
+      fontWeight: "600",
+      marginBottom: "16px",
+    }}
+  >
+    🔍 Filters
+  </h2>
 
-    {/* Type Filter */}
-    <label><b>Type:</b></label>
-    <div style={{ display: "flex", flexDirection: "column", marginBottom: "10px" }}>
-      {["On-Site", "Part Time"].map((type) => (
-        <label key={type}>
-          <input
-            type="checkbox"
-            value={type}
-            checked={typeFilter.includes(type)}
-            onChange={() =>
-              setTypeFilter((prev) =>
-                prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
-              )
-            }
-          />
-          {type}
-        </label>
-      ))}
-    </div>
+  <section style={{ marginBottom: "24px" }}>
+    <p style={{ fontWeight: "600", marginBottom: "10px" }}>Type</p>
+    {["On-Site", "Part Time"].map((type) => (
+      <label
+        key={type}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          padding: "8px 12px",
+          borderRadius: "10px",
+          marginBottom: "8px",
+          background: typeFilter.includes(type) ? "#E6F0FA" : "#f5f5f5",
+          cursor: "pointer",
+          transition: "all 0.3s",
+        }}
+      >
+        <input
+          type="checkbox"
+          checked={typeFilter.includes(type)}
+          onChange={() =>
+            setTypeFilter((prev) =>
+              prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
+            )
+          }
+          style={{ marginRight: "10px", accentColor: "#3F92C3" }}
+        />
+        {type}
+      </label>
+    ))}
+  </section>
 
-    {/* Level Filter */}
-    <label><b>Level:</b></label>
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      {["Senior Level", "Junior Level"].map((level) => (
-        <label key={level}>
-          <input
-            type="radio"
-            name="level"
-            value={level}
-            checked={levelFilter === level}
-            onChange={(e) => setLevelFilter(e.target.value)}
-          />
-          {level}
-        </label>
-      ))}
-    </div>
-  </div>
+  <section>
+    <p style={{ fontWeight: "600", marginBottom: "10px" }}>Level</p>
+    {["Senior Level", "Junior Level"].map((level) => (
+      <label
+        key={level}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          padding: "8px 12px",
+          borderRadius: "10px",
+          marginBottom: "8px",
+          background: levelFilter === level ? "#E6F0FA" : "#f5f5f5",
+          cursor: "pointer",
+          transition: "all 0.3s",
+        }}
+      >
+        <input
+          type="radio"
+          name="level"
+          value={level}
+          checked={levelFilter === level}
+          onChange={(e) => setLevelFilter(e.target.value)}
+          style={{ marginRight: "10px", accentColor: "#3F92C3" }}
+        />
+        {level}
+      </label>
+    ))}
+  </section>
+</div>
 
   {/* Right Section */}
   <div style={{ flex: 1 }}>
