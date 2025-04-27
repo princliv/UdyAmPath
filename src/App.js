@@ -33,6 +33,8 @@ import TimeManagement from "./components/toolspage/timemanage";
 import { signOut } from "firebase/auth";
 import ModulePage from "./components/coursepage/modulePage";
 import TestPage from "./components/coursepage/TestPage";
+import SpecializationDetail from "./components/coursepage/SpecializationDetail";
+import PathwayPhaseDetail from "./components/coursepage/PathwayPhaseDetail"; 
 
 function App() {
   return (
@@ -162,6 +164,8 @@ function AppContent() {
         <Route path="/timemanage" element={<TimeManagement />} />
         <Route path="/module" element={<ModulePage />} />
         <Route path="/test" element={<TestPage />} />
+        <Route path="/specialization/:id" element={<SpecializationDetail />} />
+        <Route path="/specialization/:id/pathway/:phaseIndex" element={<PathwayPhaseDetail />} />
 
 
       </Routes>
