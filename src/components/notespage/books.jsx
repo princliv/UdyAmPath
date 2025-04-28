@@ -1,10 +1,13 @@
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import bookImage from "../../assets/book-cover.avif";
 import readingPerson from "../../assets/reading-person.jpeg";
 import RecommendedBooks from "./RecommendedBooks";
 
+
 const Books = () => {
   const recommendedBooksRef = useRef(null);
+  const navigate = useNavigate();
 
   const scrollToRecommendedBooks = () => {
     recommendedBooksRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -32,6 +35,7 @@ const Books = () => {
                 style={{ ...styles.btn, ...styles.outlineBtn }}
                 onMouseEnter={(e) => (e.target.style.transform = "translateY(-5px)")}
                 onMouseLeave={(e) => (e.target.style.transform = "translateY(0)")}
+                onClick={() => navigate("/pyqs")}
               >
                 Get PYQ's
               </button>
