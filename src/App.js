@@ -33,6 +33,9 @@ import TimeManagement from "./components/toolspage/timemanage";
 import { signOut } from "firebase/auth";
 import ModulePage from "./components/coursepage/modulePage";
 import TestPage from "./components/coursepage/TestPage";
+import SpecializationDetail from "./components/coursepage/SpecializationDetail";
+import PathwayPhaseDetail from "./components/coursepage/PathwayPhaseDetail"; 
+import FounderNoteModal from "./pages/FounderModal";
 
 function App() {
   return (
@@ -47,6 +50,20 @@ function AppContent() {
   const location = useLocation(); // Now correctly inside Router
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSignup] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowModal(true);
+    }, 20000);  // 20 seconds timeout
+
+    // Cleanup the timer when the component unmounts
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
@@ -162,11 +179,13 @@ function AppContent() {
         <Route path="/timemanage" element={<TimeManagement />} />
         <Route path="/module" element={<ModulePage />} />
         <Route path="/test" element={<TestPage />} />
+        <Route path="/specialization/:id" element={<SpecializationDetail />} />
+        <Route path="/specialization/:id/pathway/:phaseIndex" element={<PathwayPhaseDetail />} />
 
 
       </Routes>
       <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isSignup={isSignup} />
-
+      {showModal && <FounderNoteModal onClose={handleCloseModal} />}
       {/* Footer (Hidden on Login & Signup pages) */}
       {location.pathname !== "/login" && location.pathname !== "/signup" && (
         <footer style={{ backgroundColor: "#1181c8", color: "white", textAlign: "left", padding: "40px 20px", marginTop: "0px" }}>
