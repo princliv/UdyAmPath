@@ -1,41 +1,43 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { onAuthStateChanged } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
 import { auth } from "./firebase/firebase";
-import { onAuthStateChanged } from "firebase/auth";
 
+import { signOut } from "firebase/auth";
+import backgroud from "./assets/background.png";
+import flogo from "./assets/footerLogo.png";
+import ModulePage from "./components/coursepage/modulePage";
+import PathwayPhaseDetail from "./components/coursepage/PathwayPhaseDetail";
+import SpecializationDetail from "./components/coursepage/SpecializationDetail";
+import TestPage from "./components/coursepage/TestPage";
 import BaseDetails from "./components/jobpage/baseDetails";
 import BasePage from "./components/jobpage/basePage";
 import Books from "./components/notespage/books";
 import Notes from "./components/notespage/notes";
+import PyqPage from './components/notespage/PyqPage';
+import Adaptability from "./components/toolspage/adaptability";
+import Communication from "./components/toolspage/communication";
 import GroupDiscussion from "./components/toolspage/groupDiscussion";
 import HrInterview from "./components/toolspage/hrInterview";
 import Placement from "./components/toolspage/placementpaper";
 import PlaceTest from "./components/toolspage/placeTest";
 import ProjectModal from "./components/toolspage/projectModal";
 import TechInterview from "./components/toolspage/techInterview";
+import TimeManagement from "./components/toolspage/timemanage";
+import AuthModal from "./pages/AuthModal";
 import CourseDetail from "./pages/coursedetail";
 import CoursePage from "./pages/coursepage";
+import FounderNoteModal from "./pages/FounderModal";
 import Homepage from "./pages/homepage";
 import JobPage from "./pages/jobpage";
-import NotesPage from "./pages/notespage";
-import ToolsPage from "./pages/toolspage";
 import Login from "./pages/login";
-import Signup from "./pages/signup";
+import NotesPage from "./pages/notespage";
 import Profile from "./pages/profile";
-import backgroud from "./assets/background.png";
-import flogo from "./assets/footerLogo.png";
 import Recruiter from "./pages/recruiter";
-import AuthModal from "./pages/AuthModal";
-import Communication from "./components/toolspage/communication";
-import Adaptability from "./components/toolspage/adaptability";
-import TimeManagement from "./components/toolspage/timemanage";
-import { signOut } from "firebase/auth";
-import ModulePage from "./components/coursepage/modulePage";
-import TestPage from "./components/coursepage/TestPage";
-import SpecializationDetail from "./components/coursepage/SpecializationDetail";
-import PathwayPhaseDetail from "./components/coursepage/PathwayPhaseDetail"; 
-import FounderNoteModal from "./pages/FounderModal";
+import Signup from "./pages/signup";
+import ToolsPage from "./pages/toolspage";
+
 
 function App() {
   return (
@@ -179,6 +181,7 @@ function AppContent() {
         <Route path="/timemanage" element={<TimeManagement />} />
         <Route path="/module" element={<ModulePage />} />
         <Route path="/test" element={<TestPage />} />
+        <Route path="/pyqs" element={<PyqPage />} />
         <Route path="/specialization/:id" element={<SpecializationDetail />} />
         <Route path="/specialization/:id/pathway/:phaseIndex" element={<PathwayPhaseDetail />} />
 
