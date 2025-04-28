@@ -1,11 +1,16 @@
-import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import pyq1 from '../assets/amcat.jpg';
+import pyq2 from '../assets/cocube.jpg';
 import dsImage from '../assets/ds-image.jpeg';
 import javaImage from '../assets/java-image.webp';
 import oopsImage from '../assets/oops-image.jpeg';
 import osImage from '../assets/os-image.png';
 
 const NotesPage = () => {
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleMouseOver = (e) => {
     e.currentTarget.style.transform = "translateY(-2px)";
     e.currentTarget.style.boxShadow = "0 6px 10px rgba(0, 0, 0, 0.2)";
@@ -14,6 +19,16 @@ const NotesPage = () => {
   const handleMouseOut = (e) => {
     e.currentTarget.style.transform = "translateY(0)";
     e.currentTarget.style.boxShadow = "0 3px 5px rgba(0, 0, 0, 0.2)";
+  };
+
+  
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handlePyqClick = () => {
+    navigate("/pyqs");
   };
 
   // Notification messages
@@ -54,6 +69,8 @@ const NotesPage = () => {
 
     animateNotifications();
   }, []);
+
+  const pyqImages = [pyq1, pyq2, pyq1, pyq2]; // Reusing images for demo
 
   return (
     <div style={styles.container}>
@@ -139,7 +156,116 @@ const NotesPage = () => {
             Explore More
           </button>
         </Link>
+
+        {/* Added PYQ Section */}
+        <div style={styles.pyqSection} onClick={handlePyqClick}>
+          <h2 style={styles.pyqHeading}>
+            Some PYQ's just for you
+            <span style={styles.viewAll}>
+              View All <i className="fas fa-arrow-right"></i>
+            </span>
+          </h2>
+          <div style={styles.pyqGrid}>
+            {pyqImages.map((image, index) => (
+              <img key={index} src={image} alt={`PYQ ${index + 1}`} style={styles.pyqImage} />
+            ))}
+          </div>
+
+          {/* Centered Divider Below Images */}
+          <div style={styles.dividerContainer}>
+            <div style={styles.line}></div>
+            <div style={styles.centerLine}></div>
+            <div style={styles.line}></div>
+          </div>
+        </div>
       </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <>
+          {/* MODAL OVERLAY */}
+          <div
+            onClick={handleCloseModal}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              backdropFilter: "blur(5px)",
+              zIndex: 999,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            {/* MODAL CONTENT */}
+            <div
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                backgroundColor: "#fff",
+                padding: "30px",
+                borderRadius: "12px",
+                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
+                width: "350px",
+                textAlign: "center",
+                zIndex: 1000,
+                animation: "fadeIn 0.3s ease-in-out",
+                position: "relative"
+              }}
+            >
+              {/* Close Button */}
+              <button
+                onClick={handleCloseModal}
+                style={{
+                  position: "absolute",
+                  top: "10px",
+                  right: "10px",
+                  background: "none",
+                  border: "none",
+                  fontSize: "18px",
+                  cursor: "pointer",
+                  color: "#888"
+                }}
+              >
+                ✕
+              </button>
+
+              {/* Modal Header */}
+              <h2 style={{ fontWeight: "bold", color: "#1181c8", marginBottom: "10px" }}>
+                Upgrade to Plus! 🚀
+              </h2>
+
+              {/* Description */}
+              <p style={{ fontSize: "14px", color: "#555", marginBottom: "20px" }}>
+                Get premium access to exclusive mentorship, tools, and career-boosting resources.
+              </p>
+
+              {/* CTA Button */}
+              <button
+                onClick={() => alert("Redirecting to purchase page...")}
+                style={{
+                  backgroundColor: "#1181c8",
+                  color: "#fff",
+                  padding: "10px 20px",
+                  fontSize: "16px",
+                  border: "none",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  transition: "background 0.3s ease",
+                  width: "100%",
+                  fontWeight: "bold"
+                }}
+                onMouseOver={(e) => (e.target.style.backgroundColor = "#0e6ba8")}
+                onMouseOut={(e) => (e.target.style.backgroundColor = "#1181c8")}
+              >
+                Get Plus Now →
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
@@ -316,6 +442,61 @@ const styles = {
     cursor: 'pointer',
     boxShadow: '0 3px 5px rgba(0, 0, 0, 0.2)',
     transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+  },
+  // Added PYQ Section Styles
+  pyqSection: {
+    marginTop: '40px',
+    textAlign: 'left',
+    cursor: 'pointer',
+  },
+  pyqHeading: {
+    fontSize: '1.8rem',
+    fontWeight: '500',
+    marginBottom: '20px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  viewAll: {
+    fontSize: '1rem',
+    color: '#0A52C6',
+    textDecoration: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '5px',
+  },
+  pyqGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(4, 1fr)',
+    gap: '15px',
+    justifyContent: 'center',
+    marginTop: '20px',
+  },
+  pyqImage: {
+    width: '100%',
+    borderRadius: '10px',
+    height: '200px',
+    objectFit: 'cover',
+    cursor: 'pointer',
+  },
+  dividerContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '20px',
+  },
+  line: {
+    height: '4px',
+    width: '60px',
+    backgroundColor: '#E0E6E9',
+    borderRadius: '10px',
+  },
+  centerLine: {
+    height: '8px',
+    width: '70px',
+    backgroundColor: '#0A52C6',
+    borderRadius: '10px',
+    margin: '0 15px',
   },
 };
 
