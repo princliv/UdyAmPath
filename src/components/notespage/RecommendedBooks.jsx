@@ -1,10 +1,12 @@
 import React, { forwardRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { default as pyq1, default as pyq3 } from "../../assets/amcat.jpg";
 import { default as pyq2, default as pyq4 } from "../../assets/cocube.jpg";
 import bookImage from "../../assets/com.avif";
 
 const RecommendedBooks = forwardRef((props, ref) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -12,6 +14,10 @@ const RecommendedBooks = forwardRef((props, ref) => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handlePyqClick = () => {
+    navigate("/pyqs");
   };
 
   const books = [
@@ -91,11 +97,23 @@ const RecommendedBooks = forwardRef((props, ref) => {
     pyqSection: {
       marginTop: "40px",
       textAlign: "left",
+      cursor: "pointer",
     },
     pyqHeading: {
       fontSize: "36px",
       fontWeight: "500",
       marginBottom: "20px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+    viewAll: {
+      fontSize: "16px",
+      color: "#0A52C6",
+      textDecoration: "none",
+      display: "flex",
+      alignItems: "center",
+      gap: "5px",
     },
     pyqGrid: {
       display: "grid",
@@ -158,8 +176,13 @@ const RecommendedBooks = forwardRef((props, ref) => {
       </div>
 
       {/* PYQ Section with Four Images */}
-      <div style={styles.pyqSection}>
-        <h2 style={styles.pyqHeading}>Some PYQ's just for you</h2>
+      <div style={styles.pyqSection} onClick={handlePyqClick}>
+        <h2 style={styles.pyqHeading}>
+          Some PYQ's just for you
+          <span style={styles.viewAll}>
+            View All <i className="fas fa-arrow-right"></i>
+          </span>
+        </h2>
         <div style={styles.pyqGrid}>
           {pyqImages.map((image, index) => (
             <img key={index} src={image} alt={`PYQ ${index + 1}`} style={styles.pyqImage} />
