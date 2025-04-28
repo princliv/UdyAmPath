@@ -9,6 +9,7 @@ import HomeTool from "../components/homepage/hometool";
 import Event from "../components/homepage/event";
 import { useMediaQuery } from "react-responsive";
 import FaqPage from "../components/homepage/FaqPage";
+import Works from "../components/homepage/howitworks";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -69,6 +70,7 @@ const Homepage = () => {
       <NewFeature />
       <Popular />
       <HomeTool />
+      <Works />
       <Event />
       <FaqPage />
 
