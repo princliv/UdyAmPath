@@ -66,7 +66,7 @@ const HomeTool = () => {
             title: "Project Listings",
             desc: "Build your portfolio by exploring and working on impactful projects.",
             footer: "10+ Projects",
-            link: "/projectModal"
+            link: "/Pdetails"
           },
           {
             icon: icon2,
