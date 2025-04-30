@@ -56,7 +56,7 @@ const Project = () => {
           flexWrap: "wrap",
         }}
       >
-        {projectsData.map((project, index) => (
+        {projectsData.slice(0, 3).map((project, index) => (
           <div
             key={index}
             onClick={() => handleProjectClick(project)}

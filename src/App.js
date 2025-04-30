@@ -38,6 +38,7 @@ import Recruiter from "./pages/recruiter";
 import Signup from "./pages/signup";
 import ToolsPage from "./pages/toolspage";
 
+import Pd from "./components/toolspage/projectlist";
 
 function App() {
   return (
@@ -184,6 +185,7 @@ function AppContent() {
         <Route path="/pyqs" element={<PyqPage />} />
         <Route path="/specialization/:id" element={<SpecializationDetail />} />
         <Route path="/specialization/:id/pathway/:phaseIndex" element={<PathwayPhaseDetail />} />
+        <Route path="/Pdetails" element={<Pd />} />
 
 
       </Routes>

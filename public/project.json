@@ -1,33 +1,86 @@
 [
-    {
-      "title": "SmartHealth Monitoring System",
-      "day": "Monday",
-      "image": "image1",
-      "description": "Real-time health tracking with IoT and data analytics.",
-      "frontend": "React, IoT Dashboard",
-      "backend": "Node.js, Express",
-      "database": "MongoDB",
-      "details": "The SmartHealth Monitoring System is designed to revolutionize healthcare by integrating advanced IoT sensors with a robust data analytics platform. It continuously monitors vital health parameters, processes large volumes of data in real-time, and generates actionable insights for both patients and healthcare providers. The system features predictive analytics to foresee potential health risks, automated alerts for abnormal readings, and a user-friendly dashboard for easy visualization of trends and history. This solution aims to improve patient outcomes by enabling timely interventions and fostering a proactive approach to health management."
-    },
-    {
-      "title": "AI-Powered Job Recommendation System",
-      "day": "Tuesday",
-      "image": "image2",
-      "description": "AI-based job recommendations using NLP and sentiment analysis.",
-      "frontend": "React, Tailwind CSS",
-      "backend": "Django, TensorFlow",
-      "database": "PostgreSQL",
-      "details": "The AI-Powered Job Recommendation System leverages state-of-the-art artificial intelligence techniques to match candidates with the ideal job opportunities. By combining natural language processing and sentiment analysis, the system interprets user profiles, resumes, and job descriptions to identify the best fit. It continuously learns from user interactions and market trends to refine its recommendations. The platform also offers personalized career advice, resume improvement tips, and insights into industry demands, making it an invaluable tool for both job seekers and recruiters aiming to streamline the hiring process."
-    },
-    {
-      "title": "E-Commerce Chatbot with NLP",
-      "day": "Wednesday",
-      "image": "image3",
-      "description": "NLP-powered chatbot for personalized e-commerce shopping experience.",
-      "frontend": "Vue.js, Bootstrap",
-      "backend": "Flask, Dialogflow",
-      "database": "Firebase",
-      "details": "The E-Commerce Chatbot with NLP is engineered to provide a highly personalized shopping experience by leveraging natural language processing and machine learning. This intelligent chatbot assists users by understanding their queries, recommending products based on preferences and past purchases, and handling customer support issues in real-time. The system seamlessly integrates with e-commerce platforms to offer features such as order tracking, product availability updates, and dynamic discount offers. With its user-friendly interface and continuous learning capabilities, the chatbot aims to enhance customer engagement and drive sales through improved user satisfaction and efficient support services."
-    }
-  ]
-  
+  {
+    "title": "SmartHealth Monitoring System",
+    "day": "Monday",
+    "image": "image1",
+    "description": "Real-time health tracking with IoT and data analytics.",
+    "frontend": "React, IoT Dashboard",
+    "backend": "Node.js, Express",
+    "database": "MongoDB",
+    "pathway": "HealthTech -> IoT -> Data Analytics -> Real-time Monitoring -> Predictive Analytics",
+    "category": "Health",
+    "details": "The SmartHealth Monitoring System is designed to revolutionize healthcare by integrating advanced IoT sensors with a robust data analytics platform. It continuously monitors vital health parameters, processes large volumes of data in real-time, and generates actionable insights for both patients and healthcare providers. The system features predictive analytics to foresee potential health risks, automated alerts for abnormal readings, and a user-friendly dashboard for easy visualization of trends and history. This solution aims to improve patient outcomes by enabling timely interventions and fostering a proactive approach to health management."
+  },
+  {
+    "title": "AI-Powered Job Recommendation System",
+    "day": "Tuesday",
+    "image": "image2",
+    "description": "AI-based job recommendations using NLP and sentiment analysis.",
+    "frontend": "React, Tailwind CSS",
+    "backend": "Django, TensorFlow",
+    "database": "PostgreSQL",
+    "pathway": "AI -> NLP -> Sentiment Analysis -> Job Matching -> Personalization",
+    "category": "AI",
+    "details": "The AI-Powered Job Recommendation System leverages state-of-the-art artificial intelligence techniques to match candidates with the ideal job opportunities. By combining natural language processing and sentiment analysis, the system interprets user profiles, resumes, and job descriptions to identify the best fit. It continuously learns from user interactions and market trends to refine its recommendations. The platform also offers personalized career advice, resume improvement tips, and insights into industry demands, making it an invaluable tool for both job seekers and recruiters aiming to streamline the hiring process."
+  },
+  {
+    "title": "E-Commerce Chatbot with NLP",
+    "day": "Wednesday",
+    "image": "image3",
+    "description": "NLP-powered chatbot for personalized e-commerce shopping experience.",
+    "frontend": "Vue.js, Bootstrap",
+    "backend": "Flask, Dialogflow",
+    "database": "Firebase",
+    "pathway": "E-Commerce -> NLP -> Chatbots -> Customer Support -> Personalized Shopping",
+    "category": "E-Commerce",
+    "details": "The E-Commerce Chatbot with NLP is engineered to provide a highly personalized shopping experience by leveraging natural language processing and machine learning. This intelligent chatbot assists users by understanding their queries, recommending products based on preferences and past purchases, and handling customer support issues in real-time. The system seamlessly integrates with e-commerce platforms to offer features such as order tracking, product availability updates, and dynamic discount offers. With its user-friendly interface and continuous learning capabilities, the chatbot aims to enhance customer engagement and drive sales through improved user satisfaction and efficient support services."
+  },
+  {
+    "title": "Virtual Reality Therapy for Mental Health",
+    "day": "Thursday",
+    "image": "image4",
+    "description": "Using VR for immersive mental health therapy sessions.",
+    "frontend": "React, WebVR",
+    "backend": "Node.js, WebSocket",
+    "database": "MongoDB",
+    "pathway": "Mental Health -> Virtual Reality -> Immersive Therapy -> Cognitive Behavioral Therapy",
+    "category": "Health",
+    "details": "The Virtual Reality Therapy for Mental Health system aims to provide an immersive therapeutic experience for individuals with anxiety, depression, PTSD, and other mental health conditions. By using virtual reality environments, users can engage in therapy sessions designed to promote relaxation, mindfulness, and emotional regulation. The system integrates with licensed mental health professionals to offer guided sessions and real-time feedback. The therapy pathways are personalized based on the individual's needs, providing a novel and effective approach to mental health treatment."
+  },
+  {
+    "title": "Autonomous Delivery Drone System",
+    "day": "Friday",
+    "image": "image5",
+    "description": "Drone system for automated delivery of goods.",
+    "frontend": "React, Drone Dashboard",
+    "backend": "Node.js, Python (for drone control)",
+    "database": "PostgreSQL",
+    "pathway": "Robotics -> Autonomous Systems -> Drones -> Delivery System",
+    "category": "Technology",
+    "details": "The Autonomous Delivery Drone System is designed to revolutionize the logistics industry by automating the delivery of packages through drone technology. The system uses GPS and computer vision to navigate and avoid obstacles while delivering goods in urban environments. It includes a central dashboard for real-time monitoring of deliveries, drone health, and operational status. The system can handle last-mile deliveries, significantly reducing delivery times and operational costs. Additionally, it integrates machine learning to optimize flight paths and improve efficiency."
+  },
+  {
+    "title": "Smart Home Automation System",
+    "day": "Saturday",
+    "image": "image6",
+    "description": "Smart home automation with voice control and IoT integration.",
+    "frontend": "React, IoT Dashboard",
+    "backend": "Node.js, MQTT",
+    "database": "MongoDB",
+    "pathway": "Home Automation -> IoT -> Voice Control -> Smart Devices",
+    "category": "Home Automation",
+    "details": "The Smart Home Automation System allows users to control various smart devices within their home using a mobile app or voice commands. The system integrates IoT sensors with smart devices like lights, thermostats, and security cameras, creating a seamless and efficient home environment. Users can schedule tasks, monitor device statuses, and receive alerts for unusual activities, ensuring convenience, security, and energy efficiency. The system supports both Alexa and Google Assistant, allowing voice-based control of all devices. It also includes AI-powered automation to adapt to user preferences."
+  },
+  {
+    "title": "Blockchain-Based Voting System",
+    "day": "Sunday",
+    "image": "image7",
+    "description": "Secure and transparent voting system based on blockchain technology.",
+    "frontend": "React, Material UI",
+    "backend": "Node.js, Ethereum Smart Contracts",
+    "database": "MongoDB",
+    "pathway": "Blockchain -> Voting -> Smart Contracts -> Security",
+    "category": "Blockchain",
+    "details": "The Blockchain-Based Voting System leverages the security and transparency of blockchain technology to create a reliable and tamper-proof voting system. Voters can cast their ballots securely using a blockchain platform, ensuring that votes are immutable and verifiable. The system features real-time vote tallying, transparent results, and audit trails. Smart contracts are used to automate election procedures and ensure fairness. This system can be used for both small-scale elections and large-scale government voting processes, ensuring integrity in the democratic process."
+  }
+]
