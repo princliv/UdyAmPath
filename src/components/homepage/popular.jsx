@@ -117,7 +117,7 @@ const styles = {
   container: {
     display: "flex",
     flex:1,
-    padding: "80px",
+    padding: "40px",
     background: "linear-gradient(to right, #4b2b7f, #003057)",
     color: "#fff",
     fontFamily: "'Segoe UI', sans-serif",
@@ -150,7 +150,7 @@ const styles = {
     alignItems: "center",
     position: "relative",
     overflow: "hidden", // Hide extra items beyond the visible section
-    width: "100%", // Ensure it takes the full width of the container
+    width: "80%", // Ensure it takes the full width of the container
   },
   courseWrapper: {
     display: "flex",
