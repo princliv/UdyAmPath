@@ -83,7 +83,7 @@ const Details = () => {
   {/* Left Sidebar */}
   <div
   style={{
-    width: "300px",
+    width: "242px",
     borderRadius: "16px",
     background: "#fff",
     boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)",
