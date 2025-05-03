@@ -114,7 +114,7 @@ const styles = {
   },  
   description: {
     fontSize: "22px",
-    fontWeight: 100,
+    fontWeight: 150,
     lineHeight: "1.5",
     maxWidth: "500px",
   },
