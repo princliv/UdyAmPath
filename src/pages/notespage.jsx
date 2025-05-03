@@ -4,6 +4,8 @@ import dsImage from '../assets/ds-image.jpeg';
 import javaImage from '../assets/java-image.webp';
 import oopsImage from '../assets/oops-image.jpeg';
 import osImage from '../assets/os-image.png';
+import bgImage from "../assets/notesheaderbg.png"; // adjust path as needed
+
 
 const NotesPage = () => {
   const handleMouseOver = (e) => {
@@ -151,7 +153,7 @@ const styles = {
     backgroundColor: '#f9f9f9',
   },
   sidebar: {
-    width: '250px',
+    width: '285px',
     padding: '20px',
     backgroundColor: '#f4f4f4',
   },
@@ -210,14 +212,16 @@ const styles = {
     padding: '20px',
   },
   searchContainer: {
-    backgroundColor: 'white',
-    padding: '20px',
+    backgroundImage: `url(${bgImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    padding: '30px',
     borderRadius: '10px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: '20px',
-    border: '1px solid #ddd',
+    marginBottom: '40px',
   },
   searchText: {
     fontSize: '1.8rem',
