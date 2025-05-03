@@ -142,7 +142,7 @@ const HomeTool = () => {
         </div>
 
         {/* RIGHT COLUMN */}
-        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center", paddingTop: "40px" }}>
+        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center", paddingTop: "40px", paddingLeft: "20px" }}>
           <img
             src={require("../../assets/HomeTool.png")}
             alt="Home Tool"
