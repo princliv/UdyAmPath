@@ -116,7 +116,6 @@ const courseData = [
 const styles = {
   container: {
     display: "flex",
-    flex:1,
     padding: "40px",
     background: "linear-gradient(to right, #4b2b7f, #003057)",
     color: "#fff",

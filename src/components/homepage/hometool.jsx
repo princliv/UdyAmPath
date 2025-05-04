@@ -6,36 +6,39 @@ import icon4 from "../../assets/icon4.png";
 import background from "../../assets/bghometool.png";
 
 const HomeTool = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const boxStyle = (isHovered, bgColor) => ({
-    flex: 1,
+  const cardStyle = (bgColor) => ({
+    background: `linear-gradient(145deg, ${bgColor}, #ffffff)`,
+    boxShadow: `
+      5px 5px 15px rgba(0, 0, 0, 0.2),
+      -5px -5px 15px rgba(255, 255, 255, 0.6),
+      inset -2px -2px 5px rgba(255, 255, 255, 0.8),
+      inset 2px 2px 5px rgba(0, 0, 0, 0.05)
+    `,
     padding: "20px",
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-    textAlign: "center",
-    position: "relative",
-    height: "250px",
+    borderRadius: "16px",
+    minHeight: "250px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
     overflow: "hidden",
-    transition: "transform 0.3s ease-in-out, background-color 0.3s ease-in-out",
-    transform: isHovered ? "translateY(-10px)" : "translateY(0)",
-    backgroundColor: isHovered ? "#f0f8ff" : bgColor,
-    boxShadow: isHovered ? "0 5px 15px rgba(0, 0, 0, 0.2)" : "none"
+    wordWrap: "break-word",
+    boxSizing: "border-box"
   });
 
-  const hoverOverlayStyle = (isHovered, color) => ({
-    position: "absolute",
-    bottom: isHovered ? "0" : "-100%",
-    left: "0",
-    width: "100%",
-    height: "50px",
+  const footerButton = (color) => ({
     backgroundColor: color,
     color: "#fff",
-    textAlign: "center",
-    lineHeight: "50px",
+    padding: "8px 16px",
+    borderRadius: "8px",
+    marginTop: "12px",
     fontWeight: "bold",
-    transition: "bottom 0.3s ease-in-out"
+    fontSize: "14px",
+    textAlign: "center",
+    cursor: "pointer",
+    transition: "background 0.3s ease",
+    textDecoration: "none"
   });
 
   const handleOpenModal = () => setIsModalOpen(true);
@@ -86,55 +89,52 @@ const HomeTool = () => {
         backgroundImage: `url(${background})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        padding: "40px"
+        padding: "40px",
+        width: "100%",
       }}
     >
       <div style={{ display: "flex", gap: "20px", width: "80%", margin: "0 auto" }}>
+        {/* LEFT COLUMN */}
         <div style={{ flex: 1 }}>
-          <h2 style={{ fontFamily: "'Segoe UI', sans-serif", fontSize: "2rem", fontWeight: "bold", marginTop: "40px", marginBottom: "40px", textAlign: "Left" }}>
+          <h2
+            style={{
+              fontFamily: "'Segoe UI', sans-serif",
+              fontSize: "2rem",
+              fontWeight: "bold",
+              marginTop: "40px",
+              marginBottom: "40px",
+              textAlign: "left"
+            }}
+          >
             Ace Interviews, Build Projects & Crush Goals!
           </h2>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "40px"
-            }}
-          >
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px" }}>
             {items.map((item, index) => (
-              <div
-                key={index}
-                style={boxStyle(hoveredIndex === index, item.color)}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                <img
-                  src={item.icon}
-                  alt={item.title}
-                  style={{ width: "50px", height: "50px", marginBottom: "10px" }}
-                />
-                <h3 style={{ fontWeight: 700, marginBottom: "10px" }}>{item.title}</h3>
-                <p>{item.desc}</p>
-                <p style={{ marginTop: "10px", fontWeight: "bold" }}>{item.footer}</p>
-
+              <div key={index} style={cardStyle(item.color)}>
+                <div>
+                  <img
+                    src={item.icon}
+                    alt={item.title}
+                    style={{ width: "50px", height: "50px", marginBottom: "10px" }}
+                  />
+                  <h3 style={{ fontWeight: 700, marginBottom: "10px" }}>{item.title}</h3>
+                  <p style={{ fontSize: "14px", lineHeight: "1.4em" }}>{item.desc}</p>
+                  <p style={{ marginTop: "10px", fontWeight: "bold", fontSize: "13px" }}>
+                    {item.footer}
+                  </p>
+                </div>
                 {item.link ? (
-                  <Link to={item.link} style={{ textDecoration: "none", color: "#fff" }}>
-                    <div style={hoverOverlayStyle(hoveredIndex === index, item.hoverColor)}>Start Now →</div>
+                  <Link to={item.link} style={footerButton(item.hoverColor)}>
+                    Start Now →
                   </Link>
                 ) : (
-                  <button
-                    style={{
-                      background: "none",
-                      border: "none",
-                      padding: 0,
-                      cursor: "pointer",
-                      color: "#fff"
-                    }}
+                  <div
                     onClick={item.action}
+                    style={footerButton(item.hoverColor)}
                   >
-                    <div style={hoverOverlayStyle(hoveredIndex === index, item.hoverColor)}>Start Now →</div>
-                  </button>
+                    Start Now →
+                  </div>
                 )}
               </div>
             ))}
@@ -142,7 +142,15 @@ const HomeTool = () => {
         </div>
 
         {/* RIGHT COLUMN */}
-        <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center", paddingTop: "40px", paddingLeft: "20px" }}>
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingTop: "40px"
+          }}
+        >
           <img
             src={require("../../assets/HomeTool.png")}
             alt="Home Tool"
