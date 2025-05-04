@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import icon1 from "../../assets/icon1.png";
 import icon2 from "../../assets/icon2.png";
+import icon3 from "../../assets/icon3.png";
 import icon4 from "../../assets/icon4.png";
 import background from "../../assets/bghometool.png";
 
@@ -64,7 +65,7 @@ const HomeTool = () => {
       hoverColor: "#388e3c"
     },
     {
-      icon: icon2,
+      icon: icon3,
       title: "Mentora",
       desc: "Chat with Mentora for guidance, tips, and a quick morale boost during your preparation.",
       footer: "4 Chatbots",
