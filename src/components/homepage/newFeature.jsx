@@ -64,8 +64,11 @@ const cardData = [
 
 const styles = {
   container: {
+    display: "flex",
+    flexDirection: "column",
     textAlign: "center",
     padding: "40px",
+    maxWidth: "100%",
   },
   heading: {
     fontSize: "28px",
