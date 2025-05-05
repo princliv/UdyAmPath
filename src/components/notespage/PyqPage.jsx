@@ -260,9 +260,6 @@ const PyqPage = () => {
     return matchesSearch && matchesExam;
   });
 
-  const handleViewModeChange = () => {
-    setViewMode(viewMode === "grid" ? "list" : "grid");
-  };
 
   const openPdfInNewTab = (pdfUrl) => {
     window.open(pdfUrl, '_blank');

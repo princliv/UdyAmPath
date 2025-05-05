@@ -14,6 +14,7 @@ import TestPage from "./components/coursepage/TestPage";
 import BaseDetails from "./components/jobpage/baseDetails";
 import BasePage from "./components/jobpage/basePage";
 import Books from "./components/notespage/books";
+import FlashCard from './components/notespage/FlashCard';
 import Notes from "./components/notespage/notes";
 import PyqPage from './components/notespage/PyqPage';
 import Adaptability from "./components/toolspage/adaptability";
@@ -22,6 +23,7 @@ import GroupDiscussion from "./components/toolspage/groupDiscussion";
 import HrInterview from "./components/toolspage/hrInterview";
 import Placement from "./components/toolspage/placementpaper";
 import PlaceTest from "./components/toolspage/placeTest";
+import Pd from "./components/toolspage/projectlist";
 import ProjectModal from "./components/toolspage/projectModal";
 import TechInterview from "./components/toolspage/techInterview";
 import TimeManagement from "./components/toolspage/timemanage";
@@ -37,6 +39,8 @@ import Profile from "./pages/profile";
 import Recruiter from "./pages/recruiter";
 import Signup from "./pages/signup";
 import ToolsPage from "./pages/toolspage";
+import InternApply from "./components/jobpage/internApply"; // adjust import
+import DetailsModal from "./components/jobpage/detailsModal"; 
 
 
 function App() {
@@ -182,8 +186,13 @@ function AppContent() {
         <Route path="/module" element={<ModulePage />} />
         <Route path="/test" element={<TestPage />} />
         <Route path="/pyqs" element={<PyqPage />} />
+        <Route path="/flashcards" element={<FlashCard />} />
         <Route path="/specialization/:id" element={<SpecializationDetail />} />
         <Route path="/specialization/:id/pathway/:phaseIndex" element={<PathwayPhaseDetail />} />
+        <Route path="/Pdetails" element={<Pd />} />
+        <Route path="/intern-apply" element={<InternApply />} />
+        <Route path="/jobDetails" element={<DetailsModal />} />
+
 
 
       </Routes>
