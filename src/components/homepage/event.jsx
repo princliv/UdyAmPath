@@ -1,81 +1,146 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import event1 from "../../assets/event1.png";
-import event2 from "../../assets/event1.png";
-import event3 from "../../assets/event1.png";
+import event2 from "../../assets/event2.jpg";
+import event3 from "../../assets/event3.png";
 
-const events = [
+const originalEvents = [
   { img: event1, date: "20.02.2025", location: "Pune, Maharashtra" },
   { img: event2, date: "15.03.2025", location: "Mumbai, Maharashtra" },
   { img: event3, date: "10.04.2025", location: "Bangalore, Karnataka" },
 ];
 
 const Event = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(1); // start from first real slide
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const sliderRef = useRef(null);
+  const intervalRef = useRef(null);
+  const total = originalEvents.length;
+  const events = [originalEvents[total - 1], ...originalEvents, originalEvents[0]]; // clone ends
 
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? events.length - 1 : prevIndex - 1));
+  const updateIndex = (index) => {
+    setCurrentIndex(index);
+    setIsTransitioning(true);
   };
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === events.length - 1 ? 0 : prevIndex + 1));
+  const nextSlide = () => updateIndex(currentIndex + 1);
+  const prevSlide = () => updateIndex(currentIndex - 1);
+
+  useEffect(() => {
+    intervalRef.current = setInterval(nextSlide, 3000);
+    return () => clearInterval(intervalRef.current);
+  });
+
+  const handleTransitionEnd = () => {
+    if (currentIndex === events.length - 1) {
+      setIsTransitioning(false);
+      setCurrentIndex(1); // jump to first real
+    } else if (currentIndex === 0) {
+      setIsTransitioning(false);
+      setCurrentIndex(events.length - 2); // jump to last real
+    }
+  };
+
+  const handleTouchStart = (e) => (sliderRef.current.startX = e.touches[0].clientX);
+  const handleTouchMove = (e) => (sliderRef.current.endX = e.touches[0].clientX);
+  const handleTouchEnd = () => {
+    if (!sliderRef.current.startX || !sliderRef.current.endX) return;
+    const delta = sliderRef.current.startX - sliderRef.current.endX;
+    if (delta > 50) nextSlide();
+    else if (delta < -50) prevSlide();
   };
 
   return (
     <div className="event-container">
-      {/* Left Arrow */}
       <button onClick={prevSlide} className="arrow left-arrow">
         <FaArrowLeft size={20} />
       </button>
 
-      {/* Event Content */}
-      <div className="event-card">
-        <img src={events[currentIndex].img} alt="Event" className="event-image" />
-        <div className="event-details">
-          <p className="event-date">Applied by: {events[currentIndex].date}</p>
-          <div className="event-footer">
-            <p className="event-location">Location: {events[currentIndex].location}</p>
-            <button className="event-button">See More</button>
-          </div>
+      <div
+        className="event-slider-wrapper"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <div
+          className="event-slider"
+          ref={sliderRef}
+          style={{
+            transform: `translateX(-${currentIndex * (100 / 3)}%)`,
+            transition: isTransitioning ? "transform 0.5s ease-in-out" : "none",
+            width: `${(events.length * 100) / 3}%`,
+          }}
+          onTransitionEnd={handleTransitionEnd}
+        >
+          {events.map((event, index) => (
+            <div className="event-card" key={index}>
+              <img src={event.img} alt="Event" className="event-image" />
+              <div className="event-details">
+                <p className="event-date">Applied by: {event.date}</p>
+                <div className="event-footer">
+                  <p className="event-location">Location: {event.location}</p>
+                  <button className="event-button">See More</button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Right Arrow */}
       <button onClick={nextSlide} className="arrow right-arrow">
         <FaArrowRight size={20} />
       </button>
 
-      {/* Responsive CSS */}
+      <div className="pagination-dots">
+        {originalEvents.map((_, index) => (
+          <span
+            key={index}
+            className={`dot ${currentIndex === index + 1 ? "active" : ""}`}
+            onClick={() => updateIndex(index + 1)}
+          />
+        ))}
+      </div>
+
       <style>{`
         .event-container {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-height: 50vh;
-          background-color: white;
           position: relative;
-          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background: #f0f4ff;
+          padding: 40px;
+          max-width: 100%;
+        }
+
+        .event-slider-wrapper {
+          overflow: hidden;
           width: 100%;
         }
 
+        .event-slider {
+          display: flex;
+        }
+
         .event-card {
-          width: 90%;
-          max-width: 600px;
-          background: white;
+          flex: 0 0 33.3333%;
+          padding: 10px;
+          margin: 0 10px;
+          box-sizing: border-box;
+          background-color: white;
           border-radius: 8px;
-          overflow: hidden;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .event-image {
           width: 100%;
           height: auto;
           object-fit: cover;
+          border-radius: 8px;
         }
 
         .event-details {
-          padding: 15px;
           text-align: center;
+          padding: 10px;
         }
 
         .event-date {
@@ -87,8 +152,8 @@ const Event = () => {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          flex-wrap: wrap;
           margin-top: 10px;
+          flex-wrap: wrap;
         }
 
         .event-location {
@@ -104,56 +169,55 @@ const Event = () => {
           border-radius: 5px;
           cursor: pointer;
           font-size: 14px;
-          transition: 0.3s;
-        }
-
-        .event-button:hover {
-          background: #1d4ed8;
         }
 
         .arrow {
           position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
           background: white;
           border: none;
-          padding: 8px 12px;
+          padding: 8px;
           border-radius: 50%;
-          cursor: pointer;
           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-          transition: 0.2s;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .arrow:hover {
-          transform: scale(1.1);
+          cursor: pointer;
+          z-index: 1;
         }
 
         .left-arrow {
-          left: 10px;
+          left: 20px;
         }
 
         .right-arrow {
-          right: 10px;
+          right: 20px;
+        }
+
+        .pagination-dots {
+          margin-top: 20px;
+        }
+
+        .dot {
+          height: 10px;
+          width: 10px;
+          margin: 0 5px;
+          background-color: #bbb;
+          border-radius: 50%;
+          display: inline-block;
+          cursor: pointer;
+        }
+
+        .dot.active {
+          background-color: #2563eb;
         }
 
         @media (max-width: 768px) {
-          .event-container {
-            flex-direction: column;
-          }
-
           .event-card {
-            width: 100%;
+            flex: 0 0 100%;
           }
 
-          .event-footer {
-            flex-direction: column;
-            text-align: center;
-          }
-
-          .arrow {
-            position: static;
-            margin: 10px;
+          .event-slider {
+            width: ${events.length * 100}%;
+            transform: translateX(-${currentIndex * 100}%);
           }
         }
       `}</style>

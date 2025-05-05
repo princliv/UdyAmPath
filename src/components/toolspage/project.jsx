@@ -29,6 +29,11 @@ const Project = () => {
     navigate("/projectModal", { state: project });
   };
 
+  // Handle "More" button click to navigate to a new page or show more projects
+  const handleMoreClick = () => {
+    navigate("/Pdetails"); // This could be a route where all projects are displayed
+  };
+
   return (
     <div style={{ textAlign: "center", padding: "30px" }}>
       {/* Heading with GIF */}
@@ -56,7 +61,7 @@ const Project = () => {
           flexWrap: "wrap",
         }}
       >
-        {projectsData.map((project, index) => (
+        {projectsData.slice(0, 3).map((project, index) => (
           <div
             key={index}
             onClick={() => handleProjectClick(project)}
@@ -98,6 +103,28 @@ const Project = () => {
           </div>
         ))}
       </div>
+
+      {/* "More" Button */}
+      <div style={{ marginTop: "30px", marginRight: "30px" ,textAlign: "right" }}>
+        <button
+          onClick={handleMoreClick}
+          style={{
+            padding: "10px 20px",
+            fontSize: "12px",
+            color: "#fff",
+            backgroundColor: "#004aad",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            transition: "background-color 0.3s ease",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#00376d")}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#004aad")}
+        >
+          View More
+        </button>
+      </div>
+
     </div>
   );
 };
