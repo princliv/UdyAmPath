@@ -75,6 +75,262 @@ const PathwayPhaseDetail = () => {
     );
   }
 
+  // Sample content data for each phase type
+  const getPhaseContent = (phaseTitle) => {
+    const contentMap = {
+      'Introduction': {
+        objectives: [
+          "Understand the fundamental concepts of the specialization",
+          "Learn about the course structure and expectations",
+          "Get familiar with the learning resources available"
+        ],
+        materials: [
+          {
+            type: "Video Lecture",
+            title: "Welcome to the Course",
+            description: "Introduction video covering the specialization overview",
+            duration: "15 min"
+          },
+          {
+            type: "Reading",
+            title: "Course Syllabus",
+            description: "Detailed breakdown of what you'll learn in this specialization",
+            pages: 5
+          },
+          {
+            type: "Exercise",
+            title: "Self-Assessment Quiz",
+            description: "Test your current knowledge to personalize your learning path"
+          }
+        ],
+        content: (
+          <div>
+            <h3>Welcome to {specializationName}</h3>
+            <p>
+              This specialization is designed to take you from foundational concepts to advanced 
+              applications. In this introductory phase, we'll cover:
+            </p>
+            <ul>
+              <li>Key terminology and concepts</li>
+              <li>The learning methodology we'll be using</li>
+              <li>How to make the most of the course materials</li>
+            </ul>
+            <p>
+              By the end of this phase, you should have a clear understanding of what to expect 
+              and how to navigate through the specialization effectively.
+            </p>
+          </div>
+        )
+      },
+      'Core Concepts': {
+        objectives: [
+          "Master the fundamental building blocks of the subject",
+          "Understand key theories and principles",
+          "Apply concepts through practical examples"
+        ],
+        materials: [
+          {
+            type: "Video Lecture",
+            title: "Foundational Theories",
+            description: "Deep dive into the core concepts of the subject",
+            duration: "45 min"
+          },
+          {
+            type: "Reading",
+            title: "Core Principles Handbook",
+            description: "Comprehensive guide to the fundamental concepts",
+            pages: 25
+          },
+          {
+            type: "Exercise",
+            title: "Concept Application",
+            description: "Practice applying concepts to real-world scenarios"
+          }
+        ],
+        content: (
+          <div>
+            <h3>Core Concepts Overview</h3>
+            <p>
+              In this phase, we'll explore the essential building blocks that form the foundation 
+              of {specializationName}. These concepts are critical for understanding more advanced 
+              topics later in the specialization.
+            </p>
+            
+            <h4>Key Topics Covered:</h4>
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+              gap: '15px',
+              margin: '20px 0'
+            }}>
+              {phase.topics?.map((topic, index) => (
+                <div key={index} style={{
+                  backgroundColor: '#f5f9ff',
+                  padding: '15px',
+                  borderRadius: '8px',
+                  borderLeft: '3px solid #004aad'
+                }}>
+                  <h5 style={{ margin: '0 0 10px 0' }}>Concept {index + 1}</h5>
+                  <p style={{ margin: 0 }}>{topic}</p>
+                </div>
+              ))}
+            </div>
+            
+            <p>
+              Each concept will be explained through multiple learning modalities including 
+              video lectures, reading materials, and hands-on exercises to ensure comprehensive 
+              understanding.
+            </p>
+          </div>
+        )
+      },
+      'Advanced Topics': {
+        objectives: [
+          "Explore complex applications of core concepts",
+          "Develop problem-solving skills for advanced scenarios",
+          "Analyze case studies and real-world implementations"
+        ],
+        materials: [
+          {
+            type: "Video Lecture",
+            title: "Advanced Applications",
+            description: "Exploring complex use cases and implementations",
+            duration: "60 min"
+          },
+          {
+            type: "Reading",
+            title: "Case Studies Collection",
+            description: "Real-world examples of advanced applications",
+            pages: 35
+          },
+          {
+            type: "Exercise",
+            title: "Problem-Solving Challenge",
+            description: "Tackle complex problems using advanced concepts"
+          }
+        ],
+        content: (
+          <div>
+            <h3>Advanced Topics Exploration</h3>
+            <p>
+              Now that you've mastered the fundamentals, we'll dive deeper into more complex 
+              aspects of {specializationName}. This phase will challenge you to:
+            </p>
+            <ul>
+              <li>Apply concepts in innovative ways</li>
+              <li>Solve non-trivial problems</li>
+              <li>Analyze sophisticated implementations</li>
+            </ul>
+            
+            <h4>Learning Approach:</h4>
+            <p>
+              We'll use a combination of theoretical explanations and practical case studies to 
+              ensure you can apply these advanced concepts in real-world situations. Each topic 
+              will include:
+            </p>
+            <ul>
+              <li>Detailed explanations of the underlying theory</li>
+              <li>Walkthroughs of complex examples</li>
+              <li>Opportunities to implement solutions yourself</li>
+            </ul>
+          </div>
+        )
+      },
+      'Final Project': {
+        objectives: [
+          "Synthesize all learned concepts into a comprehensive project",
+          "Demonstrate mastery through practical application",
+          "Receive feedback on your implementation"
+        ],
+        materials: [
+          {
+            type: "Video Lecture",
+            title: "Project Guidelines",
+            description: "Detailed instructions for the final project",
+            duration: "30 min"
+          },
+          {
+            type: "Template",
+            title: "Project Starter Kit",
+            description: "Resources to help you begin your project"
+          },
+          {
+            type: "Exercise",
+            title: "Project Implementation",
+            description: "Build your final project step-by-step"
+          }
+        ],
+        content: (
+          <div>
+            <h3>Final Project Phase</h3>
+            <p>
+              Congratulations on reaching the final phase! Here you'll demonstrate everything 
+              you've learned by completing a comprehensive project that showcases your skills 
+              in {specializationName}.
+            </p>
+            
+            <h4>Project Requirements:</h4>
+            <ul>
+              <li>Incorporate all major concepts covered in the specialization</li>
+              <li>Demonstrate practical application of knowledge</li>
+              <li>Show creativity and problem-solving ability</li>
+            </ul>
+            
+            <h4>Support Resources:</h4>
+            <p>
+              You'll have access to:
+            </p>
+            <ul>
+              <li>Detailed project guidelines</li>
+              <li>Example implementations</li>
+              <li>Mentor support (if available)</li>
+              <li>Peer discussion forums</li>
+            </ul>
+          </div>
+        )
+      }
+    };
+
+    // Default content if phase title doesn't match
+    return contentMap[phaseTitle] || {
+      objectives: ["Learn the key concepts of this phase"],
+      materials: [
+        {
+          type: "Video Lecture",
+          title: "Phase Overview",
+          description: "Introduction to this learning phase",
+          duration: "20 min"
+        },
+        {
+          type: "Reading",
+          title: "Study Materials",
+          description: "Comprehensive reading for this phase",
+          pages: 15
+        }
+      ],
+      content: (
+        <div>
+          <h3>Phase Content</h3>
+          <p>
+            This phase covers important concepts in {specializationName}. You'll learn through:
+          </p>
+          <ul>
+            <li>Interactive video lectures</li>
+            <li>Comprehensive reading materials</li>
+            <li>Practical exercises</li>
+            <li>Knowledge checks</li>
+          </ul>
+          <p>
+            The estimated duration for this phase is {phase.duration}. Make sure to complete all 
+            materials and exercises to fully grasp the concepts before moving forward.
+          </p>
+        </div>
+      )
+    };
+  };
+
+  const phaseContent = getPhaseContent(phase.phase);
+
   return (
     <div style={{ 
       maxWidth: '1400px', 
@@ -352,6 +608,31 @@ const PathwayPhaseDetail = () => {
           gridTemplateColumns: '1fr',
           gap: '30px'
         }}>
+          {/* Learning Content Section */}
+          <section style={{
+            backgroundColor: 'white',
+            borderRadius: '12px',
+            padding: '30px',
+            boxShadow: '0 3px 10px rgba(0,0,0,0.08)'
+          }}>
+            <h2 style={{
+              color: '#004aad',
+              fontSize: '1.5rem',
+              marginBottom: '20px',
+              borderBottom: '2px solid #e4deff',
+              paddingBottom: '10px'
+            }}>
+              Learning Content
+            </h2>
+            <div style={{
+              lineHeight: '1.7',
+              color: '#333',
+              fontSize: '1.1rem'
+            }}>
+              {phaseContent.content}
+            </div>
+          </section>
+
           {/* Learning Objectives */}
           <section style={{
             backgroundColor: 'white',
@@ -373,9 +654,9 @@ const PathwayPhaseDetail = () => {
               lineHeight: '1.6',
               color: '#444'
             }}>
-              {phase.topics?.map((topic, index) => (
+              {phaseContent.objectives.map((objective, index) => (
                 <li key={index} style={{ marginBottom: '10px' }}>
-                  {topic}
+                  {objective}
                 </li>
               ))}
             </ul>
@@ -402,7 +683,7 @@ const PathwayPhaseDetail = () => {
               gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
               gap: '20px'
             }}>
-              {['Video Lectures', 'Reading Materials', 'Practice Exercises', 'Quizzes'].map((resource, index) => (
+              {phaseContent.materials.map((resource, index) => (
                 <div key={index} style={{
                   backgroundColor: '#f8f9ff',
                   borderRadius: '8px',
@@ -411,35 +692,47 @@ const PathwayPhaseDetail = () => {
                 }}>
                   <h3 style={{ 
                     margin: '0 0 10px 0',
-                    color: '#333'
+                    color: '#333',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px'
                   }}>
-                    {resource}
+                    {resource.type === 'Video Lecture' && '🎥'}
+                    {resource.type === 'Reading' && '📖'}
+                    {resource.type === 'Exercise' && '✍️'}
+                    {resource.type === 'Template' && '📁'}
+                    {resource.title}
                   </h3>
                   <p style={{ 
                     color: '#666',
                     fontSize: '0.9rem',
-                    margin: 0
+                    margin: '0 0 15px 0'
                   }}>
-                    Comprehensive {resource.toLowerCase()} for {phase.phase.toLowerCase()}
+                    {resource.description}
+                    {resource.duration && ` • ${resource.duration}`}
+                    {resource.pages && ` • ${resource.pages} pages`}
                   </p>
                   <button style={{
-                    marginTop: '15px',
                     padding: '8px 16px',
                     backgroundColor: '#004aad',
                     color: 'white',
                     border: 'none',
                     borderRadius: '5px',
                     cursor: 'pointer',
-                    fontSize: '0.9rem'
+                    fontSize: '0.9rem',
+                    transition: 'all 0.2s',
+                    ':hover': {
+                      backgroundColor: '#003d8f'
+                    }
                   }}>
-                    Access {resource}
+                    Access {resource.type}
                   </button>
                 </div>
               ))}
             </div>
           </section>
 
-          {/* Completion Button - Moved to bottom */}
+          {/* Completion Button */}
           <div style={{
             display: 'flex',
             justifyContent: 'flex-end'

@@ -37,6 +37,8 @@ import Profile from "./pages/profile";
 import Recruiter from "./pages/recruiter";
 import Signup from "./pages/signup";
 import ToolsPage from "./pages/toolspage";
+import JobSimulator from "./components/coursepage/JobSimulator";
+
 
 
 function App() {
@@ -184,6 +186,7 @@ function AppContent() {
         <Route path="/pyqs" element={<PyqPage />} />
         <Route path="/specialization/:id" element={<SpecializationDetail />} />
         <Route path="/specialization/:id/pathway/:phaseIndex" element={<PathwayPhaseDetail />} />
+        <Route path="/job-simulator" element={<JobSimulator />} />
 
 
       </Routes>
