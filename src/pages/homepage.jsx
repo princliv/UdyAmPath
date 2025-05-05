@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import home1 from "../assets/home1.png";
 import home2 from "../assets/home2.png";
 import home3 from "../assets/home3.png";
+import bgImage1 from "../assets/homebg1.png";
 import NewFeature from "../components/homepage/newFeature";
 import Popular from "../components/homepage/popular";
 import HomeTool from "../components/homepage/hometool";
@@ -103,11 +104,17 @@ const styles = {
     width: "100%",
   },
   leftSection: {
-    flex: 1,
-  },
+    flex: 2,
+    padding: '20px',
+    backgroundImage: `url(${bgImage1})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    color: '#000000', // Optional: improve contrast
+  },  
   description: {
     fontSize: "22px",
-    fontWeight: 100,
+    fontWeight: 150,
     lineHeight: "1.5",
     maxWidth: "500px",
   },

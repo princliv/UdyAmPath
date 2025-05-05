@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import headerBg from '../assets/jobpage/headerbg.png'; // Import the background image
+import headerBg from '../assets/toolpage/headerbgtools.png'; // Import the background image
 import Interview from "../components/toolspage/interview";
 
 const JobPage = () => {
@@ -59,8 +59,8 @@ const JobPage = () => {
         }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <h2 style={{ fontSize: "30px" }}>
-              Get your dream job with<span style={{ color: "#004aad" }}> Interview Prep</span> and<br /> 
-              <span style={{ color: "#004aad" }}>projects </span>
+              Get your dream job with <br /><span style={{ color: "#004aad" }}> Interview Prep</span> and 
+              <span style={{ color: "#004aad" }}> projects </span>
             </h2>
             <input
               type="text"

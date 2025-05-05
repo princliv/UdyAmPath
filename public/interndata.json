@@ -1,0 +1,23 @@
+[
+    {
+      "title": "UI/UX Intern",
+      "company": "Creative Labs",
+      "type": "Internship",
+      "level": "Beginner",
+      "daysLeft": 12,
+      "color": "#3f92c3",
+      "logo": "amazonLogo",
+      "isAffordable": true
+    },
+    {
+      "title": "Web Dev Intern",
+      "company": "Techie Nest",
+      "type": "Internship",
+      "level": "Intermediate",
+      "daysLeft": 8,
+      "color": "#3f92c3",
+      "logo": "amazonLogo",
+      "isAffordable": false
+    }
+  ]
+  
