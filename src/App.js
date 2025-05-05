@@ -14,6 +14,7 @@ import TestPage from "./components/coursepage/TestPage";
 import BaseDetails from "./components/jobpage/baseDetails";
 import BasePage from "./components/jobpage/basePage";
 import Books from "./components/notespage/books";
+import FlashCard from './components/notespage/FlashCard';
 import Notes from "./components/notespage/notes";
 import PyqPage from './components/notespage/PyqPage';
 import Adaptability from "./components/toolspage/adaptability";
@@ -185,6 +186,7 @@ function AppContent() {
         <Route path="/module" element={<ModulePage />} />
         <Route path="/test" element={<TestPage />} />
         <Route path="/pyqs" element={<PyqPage />} />
+        <Route path="/flashcards" element={<FlashCard />} />
         <Route path="/specialization/:id" element={<SpecializationDetail />} />
         <Route path="/specialization/:id/pathway/:phaseIndex" element={<PathwayPhaseDetail />} />
         <Route path="/Pdetails" element={<Pd />} />
