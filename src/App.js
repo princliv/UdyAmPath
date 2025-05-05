@@ -39,6 +39,8 @@ import Profile from "./pages/profile";
 import Recruiter from "./pages/recruiter";
 import Signup from "./pages/signup";
 import ToolsPage from "./pages/toolspage";
+import JobSimulator from "./components/coursepage/JobSimulator";
+
 import InternApply from "./components/jobpage/internApply"; // adjust import
 import DetailsModal from "./components/jobpage/detailsModal"; 
 
@@ -193,6 +195,7 @@ function AppContent() {
         <Route path="/intern-apply" element={<InternApply />} />
         <Route path="/jobDetails" element={<DetailsModal />} />
 
+        <Route path="/job-simulator" element={<JobSimulator />} />
 
 
       </Routes>
