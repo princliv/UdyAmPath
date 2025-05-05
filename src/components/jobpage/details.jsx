@@ -7,6 +7,10 @@ import appleLogo from "../../assets/jobpage/apple.png";
 import doneImg from "../../assets/jobpage/done.png";
 import CityDetailsModal from "../jobpage/CityDetailsModal";
 
+import { useNavigate } from "react-router-dom";
+
+
+
 const logoMap = {
   "Amazon": amazonLogo,
   "Google": googleLogo,
@@ -14,14 +18,13 @@ const logoMap = {
 };
 
 const Details = () => {
-  
+  const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
   const [interns, setInterns] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState("Job");
   const [isCityModalOpen, setIsCityModalOpen] = useState(false);
-
   const [typeFilter, setTypeFilter] = useState([]); 
   const [levelFilter, setLevelFilter] = useState(""); // Store selected level
 
@@ -299,7 +302,14 @@ const Details = () => {
                   fontWeight: 600
                 }}>{job.level}</span>
                 <button
-                  onClick={() => openModal(job)}
+                  onClick={() => {
+                    if (job.type === "Internship") {
+                      navigate("/intern-apply", { state: { job } });
+                    } else {
+                      openModal(job);
+                    }
+                  }}
+                  
                   style={{
                     backgroundColor: "#0073b1",
                     color: "#fff",
