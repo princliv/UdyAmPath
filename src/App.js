@@ -38,6 +38,9 @@ import Profile from "./pages/profile";
 import Recruiter from "./pages/recruiter";
 import Signup from "./pages/signup";
 import ToolsPage from "./pages/toolspage";
+import InternApply from "./components/jobpage/internApply"; // adjust import
+import DetailsModal from "./components/jobpage/detailsModal"; 
+
 
 function App() {
   return (
@@ -185,6 +188,9 @@ function AppContent() {
         <Route path="/specialization/:id" element={<SpecializationDetail />} />
         <Route path="/specialization/:id/pathway/:phaseIndex" element={<PathwayPhaseDetail />} />
         <Route path="/Pdetails" element={<Pd />} />
+        <Route path="/intern-apply" element={<InternApply />} />
+        <Route path="/jobDetails" element={<DetailsModal />} />
+
 
 
       </Routes>
