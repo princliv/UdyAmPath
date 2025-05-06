@@ -42,7 +42,7 @@ import ToolsPage from "./pages/toolspage";
 import JobSimulator from "./components/coursepage/JobSimulator";
 
 import InternApply from "./components/jobpage/internApply"; // adjust import
-import DetailsModal from "./components/jobpage/detailsModal"; 
+import JobDetail from "./components/jobpage/jobDetails";
 
 
 function App() {
@@ -193,7 +193,7 @@ function AppContent() {
         <Route path="/specialization/:id/pathway/:phaseIndex" element={<PathwayPhaseDetail />} />
         <Route path="/Pdetails" element={<Pd />} />
         <Route path="/intern-apply" element={<InternApply />} />
-        <Route path="/jobDetails" element={<DetailsModal />} />
+        <Route path="/jobDetails" element={<JobDetail />} />
 
         <Route path="/job-simulator" element={<JobSimulator />} />
 

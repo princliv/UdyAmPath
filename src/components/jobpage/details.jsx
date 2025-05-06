@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import DetailsModal from "../jobpage/detailsModal"; 
+
 import amazonLogo from "../../assets/jobpage/amazon.png";
 import googleLogo from "../../assets/jobpage/google.png";
 import appleLogo from "../../assets/jobpage/apple.png";
@@ -51,15 +51,7 @@ const Details = () => {
       .catch((error) => console.error("Error loading job data:", error));
   }, []);
 
-  const openModal = (job) => {
-    setSelectedJob(job);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedJob(null);
-  };
+  
   const currentData = selectedTab === "Job" ? jobs : interns;
 
 
@@ -306,7 +298,7 @@ const Details = () => {
                     if (job.type === "Internship") {
                       navigate("/intern-apply", { state: { job } });
                     } else {
-                      openModal(job);
+                      navigate("/jobDetails", { state: { job } });;
                     }
                   }}
                   
@@ -364,7 +356,6 @@ const Details = () => {
 
 
     {/* Modal styles */}
-    {isModalOpen && <DetailsModal job={selectedJob} onClose={closeModal} style={{ zIndex: 1000 }} />}
     {isCityModalOpen && <CityDetailsModal cityInfo={cityInfo} onClose={() => setIsCityModalOpen(false)} style={{ zIndex: 1000 }} />}
 
   </div>
