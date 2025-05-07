@@ -18,6 +18,7 @@
     "framer-motion": "^11.18.2",
     "html2canvas": "^1.4.1",
     "lucide-react": "^0.475.0",
+    "mammoth": "^1.9.0",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^2.16.105",
     "react": "^19.1.0",
