@@ -21,8 +21,6 @@ const Details = () => {
   const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
   const [interns, setInterns] = useState([]);
-  const [selectedJob, setSelectedJob] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState("Job");
   const [isCityModalOpen, setIsCityModalOpen] = useState(false);
   const [typeFilter, setTypeFilter] = useState([]); 
@@ -170,7 +168,83 @@ const Details = () => {
       </label>
     ))}
   </section>
+  {/* Resume Preview & Feedback */}
+<div
+  style={{
+    marginTop: "24px",
+    padding: "24px",
+    borderRadius: "16px",
+    background: "linear-gradient(135deg, #E6F0FA, #F9FBFF)",
+    boxShadow: "0 6px 18px rgba(0, 0, 0, 0.06)",
+    textAlign: "center",
+  }}
+>
+  <h3 style={{ fontSize: "18px", fontWeight: "700", color: "#2B4F81", marginBottom: "12px" }}>
+    📄 Resume Preview & Feedback
+  </h3>
+  <p style={{ fontSize: "14px", color: "#444", marginBottom: "16px", lineHeight: "1.6" }}>
+    Upload your resume to receive smart feedback and keyword insights based on the role you're applying for.
+  </p>
+  <button
+    onClick={() => navigate("/resume-check")}
+    style={{
+      backgroundColor: "#3F92C3",
+      color: "#fff",
+      padding: "10px 20px",
+      borderRadius: "20px",
+      border: "none",
+      cursor: "pointer",
+      fontWeight: "600",
+      fontSize: "14px",
+      transition: "all 0.3s ease",
+    }}
+    onMouseOver={(e) => (e.target.style.backgroundColor = "#196795")}
+    onMouseOut={(e) => (e.target.style.backgroundColor = "#3F92C3")}
+  >
+    Check My Resume
+  </button>
 </div>
+
+{/* Interview Readiness Checklist */}
+<div
+  style={{
+    marginTop: "20px",
+    padding: "24px",
+    borderRadius: "16px",
+    background: "linear-gradient(135deg, #E6F0FA, #F9FBFF)",
+    boxShadow: "0 6px 18px rgba(0, 0, 0, 0.06)",
+    textAlign: "center",
+  }}
+>
+  <h3 style={{ fontSize: "18px", fontWeight: "700", color: "#2B4F81", marginBottom: "12px" }}>
+    ✅ Interview Readiness Checklist
+  </h3>
+  <p style={{ fontSize: "14px", color: "#444", marginBottom: "16px", lineHeight: "1.6" }}>
+    Use this simple checklist to stay confident and prepared before applying or interviewing.
+  </p>
+  <button
+    onClick={() => navigate("/interview-checklist")}
+    style={{
+      backgroundColor: "#3F92C3",
+      color: "#fff",
+      padding: "10px 20px",
+      borderRadius: "20px",
+      border: "none",
+      cursor: "pointer",
+      fontWeight: "600",
+      fontSize: "14px",
+      transition: "all 0.3s ease",
+    }}
+    onMouseOver={(e) => (e.target.style.backgroundColor = "#196795")}
+    onMouseOut={(e) => (e.target.style.backgroundColor = "#3F92C3")}
+  >
+    View Checklist
+  </button>
+</div>
+
+
+</div>
+
 
   {/* Right Section */}
   <div style={{ flex: 1 }}>
