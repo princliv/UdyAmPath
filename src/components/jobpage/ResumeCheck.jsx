@@ -140,159 +140,208 @@ const ResumeCheck = () => {
   };
   
   return (
-    <div style={styles.container}>
-      <h2 style={styles.heading}>🧠 Resume Preview & Smart Feedback</h2>
-      <p style={styles.subText}>
-        Upload your resume and compare it with job-specific keywords to get personalized suggestions. 🚀
-      </p>
+  <div style={styles.container}>
+    <h2 style={styles.heading}>Resume Preview & Smart Feedback</h2>
+    <p style={styles.subText}>
+      Upload your resume and compare it with job-specific keywords to get personalized suggestions. 🚀
+    </p>
 
-      <div style={styles.uploadSection}>
+    <div style={styles.grid}>
+      {/* Upload Resume */}
+      <div style={styles.card}>
+        <h3>📄 Upload Resume</h3>
         <label style={styles.fileLabel}>
           <FaFileUpload /> Upload Resume
           <input type="file" onChange={handleResumeUpload} accept=".pdf,.docx" hidden />
         </label>
-        {resumeName && <p style={styles.uploadedResumeName}>{resumeName}</p>} {/* Display uploaded file name */}
-
-        <select value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} style={styles.dropdown}>
-          <option value="">🎯 Select Job Role</option>
-          {Object.keys(keywordsMap).map((role) => (
-            <option key={role} value={role}>
-              {role}
-            </option>
-          ))}
-        </select>
-
-        <button onClick={handleCheck} style={styles.checkBtn}>
-          🔍 Check My Resume
-        </button>
+        {resumeName && <p style={styles.uploadedResumeName}>{resumeName}</p>}
       </div>
 
-      {feedback.length > 0 && (
-        <div style={styles.resultBox}>
-          <h3><FaRobot /> Smart AI Suggestions</h3>
-          <ul>
-            {feedback.map((point, idx) => (
-              <li key={idx} style={styles.feedbackItem}>{point}</li>
-            ))}
-          </ul>
+      {/* Select Job Position */}
+      <div style={styles.card}>
+        <h3>🎯 Select Job Position</h3>
+        <select value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} style={styles.dropdown}>
+          <option value="">Choose a position...</option>
+          {Object.keys(keywordsMap).map((role) => (
+            <option key={role} value={role}>{role}</option>
+          ))}
+        </select>
+      </div>
 
-          <div style={styles.keywordBox}>
-            <h4><FaCheckCircle color="#2E7D32" /> Matched Keywords</h4>
-            {matched.map((kw) => (
-              <span key={kw} style={styles.matched}>{`✔ ${kw}`}</span>
-            ))}
-          </div>
+      {/* Analysis Preview */}
+      <div style={styles.card}>
+        <h3>📊 Analysis Preview</h3>
+        <ul style={styles.analysisList}>
+          <li>• Keyword matching with job requirements</li>
+          <li>• Skills alignment assessment</li>
+          <li>• Format and structure recommendations</li>
+          <li>• ATS compatibility score</li>
+        </ul>
+        <button onClick={handleCheck} style={styles.checkBtn}>Check My Resume</button>
+        <p style={styles.noteText}>Please upload a resume and select a position to continue</p>
+      </div>
 
-          <div style={styles.keywordBox}>
-            <h4><FaTimesCircle color="#C62828" /> Missing Keywords</h4>
-            {missing.map((kw) => (
-              <span key={kw} style={styles.missing}>{`✘ ${kw}`}</span>
-            ))}
-          </div>
-        </div>
-      )}
+      {/* Pro Tips */}
+      <div style={styles.card}>
+        <h3>💡 Pro Tips</h3>
+        <ul style={styles.tipList}>
+          <li>• Use a clean, professional PDF format</li>
+          <li>• Include relevant keywords from the job description</li>
+          <li>• Keep your resume to 1-2 pages maximum</li>
+          <li>• Use clear section headers and bullet points</li>
+        </ul>
+      </div>
     </div>
-  );
+
+    {/* Feedback Section */}
+    {feedback.length > 0 && (
+      <div style={styles.resultBox}>
+        <h3><FaRobot /> Smart AI Suggestions</h3>
+        <ul>
+          {feedback.map((point, idx) => (
+            <li key={idx} style={styles.feedbackItem}>{point}</li>
+          ))}
+        </ul>
+
+        <div style={styles.keywordBox}>
+          <h4><FaCheckCircle color="#2E7D32" /> Matched Keywords</h4>
+          {matched.map((kw) => (
+            <span key={kw} style={styles.matched}>{`✔ ${kw}`}</span>
+          ))}
+        </div>
+
+        <div style={styles.keywordBox}>
+          <h4><FaTimesCircle color="#C62828" /> Missing Keywords</h4>
+          {missing.map((kw) => (
+            <span key={kw} style={styles.missing}>{`✘ ${kw}`}</span>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+);
+
 };
 
 const styles = {
   container: {
-    maxWidth: "850px",
-    margin: "auto",
-    padding: "35px",
-    fontFamily: "Segoe UI, sans-serif",
-    background: "#F3F8FE",
-    borderRadius: "20px",
-    boxShadow: "0 8px 20px rgba(0, 0, 0, 0.06)",
+    backgroundColor: '#f5f6fa',
+    padding: '40px 20px',
+    fontFamily: 'Segoe UI, sans-serif',
+    color: '#333',
+    maxWidth: '1200px',
+    margin: '0 auto',
   },
   heading: {
-    fontSize: "26px",
-    textAlign: "center",
-    color: "#2B4F81",
-    marginBottom: "12px",
+    fontSize: '28px',
+    fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: '10px',
   },
   subText: {
-    textAlign: "center",
-    fontSize: "15px",
-    color: "#555",
-    marginBottom: "28px",
+    textAlign: 'center',
+    fontSize: '16px',
+    marginBottom: '30px',
+    color: '#666',
   },
-  uploadSection: {
-    display: "flex",
-    gap: "15px",
-    alignItems: "center",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    marginBottom: "25px",
+  grid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '20px',
+  },
+  card: {
+    backgroundColor: '#ffffff',
+    padding: '20px',
+    borderRadius: '12px',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
   },
   fileLabel: {
-    backgroundColor: "#3F92C3",
-    color: "#fff",
-    padding: "10px 16px",
-    borderRadius: "12px",
-    fontWeight: "500",
-    fontSize: "14px",
-    cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
+    display: 'block',
+    padding: '15px',
+    border: '2px dashed #ccc',
+    borderRadius: '10px',
+    textAlign: 'center',
+    cursor: 'pointer',
+    marginTop: '10px',
+    color: '#555',
+    backgroundColor: '#f9f9f9',
   },
   uploadedResumeName: {
-    fontSize: "14px",
-    color: "#555",
-    fontStyle: "italic",
+    fontStyle: 'italic',
+    color: '#777',
+    fontSize: '14px',
+    marginTop: '10px',
   },
   dropdown: {
-    padding: "10px",
-    borderRadius: "10px",
-    border: "1px solid #ccc",
-    minWidth: "180px",
-    transition: "all 0.3s ease", // Smooth transition for dropdown
+    width: '100%',
+    padding: '12px',
+    borderRadius: '8px',
+    border: '1px solid #ccc',
+    fontSize: '15px',
+    marginTop: '10px',
   },
   checkBtn: {
-    backgroundColor: "#2B4F81",
-    color: "#fff",
-    padding: "10px 16px",
-    borderRadius: "12px",
-    border: "none",
-    cursor: "pointer",
-    fontWeight: "500",
-    fontSize: "14px",
-    transition: "background-color 0.3s", // Smooth transition for button
+    backgroundColor: '#4f46e5',
+    color: '#fff',
+    padding: '12px',
+    border: 'none',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontWeight: '500',
+    fontSize: '16px',
+    marginTop: '15px',
+    width: '100%',
+  },
+  noteText: {
+    marginTop: '10px',
+    fontSize: '13px',
+    color: '#888',
+    textAlign: 'center',
+  },
+  analysisList: {
+    fontSize: '14px',
+    lineHeight: '1.8',
+    paddingLeft: '15px',
+  },
+  tipList: {
+    fontSize: '14px',
+    lineHeight: '1.8',
+    paddingLeft: '15px',
   },
   resultBox: {
-    marginTop: "30px",
-    padding: "20px",
-    background: "#ffffff",
-    borderRadius: "16px",
-    border: "1px solid #ddd",
+    marginTop: '30px',
+    backgroundColor: '#fff',
+    padding: '20px',
+    borderRadius: '12px',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
   },
   feedbackItem: {
-    marginBottom: "10px",
-    color: "#444",
-    lineHeight: "1.6",
+    padding: '8px 0',
+    borderBottom: '1px solid #eee',
+    color: '#444',
   },
   keywordBox: {
-    marginTop: "20px",
+    marginTop: '20px',
   },
   matched: {
-    display: "inline-block",
-    margin: "5px",
-    padding: "6px 10px",
-    backgroundColor: "#E0F7E9",
-    borderRadius: "10px",
-    color: "#2E7D32",
-    fontWeight: "500",
+    display: 'inline-block',
+    backgroundColor: '#e8f5e9',
+    color: '#2e7d32',
+    padding: '6px 10px',
+    margin: '5px',
+    borderRadius: '20px',
+    fontSize: '14px',
   },
   missing: {
-    display: "inline-block",
-    margin: "5px",
-    padding: "6px 10px",
-    backgroundColor: "#FDECEA",
-    borderRadius: "10px",
-    color: "#C62828",
-    fontWeight: "500",
+    display: 'inline-block',
+    backgroundColor: '#ffebee',
+    color: '#c62828',
+    padding: '6px 10px',
+    margin: '5px',
+    borderRadius: '20px',
+    fontSize: '14px',
   },
 };
+
 
 export default ResumeCheck;
