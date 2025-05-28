@@ -1,0 +1,426 @@
+[
+  {
+    "id": 1,
+    "category": "Operating System",
+    "question": "What is a semaphore?",
+    "answer": "A variable used to control access to shared resources by multiple processes, preventing race conditions.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 2,
+    "category": "Operating System",
+    "question": "Explain virtual memory.",
+    "answer": "A memory management technique that uses disk space to extend RAM, allowing larger applications to run.",
+    "difficulty": "hard"
+  },
+  {
+    "id": 3,
+    "category": "Operating System",
+    "question": "What causes a deadlock?",
+    "answer": "When processes mutually block each other while waiting for resources held by others (mutual exclusion, hold and wait, no preemption, circular wait).",
+    "difficulty": "hard"
+  },
+  {
+    "id": 4,
+    "category": "Operating System",
+    "question": "What is paging?",
+    "answer": "A memory scheme dividing processes into fixed-size pages and memory into frames, allowing non-contiguous allocation.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 5,
+    "category": "Operating System",
+    "question": "What is a kernel?",
+    "answer": "The core OS component managing system resources, hardware communication, and process scheduling.",
+    "difficulty": "easy"
+  },
+  {
+    "id": 6,
+    "category": "Operating System",
+    "question": "Explain CPU scheduling algorithms.",
+    "answer": "Methods like FCFS, SJF, Round Robin that determine process execution order on CPU.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 7,
+    "category": "Operating System",
+    "question": "What is thrashing?",
+    "answer": "When excessive paging occurs, degrading system performance due to insufficient memory.",
+    "difficulty": "hard"
+  },
+  {
+    "id": 8,
+    "category": "Operating System",
+    "question": "What is a mutex?",
+    "answer": "A synchronization primitive that ensures only one thread accesses a resource at a time.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 9,
+    "category": "Operating System",
+    "question": "What is context switching?",
+    "answer": "The process of storing/restoring CPU state when switching between processes/threads.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 10,
+    "category": "Operating System",
+    "question": "What is RAID?",
+    "answer": "Redundant Array of Independent Disks - storage technology combining multiple disks for performance/redundancy.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 11,
+    "category": "Operating System",
+    "question": "What is a system call?",
+    "answer": "A programmatic way for applications to request services from the OS kernel.",
+    "difficulty": "easy"
+  },
+  {
+    "id": 12,
+    "category": "Operating System",
+    "question": "What is cache memory?",
+    "answer": "Fast memory between CPU and RAM that stores frequently accessed data to speed up processing.",
+    "difficulty": "easy"
+  },
+
+  {
+    "id": 13,
+    "category": "Data Structures",
+    "question": "What is a binary search tree?",
+    "answer": "A node-based tree where left child < parent < right child, enabling efficient O(log n) searches.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 14,
+    "category": "Data Structures",
+    "question": "Explain hash table collisions.",
+    "answer": "When different keys hash to the same index, resolved by chaining or open addressing.",
+    "difficulty": "hard"
+  },
+  {
+    "id": 15,
+    "category": "Data Structures",
+    "question": "What is a heap?",
+    "answer": "A complete binary tree where parent nodes satisfy heap property (min-heap or max-heap).",
+    "difficulty": "medium"
+  },
+  {
+    "id": 16,
+    "category": "Data Structures",
+    "question": "Compare array vs linked list.",
+    "answer": "Arrays have O(1) access but fixed size; linked lists have O(n) access but dynamic sizing.",
+    "difficulty": "easy"
+  },
+  {
+    "id": 17,
+    "category": "Data Structures",
+    "question": "What is a graph?",
+    "answer": "A non-linear structure with vertices/nodes connected by edges, used for networks/mappings.",
+    "difficulty": "easy"
+  },
+  {
+    "id": 18,
+    "category": "Data Structures",
+    "question": "Explain BFS vs DFS.",
+    "answer": "Breadth-First explores level by level; Depth-First goes deep before backtracking.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 19,
+    "category": "Data Structures",
+    "question": "What is a trie?",
+    "answer": "A tree-like structure for storing strings where paths represent characters, enabling prefix searches.",
+    "difficulty": "hard"
+  },
+  {
+    "id": 20,
+    "category": "Data Structures",
+    "question": "What is dynamic programming?",
+    "answer": "Solving problems by breaking into subproblems and storing their solutions to avoid recomputation.",
+    "difficulty": "hard"
+  },
+  {
+    "id": 21,
+    "category": "Data Structures",
+    "question": "What is a red-black tree?",
+    "answer": "A self-balancing BST where each node has a color (red/black) maintaining balance during operations.",
+    "difficulty": "hard"
+  },
+  {
+    "id": 22,
+    "category": "Data Structures",
+    "question": "What is a queue?",
+    "answer": "A FIFO structure where elements are added at the rear and removed from the front.",
+    "difficulty": "easy"
+  },
+  {
+    "id": 23,
+    "category": "Data Structures",
+    "question": "What is a stack?",
+    "answer": "A LIFO structure where elements are added/removed from the top only.",
+    "difficulty": "easy"
+  },
+  {
+    "id": 24,
+    "category": "Data Structures",
+    "question": "What is time complexity?",
+    "answer": "A measure of algorithm efficiency showing how runtime grows with input size (Big O notation).",
+    "difficulty": "medium"
+  },
+
+  {
+    "id": 25,
+    "category": "Java",
+    "question": "What is the JVM?",
+    "answer": "Java Virtual Machine - executes Java bytecode, providing platform independence ('write once, run anywhere').",
+    "difficulty": "easy"
+  },
+  {
+    "id": 26,
+    "category": "Java",
+    "question": "Explain Java garbage collection.",
+    "answer": "Automatic memory management that reclaims memory from objects no longer in use.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 27,
+    "category": "Java",
+    "question": "What are Java streams?",
+    "answer": "API for processing collections of objects declaratively with functional-style operations.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 28,
+    "category": "Java",
+    "question": "What is the 'final' keyword?",
+    "answer": "Makes variables constant, prevents method overriding, and stops class inheritance.",
+    "difficulty": "easy"
+  },
+  {
+    "id": 29,
+    "category": "Java",
+    "question": "Compare ArrayList vs LinkedList.",
+    "answer": "ArrayList uses dynamic array (fast access); LinkedList uses nodes (fast insertion/deletion).",
+    "difficulty": "medium"
+  },
+  {
+    "id": 30,
+    "category": "Java",
+    "question": "What is multithreading?",
+    "answer": "Concurrent execution of multiple threads within a process for better resource utilization.",
+    "difficulty": "hard"
+  },
+  {
+    "id": 31,
+    "category": "Java",
+    "question": "What are Java annotations?",
+    "answer": "Metadata tags that provide information about code to compilers/runtime (@Override, @Deprecated etc).",
+    "difficulty": "medium"
+  },
+  {
+    "id": 32,
+    "category": "Java",
+    "question": "What is Spring Boot?",
+    "answer": "Framework for creating stand-alone, production-grade Spring applications with minimal configuration.",
+    "difficulty": "hard"
+  },
+  {
+    "id": 33,
+    "category": "Java",
+    "question": "What is JPA?",
+    "answer": "Java Persistence API - specification for ORM that maps Java objects to database tables.",
+    "difficulty": "hard"
+  },
+  {
+    "id": 34,
+    "category": "Java",
+    "question": "What is a Java bean?",
+    "answer": "A reusable component with private fields, public getters/setters, and a no-arg constructor.",
+    "difficulty": "easy"
+  },
+  {
+    "id": 35,
+    "category": "Java",
+    "question": "What is the 'static' keyword?",
+    "answer": "Indicates that a member belongs to the class itself rather than instances of the class.",
+    "difficulty": "easy"
+  },
+  {
+    "id": 36,
+    "category": "Java",
+    "question": "What is exception handling?",
+    "answer": "Managing runtime errors using try-catch blocks to maintain normal program flow.",
+    "difficulty": "easy"
+  },
+
+  {
+    "id": 37,
+    "category": "JavaScript",
+    "question": "What is hoisting?",
+    "answer": "JavaScript's behavior of moving declarations to the top of their scope during compilation.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 38,
+    "category": "JavaScript",
+    "question": "Explain closures.",
+    "answer": "Functions that remember their lexical scope even when executed outside it.",
+    "difficulty": "hard"
+  },
+  {
+    "id": 39,
+    "category": "JavaScript",
+    "question": "What is the event loop?",
+    "answer": "Mechanism that handles async callbacks by offloading operations and processing the callback queue.",
+    "difficulty": "hard"
+  },
+  {
+    "id": 40,
+    "category": "JavaScript",
+    "question": "Compare let, const, var.",
+    "answer": "var: function-scoped, hoisted; let/const: block-scoped; const can't be reassigned.",
+    "difficulty": "easy"
+  },
+  {
+    "id": 41,
+    "category": "JavaScript",
+    "question": "What is prototypal inheritance?",
+    "answer": "Objects inherit directly from other objects via prototype chain (different from classical inheritance).",
+    "difficulty": "hard"
+  },
+  {
+    "id": 42,
+    "category": "JavaScript",
+    "question": "What is the DOM?",
+    "answer": "Document Object Model - tree representation of HTML that JavaScript can manipulate.",
+    "difficulty": "easy"
+  },
+  {
+    "id": 43,
+    "category": "JavaScript",
+    "question": "What are promises?",
+    "answer": "Objects representing eventual completion/error of async operations, avoiding callback hell.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 44,
+    "category": "JavaScript",
+    "question": "What is async/await?",
+    "answer": "Syntactic sugar over promises making async code look synchronous.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 45,
+    "category": "JavaScript",
+    "question": "What is 'this' in JavaScript?",
+    "answer": "Context object determined by how a function is called (global, object, explicit binding etc).",
+    "difficulty": "hard"
+  },
+  {
+    "id": 46,
+    "category": "JavaScript",
+    "question": "What is JSON?",
+    "answer": "JavaScript Object Notation - lightweight data interchange format based on object literals.",
+    "difficulty": "easy"
+  },
+  {
+    "id": 47,
+    "category": "JavaScript",
+    "question": "What are arrow functions?",
+    "answer": "Concise function syntax (=>) that lexically binds 'this' and has no arguments object.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 48,
+    "category": "JavaScript",
+    "question": "What is React?",
+    "answer": "A JavaScript library for building user interfaces using component-based architecture.",
+    "difficulty": "easy"
+  },
+
+  {
+    "id": 49,
+    "category": "Python",
+    "question": "What is the GIL?",
+    "answer": "Global Interpreter Lock - mutex allowing only one thread to execute Python bytecode at a time.",
+    "difficulty": "hard"
+  },
+  {
+    "id": 50,
+    "category": "Python",
+    "question": "What are decorators?",
+    "answer": "Functions that modify behavior of other functions without changing their source code.",
+    "difficulty": "hard"
+  },
+  {
+    "id": 51,
+    "category": "Python",
+    "question": "Explain list comprehension.",
+    "answer": "Concise way to create lists: [x**2 for x in range(10) if x%2==0]",
+    "difficulty": "easy"
+  },
+  {
+    "id": 52,
+    "category": "Python",
+    "question": "What are Python generators?",
+    "answer": "Functions that yield items one at a time using 'yield', maintaining state between calls.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 53,
+    "category": "Python",
+    "question": "Compare lists vs tuples.",
+    "answer": "Lists are mutable, tuples immutable; lists use [], tuples use ().",
+    "difficulty": "easy"
+  },
+  {
+    "id": 54,
+    "category": "Python",
+    "question": "What is __init__?",
+    "answer": "Constructor method called when an object is instantiated from a class.",
+    "difficulty": "easy"
+  },
+  {
+    "id": 55,
+    "category": "Python",
+    "question": "What is Flask/Django?",
+    "answer": "Flask: micro web framework; Django: full-featured web framework with ORM, admin, etc.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 56,
+    "category": "Python",
+    "question": "What are lambda functions?",
+    "answer": "Anonymous functions defined with 'lambda args: expression' syntax.",
+    "difficulty": "easy"
+  },
+  {
+    "id": 57,
+    "category": "Python",
+    "question": "What is NumPy?",
+    "answer": "Library for numerical computing with powerful N-dimensional array objects.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 58,
+    "category": "Python",
+    "question": "What is pip?",
+    "answer": "Python package installer for managing third-party libraries.",
+    "difficulty": "easy"
+  },
+  {
+    "id": 59,
+    "category": "Python",
+    "question": "What are *args and **kwargs?",
+    "answer": "*args: variable non-keyword arguments; **kwargs: variable keyword arguments.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 60,
+    "category": "Python",
+    "question": "What is PEP 8?",
+    "answer": "Python style guide covering coding conventions for readable, consistent code.",
+    "difficulty": "easy"
+  }
+]
