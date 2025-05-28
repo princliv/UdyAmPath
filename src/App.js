@@ -39,8 +39,11 @@ import Profile from "./pages/profile";
 import Recruiter from "./pages/recruiter";
 import Signup from "./pages/signup";
 import ToolsPage from "./pages/toolspage";
+import JobSimulator from "./components/coursepage/JobSimulator";
+import ResumeCheck from "./components/jobpage/ResumeCheck";
+import InterCheck from "./components/jobpage/InterviewCheck";
 import InternApply from "./components/jobpage/internApply"; // adjust import
-import DetailsModal from "./components/jobpage/detailsModal"; 
+import JobDetail from "./components/jobpage/jobDetails";
 
 
 function App() {
@@ -191,9 +194,11 @@ function AppContent() {
         <Route path="/specialization/:id/pathway/:phaseIndex" element={<PathwayPhaseDetail />} />
         <Route path="/Pdetails" element={<Pd />} />
         <Route path="/intern-apply" element={<InternApply />} />
-        <Route path="/jobDetails" element={<DetailsModal />} />
-
-
+        <Route path="/jobDetails" element={<JobDetail />} />
+        
+        <Route path="/job-simulator" element={<JobSimulator />} />
+        <Route path="/resume-check" element={<ResumeCheck />} />
+        <Route path="/interview-checklist" element={<InterCheck />} />
 
       </Routes>
       <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isSignup={isSignup} />
