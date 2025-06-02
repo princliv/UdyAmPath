@@ -9,6 +9,11 @@ const ModulePage = () => {
     const [showCompletionModal, setShowCompletionModal] = useState(false);
     const [showQuizModal, setShowQuizModal] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [quizData, setQuizData] = useState([]);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [score, setScore] = useState(0);
+    const [quizCompleted, setQuizCompleted] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,9 +22,16 @@ const ModulePage = () => {
                 const response = await fetch("/coursedata.json");
                 const data = await response.json();
                 const selectedModule = data.find(
-                    (mod) => mod.id === location.state?.module?.id
+                    (mod) => mod.title === location.state?.module?.title
                 );
                 setModuleData(selectedModule);
+                
+                // Set quiz data if available
+                if (selectedModule?.Quiz) {
+                    setQuizData(selectedModule.Quiz);
+                } else if (selectedModule?.Test) {
+                    setQuizData(selectedModule.Test);
+                }
             } catch (error) {
                 console.error("Error loading module data:", error);
             } finally {
@@ -29,19 +41,6 @@ const ModulePage = () => {
 
         fetchData();
     }, [location.state]);
-
-    if (isLoading) {
-        return (
-            <div style={styles.loadingContainer}>
-                <div style={styles.loader}></div>
-                <p style={styles.loadingText}>Loading course content...</p>
-            </div>
-        );
-    }
-
-    if (!moduleData || !moduleData.pathway) {
-        return <p style={styles.errorText}>No module data available.</p>;
-    }
 
     const handleModuleClick = (index) => {
         setSelectedModuleIndex(index);
@@ -65,7 +64,48 @@ const ModulePage = () => {
     const handleStartQuiz = () => {
         setShowCompletionModal(false);
         setShowQuizModal(true);
+        setCurrentQuestionIndex(0);
+        setScore(0);
+        setSelectedAnswer(null);
+        setQuizCompleted(false);
     };
+
+    const handleAnswerSelect = (answer) => {
+        setSelectedAnswer(answer);
+    };
+
+    const handleNextQuestion = () => {
+        // Check if answer is correct
+        const correctAnswer = quizData[currentQuestionIndex].answer || quizData[currentQuestionIndex].correctAnswer;
+        if (selectedAnswer === correctAnswer) {
+            setScore(score + 1);
+        }
+
+        // Move to next question or finish quiz
+        if (currentQuestionIndex < quizData.length - 1) {
+            setCurrentQuestionIndex(currentQuestionIndex + 1);
+            setSelectedAnswer(null);
+        } else {
+            setQuizCompleted(true);
+        }
+    };
+
+    const handleQuizClose = () => {
+        setShowQuizModal(false);
+    };
+
+    if (isLoading) {
+        return (
+            <div style={styles.loadingContainer}>
+                <div style={styles.loader}></div>
+                <p style={styles.loadingText}>Loading course content...</p>
+            </div>
+        );
+    }
+
+    if (!moduleData || !moduleData.pathway) {
+        return <p style={styles.errorText}>No module data available.</p>;
+    }
 
     return (
         <div style={styles.container}>
@@ -157,24 +197,56 @@ const ModulePage = () => {
                 </div>
             )}
 
-            {showQuizModal && (
+            {showQuizModal && quizData.length > 0 && (
                 <div style={styles.modalOverlay}>
                     <div style={styles.modalContent}>
                         <div style={styles.modalIcon}>📝</div>
                         <h2 style={styles.modalTitle}>Assessment Time!</h2>
                         <p style={styles.modalText}>This quiz will test your understanding of the course material.</p>
                         <div style={styles.quizContent}>
-                            {/* Quiz questions would go here */}
-                            <div style={styles.quizPlaceholder}>
-                                <p>Quiz content would appear here</p>
-                            </div>
+                            {!quizCompleted ? (
+                                <>
+                                    <h3 style={styles.quizQuestion}>
+                                        {quizData[currentQuestionIndex].question}
+                                    </h3>
+                                    <div style={styles.quizOptions}>
+                                        {quizData[currentQuestionIndex].options.map((option, index) => (
+                                            <div 
+                                                key={index}
+                                                style={{
+                                                    ...styles.quizOption,
+                                                    backgroundColor: selectedAnswer === option ? "#7b61ff" : "#f0ebff",
+                                                    color: selectedAnswer === option ? "#fff" : "#333",
+                                                }}
+                                                onClick={() => handleAnswerSelect(option)}
+                                            >
+                                                {option}
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <button 
+                                        style={styles.primaryButton} 
+                                        onClick={handleNextQuestion}
+                                        disabled={!selectedAnswer}
+                                    >
+                                        {currentQuestionIndex < quizData.length - 1 ? 'Next Question' : 'Finish Quiz'}
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <h3 style={styles.quizResult}>Quiz Completed!</h3>
+                                    <p style={styles.quizScore}>
+                                        Your score: {score} out of {quizData.length}
+                                    </p>
+                                    <button 
+                                        style={styles.primaryButton} 
+                                        onClick={handleQuizClose}
+                                    >
+                                        Close
+                                    </button>
+                                </>
+                            )}
                         </div>
-                        <button 
-                            style={styles.primaryButton} 
-                            onClick={() => setShowQuizModal(false)}
-                        >
-                            Submit Answers
-                        </button>
                     </div>
                 </div>
             )}
@@ -516,11 +588,35 @@ const styles = {
         backgroundColor: "#f8f9fa",
         borderRadius: "8px",
     },
-    quizPlaceholder: {
-        padding: "32px",
-        backgroundColor: "#edf2f7",
-        borderRadius: "4px",
-        color: "#718096",
+    quizQuestion: {
+        fontSize: "18px",
+        fontWeight: "600",
+        marginBottom: "20px",
+        color: "#2d3748",
+    },
+    quizOptions: {
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px",
+        marginBottom: "24px",
+    },
+    quizOption: {
+        padding: "12px 16px",
+        borderRadius: "6px",
+        cursor: "pointer",
+        transition: "all 0.2s ease",
+        border: "1px solid #e2e8f0",
+    },
+    quizResult: {
+        fontSize: "20px",
+        fontWeight: "600",
+        color: "#2d3748",
+        marginBottom: "16px",
+    },
+    quizScore: {
+        fontSize: "16px",
+        color: "#4a5568",
+        marginBottom: "24px",
     },
 };
 
