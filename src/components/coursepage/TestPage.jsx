@@ -9,8 +9,11 @@ import { FaInfoCircle, FaTimes, FaCompress } from "react-icons/fa";
 const TestPage = () => {
   const location = useLocation();
   const courseTitle = location.state?.courseTitle || "Unknown Course";
-  const videoRef = useRef(null);
+  
+  const videoRefPreview = useRef(null); // For preview before test
+  const videoRefSmall = useRef(null); // For small video during test
   const streamRef = useRef(null);
+
   const [faceDetected, setFaceDetected] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [showTest, setShowTest] = useState(false);
@@ -33,7 +36,6 @@ const TestPage = () => {
         e.returnValue = 'Are you sure you want to leave? Your progress will be lost.';
         return e.returnValue;
       };
-
       window.addEventListener('beforeunload', handleBeforeUnload);
       return () => window.removeEventListener('beforeunload', handleBeforeUnload);
     }
@@ -55,41 +57,43 @@ const TestPage = () => {
   // Handle camera stream
   const startVideo = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ 
-        video: { facingMode: "user" },
-        audio: false
-      });
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false });
       streamRef.current = stream;
-      videoRef.current.srcObject = stream;
-      setCameraEnabled(true);
+      if (videoRefPreview.current) videoRefPreview.current.srcObject = stream;
+      if (videoRefSmall.current) videoRefSmall.current.srcObject = stream;
       console.log("Camera started successfully");
     } catch (error) {
       console.error("Error accessing camera:", error);
-      setCameraEnabled(false);
     }
   };
 
   const stopVideo = () => {
     if (streamRef.current) {
       streamRef.current.getTracks().forEach(track => track.stop());
-      setCameraEnabled(false);
+      streamRef.current = null;
     }
   };
 
+  useEffect(() => {
+    if (cameraEnabled) {
+      startVideo();
+    } else {
+      stopVideo();
+    }
+  }, [cameraEnabled]);
+
   // Face detection
   const detectFace = useCallback(async () => {
-    if (videoRef.current && cameraEnabled) {
+    const video = showTest ? videoRefSmall.current : videoRefPreview.current;
+    if (video && cameraEnabled) {
       try {
-        const detections = await faceapi.detectAllFaces(
-          videoRef.current,
-          new faceapi.TinyFaceDetectorOptions()
-        );
+        const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions());
         setFaceDetected(detections.length > 0);
       } catch (error) {
         console.error("Face detection error:", error);
       }
     }
-  }, [cameraEnabled]);
+  }, [cameraEnabled, showTest]);
 
   useEffect(() => {
     const interval = setInterval(detectFace, 1000);
@@ -101,7 +105,6 @@ const TestPage = () => {
     try {
       await document.documentElement.requestFullscreen();
       setFullscreenMode(true);
-      console.log("Entered fullscreen mode");
     } catch (error) {
       console.error("Error entering fullscreen:", error);
     }
@@ -120,7 +123,7 @@ const TestPage = () => {
       const response = await fetch("/coursedata.json");
       const data = await response.json();
       const courseData = data.find(course => course.title === courseTitle);
-      
+
       if (courseData?.Test) {
         setQuestions(courseData.Test);
         setShowTest(true);
@@ -158,18 +161,10 @@ const TestPage = () => {
   };
 
   // Camera toggle
-  const toggleCamera = async () => {
-    if (cameraEnabled) {
-      stopVideo();
-    } else {
-      await startVideo();
-    }
-  };
+  const toggleCamera = () => setCameraEnabled(prev => !prev);
 
   // Microphone toggle (visual only in this implementation)
-  const toggleMicrophone = () => {
-    setMicrophoneEnabled(!microphoneEnabled);
-  };
+  const toggleMicrophone = () => setMicrophoneEnabled(prev => !prev);
 
   return (
     <div style={styles.container}>
@@ -180,22 +175,13 @@ const TestPage = () => {
           <div style={styles.instructionsHeader}>
             <h2 style={styles.instructionsTitle}>Test Instructions</h2>
           </div>
-          
           <div style={styles.instructionsContent}>
             <div style={styles.instructionItem}>
-              <div style={styles.instructionIcon}>
-                <FaCamera size={20} />
-              </div>
-              <div>
-                <h3 style={styles.instructionTitle}>Camera Requirements</h3>
-                <p>Your face must be clearly visible throughout the test</p>
-              </div>
+              <div style={styles.instructionIcon}><FaCamera size={20} /></div>
+              <div><h3 style={styles.instructionTitle}>Camera Requirements</h3><p>Your face must be clearly visible throughout the test</p></div>
             </div>
-            
             <div style={styles.instructionItem}>
-              <div style={styles.instructionIcon}>
-                <FaCheck size={20} color="#4CAF50" />
-              </div>
+              <div style={styles.instructionIcon}><FaCheck size={20} color="#4CAF50" /></div>
               <div>
                 <h3 style={styles.instructionTitle}>Test Rules</h3>
                 <ul style={styles.instructionList}>
@@ -206,86 +192,37 @@ const TestPage = () => {
                 </ul>
               </div>
             </div>
-            
             <div style={styles.instructionItem}>
-              <div style={styles.instructionIcon}>
-                <FaExpand size={20} />
-              </div>
-              <div>
-                <h3 style={styles.instructionTitle}>Fullscreen Mode</h3>
-                <p>The test will automatically go fullscreen when started</p>
-              </div>
+              <div style={styles.instructionIcon}><FaExpand size={20} /></div>
+              <div><h3 style={styles.instructionTitle}>Fullscreen Mode</h3><p>The test will automatically go fullscreen when started</p></div>
             </div>
           </div>
-          
-          <button 
-            style={styles.continueButton}
-            onClick={() => setShowInstructions(false)}
-          >
-            I Understand, Continue
-          </button>
+          <button style={styles.continueButton} onClick={() => setShowInstructions(false)}>I Understand, Continue</button>
         </div>
       )}
 
       {!showTest && !showInstructions && (
         <div style={styles.verificationArea}>
           <div style={styles.cameraControls}>
-            <button 
-              style={{
-                ...styles.controlButton,
-                backgroundColor: cameraEnabled ? '#4CAF50' : '#f44336'
-              }}
-              onClick={toggleCamera}
-            >
-              <FaCamera style={{ marginRight: '8px' }} />
-              {cameraEnabled ? 'Camera On' : 'Enable Camera'}
+            <button style={{ ...styles.controlButton, backgroundColor: cameraEnabled ? '#4CAF50' : '#f44336' }} onClick={toggleCamera}>
+              <FaCamera style={{ marginRight: '8px' }} />{cameraEnabled ? 'Camera On' : 'Enable Camera'}
             </button>
-            
-            <button 
-              style={{
-                ...styles.controlButton,
-                backgroundColor: microphoneEnabled ? '#4CAF50' : '#f44336'
-              }}
-              onClick={toggleMicrophone}
-            >
-              <FaMicrophone style={{ marginRight: '8px' }} />
-              {microphoneEnabled ? 'Microphone On' : 'Enable Microphone'}
+            <button style={{ ...styles.controlButton, backgroundColor: microphoneEnabled ? '#4CAF50' : '#f44336' }} onClick={toggleMicrophone}>
+              <FaMicrophone style={{ marginRight: '8px' }} />{microphoneEnabled ? 'Microphone On' : 'Enable Microphone'}
             </button>
           </div>
-          
           <div style={styles.videoContainer}>
             {cameraEnabled ? (
-              <video 
-                ref={videoRef} 
-                autoPlay 
-                muted 
-                playsInline
-                style={styles.video}
-              />
+              <video ref={videoRefPreview} autoPlay muted playsInline style={styles.video} />
             ) : (
-              <div style={styles.cameraPlaceholder}>
-                <FaCamera size={48} color="#ccc" />
-                <p>Camera is disabled</p>
-              </div>
+              <div style={styles.cameraPlaceholder}><FaCamera size={48} color="#ccc" /><p>Camera is disabled</p></div>
             )}
             <div style={styles.faceStatus}>
-              <div style={{
-                ...styles.statusIndicator,
-                backgroundColor: faceDetected ? '#4CAF50' : '#f44336'
-              }} />
+              <div style={{ ...styles.statusIndicator, backgroundColor: faceDetected ? '#4CAF50' : '#f44336' }} />
               <span>{faceDetected ? 'Face Detected' : 'No Face Detected'}</span>
             </div>
           </div>
-          
-          <button
-            style={{
-              ...styles.startTestButton,
-              opacity: faceDetected ? 1 : 0.6,
-              cursor: faceDetected ? 'pointer' : 'not-allowed'
-            }}
-            disabled={!faceDetected}
-            onClick={loadTestData}
-          >
+          <button style={{ ...styles.startTestButton, opacity: faceDetected ? 1 : 0.6, cursor: faceDetected ? 'pointer' : 'not-allowed' }} disabled={!faceDetected} onClick={loadTestData}>
             Start Test
           </button>
         </div>
@@ -296,57 +233,21 @@ const TestPage = () => {
           <div style={styles.testHeader}>
             <div style={styles.progressContainer}>
               <div style={styles.progressBar}>
-                <div 
-                  style={{
-                    width: `${((currentQuestionIndex + 1) / questions.length) * 100}%`,
-                    backgroundColor: '#4CAF50',
-                    height: '100%',
-                    borderRadius: '4px',
-                    transition: 'width 0.3s ease'
-                  }}
-                />
+                <div style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%`, backgroundColor: '#4CAF50', height: '100%', borderRadius: '4px', transition: 'width 0.3s ease' }} />
               </div>
-              <span style={styles.progressText}>
-                Question {currentQuestionIndex + 1} of {questions.length}
-              </span>
+              <span style={styles.progressText}>Question {currentQuestionIndex + 1} of {questions.length}</span>
             </div>
-            
             <div style={styles.cameraPreview}>
-              {cameraEnabled && (
-                <video 
-                  ref={videoRef} 
-                  autoPlay 
-                  muted 
-                  playsInline
-                  style={styles.smallVideo}
-                />
-              )}
-              <div style={styles.faceStatusSmall}>
-                <div style={{
-                  ...styles.statusIndicatorSmall,
-                  backgroundColor: faceDetected ? '#4CAF50' : '#f44336'
-                }} />
-              </div>
+              {cameraEnabled && <video ref={videoRefSmall} autoPlay muted playsInline style={styles.smallVideo} />}
+              <div style={styles.faceStatusSmall}><div style={{ ...styles.statusIndicatorSmall, backgroundColor: faceDetected ? '#4CAF50' : '#f44336' }} /></div>
             </div>
           </div>
 
           <div style={styles.questionArea}>
-            <h3 style={styles.questionText}>
-              {questions[currentQuestionIndex].question}
-            </h3>
-            
+            <h3 style={styles.questionText}>{questions[currentQuestionIndex].question}</h3>
             <div style={styles.optionsGrid}>
               {questions[currentQuestionIndex].options.map((option, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleAnswerSelect(option)}
-                  style={{
-                    ...styles.optionButton,
-                    backgroundColor: selectedAnswer === option ? '#4CAF50' : '#f5f5f5',
-                    color: selectedAnswer === option ? 'white' : '#333',
-                    borderColor: selectedAnswer === option ? '#4CAF50' : '#ddd',
-                  }}
-                >
+                <button key={index} onClick={() => handleAnswerSelect(option)} style={{ ...styles.optionButton, backgroundColor: selectedAnswer === option ? '#4CAF50' : '#f5f5f5', color: selectedAnswer === option ? 'white' : '#333', borderColor: selectedAnswer === option ? '#4CAF50' : '#ddd' }}>
                   {option}
                 </button>
               ))}
@@ -354,15 +255,7 @@ const TestPage = () => {
           </div>
 
           <div style={styles.navigationButtons}>
-            <button
-              style={{
-                ...styles.nextButton,
-                opacity: selectedAnswer ? 1 : 0.6,
-                cursor: selectedAnswer ? 'pointer' : 'not-allowed'
-              }}
-              disabled={!selectedAnswer}
-              onClick={handleNextQuestion}
-            >
+            <button style={{ ...styles.nextButton, opacity: selectedAnswer ? 1 : 0.6, cursor: selectedAnswer ? 'pointer' : 'not-allowed' }} disabled={!selectedAnswer} onClick={handleNextQuestion}>
               {currentQuestionIndex + 1 === questions.length ? 'Submit Test' : 'Next Question'}
             </button>
           </div>

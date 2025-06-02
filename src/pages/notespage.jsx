@@ -4,10 +4,9 @@ import pyq1 from '../assets/amcat.jpg';
 import pyq2 from '../assets/cocube.jpg';
 import dsImage from '../assets/ds-image.jpeg';
 import javaImage from '../assets/java-image.jpg';
+import bgImage from "../assets/notesheaderbg.png"; // adjust path as needed
 import oopsImage from '../assets/oops-image.jpeg';
 import osImage from '../assets/os-image.png';
-import softwareImage from '../assets/software-image.jpg';
-import bgImage from "../assets/notesheaderbg.png"; // adjust path as needed
 
 
 const NotesPage = () => {
@@ -25,7 +24,6 @@ const NotesPage = () => {
     { id: 2, title: 'OOPS', image: oopsImage, category: 'books', link: 'https://drive.google.com/file/d/1AO9zK1_pPUjEGYR09_YsLdclQIZvdm-s/view?usp=sharing' },
     { id: 3, title: 'Data Structure', image: dsImage, category: 'books', link: 'https://drive.google.com/file/d/1NfePyxDGJczsIjkPepN6hCCtXtkiVe7R/view?usp=sharing' },
     { id: 4, title: 'Java', image: javaImage, category: 'books', link: 'https://drive.google.com/file/d/1DVbe_pOf9eN-vXIlDqtzXAbM-dvCh8BN/view?usp=sharing' },
-    { id: 5, title: 'Software Engineering', image: softwareImage, category: 'books', link: 'https://drive.google.com/file/d/1zbCsmBUSaHp0VTU8gR3gpmCQNUS5hRCE/view?usp=sharing' }
   ], []);
 
   const pyqs = useMemo(() => [
@@ -548,6 +546,7 @@ const styles = {
   mainContent: {
     flex: 1,
     padding: '20px',
+    overflowX: 'auto', // Add horizontal scroll if needed
   },
   searchContainer: {
     backgroundImage: `url(${bgImage})`,
@@ -620,10 +619,12 @@ const styles = {
   },
   booksContainer: {
     display: 'flex',
-    flexWrap: 'wrap',
     gap: '50px',
-    justifyContent: 'center',
     marginBottom: '20px',
+    flexWrap: 'nowrap', // Prevent wrapping to new line
+    overflowX: 'auto', // Enable horizontal scrolling if needed
+    paddingBottom: '10px', // Space for scrollbar
+    minWidth: '100%', // Ensure container takes full width
   },
   bookCard: {
     backgroundColor: '#fff',
@@ -631,9 +632,11 @@ const styles = {
     borderRadius: '8px',
     textAlign: 'center',
     minHeight: '180px',
-    width: '250px',
-    minWidth: '200px',
+    width: '200px', // Fixed width for each card
+    minWidth: '200px', // Prevent shrinking
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    flexShrink: 0, // Prevent cards from shrinking
+    marginLeft:'20px',
   },
   bookImage: {
     width: '100%',
