@@ -4,6 +4,7 @@ import RecentView from "../components/coursepage/recentView";
 import SpecializationContent from "../components/coursepage/SpecializationPage";
 import MyLearningsContent from "../components/coursepage/MyLearningsPage";
 import headerBg from '../assets/coursepage/headerbg.png';
+import CodeEditor from '../components/coursepage/CodeEditor';
 
 const CoursePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,6 +20,7 @@ const CoursePage = () => {
   const [displayedContent, setDisplayedContent] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentChallenge, setCurrentChallenge] = useState(null);
+  const [showCodeEditor, setShowCodeEditor] = useState(false);
   const navigate = useNavigate();
 
   // Daily challenges data
@@ -107,8 +109,52 @@ const CoursePage = () => {
       title: "React Hooks Deep Dive", 
       content: "React Hooks revolutionized functional components by providing state and lifecycle capabilities. Core hooks: useState (state management), useEffect (side effects), useContext (context API). Advanced hooks: useReducer (complex state logic), useCallback (memoized functions), useMemo (memoized values). Custom hooks enable logic reuse across components. Rules: Only call hooks at the top level, not conditionally. Common patterns: useFetch for API calls, useLocalStorage for persistence. Performance considerations: dependency arrays in useEffect, when to use useCallback/useMemo. The hooks ecosystem includes community hooks like useSWR for data fetching and react-use collection." 
     },
-    // ... (rest of the learningTopics array remains the same)
-  ];
+    { 
+      id: 2, 
+      title: "TypeScript Fundamentals", 
+      content: "TypeScript brings static typing to JavaScript, catching errors during development. Key concepts: interfaces (shape of objects), types (type aliases), generics (reusable components). Advanced features: decorators (metadata programming), utility types (Partial, Pick, Omit), and type guards. Configuration via tsconfig.json controls strictness and compilation. Best practices: gradual adoption, proper any usage, and declaration files. Integration with React: FC type for components, typing hooks and props. TypeScript with Node.js involves typing modules and Express middleware. The ecosystem includes DefinitelyTyped for library type definitions." 
+    },
+    { 
+      id: 3, 
+      title: "Node.js Performance Optimization", 
+      content: "Optimizing Node.js involves understanding the event loop and non-blocking I/O. Techniques: clustering (multi-core utilization), worker threads for CPU tasks, and proper error handling. Memory management: identifying leaks with heap snapshots, optimizing V8 garbage collection. Performance tools: Node's built-in profiler, clinic.js, and flame graphs. Database optimizations: connection pooling, query optimization, and caching strategies. Load balancing with Nginx or PM2. Security considerations: rate limiting, input validation, and dependency auditing. Real-world patterns: circuit breakers for failures, backpressure handling in streams." 
+    },
+    { 
+      id: 4, 
+      title: "CSS-in-JS Solutions Comparison", 
+      content: "CSS-in-JS libraries solve scoping and dynamic styling challenges in components. Popular options: styled-components (template literals), Emotion (performance focused), JSS (framework agnostic). Features: theming support, SSR compatibility, and atomic CSS generation. Performance considerations: runtime vs compile-time solutions, critical CSS extraction. Advanced patterns: component variants, responsive props, and animation integration. Comparison with utility-first CSS like Tailwind. Tooling: Babel plugins, TypeScript support, and DevTools integration. Best practices: when to use CSS variables, extracting global styles, and testing strategies." 
+    },
+    { 
+      id: 5, 
+      title: "GraphQL API Design Principles", 
+      content: "GraphQL enables declarative data fetching with a type system. Schema design: object types, interfaces, unions, and enums. Query patterns: pagination (connections/edges), filtering, and mutations. Performance: N+1 problem solutions (dataloaders), query complexity analysis. Security: depth limiting, persisted queries, and rate limiting. Federation: microservices architecture with Apollo Federation. Tooling: GraphiQL/Playground, schema stitching, and code generation. Best practices: versioning through evolution, documentation with SDL, and error handling. Real-world considerations: caching strategies and monitoring field usage." 
+    },
+    { 
+      id: 6, 
+      title: "Webpack 5 Modern Configuration", 
+      content: "Webpack 5 offers improved build performance and module federation. Core concepts: entry points, output configuration, and loaders (file transformation). Plugins: HtmlWebpackPlugin, MiniCssExtractPlugin, and CleanWebpackPlugin. Optimization: code splitting (dynamic imports), tree shaking, and runtime chunk. Asset modules: replacing file/url loaders with built-in handling. Advanced features: module federation for microfrontends, persistent caching. Performance tuning: profiling build times, parallel thread loading. Configuration patterns: environment-specific files, composing configs with merge." 
+    },
+    { 
+      id: 7, 
+      title: "State Management in 2023", 
+      content: "Modern state management balances client needs with developer experience. Options: Redux (predictable), Zustand (simplified), Jotai (atomic), and XState (FSM). Context API limitations and when to upgrade. Patterns: normalized state, derived state, and undo/redo implementations. Middleware: logging, persistence, and async handling. Server state management: React Query, SWR, and Apollo Client cache. Performance: selective component updates, memoization techniques. Developer tools: time travel debugging, state inspection. Emerging trends: colocation, compiler-assisted state management." 
+    },
+    { 
+      id: 8, 
+      title: "Microfrontends Architecture", 
+      content: "Microfrontends extend microservices principles to the frontend. Implementation approaches: build-time (npm packages), run-time (module federation), iframes. Frameworks: Single SPA, Luigi, or custom solutions. Routing strategies: host-controlled vs federated. Shared dependencies: versioning strategies, externals configuration. Design systems: cross-team component libraries with documentation. Testing: integration strategies for independent teams. Performance: shared bundle optimization, lazy loading. Operational concerns: independent deployments, monitoring, and error tracking." 
+    },
+    { 
+      id: 9, 
+      title: "Progressive Web App Techniques", 
+      content: "PWAs combine web and native app capabilities through service workers. Core components: manifest file (install prompt), service worker (offline caching), and app shell. Caching strategies: cache-first, network-first, and stale-while-revalidate. Background sync for deferred actions and push notifications. Performance: precaching critical assets, lazy loading routes. Testing: Lighthouse audits, offline scenarios, and storage quotas. Security: HTTPS requirement and content security policy. Advanced features: periodic sync, Web Share API, and file system access." 
+    },
+    { 
+      id: 10, 
+      title: "WebAssembly for Frontend Developers", 
+      content: "WebAssembly enables near-native performance in the browser. Compilation targets: Rust, C/C++, and AssemblyScript. Integration: loading WASM modules in JavaScript, memory management. Use cases: image processing, physics simulations, and cryptography. Tooling: wasm-pack, Emscripten, and WebAssembly Studio. Performance considerations: startup overhead vs sustained throughput. Debugging: source maps and browser DevTools support. Future features: threads, SIMD, and exception handling. Real-world examples: FFmpeg in browser, AutoCAD Web, and Figma's performance optimizations." 
+    }
+];
 
   // Set the current challenge on component mount
   useEffect(() => {
@@ -169,7 +215,11 @@ const CoursePage = () => {
 
   const startChallenge = () => {
     setShowChallengeModal(false);
-    navigate("/code-editor", { state: { challenge: currentChallenge } });
+    setShowCodeEditor(true);
+  };
+
+  const closeCodeEditor = () => {
+    setShowCodeEditor(false);
   };
 
   return (
@@ -181,6 +231,24 @@ const CoursePage = () => {
       overflowX: "hidden",
       position: "relative"
     }}>
+      {/* Code Editor Overlay */}
+      {showCodeEditor && currentChallenge && (
+        <div style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "white",
+          zIndex: 2000,
+          overflow: "auto"
+        }}>
+          <CodeEditor 
+            challenge={currentChallenge} 
+            onClose={closeCodeEditor}
+          />
+        </div>
+      )}
       {/* Modal for Learn More */}
       {showModal && (
         <div style={{
@@ -572,7 +640,6 @@ const CoursePage = () => {
           </div>
         </div>
       )}
-
       {/* 60 Seconds Learning Modal */}
       {showLearningModal && (
         <div style={{
