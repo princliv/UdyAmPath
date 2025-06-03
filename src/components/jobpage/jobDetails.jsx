@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 const JobDetail = () => {
   const { state } = useLocation();
@@ -13,6 +15,8 @@ const JobDetail = () => {
     linkedin: "",
     github: "",
     captchaInput: "",
+    resume: null,
+    coverLetter: null,
   });
 
   const [resumeName, setResumeName] = useState("");
@@ -29,25 +33,58 @@ const JobDetail = () => {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === "resume") setResumeName(files[0]?.name || "");
-    if (name === "coverLetter") setCoverLetterName(files[0]?.name || "");
+    if (name === "resume") {
+      setResumeName(files[0]?.name || "");
+    }
+    if (name === "coverLetter") {
+      setCoverLetterName(files[0]?.name || "");
+    }
     setFormData((prev) => ({ ...prev, [name]: files ? files[0] : value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (formData.captchaInput !== captcha.a) {
       setToast({ type: "error", message: "CAPTCHA answer is incorrect." });
       return;
     }
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if (!user) throw new Error("User not logged in");
+
+      setLoading(true);
+
+      const db = getFirestore();
+      const appliedJobsRef = collection(db, "Users", user.uid, "AppliedJobs");
+
+      // Only basic text data is saved. You'd need storage upload for files (optional).
+      await addDoc(appliedJobsRef, {
+        jobId: job.id || null,
+        jobTitle: job.title,
+        company: job.company,
+        location: job.location,
+        appliedAt: new Date().toISOString(),
+        formData: {
+          ...formData,
+          resume: resumeName,
+          coverLetter: coverLetterName,
+        },
+      });
+
       setToast({ type: "success", message: "Application submitted successfully!" });
-    }, 1500);
+    } catch (err) {
+      console.error(err);
+      setToast({ type: "error", message: "Failed to submit application." });
+    } finally {
+      setLoading(false);
+    }
   };
 
-  if (!job) return <p style={{ textAlign: "center", marginTop: "50px" }}>No job data available.</p>;
+  if (!job)
+    return <p style={{ textAlign: "center", marginTop: "50px" }}>No job data available.</p>;
 
   return (
     <div style={{
@@ -60,9 +97,9 @@ const JobDetail = () => {
       display: "flex",
       gap: "40px",
       alignItems: "flex-start",
-      flexWrap: "wrap"  // Responsive fallback
+      flexWrap: "wrap"
     }}>
-      {/* Job Details - Left Side */}
+      {/* Job Info */}
       <div style={{ flex: 1, minWidth: "300px" }}>
         <h2>{job.title}</h2>
         <p><strong>Company:</strong> {job.company}</p>
@@ -87,15 +124,16 @@ const JobDetail = () => {
         </div>
       </div>
 
-      {/* Application Form - Right Side */}
+      {/* Application Form */}
       <form onSubmit={handleSubmit} style={{
         flex: 1,
         display: "flex",
         flexDirection: "column",
         gap: "15px",
         minWidth: "300px"
-      }} aria-label="Job Application Form">
+      }}>
         <h3>Apply for this Job</h3>
+
         <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
           <input name="firstName" required value={formData.firstName} onChange={handleChange} placeholder="First Name" style={inputStyle} />
           <input name="lastName" required value={formData.lastName} onChange={handleChange} placeholder="Last Name" style={inputStyle} />
