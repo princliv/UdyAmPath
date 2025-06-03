@@ -1,12 +1,12 @@
 {
-    "specializations": [
-      {
-        "id": 1,
-        "name": "Artificial Intelligence",
-        "duration": "6 months",
-        "image": "assets/specializationpage/AI.jpg",
-        "description": "Master AI concepts including machine learning, neural networks, and natural language processing.",
-        "courses": [
+  "specializations": [
+    {
+      "id": 1,
+      "name": "Artificial Intelligence",
+      "duration": "6 months",
+      "image": "assets/specializationpage/AI.jpg",
+      "description": "Master AI concepts including machine learning, neural networks, and natural language processing.",
+      "courses": [
         {
           "name": "Machine Learning Fundamentals",
           "duration": "4 weeks",
@@ -33,22 +33,121 @@
         {
           "phase": "Foundation",
           "duration": "6 weeks",
-          "topics": ["Python Basics", "Linear Algebra", "Probability", "Statistics"]
+          "topics": ["Python Basics", "Linear Algebra", "Probability", "Statistics"],
+          "videos": [
+            {
+              "title": "Introduction to AI",
+              "url": "https://www.youtube.com/embed/ai-intro",
+              "duration": "15 min"
+            },
+            {
+              "title": "Python for AI",
+              "url": "https://www.youtube.com/embed/python-ai",
+              "duration": "20 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Math for AI",
+              "url": "/pdfs/math-for-ai.pdf",
+              "pages": 25
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Python Basics Exercise",
+              "url": "/exercises/python-basics",
+              "duration": "1 hour"
+            }
+          ]
         },
         {
           "phase": "Core ML",
           "duration": "8 weeks",
-          "topics": ["Supervised Learning", "Unsupervised Learning", "Model Evaluation"]
+          "topics": ["Supervised Learning", "Unsupervised Learning", "Model Evaluation"],
+          "videos": [
+            {
+              "title": "Linear Regression",
+              "url": "https://www.youtube.com/embed/linear-regression",
+              "duration": "25 min"
+            },
+            {
+              "title": "Decision Trees",
+              "url": "https://www.youtube.com/embed/decision-trees",
+              "duration": "20 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "ML Algorithms Guide",
+              "url": "/pdfs/ml-algorithms.pdf",
+              "pages": 35
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Classification Project",
+              "url": "/exercises/classification",
+              "duration": "3 hours"
+            }
+          ]
         },
         {
           "phase": "Deep Learning",
           "duration": "6 weeks",
-          "topics": ["Neural Networks", "CNN", "RNN", "Transformers"]
+          "topics": ["Neural Networks", "CNN", "RNN", "Transformers"],
+          "videos": [
+            {
+              "title": "Neural Networks Explained",
+              "url": "https://www.youtube.com/embed/neural-nets",
+              "duration": "30 min"
+            },
+            {
+              "title": "CNN Architectures",
+              "url": "https://www.youtube.com/embed/cnn-arch",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Deep Learning Papers",
+              "url": "/pdfs/dl-papers.pdf",
+              "pages": 45
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Image Classifier",
+              "url": "/exercises/image-classifier",
+              "duration": "4 hours"
+            }
+          ]
         },
         {
           "phase": "Specialization",
           "duration": "4 weeks",
-          "topics": ["NLP/CV Project", "Model Deployment", "Ethics in AI"]
+          "topics": ["NLP/CV Project", "Model Deployment", "Ethics in AI"],
+          "videos": [
+            {
+              "title": "Project Guidelines",
+              "url": "https://www.youtube.com/embed/project-guide",
+              "duration": "20 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Project Rubric",
+              "url": "/pdfs/project-rubric.pdf",
+              "pages": 8
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Final Project",
+              "url": "/exercises/final-project",
+              "duration": "10 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -57,14 +156,14 @@
         "Data Scientist",
         "Computer Vision Engineer"
       ]
-      },
-      {
-        "id": 2,
-        "name": "Cloud Computing",
-        "duration": "4 months",
-        "image": "assets/specializationpage/cloud.jpg",
-        "description": "Learn cloud architecture, deployment, and management with AWS, Azure, and GCP.",
-        "courses": [
+    },
+    {
+      "id": 2,
+      "name": "Cloud Computing",
+      "duration": "4 months",
+      "image": "assets/specializationpage/cloud.jpg",
+      "description": "Learn cloud architecture, deployment, and management with AWS, Azure, and GCP.",
+      "courses": [
         {
           "name": "AWS Fundamentals",
           "duration": "4 weeks",
@@ -91,22 +190,121 @@
         {
           "phase": "Cloud Basics",
           "duration": "4 weeks",
-          "topics": ["Virtualization", "Networking", "Storage", "Security"]
+          "topics": ["Virtualization", "Networking", "Storage", "Security"],
+          "videos": [
+            {
+              "title": "Cloud Computing Introduction",
+              "url": "https://www.youtube.com/embed/cloud-intro",
+              "duration": "18 min"
+            },
+            {
+              "title": "Virtualization Explained",
+              "url": "https://www.youtube.com/embed/virtualization",
+              "duration": "15 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Cloud Basics Handbook",
+              "url": "/pdfs/cloud-basics.pdf",
+              "pages": 22
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Cloud Setup Exercise",
+              "url": "/exercises/cloud-setup",
+              "duration": "2 hours"
+            }
+          ]
         },
         {
           "phase": "Platform Deep Dive",
           "duration": "8 weeks",
-          "topics": ["AWS Services", "Azure Services", "GCP Services"]
+          "topics": ["AWS Services", "Azure Services", "GCP Services"],
+          "videos": [
+            {
+              "title": "AWS Core Services",
+              "url": "https://www.youtube.com/embed/aws-core",
+              "duration": "25 min"
+            },
+            {
+              "title": "Azure Services Overview",
+              "url": "https://www.youtube.com/embed/azure-overview",
+              "duration": "20 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Multi-Cloud Guide",
+              "url": "/pdfs/multi-cloud.pdf",
+              "pages": 40
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Cloud Deployment Project",
+              "url": "/exercises/cloud-deploy",
+              "duration": "4 hours"
+            }
+          ]
         },
         {
           "phase": "Advanced Services",
           "duration": "4 weeks",
-          "topics": ["Serverless", "Containers", "Kubernetes", "IaC"]
+          "topics": ["Serverless", "Containers", "Kubernetes", "IaC"],
+          "videos": [
+            {
+              "title": "Kubernetes Deep Dive",
+              "url": "https://www.youtube.com/embed/kubernetes-deep",
+              "duration": "30 min"
+            },
+            {
+              "title": "Serverless Architectures",
+              "url": "https://www.youtube.com/embed/serverless-arch",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Advanced Cloud Patterns",
+              "url": "/pdfs/advanced-cloud.pdf",
+              "pages": 35
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Kubernetes Deployment",
+              "url": "/exercises/k8s-deploy",
+              "duration": "3 hours"
+            }
+          ]
         },
         {
           "phase": "Implementation",
           "duration": "4 weeks",
-          "topics": ["Migration Strategies", "Cost Optimization", "Disaster Recovery"]
+          "topics": ["Migration Strategies", "Cost Optimization", "Disaster Recovery"],
+          "videos": [
+            {
+              "title": "Cloud Migration Strategies",
+              "url": "https://www.youtube.com/embed/cloud-migration",
+              "duration": "20 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Implementation Guide",
+              "url": "/pdfs/cloud-implement.pdf",
+              "pages": 30
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Migration Project",
+              "url": "/exercises/cloud-migrate",
+              "duration": "5 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -115,14 +313,14 @@
         "Cloud Security Specialist",
         "Solutions Architect"
       ]
-      },
-      {
-        "id": 3,
-        "name": "Cybersecurity",
-        "duration": "5 months",
-        "image": "assets/specializationpage/cyber.jpg",
-        "description": "Develop skills to protect systems and networks from digital attacks.",
-        "courses": [
+    },
+    {
+      "id": 3,
+      "name": "Cybersecurity",
+      "duration": "5 months",
+      "image": "assets/specializationpage/cyber.jpg",
+      "description": "Develop skills to protect systems and networks from digital attacks.",
+      "courses": [
         {
           "name": "Ethical Hacking",
           "duration": "5 weeks",
@@ -149,22 +347,121 @@
         {
           "phase": "Fundamentals",
           "duration": "5 weeks",
-          "topics": ["Security Principles", "Threat Landscape", "Risk Management"]
+          "topics": ["Security Principles", "Threat Landscape", "Risk Management"],
+          "videos": [
+            {
+              "title": "Cybersecurity Basics",
+              "url": "https://www.youtube.com/embed/cyber-basics",
+              "duration": "20 min"
+            },
+            {
+              "title": "Threat Modeling",
+              "url": "https://www.youtube.com/embed/threat-model",
+              "duration": "18 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Security Fundamentals",
+              "url": "/pdfs/security-fundamentals.pdf",
+              "pages": 28
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Risk Assessment",
+              "url": "/exercises/risk-assessment",
+              "duration": "2 hours"
+            }
+          ]
         },
         {
           "phase": "Technical Skills",
           "duration": "8 weeks",
-          "topics": ["Network Security", "System Hardening", "Vulnerability Assessment"]
+          "topics": ["Network Security", "System Hardening", "Vulnerability Assessment"],
+          "videos": [
+            {
+              "title": "Network Defense",
+              "url": "https://www.youtube.com/embed/network-defense",
+              "duration": "25 min"
+            },
+            {
+              "title": "Vulnerability Scanning",
+              "url": "https://www.youtube.com/embed/vuln-scan",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Technical Security Guide",
+              "url": "/pdfs/tech-security.pdf",
+              "pages": 42
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Penetration Test",
+              "url": "/exercises/pen-test",
+              "duration": "4 hours"
+            }
+          ]
         },
         {
           "phase": "Advanced Topics",
           "duration": "6 weeks",
-          "topics": ["Cryptography", "Malware Analysis", "Digital Forensics"]
+          "topics": ["Cryptography", "Malware Analysis", "Digital Forensics"],
+          "videos": [
+            {
+              "title": "Cryptography Deep Dive",
+              "url": "https://www.youtube.com/embed/crypto-deep",
+              "duration": "30 min"
+            },
+            {
+              "title": "Malware Analysis Techniques",
+              "url": "https://www.youtube.com/embed/malware-analysis",
+              "duration": "28 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Advanced Security Papers",
+              "url": "/pdfs/advanced-security.pdf",
+              "pages": 50
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Cryptography Challenge",
+              "url": "/exercises/crypto-challenge",
+              "duration": "5 hours"
+            }
+          ]
         },
         {
           "phase": "Professional Practice",
           "duration": "4 weeks",
-          "topics": ["Incident Response", "Security Policies", "Compliance"]
+          "topics": ["Incident Response", "Security Policies", "Compliance"],
+          "videos": [
+            {
+              "title": "Incident Response Plan",
+              "url": "https://www.youtube.com/embed/incident-response",
+              "duration": "20 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Compliance Handbook",
+              "url": "/pdfs/compliance.pdf",
+              "pages": 35
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Security Audit",
+              "url": "/exercises/security-audit",
+              "duration": "6 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -173,14 +470,14 @@
         "Security Architect",
         "CISO"
       ]
-      },
-      {
-        "id": 4,
-        "name": "Data Science",
-        "duration": "6 months",
-        "image": "assets/specializationpage/data.jpg",
-        "description": "Become proficient in data analysis, visualization, and machine learning.",
-        "courses": [
+    },
+    {
+      "id": 4,
+      "name": "Data Science",
+      "duration": "6 months",
+      "image": "assets/specializationpage/data.jpg",
+      "description": "Become proficient in data analysis, visualization, and machine learning.",
+      "courses": [
         {
           "name": "Python for Data Science",
           "duration": "5 weeks",
@@ -207,22 +504,121 @@
         {
           "phase": "Data Fundamentals",
           "duration": "6 weeks",
-          "topics": ["Python Basics", "SQL", "Data Wrangling"]
+          "topics": ["Python Basics", "SQL", "Data Wrangling"],
+          "videos": [
+            {
+              "title": "Data Science Introduction",
+              "url": "https://www.youtube.com/embed/ds-intro",
+              "duration": "18 min"
+            },
+            {
+              "title": "Python for Data Analysis",
+              "url": "https://www.youtube.com/embed/python-data",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Data Fundamentals Guide",
+              "url": "/pdfs/data-fundamentals.pdf",
+              "pages": 30
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Data Cleaning Exercise",
+              "url": "/exercises/data-cleaning",
+              "duration": "3 hours"
+            }
+          ]
         },
         {
           "phase": "Statistical Modeling",
           "duration": "8 weeks",
-          "topics": ["Probability", "Statistical Tests", "Regression"]
+          "topics": ["Probability", "Statistical Tests", "Regression"],
+          "videos": [
+            {
+              "title": "Statistical Concepts",
+              "url": "https://www.youtube.com/embed/stats-concepts",
+              "duration": "25 min"
+            },
+            {
+              "title": "Regression Analysis",
+              "url": "https://www.youtube.com/embed/regression",
+              "duration": "28 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Statistics Handbook",
+              "url": "/pdfs/stats-handbook.pdf",
+              "pages": 45
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Statistical Analysis Project",
+              "url": "/exercises/stats-project",
+              "duration": "5 hours"
+            }
+          ]
         },
         {
           "phase": "Machine Learning",
           "duration": "6 weeks",
-          "topics": ["Supervised Learning", "Unsupervised Learning", "Model Evaluation"]
+          "topics": ["Supervised Learning", "Unsupervised Learning", "Model Evaluation"],
+          "videos": [
+            {
+              "title": "ML Algorithms Explained",
+              "url": "https://www.youtube.com/embed/ml-algorithms",
+              "duration": "30 min"
+            },
+            {
+              "title": "Model Evaluation Techniques",
+              "url": "https://www.youtube.com/embed/model-eval",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "ML Best Practices",
+              "url": "/pdfs/ml-best-practices.pdf",
+              "pages": 50
+            }
+          ],
+          "exercises": [
+            {
+              "title": "ML Pipeline Project",
+              "url": "/exercises/ml-pipeline",
+              "duration": "6 hours"
+            }
+          ]
         },
         {
           "phase": "Big Data & Deployment",
           "duration": "4 weeks",
-          "topics": ["Spark", "Cloud Platforms", "Model Deployment"]
+          "topics": ["Spark", "Cloud Platforms", "Model Deployment"],
+          "videos": [
+            {
+              "title": "Big Data Processing",
+              "url": "https://www.youtube.com/embed/big-data",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Deployment Guide",
+              "url": "/pdfs/deployment-guide.pdf",
+              "pages": 35
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Deployment Project",
+              "url": "/exercises/deploy-project",
+              "duration": "8 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -231,14 +627,14 @@
         "Business Intelligence Analyst",
         "Data Engineer"
       ]
-      },
-      {
-        "id": 5,
-        "name": "Internet of Things",
-        "duration": "4 months",
-        "image": "assets/specializationpage/iot.jpg",
-        "description": "Learn to design and implement connected devices and IoT systems.",
-        "courses": [
+    },
+    {
+      "id": 5,
+      "name": "Internet of Things",
+      "duration": "4 months",
+      "image": "assets/specializationpage/iot.jpg",
+      "description": "Learn to design and implement connected devices and IoT systems.",
+      "courses": [
         {
           "name": "Embedded Systems",
           "duration": "4 weeks",
@@ -265,22 +661,121 @@
         {
           "phase": "Electronics Basics",
           "duration": "4 weeks",
-          "topics": ["Circuit Design", "Sensors", "Microcontrollers"]
+          "topics": ["Circuit Design", "Sensors", "Microcontrollers"],
+          "videos": [
+            {
+              "title": "IoT Fundamentals",
+              "url": "https://www.youtube.com/embed/iot-fundamentals",
+              "duration": "20 min"
+            },
+            {
+              "title": "Embedded Systems Intro",
+              "url": "https://www.youtube.com/embed/embedded-intro",
+              "duration": "18 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Electronics Basics",
+              "url": "/pdfs/electronics-basics.pdf",
+              "pages": 25
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Circuit Design Exercise",
+              "url": "/exercises/circuit-design",
+              "duration": "3 hours"
+            }
+          ]
         },
         {
           "phase": "IoT Architecture",
           "duration": "6 weeks",
-          "topics": ["Protocols", "Gateways", "Cloud Integration"]
+          "topics": ["Protocols", "Gateways", "Cloud Integration"],
+          "videos": [
+            {
+              "title": "IoT Protocols Explained",
+              "url": "https://www.youtube.com/embed/iot-protocols",
+              "duration": "25 min"
+            },
+            {
+              "title": "Cloud Integration",
+              "url": "https://www.youtube.com/embed/iot-cloud",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "IoT Architecture Guide",
+              "url": "/pdfs/iot-architecture.pdf",
+              "pages": 35
+            }
+          ],
+          "exercises": [
+            {
+              "title": "IoT System Design",
+              "url": "/exercises/iot-design",
+              "duration": "4 hours"
+            }
+          ]
         },
         {
           "phase": "Data Processing",
           "duration": "6 weeks",
-          "topics": ["Edge Computing", "Data Analytics", "Visualization"]
+          "topics": ["Edge Computing", "Data Analytics", "Visualization"],
+          "videos": [
+            {
+              "title": "Edge Computing Deep Dive",
+              "url": "https://www.youtube.com/embed/edge-computing",
+              "duration": "28 min"
+            },
+            {
+              "title": "IoT Data Analytics",
+              "url": "https://www.youtube.com/embed/iot-analytics",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Data Processing Handbook",
+              "url": "/pdfs/iot-data.pdf",
+              "pages": 40
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Data Pipeline Project",
+              "url": "/exercises/data-pipeline",
+              "duration": "5 hours"
+            }
+          ]
         },
         {
           "phase": "Implementation",
           "duration": "4 weeks",
-          "topics": ["Security", "Scalability", "Industry Applications"]
+          "topics": ["Security", "Scalability", "Industry Applications"],
+          "videos": [
+            {
+              "title": "IoT Security Best Practices",
+              "url": "https://www.youtube.com/embed/iot-security",
+              "duration": "20 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Implementation Guide",
+              "url": "/pdfs/iot-implement.pdf",
+              "pages": 30
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Final IoT Project",
+              "url": "/exercises/iot-project",
+              "duration": "10 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -289,14 +784,14 @@
         "IoT Solutions Architect",
         "Industrial IoT Specialist"
       ]
-      },
-      {
-        "id": 6,
-        "name": "Blockchain Development",
-        "duration": "5 months",
-        "image": "assets/specializationpage/blockchain.jpg",
-        "description": "Master decentralized applications, smart contracts, and blockchain architecture.",
-        "courses": [
+    },
+    {
+      "id": 6,
+      "name": "Blockchain Development",
+      "duration": "5 months",
+      "image": "assets/specializationpage/blockchain.jpg",
+      "description": "Master decentralized applications, smart contracts, and blockchain architecture.",
+      "courses": [
         {
           "name": "Ethereum Fundamentals",
           "duration": "5 weeks",
@@ -323,22 +818,121 @@
         {
           "phase": "Blockchain Basics",
           "duration": "5 weeks",
-          "topics": ["Distributed Ledgers", "Consensus Mechanisms", "Cryptography"]
+          "topics": ["Distributed Ledgers", "Consensus Mechanisms", "Cryptography"],
+          "videos": [
+            {
+              "title": "Blockchain Introduction",
+              "url": "https://www.youtube.com/embed/blockchain-intro",
+              "duration": "20 min"
+            },
+            {
+              "title": "Cryptography for Blockchain",
+              "url": "https://www.youtube.com/embed/blockchain-crypto",
+              "duration": "18 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Blockchain Fundamentals",
+              "url": "/pdfs/blockchain-fundamentals.pdf",
+              "pages": 30
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Blockchain Concepts Exercise",
+              "url": "/exercises/blockchain-exercise",
+              "duration": "3 hours"
+            }
+          ]
         },
         {
           "phase": "Smart Contracts",
           "duration": "7 weeks",
-          "topics": ["Solidity", "EVM", "Security Patterns"]
+          "topics": ["Solidity", "EVM", "Security Patterns"],
+          "videos": [
+            {
+              "title": "Solidity Programming",
+              "url": "https://www.youtube.com/embed/solidity",
+              "duration": "25 min"
+            },
+            {
+              "title": "Smart Contract Security",
+              "url": "https://www.youtube.com/embed/smart-contract-security",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Smart Contract Guide",
+              "url": "/pdfs/smart-contract.pdf",
+              "pages": 45
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Smart Contract Project",
+              "url": "/exercises/smart-contract-project",
+              "duration": "5 hours"
+            }
+          ]
         },
         {
           "phase": "DApp Development",
           "duration": "6 weeks",
-          "topics": ["Web3.js", "IPFS", "Frontend Integration"]
+          "topics": ["Web3.js", "IPFS", "Frontend Integration"],
+          "videos": [
+            {
+              "title": "Building DApps",
+              "url": "https://www.youtube.com/embed/dapp-development",
+              "duration": "28 min"
+            },
+            {
+              "title": "Web3.js Tutorial",
+              "url": "https://www.youtube.com/embed/web3-tutorial",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "DApp Development Handbook",
+              "url": "/pdfs/dapp-handbook.pdf",
+              "pages": 50
+            }
+          ],
+          "exercises": [
+            {
+              "title": "DApp Project",
+              "url": "/exercises/dapp-project",
+              "duration": "6 hours"
+            }
+          ]
         },
         {
           "phase": "Advanced Topics",
           "duration": "4 weeks",
-          "topics": ["Scaling Solutions", "DAOs", "NFT Development"]
+          "topics": ["Scaling Solutions", "DAOs", "NFT Development"],
+          "videos": [
+            {
+              "title": "Blockchain Scaling",
+              "url": "https://www.youtube.com/embed/blockchain-scaling",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Advanced Blockchain Guide",
+              "url": "/pdfs/advanced-blockchain.pdf",
+              "pages": 40
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Final Blockchain Project",
+              "url": "/exercises/blockchain-final",
+              "duration": "10 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -347,14 +941,14 @@
         "DApp Developer",
         "Blockchain Architect"
       ]
-      },
-      {
-        "id": 7,
-        "name": "Robotics Engineering",
-        "duration": "7 months",
-        "image": "assets/specializationpage/robotics.jpg",
-        "description": "Design and program autonomous robots and robotic systems.",
-        "courses": [
+    },
+    {
+      "id": 7,
+      "name": "Robotics Engineering",
+      "duration": "7 months",
+      "image": "assets/specializationpage/robotics.jpg",
+      "description": "Design and program autonomous robots and robotic systems.",
+      "courses": [
         {
           "name": "Robot Kinematics",
           "duration": "6 weeks",
@@ -381,22 +975,121 @@
         {
           "phase": "Fundamentals",
           "duration": "6 weeks",
-          "topics": ["Mechanics", "Electronics", "Basic Programming"]
+          "topics": ["Mechanics", "Electronics", "Basic Programming"],
+          "videos": [
+            {
+              "title": "Robotics Introduction",
+              "url": "https://www.youtube.com/embed/robotics-intro",
+              "duration": "20 min"
+            },
+            {
+              "title": "Mechanical Basics",
+              "url": "https://www.youtube.com/embed/mechanical-basics",
+              "duration": "18 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Robotics Fundamentals",
+              "url": "/pdfs/robotics-fundamentals.pdf",
+              "pages": 35
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Basic Robot Design",
+              "url": "/exercises/robot-design",
+              "duration": "4 hours"
+            }
+          ]
         },
         {
           "phase": "Core Robotics",
           "duration": "10 weeks",
-          "topics": ["Kinematics", "Dynamics", "Control Theory"]
+          "topics": ["Kinematics", "Dynamics", "Control Theory"],
+          "videos": [
+            {
+              "title": "Robot Kinematics",
+              "url": "https://www.youtube.com/embed/robot-kinematics",
+              "duration": "25 min"
+            },
+            {
+              "title": "Control Systems",
+              "url": "https://www.youtube.com/embed/control-systems",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Robotics Theory",
+              "url": "/pdfs/robotics-theory.pdf",
+              "pages": 50
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Kinematics Project",
+              "url": "/exercises/kinematics-project",
+              "duration": "6 hours"
+            }
+          ]
         },
         {
           "phase": "Perception",
           "duration": "8 weeks",
-          "topics": ["Computer Vision", "Sensor Fusion", "SLAM"]
+          "topics": ["Computer Vision", "Sensor Fusion", "SLAM"],
+          "videos": [
+            {
+              "title": "Robot Vision",
+              "url": "https://www.youtube.com/embed/robot-vision",
+              "duration": "28 min"
+            },
+            {
+              "title": "SLAM Techniques",
+              "url": "https://www.youtube.com/embed/slam-techniques",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Perception Handbook",
+              "url": "/pdfs/robot-perception.pdf",
+              "pages": 55
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Vision System Project",
+              "url": "/exercises/vision-project",
+              "duration": "8 hours"
+            }
+          ]
         },
         {
           "phase": "Implementation",
           "duration": "6 weeks",
-          "topics": ["ROS", "Hardware Integration", "Real-world Applications"]
+          "topics": ["ROS", "Hardware Integration", "Real-world Applications"],
+          "videos": [
+            {
+              "title": "ROS Tutorial",
+              "url": "https://www.youtube.com/embed/ros-tutorial",
+              "duration": "30 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Implementation Guide",
+              "url": "/pdfs/robotics-implement.pdf",
+              "pages": 45
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Final Robotics Project",
+              "url": "/exercises/robotics-final",
+              "duration": "12 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -405,14 +1098,14 @@
         "Mechatronics Engineer",
         "AI Robotics Specialist"
       ]
-      },
-      {
-        "id": 8,
-        "name": "Quantum Computing",
-        "duration": "8 months",
-        "image": "assets/specializationpage/quantum.jpg",
-        "description": "Explore quantum algorithms and quantum information processing.",
-        "courses": [
+    },
+    {
+      "id": 8,
+      "name": "Quantum Computing",
+      "duration": "8 months",
+      "image": "assets/specializationpage/quantum.jpg",
+      "description": "Explore quantum algorithms and quantum information processing.",
+      "courses": [
         {
           "name": "Quantum Mechanics Basics",
           "duration": "8 weeks",
@@ -439,22 +1132,121 @@
         {
           "phase": "Math Fundamentals",
           "duration": "8 weeks",
-          "topics": ["Linear Algebra", "Complex Numbers", "Probability"]
+          "topics": ["Linear Algebra", "Complex Numbers", "Probability"],
+          "videos": [
+            {
+              "title": "Quantum Math Basics",
+              "url": "https://www.youtube.com/embed/quantum-math",
+              "duration": "25 min"
+            },
+            {
+              "title": "Linear Algebra for QC",
+              "url": "https://www.youtube.com/embed/qc-linear-algebra",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Math for Quantum Computing",
+              "url": "/pdfs/qc-math.pdf",
+              "pages": 40
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Math Exercises",
+              "url": "/exercises/qc-math-exercises",
+              "duration": "5 hours"
+            }
+          ]
         },
         {
           "phase": "Quantum Basics",
           "duration": "10 weeks",
-          "topics": ["Qubits", "Quantum Gates", "Simple Circuits"]
+          "topics": ["Qubits", "Quantum Gates", "Simple Circuits"],
+          "videos": [
+            {
+              "title": "Qubits Explained",
+              "url": "https://www.youtube.com/embed/qubits-explained",
+              "duration": "28 min"
+            },
+            {
+              "title": "Quantum Gates Tutorial",
+              "url": "https://www.youtube.com/embed/quantum-gates",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Quantum Computing Basics",
+              "url": "/pdfs/qc-basics.pdf",
+              "pages": 50
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Quantum Circuits",
+              "url": "/exercises/quantum-circuits",
+              "duration": "6 hours"
+            }
+          ]
         },
         {
           "phase": "Algorithms",
           "duration": "12 weeks",
-          "topics": ["Quantum Fourier Transform", "Search Algorithms", "Error Correction"]
+          "topics": ["Quantum Fourier Transform", "Search Algorithms", "Error Correction"],
+          "videos": [
+            {
+              "title": "Shor's Algorithm",
+              "url": "https://www.youtube.com/embed/shors-algorithm",
+              "duration": "30 min"
+            },
+            {
+              "title": "Quantum Error Correction",
+              "url": "https://www.youtube.com/embed/qec",
+              "duration": "28 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Quantum Algorithms Guide",
+              "url": "/pdfs/qc-algorithms.pdf",
+              "pages": 60
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Algorithm Implementation",
+              "url": "/exercises/qc-algorithm",
+              "duration": "8 hours"
+            }
+          ]
         },
         {
           "phase": "Applications",
           "duration": "6 weeks",
-          "topics": ["Chemistry Simulation", "Optimization", "Cryptography"]
+          "topics": ["Chemistry Simulation", "Optimization", "Cryptography"],
+          "videos": [
+            {
+              "title": "Quantum Chemistry",
+              "url": "https://www.youtube.com/embed/quantum-chemistry",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "QC Applications",
+              "url": "/pdfs/qc-applications.pdf",
+              "pages": 45
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Final Quantum Project",
+              "url": "/exercises/qc-final-project",
+              "duration": "10 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -463,14 +1255,14 @@
         "Quantum Research Scientist",
         "Quantum Hardware Engineer"
       ]
-      },
-      {
-        "id": 9,
-        "name": "Augmented Reality/Virtual Reality",
-        "duration": "5 months",
-        "image": "assets/specializationpage/ar-vr.jpg",
-        "description": "Develop immersive AR/VR experiences and applications.",
-        "courses": [
+    },
+    {
+      "id": 9,
+      "name": "Augmented Reality/Virtual Reality",
+      "duration": "5 months",
+      "image": "assets/specializationpage/ar-vr.jpg",
+      "description": "Develop immersive AR/VR experiences and applications.",
+      "courses": [
         {
           "name": "Unity 3D Development",
           "duration": "6 weeks",
@@ -497,22 +1289,121 @@
         {
           "phase": "Foundations",
           "duration": "5 weeks",
-          "topics": ["3D Math", "Graphics Principles", "UX for VR"]
+          "topics": ["3D Math", "Graphics Principles", "UX for VR"],
+          "videos": [
+            {
+              "title": "AR/VR Introduction",
+              "url": "https://www.youtube.com/embed/ar-vr-intro",
+              "duration": "20 min"
+            },
+            {
+              "title": "3D Math Basics",
+              "url": "https://www.youtube.com/embed/3d-math",
+              "duration": "18 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "XR Fundamentals",
+              "url": "/pdfs/xr-fundamentals.pdf",
+              "pages": 30
+            }
+          ],
+          "exercises": [
+            {
+              "title": "3D Scene Creation",
+              "url": "/exercises/3d-scene",
+              "duration": "4 hours"
+            }
+          ]
         },
         {
           "phase": "Development Tools",
           "duration": "8 weeks",
-          "topics": ["Unity", "Unreal", "3D Modeling"]
+          "topics": ["Unity", "Unreal", "3D Modeling"],
+          "videos": [
+            {
+              "title": "Unity for VR",
+              "url": "https://www.youtube.com/embed/unity-vr",
+              "duration": "25 min"
+            },
+            {
+              "title": "Unreal Engine Basics",
+              "url": "https://www.youtube.com/embed/unreal-basics",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "XR Development Guide",
+              "url": "/pdfs/xr-development.pdf",
+              "pages": 45
+            }
+          ],
+          "exercises": [
+            {
+              "title": "VR Environment Project",
+              "url": "/exercises/vr-environment",
+              "duration": "6 hours"
+            }
+          ]
         },
         {
           "phase": "Platform-Specific",
           "duration": "7 weeks",
-          "topics": ["Oculus Development", "Hololens", "Mobile AR"]
+          "topics": ["Oculus Development", "Hololens", "Mobile AR"],
+          "videos": [
+            {
+              "title": "Oculus Development",
+              "url": "https://www.youtube.com/embed/oculus-dev",
+              "duration": "28 min"
+            },
+            {
+              "title": "ARKit Tutorial",
+              "url": "https://www.youtube.com/embed/arkit-tutorial",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Platform-Specific Guide",
+              "url": "/pdfs/xr-platforms.pdf",
+              "pages": 50
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Platform Project",
+              "url": "/exercises/xr-platform",
+              "duration": "8 hours"
+            }
+          ]
         },
         {
           "phase": "Advanced Topics",
           "duration": "4 weeks",
-          "topics": ["Multiplayer VR", "Performance Optimization", "Haptics"]
+          "topics": ["Multiplayer VR", "Performance Optimization", "Haptics"],
+          "videos": [
+            {
+              "title": "Multiplayer VR",
+              "url": "https://www.youtube.com/embed/multiplayer-vr",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Advanced XR Techniques",
+              "url": "/pdfs/advanced-xr.pdf",
+              "pages": 40
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Final XR Project",
+              "url": "/exercises/xr-final",
+              "duration": "10 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -521,14 +1412,14 @@
         "VR Engineer",
         "AR Application Developer"
       ]
-      },
-      {
-        "id": 10,
-        "name": "Autonomous Systems",
-        "duration": "6 months",
-        "image": "assets/specializationpage/autonomous.jpg",
-        "description": "Learn about self-driving cars, drones, and autonomous navigation.",
-        "courses": [
+    },
+    {
+      "id": 10,
+      "name": "Autonomous Systems",
+      "duration": "6 months",
+      "image": "assets/specializationpage/autonomous.jpg",
+      "description": "Learn about self-driving cars, drones, and autonomous navigation.",
+      "courses": [
         {
           "name": "Sensor Fusion",
           "duration": "6 weeks",
@@ -555,22 +1446,121 @@
         {
           "phase": "Fundamentals",
           "duration": "6 weeks",
-          "topics": ["Robotics Basics", "Control Theory", "Python for Robotics"]
+          "topics": ["Robotics Basics", "Control Theory", "Python for Robotics"],
+          "videos": [
+            {
+              "title": "Autonomous Systems Intro",
+              "url": "https://www.youtube.com/embed/autonomous-intro",
+              "duration": "20 min"
+            },
+            {
+              "title": "Control Theory Basics",
+              "url": "https://www.youtube.com/embed/control-theory",
+              "duration": "18 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Autonomous Fundamentals",
+              "url": "/pdfs/autonomous-fundamentals.pdf",
+              "pages": 35
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Basic Control Exercise",
+              "url": "/exercises/control-exercise",
+              "duration": "4 hours"
+            }
+          ]
         },
         {
           "phase": "Perception",
           "duration": "8 weeks",
-          "topics": ["Computer Vision", "Sensor Fusion", "Localization"]
+          "topics": ["Computer Vision", "Sensor Fusion", "Localization"],
+          "videos": [
+            {
+              "title": "Sensor Fusion Techniques",
+              "url": "https://www.youtube.com/embed/sensor-fusion",
+              "duration": "25 min"
+            },
+            {
+              "title": "Object Detection",
+              "url": "https://www.youtube.com/embed/object-detection",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Perception Handbook",
+              "url": "/pdfs/autonomous-perception.pdf",
+              "pages": 50
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Perception Project",
+              "url": "/exercises/perception-project",
+              "duration": "6 hours"
+            }
+          ]
         },
         {
           "phase": "Decision Making",
           "duration": "8 weeks",
-          "topics": ["Path Planning", "Behavior Planning", "Control"]
+          "topics": ["Path Planning", "Behavior Planning", "Control"],
+          "videos": [
+            {
+              "title": "Path Planning Algorithms",
+              "url": "https://www.youtube.com/embed/path-planning",
+              "duration": "28 min"
+            },
+            {
+              "title": "Behavior Planning",
+              "url": "https://www.youtube.com/embed/behavior-planning",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Decision Making Guide",
+              "url": "/pdfs/autonomous-decisions.pdf",
+              "pages": 55
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Planning Project",
+              "url": "/exercises/planning-project",
+              "duration": "8 hours"
+            }
+          ]
         },
         {
           "phase": "Implementation",
           "duration": "6 weeks",
-          "topics": ["ROS", "Simulation", "Real-world Testing"]
+          "topics": ["ROS", "Simulation", "Real-world Testing"],
+          "videos": [
+            {
+              "title": "ROS for Autonomous Vehicles",
+              "url": "https://www.youtube.com/embed/ros-autonomous",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Implementation Guide",
+              "url": "/pdfs/autonomous-implement.pdf",
+              "pages": 45
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Final Autonomous Project",
+              "url": "/exercises/autonomous-final",
+              "duration": "12 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -579,14 +1569,14 @@
         "Perception Engineer",
         "Systems Integration Engineer"
       ]
-      },
-      {
-        "id": 11,
-        "name": "Bioinformatics",
-        "duration": "6 months",
-        "image": "assets/specializationpage/bioinformatics.jpg",
-        "description": "Combine biology with data science for genomic analysis and drug discovery.",
-        "courses": [
+    },
+    {
+      "id": 11,
+      "name": "Bioinformatics",
+      "duration": "6 months",
+      "image": "assets/specializationpage/bioinformatics.jpg",
+      "description": "Combine biology with data science for genomic analysis and drug discovery.",
+      "courses": [
         {
           "name": "Genomic Data Analysis",
           "duration": "6 weeks",
@@ -613,22 +1603,121 @@
         {
           "phase": "Biology Basics",
           "duration": "6 weeks",
-          "topics": ["Molecular Biology", "Genetics", "Biochemistry"]
+          "topics": ["Molecular Biology", "Genetics", "Biochemistry"],
+          "videos": [
+            {
+              "title": "Bioinformatics Introduction",
+              "url": "https://www.youtube.com/embed/bioinfo-intro",
+              "duration": "20 min"
+            },
+            {
+              "title": "Molecular Biology Basics",
+              "url": "https://www.youtube.com/embed/mol-bio",
+              "duration": "18 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Biology Fundamentals",
+              "url": "/pdfs/bio-fundamentals.pdf",
+              "pages": 35
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Biology Concepts Exercise",
+              "url": "/exercises/bio-exercise",
+              "duration": "4 hours"
+            }
+          ]
         },
         {
           "phase": "Data Skills",
           "duration": "8 weeks",
-          "topics": ["Python for Biology", "Data Wrangling", "Statistics"]
+          "topics": ["Python for Biology", "Data Wrangling", "Statistics"],
+          "videos": [
+            {
+              "title": "Python for Bioinformatics",
+              "url": "https://www.youtube.com/embed/python-bio",
+              "duration": "25 min"
+            },
+            {
+              "title": "Genomic Data Wrangling",
+              "url": "https://www.youtube.com/embed/genomic-data",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Bioinformatics Data Guide",
+              "url": "/pdfs/bio-data.pdf",
+              "pages": 50
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Data Analysis Project",
+              "url": "/exercises/bio-data-project",
+              "duration": "6 hours"
+            }
+          ]
         },
         {
           "phase": "Core Bioinformatics",
           "duration": "8 weeks",
-          "topics": ["Sequence Analysis", "Structural Biology", "Pathway Analysis"]
+          "topics": ["Sequence Analysis", "Structural Biology", "Pathway Analysis"],
+          "videos": [
+            {
+              "title": "Sequence Alignment",
+              "url": "https://www.youtube.com/embed/sequence-align",
+              "duration": "28 min"
+            },
+            {
+              "title": "Protein Structure Prediction",
+              "url": "https://www.youtube.com/embed/protein-structure",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Core Bioinformatics",
+              "url": "/pdfs/core-bioinfo.pdf",
+              "pages": 60
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Sequence Analysis Project",
+              "url": "/exercises/sequence-project",
+              "duration": "8 hours"
+            }
+          ]
         },
         {
           "phase": "Applications",
           "duration": "6 weeks",
-          "topics": ["Drug Discovery", "Personalized Medicine", "Agricultural Bioinfo"]
+          "topics": ["Drug Discovery", "Personalized Medicine", "Agricultural Bioinfo"],
+          "videos": [
+            {
+              "title": "Drug Discovery with AI",
+              "url": "https://www.youtube.com/embed/drug-discovery",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Bioinfo Applications",
+              "url": "/pdfs/bio-applications.pdf",
+              "pages": 45
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Final Bioinformatics Project",
+              "url": "/exercises/bio-final",
+              "duration": "10 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -637,14 +1726,14 @@
         "Genomic Data Analyst",
         "Pharma Researcher"
       ]
-      },
-      {
-        "id": 12,
-        "name": "Embedded Systems",
-        "duration": "5 months",
-        "image": "assets/specializationpage/embedded.jpg",
-        "description": "Design and program microcontroller-based systems and firmware.",
-        "courses": [
+    },
+    {
+      "id": 12,
+      "name": "Embedded Systems",
+      "duration": "5 months",
+      "image": "assets/specializationpage/embedded.jpg",
+      "description": "Design and program microcontroller-based systems and firmware.",
+      "courses": [
         {
           "name": "RTOS Development",
           "duration": "5 weeks",
@@ -671,22 +1760,121 @@
         {
           "phase": "Electronics",
           "duration": "6 weeks",
-          "topics": ["Circuit Design", "Microcontrollers", "Interfacing"]
+          "topics": ["Circuit Design", "Microcontrollers", "Interfacing"],
+          "videos": [
+            {
+              "title": "Embedded Systems Intro",
+              "url": "https://www.youtube.com/embed/embedded-intro",
+              "duration": "20 min"
+            },
+            {
+              "title": "Circuit Design Basics",
+              "url": "https://www.youtube.com/embed/circuit-design",
+              "duration": "18 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Electronics Handbook",
+              "url": "/pdfs/embedded-electronics.pdf",
+              "pages": 35
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Basic Circuit Project",
+              "url": "/exercises/circuit-project",
+              "duration": "4 hours"
+            }
+          ]
         },
         {
           "phase": "Firmware",
           "duration": "8 weeks",
-          "topics": ["Embedded C", "RTOS", "Device Drivers"]
+          "topics": ["Embedded C", "RTOS", "Device Drivers"],
+          "videos": [
+            {
+              "title": "Embedded C Programming",
+              "url": "https://www.youtube.com/embed/embedded-c",
+              "duration": "25 min"
+            },
+            {
+              "title": "RTOS Concepts",
+              "url": "https://www.youtube.com/embed/rtos-concepts",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Firmware Development",
+              "url": "/pdfs/embedded-firmware.pdf",
+              "pages": 50
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Firmware Project",
+              "url": "/exercises/firmware-project",
+              "duration": "6 hours"
+            }
+          ]
         },
         {
           "phase": "Advanced Topics",
           "duration": "8 weeks",
-          "topics": ["ARM Architecture", "FPGA Basics", "Power Optimization"]
+          "topics": ["ARM Architecture", "FPGA Basics", "Power Optimization"],
+          "videos": [
+            {
+              "title": "ARM Architecture Deep Dive",
+              "url": "https://www.youtube.com/embed/arm-arch",
+              "duration": "28 min"
+            },
+            {
+              "title": "FPGA Programming",
+              "url": "https://www.youtube.com/embed/fpga-programming",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Advanced Embedded Guide",
+              "url": "/pdfs/advanced-embedded.pdf",
+              "pages": 55
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Advanced Project",
+              "url": "/exercises/advanced-embedded",
+              "duration": "8 hours"
+            }
+          ]
         },
         {
           "phase": "Integration",
           "duration": "6 weeks",
-          "topics": ["Testing", "Debugging", "Production Considerations"]
+          "topics": ["Testing", "Debugging", "Production Considerations"],
+          "videos": [
+            {
+              "title": "Embedded Debugging",
+              "url": "https://www.youtube.com/embed/embedded-debug",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Integration Guide",
+              "url": "/pdfs/embedded-integration.pdf",
+              "pages": 45
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Final Embedded Project",
+              "url": "/exercises/embedded-final",
+              "duration": "10 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -695,14 +1883,14 @@
         "IoT Engineer",
         "Hardware Engineer"
       ]
-      },
-      {
-        "id": 13,
-        "name": "Computer Networks",
-        "duration": "4 months",
-        "image": "assets/specializationpage/networks.jpg",
-        "description": "Master network architecture, protocols, and security.",
-        "courses": [
+    },
+    {
+      "id": 13,
+      "name": "Computer Networks",
+      "duration": "4 months",
+      "image": "assets/specializationpage/networks.jpg",
+      "description": "Master network architecture, protocols, and security.",
+      "courses": [
         {
           "name": "TCP/IP Protocol Suite",
           "duration": "4 weeks",
@@ -729,22 +1917,121 @@
         {
           "phase": "Fundamentals",
           "duration": "5 weeks",
-          "topics": ["OSI Model", "IP Addressing", "Basic Routing"]
+          "topics": ["OSI Model", "IP Addressing", "Basic Routing"],
+          "videos": [
+            {
+              "title": "Networking Basics",
+              "url": "https://www.youtube.com/embed/networking-basics",
+              "duration": "20 min"
+            },
+            {
+              "title": "TCP/IP Explained",
+              "url": "https://www.youtube.com/embed/tcp-ip",
+              "duration": "18 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Networking Fundamentals",
+              "url": "/pdfs/networking-fundamentals.pdf",
+              "pages": 30
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Basic Network Setup",
+              "url": "/exercises/network-setup",
+              "duration": "3 hours"
+            }
+          ]
         },
         {
           "phase": "Core Protocols",
           "duration": "7 weeks",
-          "topics": ["TCP/IP", "DNS", "HTTP/HTTPS", "BGP"]
+          "topics": ["TCP/IP", "DNS", "HTTP/HTTPS", "BGP"],
+          "videos": [
+            {
+              "title": "DNS Deep Dive",
+              "url": "https://www.youtube.com/embed/dns-deep",
+              "duration": "25 min"
+            },
+            {
+              "title": "BGP Routing",
+              "url": "https://www.youtube.com/embed/bgp-routing",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Network Protocols",
+              "url": "/pdfs/network-protocols.pdf",
+              "pages": 45
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Protocol Analysis",
+              "url": "/exercises/protocol-analysis",
+              "duration": "5 hours"
+            }
+          ]
         },
         {
           "phase": "Advanced Networking",
           "duration": "6 weeks",
-          "topics": ["SDN", "Cloud Networking", "Wireless Tech"]
+          "topics": ["SDN", "Cloud Networking", "Wireless Tech"],
+          "videos": [
+            {
+              "title": "SDN Explained",
+              "url": "https://www.youtube.com/embed/sdn-explained",
+              "duration": "28 min"
+            },
+            {
+              "title": "5G Networks",
+              "url": "https://www.youtube.com/embed/5g-networks",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Advanced Networking",
+              "url": "/pdfs/advanced-networking.pdf",
+              "pages": 50
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Network Design Project",
+              "url": "/exercises/network-design",
+              "duration": "6 hours"
+            }
+          ]
         },
         {
           "phase": "Security & Operations",
           "duration": "6 weeks",
-          "topics": ["Network Security", "Monitoring", "Troubleshooting"]
+          "topics": ["Network Security", "Monitoring", "Troubleshooting"],
+          "videos": [
+            {
+              "title": "Network Security Best Practices",
+              "url": "https://www.youtube.com/embed/network-security",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Network Operations",
+              "url": "/pdfs/network-ops.pdf",
+              "pages": 40
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Security Audit Project",
+              "url": "/exercises/network-audit",
+              "duration": "8 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -753,14 +2040,14 @@
         "Security Engineer",
         "Cloud Network Specialist"
       ]
-      },
-      {
-        "id": 14,
-        "name": "Game Development",
-        "duration": "6 months",
-        "image": "assets/specializationpage/game-dev.jpg",
-        "description": "Learn professional game development techniques and engines.",
-        "courses": [
+    },
+    {
+      "id": 14,
+      "name": "Game Development",
+      "duration": "6 months",
+      "image": "assets/specializationpage/game-dev.jpg",
+      "description": "Learn professional game development techniques and engines.",
+      "courses": [
         {
           "name": "Unity Game Development",
           "duration": "6 weeks",
@@ -787,22 +2074,121 @@
         {
           "phase": "Foundations",
           "duration": "6 weeks",
-          "topics": ["Game Design", "Basic Programming", "Math for Games"]
+          "topics": ["Game Design", "Basic Programming", "Math for Games"],
+          "videos": [
+            {
+              "title": "Game Dev Introduction",
+              "url": "https://www.youtube.com/embed/gamedev-intro",
+              "duration": "20 min"
+            },
+            {
+              "title": "Game Math Basics",
+              "url": "https://www.youtube.com/embed/game-math",
+              "duration": "18 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Game Design Fundamentals",
+              "url": "/pdfs/game-fundamentals.pdf",
+              "pages": 35
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Basic Game Prototype",
+              "url": "/exercises/game-prototype",
+              "duration": "4 hours"
+            }
+          ]
         },
         {
           "phase": "Engine Basics",
           "duration": "8 weeks",
-          "topics": ["Unity", "Unreal", "Asset Pipeline"]
+          "topics": ["Unity", "Unreal", "Asset Pipeline"],
+          "videos": [
+            {
+              "title": "Unity Tutorial",
+              "url": "https://www.youtube.com/embed/unity-tutorial",
+              "duration": "25 min"
+            },
+            {
+              "title": "Unreal Blueprints",
+              "url": "https://www.youtube.com/embed/unreal-blueprints",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Game Engines Guide",
+              "url": "/pdfs/game-engines.pdf",
+              "pages": 50
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Engine Project",
+              "url": "/exercises/engine-project",
+              "duration": "6 hours"
+            }
+          ]
         },
         {
           "phase": "Advanced Topics",
           "duration": "10 weeks",
-          "topics": ["Physics", "AI", "Animation Systems"]
+          "topics": ["Physics", "AI", "Animation Systems"],
+          "videos": [
+            {
+              "title": "Game Physics",
+              "url": "https://www.youtube.com/embed/game-physics",
+              "duration": "28 min"
+            },
+            {
+              "title": "Game AI Techniques",
+              "url": "https://www.youtube.com/embed/game-ai",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Advanced Game Dev",
+              "url": "/pdfs/advanced-gamedev.pdf",
+              "pages": 60
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Advanced Game Feature",
+              "url": "/exercises/advanced-game",
+              "duration": "8 hours"
+            }
+          ]
         },
         {
           "phase": "Professional Skills",
           "duration": "6 weeks",
-          "topics": ["Multiplayer", "Optimization", "Publishing"]
+          "topics": ["Multiplayer", "Optimization", "Publishing"],
+          "videos": [
+            {
+              "title": "Multiplayer Networking",
+              "url": "https://www.youtube.com/embed/multiplayer-net",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Game Publishing Guide",
+              "url": "/pdfs/game-publishing.pdf",
+              "pages": 45
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Final Game Project",
+              "url": "/exercises/game-final",
+              "duration": "12 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -811,14 +2197,14 @@
         "Technical Artist",
         "Gameplay Engineer"
       ]
-      },
-      {
-        "id": 15,
-        "name": "Computer Graphics",
-        "duration": "5 months",
-        "image": "assets/specializationpage/graphics.jpg",
-        "description": "Master 3D rendering, shaders, and real-time graphics programming.",
-       "courses": [
+    },
+    {
+      "id": 15,
+      "name": "Computer Graphics",
+      "duration": "5 months",
+      "image": "assets/specializationpage/graphics.jpg",
+      "description": "Master 3D rendering, shaders, and real-time graphics programming.",
+      "courses": [
         {
           "name": "OpenGL/Vulkan",
           "duration": "6 weeks",
@@ -845,22 +2231,121 @@
         {
           "phase": "Math Fundamentals",
           "duration": "6 weeks",
-          "topics": ["Linear Algebra", "Calculus", "Computational Geometry"]
+          "topics": ["Linear Algebra", "Calculus", "Computational Geometry"],
+          "videos": [
+            {
+              "title": "Graphics Math Basics",
+              "url": "https://www.youtube.com/embed/graphics-math",
+              "duration": "20 min"
+            },
+            {
+              "title": "Linear Algebra for Graphics",
+              "url": "https://www.youtube.com/embed/linear-algebra",
+              "duration": "18 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Graphics Math",
+              "url": "/pdfs/graphics-math.pdf",
+              "pages": 35
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Math Exercises",
+              "url": "/exercises/graphics-math-ex",
+              "duration": "4 hours"
+            }
+          ]
         },
         {
           "phase": "Rendering Pipeline",
           "duration": "8 weeks",
-          "topics": ["Rasterization", "Shaders", "Texturing"]
+          "topics": ["Rasterization", "Shaders", "Texturing"],
+          "videos": [
+            {
+              "title": "Rendering Pipeline",
+              "url": "https://www.youtube.com/embed/rendering-pipeline",
+              "duration": "25 min"
+            },
+            {
+              "title": "Shader Programming",
+              "url": "https://www.youtube.com/embed/shader-programming",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Rendering Guide",
+              "url": "/pdfs/rendering-guide.pdf",
+              "pages": 50
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Shader Project",
+              "url": "/exercises/shader-project",
+              "duration": "6 hours"
+            }
+          ]
         },
         {
           "phase": "Advanced Rendering",
           "duration": "8 weeks",
-          "topics": ["Ray Tracing", "Global Illumination", "Physically Based Rendering"]
+          "topics": ["Ray Tracing", "Global Illumination", "Physically Based Rendering"],
+          "videos": [
+            {
+              "title": "Ray Tracing Explained",
+              "url": "https://www.youtube.com/embed/ray-tracing",
+              "duration": "28 min"
+            },
+            {
+              "title": "PBR Techniques",
+              "url": "https://www.youtube.com/embed/pbr-techniques",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Advanced Rendering",
+              "url": "/pdfs/advanced-rendering.pdf",
+              "pages": 60
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Advanced Rendering Project",
+              "url": "/exercises/advanced-render",
+              "duration": "8 hours"
+            }
+          ]
         },
         {
           "phase": "Optimization",
           "duration": "6 weeks",
-          "topics": ["GPU Architecture", "Performance Tuning", "Real-time Techniques"]
+          "topics": ["GPU Architecture", "Performance Tuning", "Real-time Techniques"],
+          "videos": [
+            {
+              "title": "GPU Architecture",
+              "url": "https://www.youtube.com/embed/gpu-arch",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Optimization Guide",
+              "url": "/pdfs/graphics-optimization.pdf",
+              "pages": 45
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Final Graphics Project",
+              "url": "/exercises/graphics-final",
+              "duration": "10 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -869,14 +2354,14 @@
         "Rendering Engineer",
         "Technical Director"
       ]
-      },
-      {
-        "id": 16,
-        "name": "DevOps Engineering",
-        "duration": "4 months",
-        "image": "assets/specializationpage/devops.jpg",
-        "description": "Bridge development and operations with CI/CD pipelines and cloud infrastructure.",
-        "courses": [
+    },
+    {
+      "id": 16,
+      "name": "DevOps Engineering",
+      "duration": "4 months",
+      "image": "assets/specializationpage/devops.jpg",
+      "description": "Bridge development and operations with CI/CD pipelines and cloud infrastructure.",
+      "courses": [
         {
           "name": "Docker & Kubernetes",
           "duration": "5 weeks",
@@ -903,22 +2388,121 @@
         {
           "phase": "Fundamentals",
           "duration": "5 weeks",
-          "topics": ["Linux Basics", "Networking", "Scripting"]
+          "topics": ["Linux Basics", "Networking", "Scripting"],
+          "videos": [
+            {
+              "title": "DevOps Introduction",
+              "url": "https://www.youtube.com/embed/devops-intro",
+              "duration": "20 min"
+            },
+            {
+              "title": "Linux for DevOps",
+              "url": "https://www.youtube.com/embed/linux-devops",
+              "duration": "18 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "DevOps Fundamentals",
+              "url": "/pdfs/devops-fundamentals.pdf",
+              "pages": 30
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Basic Scripting Exercise",
+              "url": "/exercises/devops-scripting",
+              "duration": "3 hours"
+            }
+          ]
         },
         {
           "phase": "Core Tools",
           "duration": "7 weeks",
-          "topics": ["Docker", "Kubernetes", "Cloud Providers"]
+          "topics": ["Docker", "Kubernetes", "Cloud Providers"],
+          "videos": [
+            {
+              "title": "Docker Deep Dive",
+              "url": "https://www.youtube.com/embed/docker-deep",
+              "duration": "25 min"
+            },
+            {
+              "title": "Kubernetes Explained",
+              "url": "https://www.youtube.com/embed/kubernetes-explained",
+              "duration": "22 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Containerization Guide",
+              "url": "/pdfs/containers.pdf",
+              "pages": 45
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Container Project",
+              "url": "/exercises/container-project",
+              "duration": "5 hours"
+            }
+          ]
         },
         {
           "phase": "Automation",
           "duration": "8 weeks",
-          "topics": ["CI/CD", "IaC", "Configuration Management"]
+          "topics": ["CI/CD", "IaC", "Configuration Management"],
+          "videos": [
+            {
+              "title": "CI/CD Pipelines",
+              "url": "https://www.youtube.com/embed/cicd-pipelines",
+              "duration": "28 min"
+            },
+            {
+              "title": "Terraform Tutorial",
+              "url": "https://www.youtube.com/embed/terraform-tutorial",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Automation Handbook",
+              "url": "/pdfs/devops-automation.pdf",
+              "pages": 55
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Automation Project",
+              "url": "/exercises/automation-project",
+              "duration": "6 hours"
+            }
+          ]
         },
         {
           "phase": "Operations",
           "duration": "6 weeks",
-          "topics": ["Monitoring", "Logging", "Incident Management"]
+          "topics": ["Monitoring", "Logging", "Incident Management"],
+          "videos": [
+            {
+              "title": "Monitoring with Prometheus",
+              "url": "https://www.youtube.com/embed/prometheus",
+              "duration": "25 min"
+            }
+          ],
+          "pdfs": [
+            {
+              "title": "Operations Guide",
+              "url": "/pdfs/devops-ops.pdf",
+              "pages": 40
+            }
+          ],
+          "exercises": [
+            {
+              "title": "Final DevOps Project",
+              "url": "/exercises/devops-final",
+              "duration": "8 hours"
+            }
+          ]
         }
       ],
       "careerPaths": [
@@ -927,6 +2511,6 @@
         "Platform Engineer",
         "Cloud Engineer"
       ]
-      }
-    ]
-  }
+    }
+  ]
+}
