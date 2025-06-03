@@ -128,6 +128,26 @@
                     "All of the above"
                 ],
                 "answer": "All of the above"
+            },
+            {
+                "question": "What is the default value of an int variable in Java?",
+                "options": ["0", "null", "undefined", "1"],
+                "answer": "0"
+            },
+            {
+                "question": "Which keyword is used to define a constant variable in Java?",
+                "options": ["static", "final", "const", "immutable"],
+                "answer": "final"
+            },
+            {
+                "question": "Which of the following is not a Java primitive data type?",
+                "options": ["int", "boolean", "char", "string"],
+                "answer": "string"
+            },
+            {
+                "question": "What is the parent class of all Java classes?",
+                "options": ["Object", "Main", "Base", "Super"],
+                "answer": "Object"
             }
         ],
         "Test": [

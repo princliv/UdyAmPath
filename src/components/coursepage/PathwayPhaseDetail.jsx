@@ -13,6 +13,7 @@ const PathwayPhaseDetail = () => {
   const [showConfetti, setShowConfetti] = useState(false);
   const [showTestModal, setShowTestModal] = useState(false);
   const [testScore, setTestScore] = useState(null);
+  const [activeTab, setActiveTab] = useState('content');
 
   React.useEffect(() => {
     const fetchSpecialization = async () => {
@@ -39,11 +40,9 @@ const PathwayPhaseDetail = () => {
     const newCompletedPhases = [...completedPhases, currentIndex];
     setCompletedPhases(newCompletedPhases);
 
-    // If this is the last phase, show test modal
     if (currentIndex === allPhases.length - 1) {
       setShowTestModal(true);
     } else {
-      // Navigate to next phase
       navigate(`/specialization/${id}/pathway/${currentIndex + 1}`, {
         state: {
           phase: allPhases[currentIndex + 1],
@@ -78,29 +77,46 @@ const PathwayPhaseDetail = () => {
   // Sample content data for each phase type
   const getPhaseContent = (phaseTitle) => {
     const contentMap = {
-      'Introduction': {
+      'Foundation': {
         objectives: [
           "Understand the fundamental concepts of the specialization",
           "Learn about the course structure and expectations",
           "Get familiar with the learning resources available"
         ],
-        materials: [
+        videos: [
           {
-            type: "Video Lecture",
-            title: "Welcome to the Course",
-            description: "Introduction video covering the specialization overview",
-            duration: "15 min"
+            title: "Introduction to the Course",
+            url: "https://www.youtube.com/embed/example1",
+            duration: "15 min",
+            description: "Overview of what you'll learn in this specialization"
           },
           {
-            type: "Reading",
+            title: "Getting Started Guide",
+            url: "https://www.youtube.com/embed/example2",
+            duration: "10 min",
+            description: "How to navigate through the learning materials"
+          }
+        ],
+        pdfs: [
+          {
             title: "Course Syllabus",
-            description: "Detailed breakdown of what you'll learn in this specialization",
-            pages: 5
+            url: "/pdfs/syllabus.pdf",
+            pages: 5,
+            description: "Detailed breakdown of the curriculum"
           },
           {
-            type: "Exercise",
+            title: "Study Guide",
+            url: "/pdfs/study_guide.pdf",
+            pages: 12,
+            description: "Tips for effective learning"
+          }
+        ],
+        exercises: [
+          {
             title: "Self-Assessment Quiz",
-            description: "Test your current knowledge to personalize your learning path"
+            url: "/exercises/quiz1",
+            duration: "20 min",
+            description: "Test your current knowledge level"
           }
         ],
         content: (
@@ -115,36 +131,49 @@ const PathwayPhaseDetail = () => {
               <li>The learning methodology we'll be using</li>
               <li>How to make the most of the course materials</li>
             </ul>
-            <p>
-              By the end of this phase, you should have a clear understanding of what to expect 
-              and how to navigate through the specialization effectively.
-            </p>
           </div>
         )
       },
-      'Core Concepts': {
+      'Core ML': {
         objectives: [
           "Master the fundamental building blocks of the subject",
           "Understand key theories and principles",
           "Apply concepts through practical examples"
         ],
-        materials: [
+        videos: [
           {
-            type: "Video Lecture",
-            title: "Foundational Theories",
-            description: "Deep dive into the core concepts of the subject",
-            duration: "45 min"
+            title: "Machine Learning Basics",
+            url: "https://www.youtube.com/embed/ml-basics",
+            duration: "25 min",
+            description: "Introduction to supervised and unsupervised learning"
           },
           {
-            type: "Reading",
-            title: "Core Principles Handbook",
-            description: "Comprehensive guide to the fundamental concepts",
-            pages: 25
+            title: "Model Evaluation Techniques",
+            url: "https://www.youtube.com/embed/model-eval",
+            duration: "20 min",
+            description: "How to assess your ML models"
+          }
+        ],
+        pdfs: [
+          {
+            title: "ML Algorithms Handbook",
+            url: "/pdfs/ml_algorithms.pdf",
+            pages: 30,
+            description: "Comprehensive guide to common algorithms"
+          }
+        ],
+        exercises: [
+          {
+            title: "Linear Regression Exercise",
+            url: "/exercises/linreg",
+            duration: "45 min",
+            description: "Implement a simple regression model"
           },
           {
-            type: "Exercise",
-            title: "Concept Application",
-            description: "Practice applying concepts to real-world scenarios"
+            title: "Classification Challenge",
+            url: "/exercises/classification",
+            duration: "1 hour",
+            description: "Build a classifier for sample data"
           }
         ],
         content: (
@@ -175,38 +204,43 @@ const PathwayPhaseDetail = () => {
                 </div>
               ))}
             </div>
-            
-            <p>
-              Each concept will be explained through multiple learning modalities including 
-              video lectures, reading materials, and hands-on exercises to ensure comprehensive 
-              understanding.
-            </p>
           </div>
         )
       },
-      'Advanced Topics': {
+      'Deep Learning': {
         objectives: [
           "Explore complex applications of core concepts",
           "Develop problem-solving skills for advanced scenarios",
           "Analyze case studies and real-world implementations"
         ],
-        materials: [
+        videos: [
           {
-            type: "Video Lecture",
-            title: "Advanced Applications",
-            description: "Exploring complex use cases and implementations",
-            duration: "60 min"
+            title: "Neural Networks Explained",
+            url: "https://www.youtube.com/embed/nn-explained",
+            duration: "30 min",
+            description: "How neural networks work from the ground up"
           },
           {
-            type: "Reading",
-            title: "Case Studies Collection",
-            description: "Real-world examples of advanced applications",
-            pages: 35
-          },
+            title: "CNN Architectures",
+            url: "https://www.youtube.com/embed/cnn-arch",
+            duration: "25 min",
+            description: "Deep dive into convolutional neural networks"
+          }
+        ],
+        pdfs: [
           {
-            type: "Exercise",
-            title: "Problem-Solving Challenge",
-            description: "Tackle complex problems using advanced concepts"
+            title: "Deep Learning Papers",
+            url: "/pdfs/dl_papers.pdf",
+            pages: 45,
+            description: "Collection of seminal papers in deep learning"
+          }
+        ],
+        exercises: [
+          {
+            title: "MNIST Classifier",
+            url: "/exercises/mnist",
+            duration: "2 hours",
+            description: "Build a digit classifier using neural networks"
           }
         ],
         content: (
@@ -221,43 +255,37 @@ const PathwayPhaseDetail = () => {
               <li>Solve non-trivial problems</li>
               <li>Analyze sophisticated implementations</li>
             </ul>
-            
-            <h4>Learning Approach:</h4>
-            <p>
-              We'll use a combination of theoretical explanations and practical case studies to 
-              ensure you can apply these advanced concepts in real-world situations. Each topic 
-              will include:
-            </p>
-            <ul>
-              <li>Detailed explanations of the underlying theory</li>
-              <li>Walkthroughs of complex examples</li>
-              <li>Opportunities to implement solutions yourself</li>
-            </ul>
           </div>
         )
       },
-      'Final Project': {
+      'Specialization': {
         objectives: [
           "Synthesize all learned concepts into a comprehensive project",
           "Demonstrate mastery through practical application",
           "Receive feedback on your implementation"
         ],
-        materials: [
+        videos: [
           {
-            type: "Video Lecture",
             title: "Project Guidelines",
-            description: "Detailed instructions for the final project",
-            duration: "30 min"
-          },
+            url: "https://www.youtube.com/embed/project-guide",
+            duration: "20 min",
+            description: "How to approach your final project"
+          }
+        ],
+        pdfs: [
           {
-            type: "Template",
-            title: "Project Starter Kit",
-            description: "Resources to help you begin your project"
-          },
+            title: "Project Rubric",
+            url: "/pdfs/project_rubric.pdf",
+            pages: 8,
+            description: "How your project will be evaluated"
+          }
+        ],
+        exercises: [
           {
-            type: "Exercise",
-            title: "Project Implementation",
-            description: "Build your final project step-by-step"
+            title: "Final Project",
+            url: "/exercises/final_project",
+            duration: "10 hours",
+            description: "Capstone project for the specialization"
           }
         ],
         content: (
@@ -275,39 +303,16 @@ const PathwayPhaseDetail = () => {
               <li>Demonstrate practical application of knowledge</li>
               <li>Show creativity and problem-solving ability</li>
             </ul>
-            
-            <h4>Support Resources:</h4>
-            <p>
-              You'll have access to:
-            </p>
-            <ul>
-              <li>Detailed project guidelines</li>
-              <li>Example implementations</li>
-              <li>Mentor support (if available)</li>
-              <li>Peer discussion forums</li>
-            </ul>
           </div>
         )
       }
     };
 
-    // Default content if phase title doesn't match
     return contentMap[phaseTitle] || {
       objectives: ["Learn the key concepts of this phase"],
-      materials: [
-        {
-          type: "Video Lecture",
-          title: "Phase Overview",
-          description: "Introduction to this learning phase",
-          duration: "20 min"
-        },
-        {
-          type: "Reading",
-          title: "Study Materials",
-          description: "Comprehensive reading for this phase",
-          pages: 15
-        }
-      ],
+      videos: [],
+      pdfs: [],
+      exercises: [],
       content: (
         <div>
           <h3>Phase Content</h3>
@@ -318,18 +323,203 @@ const PathwayPhaseDetail = () => {
             <li>Interactive video lectures</li>
             <li>Comprehensive reading materials</li>
             <li>Practical exercises</li>
-            <li>Knowledge checks</li>
           </ul>
-          <p>
-            The estimated duration for this phase is {phase.duration}. Make sure to complete all 
-            materials and exercises to fully grasp the concepts before moving forward.
-          </p>
         </div>
       )
     };
   };
 
   const phaseContent = getPhaseContent(phase.phase);
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'content':
+        return (
+          <div style={{
+            lineHeight: '1.7',
+            color: '#333',
+            fontSize: '1.1rem'
+          }}>
+            {phaseContent.content}
+          </div>
+        );
+      case 'videos':
+        return (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
+            gap: '20px',
+            marginTop: '20px'
+          }}>
+            {phaseContent.videos.length > 0 ? (
+              phaseContent.videos.map((video, index) => (
+                <div key={index} style={{
+                  backgroundColor: '#f8f9ff',
+                  borderRadius: '8px',
+                  padding: '15px',
+                  boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
+                }}>
+                  <div style={{
+                    position: 'relative',
+                    paddingBottom: '56.25%', // 16:9 aspect ratio
+                    height: 0,
+                    overflow: 'hidden',
+                    marginBottom: '15px'
+                  }}>
+                    <iframe
+                      src={video.url}
+                      title={video.title}
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        border: 'none',
+                        borderRadius: '5px'
+                      }}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                  <h3 style={{ margin: '0 0 10px 0', color: '#004aad' }}>{video.title}</h3>
+                  <p style={{ margin: '0 0 5px 0', color: '#666' }}>{video.description}</p>
+                  <p style={{ margin: 0, fontSize: '0.9rem', color: '#888' }}>Duration: {video.duration}</p>
+                </div>
+              ))
+            ) : (
+              <p>No videos available for this phase.</p>
+            )}
+          </div>
+        );
+      case 'pdfs':
+        return (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '20px',
+            marginTop: '20px'
+          }}>
+            {phaseContent.pdfs.length > 0 ? (
+              phaseContent.pdfs.map((pdf, index) => (
+                <div key={index} style={{
+                  backgroundColor: '#f8f9ff',
+                  borderRadius: '8px',
+                  padding: '20px',
+                  borderLeft: '4px solid #004aad',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}>
+                  <h3 style={{ 
+                    margin: '0 0 10px 0',
+                    color: '#333',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px'
+                  }}>
+                    📄 {pdf.title}
+                  </h3>
+                  <p style={{ 
+                    color: '#666',
+                    fontSize: '0.9rem',
+                    margin: '0 0 15px 0',
+                    flexGrow: 1
+                  }}>
+                    {pdf.description}
+                    {pdf.pages && ` • ${pdf.pages} pages`}
+                  </p>
+                  <a 
+                    href={pdf.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{
+                      padding: '8px 16px',
+                      backgroundColor: '#004aad',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '5px',
+                      cursor: 'pointer',
+                      fontSize: '0.9rem',
+                      textAlign: 'center',
+                      textDecoration: 'none',
+                      transition: 'all 0.2s',
+                      ':hover': {
+                        backgroundColor: '#003d8f'
+                      }
+                    }}
+                  >
+                    View PDF
+                  </a>
+                </div>
+              ))
+            ) : (
+              <p>No PDFs available for this phase.</p>
+            )}
+          </div>
+        );
+      case 'exercises':
+        return (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '20px',
+            marginTop: '20px'
+          }}>
+            {phaseContent.exercises.length > 0 ? (
+              phaseContent.exercises.map((exercise, index) => (
+                <div key={index} style={{
+                  backgroundColor: '#f8f9ff',
+                  borderRadius: '8px',
+                  padding: '20px',
+                  borderLeft: '4px solid #004aad'
+                }}>
+                  <h3 style={{ 
+                    margin: '0 0 10px 0',
+                    color: '#333',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px'
+                  }}>
+                    ✍️ {exercise.title}
+                  </h3>
+                  <p style={{ 
+                    color: '#666',
+                    fontSize: '0.9rem',
+                    margin: '0 0 15px 0'
+                  }}>
+                    {exercise.description}
+                    {exercise.duration && ` • ${exercise.duration}`}
+                  </p>
+                  <a 
+                    href={exercise.url}
+                    style={{
+                      padding: '8px 16px',
+                      backgroundColor: '#004aad',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '5px',
+                      cursor: 'pointer',
+                      fontSize: '0.9rem',
+                      textDecoration: 'none',
+                      transition: 'all 0.2s',
+                      ':hover': {
+                        backgroundColor: '#003d8f'
+                      }
+                    }}
+                  >
+                    Start Exercise
+                  </a>
+                </div>
+              ))
+            ) : (
+              <p>No exercises available for this phase.</p>
+            )}
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <div style={{ 
@@ -375,7 +565,6 @@ const PathwayPhaseDetail = () => {
               You need to score at least 80% to complete the specialization.
             </p>
             
-            {/* In a real app, this would be an actual test component */}
             <div style={{
               backgroundColor: '#f5f5f5',
               padding: '20px',
@@ -602,37 +791,82 @@ const PathwayPhaseDetail = () => {
           </p>
         </div>
 
+        {/* Content Tabs */}
+        <div style={{
+          display: 'flex',
+          gap: '10px',
+          marginBottom: '20px',
+          borderBottom: '2px solid #e4deff',
+          paddingBottom: '10px'
+        }}>
+          <button
+            onClick={() => setActiveTab('content')}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: activeTab === 'content' ? '#004aad' : '#f5f5f5',
+              color: activeTab === 'content' ? 'white' : '#333',
+              border: 'none',
+              borderRadius: '5px 5px 0 0',
+              cursor: 'pointer',
+              fontWeight: activeTab === 'content' ? 'bold' : 'normal',
+              transition: 'all 0.2s'
+            }}
+          >
+            Content Overview
+          </button>
+          <button
+            onClick={() => setActiveTab('videos')}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: activeTab === 'videos' ? '#004aad' : '#f5f5f5',
+              color: activeTab === 'videos' ? 'white' : '#333',
+              border: 'none',
+              borderRadius: '5px 5px 0 0',
+              cursor: 'pointer',
+              fontWeight: activeTab === 'videos' ? 'bold' : 'normal',
+              transition: 'all 0.2s'
+            }}
+          >
+            Videos
+          </button>
+          <button
+            onClick={() => setActiveTab('pdfs')}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: activeTab === 'pdfs' ? '#004aad' : '#f5f5f5',
+              color: activeTab === 'pdfs' ? 'white' : '#333',
+              border: 'none',
+              borderRadius: '5px 5px 0 0',
+              cursor: 'pointer',
+              fontWeight: activeTab === 'pdfs' ? 'bold' : 'normal',
+              transition: 'all 0.2s'
+            }}
+          >
+            PDFs & Readings
+          </button>
+          <button
+            onClick={() => setActiveTab('exercises')}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: activeTab === 'exercises' ? '#004aad' : '#f5f5f5',
+              color: activeTab === 'exercises' ? 'white' : '#333',
+              border: 'none',
+              borderRadius: '5px 5px 0 0',
+              cursor: 'pointer',
+              fontWeight: activeTab === 'exercises' ? 'bold' : 'normal',
+              transition: 'all 0.2s'
+            }}
+          >
+            Exercises
+          </button>
+        </div>
+
         {/* Content Sections */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr',
           gap: '30px'
         }}>
-          {/* Learning Content Section */}
-          <section style={{
-            backgroundColor: 'white',
-            borderRadius: '12px',
-            padding: '30px',
-            boxShadow: '0 3px 10px rgba(0,0,0,0.08)'
-          }}>
-            <h2 style={{
-              color: '#004aad',
-              fontSize: '1.5rem',
-              marginBottom: '20px',
-              borderBottom: '2px solid #e4deff',
-              paddingBottom: '10px'
-            }}>
-              Learning Content
-            </h2>
-            <div style={{
-              lineHeight: '1.7',
-              color: '#333',
-              fontSize: '1.1rem'
-            }}>
-              {phaseContent.content}
-            </div>
-          </section>
-
           {/* Learning Objectives */}
           <section style={{
             backgroundColor: 'white',
@@ -662,74 +896,14 @@ const PathwayPhaseDetail = () => {
             </ul>
           </section>
 
-          {/* Study Materials */}
+          {/* Tab Content */}
           <section style={{
             backgroundColor: 'white',
             borderRadius: '12px',
-            padding: '25px',
+            padding: '30px',
             boxShadow: '0 3px 10px rgba(0,0,0,0.08)'
           }}>
-            <h2 style={{
-              color: '#004aad',
-              fontSize: '1.5rem',
-              marginBottom: '20px',
-              borderBottom: '2px solid #e4deff',
-              paddingBottom: '10px'
-            }}>
-              Study Materials
-            </h2>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-              gap: '20px'
-            }}>
-              {phaseContent.materials.map((resource, index) => (
-                <div key={index} style={{
-                  backgroundColor: '#f8f9ff',
-                  borderRadius: '8px',
-                  padding: '20px',
-                  borderLeft: '4px solid #004aad'
-                }}>
-                  <h3 style={{ 
-                    margin: '0 0 10px 0',
-                    color: '#333',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px'
-                  }}>
-                    {resource.type === 'Video Lecture' && '🎥'}
-                    {resource.type === 'Reading' && '📖'}
-                    {resource.type === 'Exercise' && '✍️'}
-                    {resource.type === 'Template' && '📁'}
-                    {resource.title}
-                  </h3>
-                  <p style={{ 
-                    color: '#666',
-                    fontSize: '0.9rem',
-                    margin: '0 0 15px 0'
-                  }}>
-                    {resource.description}
-                    {resource.duration && ` • ${resource.duration}`}
-                    {resource.pages && ` • ${resource.pages} pages`}
-                  </p>
-                  <button style={{
-                    padding: '8px 16px',
-                    backgroundColor: '#004aad',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '5px',
-                    cursor: 'pointer',
-                    fontSize: '0.9rem',
-                    transition: 'all 0.2s',
-                    ':hover': {
-                      backgroundColor: '#003d8f'
-                    }
-                  }}>
-                    Access {resource.type}
-                  </button>
-                </div>
-              ))}
-            </div>
+            {renderTabContent()}
           </section>
 
           {/* Completion Button */}
