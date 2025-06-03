@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { auth, firestore } from "../../firebase/firebase"; // firebase.js
+import { collection, doc, addDoc } from "firebase/firestore";
 
-const HackathonModal = ({ onClose }) => {
+const HackathonModal = ({ onClose, type = "Job" }) => {
   const [formData, setFormData] = useState({
     title: "",
     date: "",
@@ -11,16 +13,29 @@ const HackathonModal = ({ onClose }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    onClose();
+
+    const user = auth.currentUser;
+    if (!user) {
+      alert("You must be logged in.");
+      return;
+    }
+
+    try {
+      // Recruiters/{uid}/{type}/autoID
+      const subCollectionRef = collection(firestore, `Recruiters/${user.uid}/${type}`);
+      await addDoc(subCollectionRef, formData);
+
+      alert("Hackathon saved to Firestore!");
+      onClose();
+    } catch (error) {
+      console.error("Error saving to Firestore:", error);
+      alert("Failed to save data: " + error.message);
+    }
   };
 
   return (
@@ -35,6 +50,7 @@ const HackathonModal = ({ onClose }) => {
           placeholder="Enter Hackathon Title"
           style={inputStyle}
           onChange={handleChange}
+          required
         />
       </div>
 
@@ -45,6 +61,7 @@ const HackathonModal = ({ onClose }) => {
           name="date"
           style={inputStyle}
           onChange={handleChange}
+          required
         />
       </div>
 
@@ -55,6 +72,7 @@ const HackathonModal = ({ onClose }) => {
           name="time"
           style={inputStyle}
           onChange={handleChange}
+          required
         />
       </div>
 
@@ -66,6 +84,7 @@ const HackathonModal = ({ onClose }) => {
           placeholder="Enter Hackathon Location"
           style={inputStyle}
           onChange={handleChange}
+          required
         />
       </div>
 
@@ -76,12 +95,11 @@ const HackathonModal = ({ onClose }) => {
           placeholder="Describe the Hackathon"
           style={{ ...inputStyle, height: "80px" }}
           onChange={handleChange}
+          required
         ></textarea>
       </div>
 
-      <button type="submit" style={buttonStyle}>
-        CREATE
-      </button>
+      <button type="submit" style={buttonStyle}>CREATE</button>
       <button
         type="button"
         style={{ ...buttonStyle, background: "gray", marginTop: "10px" }}
@@ -93,7 +111,7 @@ const HackathonModal = ({ onClose }) => {
   );
 };
 
-// Styles
+// Same styles
 const formStyle = { padding: "10px" };
 const sectionStyle = { marginBottom: "15px" };
 const labelStyle = { fontWeight: "bold", marginTop: "10px", display: "block" };

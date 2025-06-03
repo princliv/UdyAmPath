@@ -1,4 +1,9 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import { doc, setDoc } from "firebase/firestore";
+import { firestore } from "../../firebase/firebase"; // ✅ correct
+
+import { getAuth } from "firebase/auth";
+
 import { useLocation } from "react-router-dom";
 import * as faceapi from "face-api.js";
 import { FaCamera, FaMicrophone, FaCheck, FaExpand } from "react-icons/fa";
@@ -143,22 +148,52 @@ const TestPage = () => {
     setSelectedAnswer(answer);
   };
 
-  const handleNextQuestion = () => {
-    if (selectedAnswer === questions[currentQuestionIndex].correctAnswer) {
-      setScore(score + 1);
-    }
-    setSelectedAnswer(null);
-    
-    if (currentQuestionIndex + 1 < questions.length) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+  const handleNextQuestion = async () => {
+  const currentQuestion = questions[currentQuestionIndex];
+  const isCorrect = selectedAnswer === currentQuestion.correctAnswer;
+
+  if (isCorrect) setScore(prev => prev + 1);
+  setSelectedAnswer(null);
+
+  const isLastQuestion = currentQuestionIndex + 1 === questions.length;
+
+  if (!isLastQuestion) {
+    setCurrentQuestionIndex(prev => prev + 1);
+  } else {
+    setBlockLeave(false);
+    exitFullscreen();
+
+    const finalScore = isCorrect ? score + 1 : score;
+    const user = getAuth().currentUser;
+
+    if (user && courseTitle) {
+      const userId = user.uid;
+
+      try {
+        // 🔐 Save under: users/{userId}/{courseTitle}/testScore
+        const scoreRef = doc(firestore, "users", userId, courseTitle, "testScore");
+
+        await setDoc(scoreRef, {
+          score: finalScore,
+          total: questions.length,
+          timestamp: new Date(),
+        });
+
+        alert(`Test completed! Your score: ${finalScore}/${questions.length}`);
+      } catch (err) {
+        console.error("Failed to store test score:", err);
+        alert("Test completed, but failed to save score.");
+      }
     } else {
-      setBlockLeave(false);
-      exitFullscreen();
-      alert(`Test completed! Your score: ${score + 1}/${questions.length}`);
-      setShowTest(false);
-      setTestStarted(false);
+      alert(`Test completed! Your score: ${finalScore}/${questions.length}`);
     }
-  };
+
+    setShowTest(false);
+    setTestStarted(false);
+  }
+};
+
+  
 
   // Camera toggle
   const toggleCamera = () => setCameraEnabled(prev => !prev);

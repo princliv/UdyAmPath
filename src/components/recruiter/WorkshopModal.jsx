@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { getFirestore, collection, doc, addDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 const WorkshopModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -10,56 +12,124 @@ const WorkshopModal = ({ onClose }) => {
     organizer: "",
   });
 
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState(null);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    onClose();
+    setSaving(true);
+    setError(null);
+
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if (!user) throw new Error("Not authenticated");
+
+      const db = getFirestore();
+      const workshopsRef = collection(db, "Recruiters", user.uid, "Workshops");
+
+      await addDoc(workshopsRef, formData);
+
+      setSaving(false);
+      onClose();
+    } catch (err) {
+      setSaving(false);
+      setError("Failed to save workshop: " + err.message);
+      console.error(err);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} style={formStyle}>
       <h2>Workshop Details</h2>
-      
+
       <div style={sectionStyle}>
         <label style={labelStyle}>Title:</label>
-        <input type="text" name="title" placeholder="Enter Workshop Title" style={inputStyle} onChange={handleChange} />
+        <input
+          type="text"
+          name="title"
+          placeholder="Enter Workshop Title"
+          style={inputStyle}
+          onChange={handleChange}
+          required
+        />
       </div>
-      
+
       <div style={sectionStyle}>
         <label style={labelStyle}>Date:</label>
-        <input type="date" name="date" style={inputStyle} onChange={handleChange} />
+        <input
+          type="date"
+          name="date"
+          style={inputStyle}
+          onChange={handleChange}
+          required
+        />
       </div>
 
       <div style={sectionStyle}>
         <label style={labelStyle}>Time:</label>
-        <input type="time" name="time" style={inputStyle} onChange={handleChange} />
+        <input
+          type="time"
+          name="time"
+          style={inputStyle}
+          onChange={handleChange}
+          required
+        />
       </div>
 
       <div style={sectionStyle}>
         <label style={labelStyle}>Location:</label>
-        <input type="text" name="location" placeholder="Enter Workshop Location" style={inputStyle} onChange={handleChange} />
+        <input
+          type="text"
+          name="location"
+          placeholder="Enter Workshop Location"
+          style={inputStyle}
+          onChange={handleChange}
+          required
+        />
       </div>
-      
+
       <div style={sectionStyle}>
         <label style={labelStyle}>Organizer:</label>
-        <input type="text" name="organizer" placeholder="Enter Organizer Name" style={inputStyle} onChange={handleChange} />
+        <input
+          type="text"
+          name="organizer"
+          placeholder="Enter Organizer Name"
+          style={inputStyle}
+          onChange={handleChange}
+          required
+        />
       </div>
 
       <div style={sectionStyle}>
         <label style={labelStyle}>Description:</label>
-        <textarea name="description" placeholder="Describe the Workshop" style={{ ...inputStyle, height: "80px" }} onChange={handleChange}></textarea>
+        <textarea
+          name="description"
+          placeholder="Describe the Workshop"
+          style={{ ...inputStyle, height: "80px" }}
+          onChange={handleChange}
+          required
+        />
       </div>
 
-      <button type="submit" style={buttonStyle}>CREATE</button>
-      <button type="button" style={{ ...buttonStyle, background: "gray", marginTop: "10px" }} onClick={onClose}>CLOSE</button>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      <button type="submit" style={buttonStyle} disabled={saving}>
+        {saving ? "Saving..." : "CREATE"}
+      </button>
+      <button
+        type="button"
+        style={{ ...buttonStyle, background: "gray", marginTop: "10px" }}
+        onClick={onClose}
+        disabled={saving}
+      >
+        CLOSE
+      </button>
     </form>
   );
 };

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { firestore, auth } from "../../firebase/firebase"; // Adjust path if needed
+import { collection, addDoc } from "firebase/firestore";
 
 const JobInternshipModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -34,11 +36,30 @@ const JobInternshipModal = ({ onClose }) => {
     setFormData({ ...formData, skills: formData.skills.filter((s) => s !== skill) });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const user = auth.currentUser;
+  if (!user) {
+    alert("You must be logged in to post a job.");
+    return;
+  }
+
+  try {
+    const jobRef = collection(firestore, `Recruiters/${user.uid}/Jobs`);
+    await addDoc(jobRef, {
+      ...formData,
+      createdAt: new Date().toISOString(),
+      postedBy: user.email,
+    });
+    alert("Job/Internship successfully posted!");
     onClose();
-  };
+  } catch (error) {
+    console.error("Error posting job:", error.message);
+    alert("Failed to post job. Try again.");
+  }
+};
+
 
   return (
     <form onSubmit={handleSubmit} style={formStyle}>

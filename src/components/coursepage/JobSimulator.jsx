@@ -205,7 +205,7 @@ const JobSimulator = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
-        background: "linear-gradient(135deg, #f8f9ff 0%, #e4deff 100%)"
+        background: "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)"
       }}>
         <motion.div
           animate={{ rotate: 360 }}
@@ -214,7 +214,7 @@ const JobSimulator = () => {
             width: "50px",
             height: "50px",
             borderRadius: "50%",
-            border: "5px solid #004aad",
+            border: "5px solid #fff",
             borderTopColor: "transparent"
           }}
         />
@@ -229,14 +229,12 @@ const JobSimulator = () => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         style={{
-          padding: "20px",
-          maxWidth: "800px",
-          margin: "0 auto",
-          background: "linear-gradient(135deg, #f8f9ff 0%, #e4deff 100%)",
           minHeight: "100vh",
+          background: "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center"
+          justifyContent: "center",
+          padding: "20px"
         }}
       >
         <motion.div
@@ -244,126 +242,272 @@ const JobSimulator = () => {
           animate="visible"
           variants={containerVariants}
           style={{
-            backgroundColor: "white",
-            borderRadius: "16px",
+            backgroundColor: "rgba(255, 255, 255, 0.92)",
+            backdropFilter: "blur(10px)",
+            borderRadius: "24px",
             padding: "40px",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
             width: "100%",
-            maxWidth: "600px"
+            maxWidth: "600px",
+            position: "relative",
+            overflow: "hidden"
           }}
         >
-          <motion.div variants={itemVariants}>
+          {/* Decorative elements */}
+          <div style={{
+            position: "absolute",
+            top: "-50px",
+            right: "-50px",
+            width: "200px",
+            height: "200px",
+            borderRadius: "50%",
+            background: "linear-gradient(135deg, rgba(106, 17, 203, 0.1) 0%, rgba(37, 117, 252, 0.1) 100%)",
+            zIndex: 0
+          }}></div>
+          
+          <div style={{
+            position: "absolute",
+            bottom: "-30px",
+            left: "-30px",
+            width: "150px",
+            height: "150px",
+            borderRadius: "50%",
+            background: "linear-gradient(135deg, rgba(106, 17, 203, 0.1) 0%, rgba(37, 117, 252, 0.1) 100%)",
+            zIndex: 0
+          }}></div>
+          
+          <motion.div variants={itemVariants} style={{ position: "relative", zIndex: 1, textAlign: "center", marginBottom: "30px" }}>
+            <div style={{
+              width: "80px",
+              height: "80px",
+              borderRadius: "50%",
+              background: "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              margin: "0 auto 20px",
+              boxShadow: "0 8px 20px rgba(106, 17, 203, 0.3)"
+            }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </div>
+            
             <h1 style={{
-              fontSize: "2.2rem",
-              fontWeight: "bold",
-              background: "linear-gradient(90deg, #004aad 0%, #3f92c3 100%)",
+              fontSize: "2.5rem",
+              fontWeight: "800",
+              background: "linear-gradient(90deg, #6a11cb 0%, #2575fc 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               margin: "0 0 10px 0",
-              textAlign: "center"
+              letterSpacing: "-0.5px"
             }}>
               Job Simulation Setup
             </h1>
             <p style={{
               fontSize: "1.1rem",
               color: "#555",
-              marginBottom: "30px",
-              textAlign: "center"
+              maxWidth: "500px",
+              margin: "0 auto",
+              lineHeight: "1.6"
             }}>
-              Configure your personalized job simulation experience
+              Configure your personalized job simulation experience based on your skills and career goals
             </p>
           </motion.div>
 
-          <motion.div variants={itemVariants} style={{ marginBottom: "25px" }}>
-            <label style={{
-              display: "block",
-              fontSize: "1rem",
-              fontWeight: "500",
-              marginBottom: "8px",
-              color: "#444"
+          <motion.div variants={itemVariants} style={{ position: "relative", zIndex: 1, marginBottom: "30px" }}>
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "10px"
             }}>
-              Select Job Role
-            </label>
-            <select
-              value={selectedRole}
-              onChange={(e) => setSelectedRole(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "12px 15px",
-                borderRadius: "8px",
-                border: "1px solid #ddd",
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6a11cb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "8px" }}>
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <label style={{
                 fontSize: "1rem",
-                backgroundColor: "#f9f9f9",
-                appearance: "none",
-                backgroundImage: "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "right 10px center",
-                backgroundSize: "20px"
-              }}
-            >
-              <option value="">-- Select a job role --</option>
-              {jobRoles.map((role, index) => (
-                <option key={index} value={role}>{role}</option>
-              ))}
-            </select>
+                fontWeight: "600",
+                color: "#6a11cb"
+              }}>
+                Select Job Role
+              </label>
+            </div>
+            <div style={{
+              position: "relative",
+              borderRadius: "12px",
+              overflow: "hidden",
+              boxShadow: "0 4px 10px rgba(106, 17, 203, 0.1)"
+            }}>
+              <select
+                value={selectedRole}
+                onChange={(e) => setSelectedRole(e.target.value)}
+                style={{
+                  width: "100%",
+                  padding: "15px 20px",
+                  borderRadius: "12px",
+                  border: "none",
+                  fontSize: "1rem",
+                  backgroundColor: "#f8f9ff",
+                  appearance: "none",
+                  backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236a11cb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "right 15px center",
+                  backgroundSize: "20px",
+                  cursor: "pointer",
+                  boxShadow: "inset 0 1px 3px rgba(0,0,0,0.1)",
+                  transition: "all 0.3s ease"
+                }}
+              >
+                <option value="">Choose a job role...</option>
+                {jobRoles.map((role, index) => (
+                  <option key={index} value={role}>{role}</option>
+                ))}
+              </select>
+              <div style={{
+                position: "absolute",
+                right: "15px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                pointerEvents: "none",
+                color: "#6a11cb"
+              }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </div>
           </motion.div>
 
-          <motion.div variants={itemVariants} style={{ marginBottom: "35px" }}>
-            <label style={{
-              display: "block",
-              fontSize: "1rem",
-              fontWeight: "500",
-              marginBottom: "8px",
-              color: "#444"
+          <motion.div variants={itemVariants} style={{ position: "relative", zIndex: 1, marginBottom: "40px" }}>
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "10px"
             }}>
-              Select Experience Level
-            </label>
-            <select
-              value={experienceLevel}
-              onChange={(e) => setExperienceLevel(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "12px 15px",
-                borderRadius: "8px",
-                border: "1px solid #ddd",
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6a11cb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "8px" }}>
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                <circle cx="12" cy="14" r="2"></circle>
+                <path d="M12 10v4"></path>
+              </svg>
+              <label style={{
                 fontSize: "1rem",
-                backgroundColor: "#f9f9f9",
-                appearance: "none",
-                backgroundImage: "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "right 10px center",
-                backgroundSize: "20px"
-              }}
-            >
-              <option value="">-- Select experience level --</option>
-              {experienceLevels.map((level, index) => (
-                <option key={index} value={level}>{level}</option>
-              ))}
-            </select>
+                fontWeight: "600",
+                color: "#6a11cb"
+              }}>
+                Select Experience Level
+              </label>
+            </div>
+            <div style={{
+              position: "relative",
+              borderRadius: "12px",
+              overflow: "hidden",
+              boxShadow: "0 4px 10px rgba(106, 17, 203, 0.1)"
+            }}>
+              <select
+                value={experienceLevel}
+                onChange={(e) => setExperienceLevel(e.target.value)}
+                style={{
+                  width: "100%",
+                  padding: "15px 20px",
+                  borderRadius: "12px",
+                  border: "none",
+                  fontSize: "1rem",
+                  backgroundColor: "#f8f9ff",
+                  appearance: "none",
+                  backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236a11cb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "right 15px center",
+                  backgroundSize: "20px",
+                  cursor: "pointer",
+                  boxShadow: "inset 0 1px 3px rgba(0,0,0,0.1)",
+                  transition: "all 0.3s ease"
+                }}
+              >
+                <option value="">Select your experience level...</option>
+                {experienceLevels.map((level, index) => (
+                  <option key={index} value={level}>{level}</option>
+                ))}
+              </select>
+              <div style={{
+                position: "absolute",
+                right: "15px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                pointerEvents: "none",
+                color: "#6a11cb"
+              }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </div>
           </motion.div>
 
-          <motion.div variants={itemVariants} style={{ textAlign: "center" }}>
+          <motion.div variants={itemVariants} style={{ position: "relative", zIndex: 1, textAlign: "center" }}>
             <motion.button
-              whileHover={cardHover}
+              whileHover={{ 
+                scale: 1.03,
+                boxShadow: "0 10px 25px rgba(106, 17, 203, 0.4)",
+                background: "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)"
+              }}
               whileTap={{ scale: 0.98 }}
               onClick={handleStartSimulation}
               disabled={!selectedRole || !experienceLevel}
               style={{
-                padding: "14px 30px",
-                backgroundColor: selectedRole && experienceLevel ? "#004aad" : "#ccc",
+                padding: "16px 40px",
+                background: "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)",
                 color: "white",
                 border: "none",
-                borderRadius: "8px",
+                borderRadius: "12px",
                 cursor: selectedRole && experienceLevel ? "pointer" : "not-allowed",
-                fontSize: "1rem",
+                fontSize: "1.1rem",
                 fontWeight: "600",
                 width: "100%",
-                maxWidth: "300px",
-                margin: "0 auto"
+                maxWidth: "320px",
+                margin: "0 auto",
+                boxShadow: "0 8px 20px rgba(106, 17, 203, 0.3)",
+                position: "relative",
+                overflow: "hidden",
+                opacity: selectedRole && experienceLevel ? 1 : 0.7
               }}
             >
-              Start Simulation
+              <span style={{ position: "relative", zIndex: 2 }}>
+                Start Simulation
+              </span>
+              <motion.div 
+                initial={{ scale: 0 }}
+                animate={selectedRole && experienceLevel ? { scale: 10 } : { scale: 0 }}
+                transition={{ duration: 0.6 }}
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "50%",
+                  background: "rgba(255, 255, 255, 0.2)",
+                  zIndex: 1
+                }}
+              />
             </motion.button>
+            
+            <div style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "30px",
+              color: "#6a11cb",
+              fontWeight: "500",
+              fontSize: "0.9rem"
+            }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "8px" }}>
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <span>Your completed courses: {completedCourses.join(", ")}</span>
+            </div>
           </motion.div>
         </motion.div>
       </motion.div>

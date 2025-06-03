@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import { firestore } from "../../firebase/firebase"; // adjust path as needed
+import { collection, addDoc } from "firebase/firestore";
 const QuizModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
     title: "",
@@ -17,11 +18,25 @@ const QuizModal = ({ onClose }) => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
+ 
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const quizRef = collection(firestore, "Recruiter/Quiz/QuizList"); // `QuizList` is optional, but helps organize
+    await addDoc(quizRef, {
+      ...formData,
+      createdAt: new Date().toISOString(),
+    });
+
+    alert("Quiz successfully created!");
     onClose();
-  };
+  } catch (error) {
+    console.error("Error saving quiz:", error.message);
+    alert("Failed to create quiz. Check your Firestore rules.");
+  }
+};
 
   return (
     <form onSubmit={handleSubmit} style={formStyle}>
