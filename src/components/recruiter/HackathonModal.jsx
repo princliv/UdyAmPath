@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { auth, firestore } from "../../firebase/firebase"; // firebase.js
-import { collection, doc, addDoc } from "firebase/firestore";
+import { CONTENT_TYPES, createRecruiterContent } from "../../firebase/recruiterContent";
 
-const HackathonModal = ({ onClose, type = "Job" }) => {
+const HackathonModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
     title: "",
     date: "",
@@ -19,16 +18,8 @@ const HackathonModal = ({ onClose, type = "Job" }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const user = auth.currentUser;
-    if (!user) {
-      alert("You must be logged in.");
-      return;
-    }
-
     try {
-      // Recruiters/{uid}/{type}/autoID
-      const subCollectionRef = collection(firestore, `Recruiters/${user.uid}/${type}`);
-      await addDoc(subCollectionRef, formData);
+      await createRecruiterContent(CONTENT_TYPES.HACKATHONS, formData);
 
       alert("Hackathon saved to Firestore!");
       onClose();

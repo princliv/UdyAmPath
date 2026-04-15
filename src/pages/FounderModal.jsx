@@ -71,17 +71,4 @@ const styles = {
   },
 };
 
-// Keyframe animations
-const animationStyles = `
-  @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-  }
-
-  @keyframes zoomIn {
-    0% { transform: scale(0.95); }
-    100% { transform: scale(1); }
-  }
-`;
-
 export default FounderNoteModal;

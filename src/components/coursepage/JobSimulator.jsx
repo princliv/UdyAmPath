@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const JobSimulator = () => {
-  const navigate = useNavigate();
   const [completedCourses, setCompletedCourses] = useState([]);
-  const [completedSpecializations, setCompletedSpecializations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [simulationType, setSimulationType] = useState(null);
   const [selectedRole, setSelectedRole] = useState("");
@@ -23,9 +20,7 @@ const JobSimulator = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       const mockCompletedCourses = ["Python", "React", "SQL"];
-      const mockCompletedSpecializations = [1, 4, 16];
       setCompletedCourses(mockCompletedCourses);
-      setCompletedSpecializations(mockCompletedSpecializations);
       setIsLoading(false);
     }, 800);
 

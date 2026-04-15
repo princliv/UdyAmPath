@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { createJobApplication } from "../../firebase/recruiterContent";
 
 const JobDetail = () => {
   const { state } = useLocation();
@@ -51,22 +50,14 @@ const JobDetail = () => {
     }
 
     try {
-      const auth = getAuth();
-      const user = auth.currentUser;
-      if (!user) throw new Error("User not logged in");
-
       setLoading(true);
-
-      const db = getFirestore();
-      const appliedJobsRef = collection(db, "Users", user.uid, "AppliedJobs");
-
-      // Only basic text data is saved. You'd need storage upload for files (optional).
-      await addDoc(appliedJobsRef, {
+      await createJobApplication({
         jobId: job.id || null,
         jobTitle: job.title,
         company: job.company,
-        location: job.location,
-        appliedAt: new Date().toISOString(),
+        recruiterId: job.recruiterId || null,
+        roleType: "Job",
+        location: Array.isArray(job.location) ? job.location : [job.location || "Not specified"],
         formData: {
           ...formData,
           resume: resumeName,
@@ -103,17 +94,17 @@ const JobDetail = () => {
       <div style={{ flex: 1, minWidth: "300px" }}>
         <h2>{job.title}</h2>
         <p><strong>Company:</strong> {job.company}</p>
-        <p><strong>Location:</strong> {job.location.join(", ")}</p>
+        <p><strong>Location:</strong> {Array.isArray(job.location) ? job.location.join(", ") : (job.location || "Not specified")}</p>
         <p><strong>Experience:</strong> {job.experience}</p>
         <p><strong>Salary:</strong> {job.salary}</p>
         <p><strong>Date Posted:</strong> {job.date}</p>
 
         <h3>Key Responsibilities</h3>
-        <ul>{job.key_responsibilities.map((r, i) => <li key={i}>{r}</li>)}</ul>
+        <ul>{(job.key_responsibilities || [job.description || "No details provided"]).map((r, i) => <li key={i}>{r}</li>)}</ul>
 
         <h3>Skills Required</h3>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-          {job.skills_required.map((skill, i) => (
+          {(job.skills_required || job.skills || []).map((skill, i) => (
             <span key={i} style={{
               background: "#e0e0e0",
               padding: "6px 10px",

@@ -30,7 +30,9 @@ const storage = getStorage(app);
 const googleProvider = new GoogleAuthProvider();
 
 // ✅ Ensure users stay signed in
-setPersistence(auth, browserLocalPersistence);
+setPersistence(auth, browserLocalPersistence).catch((error) => {
+  console.error("Auth persistence setup failed:", error.message);
+});
 
 // ✅ Google Sign-In with User Data Saving
 export const signInWithGoogle = async () => {

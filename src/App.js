@@ -1,49 +1,62 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { onAuthStateChanged } from "firebase/auth";
-import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
-import { auth } from "./firebase/firebase";
+import { get, ref } from "firebase/database";
+import React, { Suspense, lazy, useEffect, useState } from "react";
+import { BrowserRouter as Router, Link, Navigate, NavLink, Route, Routes, useLocation } from "react-router-dom";
+import { auth, database } from "./firebase/firebase";
 
 import { signOut } from "firebase/auth";
 import backgroud from "./assets/background.png";
 import flogo from "./assets/footerLogo.png";
-import ModulePage from "./components/coursepage/modulePage";
-import PathwayPhaseDetail from "./components/coursepage/PathwayPhaseDetail";
-import SpecializationDetail from "./components/coursepage/SpecializationDetail";
-import TestPage from "./components/coursepage/TestPage";
-import BaseDetails from "./components/jobpage/baseDetails";
-import BasePage from "./components/jobpage/basePage";
-import Books from "./components/notespage/books";
-import FlashCard from './components/notespage/FlashCard';
-import Notes from "./components/notespage/notes";
-import PyqPage from './components/notespage/PyqPage';
-import Adaptability from "./components/toolspage/adaptability";
-import Communication from "./components/toolspage/communication";
-import GroupDiscussion from "./components/toolspage/groupDiscussion";
-import HrInterview from "./components/toolspage/hrInterview";
-import Placement from "./components/toolspage/placementpaper";
-import PlaceTest from "./components/toolspage/placeTest";
-import Pd from "./components/toolspage/projectlist";
-import ProjectModal from "./components/toolspage/projectModal";
-import TechInterview from "./components/toolspage/techInterview";
-import TimeManagement from "./components/toolspage/timemanage";
 import AuthModal from "./pages/AuthModal";
-import CourseDetail from "./pages/coursedetail";
-import CoursePage from "./pages/coursepage";
 import FounderNoteModal from "./pages/FounderModal";
-import Homepage from "./pages/homepage";
-import JobPage from "./pages/jobpage";
-import Login from "./pages/login";
-import NotesPage from "./pages/notespage";
-import Profile from "./pages/profile";
-import Recruiter from "./pages/recruiter";
-import Signup from "./pages/signup";
-import ToolsPage from "./pages/toolspage";
-import JobSimulator from "./components/coursepage/JobSimulator";
-import ResumeCheck from "./components/jobpage/ResumeCheck";
-import InterCheck from "./components/jobpage/InterviewCheck";
-import InternApply from "./components/jobpage/internApply"; // adjust import
-import JobDetail from "./components/jobpage/jobDetails";
+
+const ModulePage = lazy(() => import("./components/coursepage/modulePage"));
+const PathwayPhaseDetail = lazy(() => import("./components/coursepage/PathwayPhaseDetail"));
+const SpecializationDetail = lazy(() => import("./components/coursepage/SpecializationDetail"));
+const TestPage = lazy(() => import("./components/coursepage/TestPage"));
+const BaseDetails = lazy(() => import("./components/jobpage/baseDetails"));
+const BasePage = lazy(() => import("./components/jobpage/basePage"));
+const Books = lazy(() => import("./components/notespage/books"));
+const FlashCard = lazy(() => import("./components/notespage/FlashCard"));
+const Notes = lazy(() => import("./components/notespage/notes"));
+const PyqPage = lazy(() => import("./components/notespage/PyqPage"));
+const Adaptability = lazy(() => import("./components/toolspage/adaptability"));
+const Communication = lazy(() => import("./components/toolspage/communication"));
+const GroupDiscussion = lazy(() => import("./components/toolspage/groupDiscussion"));
+const HrInterview = lazy(() => import("./components/toolspage/hrInterview"));
+const Placement = lazy(() => import("./components/toolspage/placementpaper"));
+const PlaceTest = lazy(() => import("./components/toolspage/placeTest"));
+const Pd = lazy(() => import("./components/toolspage/projectlist"));
+const ProjectModal = lazy(() => import("./components/toolspage/projectModal"));
+const TechInterview = lazy(() => import("./components/toolspage/techInterview"));
+const TimeManagement = lazy(() => import("./components/toolspage/timemanage"));
+const CourseDetail = lazy(() => import("./pages/coursedetail"));
+const CoursePage = lazy(() => import("./pages/coursepage"));
+const Homepage = lazy(() => import("./pages/homepage"));
+const JobPage = lazy(() => import("./pages/jobpage"));
+const Login = lazy(() => import("./pages/login"));
+const NotesPage = lazy(() => import("./pages/notespage"));
+const Profile = lazy(() => import("./pages/profile"));
+const Recruiter = lazy(() => import("./pages/recruiter"));
+const Signup = lazy(() => import("./pages/signup"));
+const ToolsPage = lazy(() => import("./pages/toolspage"));
+const JobSimulator = lazy(() => import("./components/coursepage/JobSimulator"));
+const ResumeCheck = lazy(() => import("./components/jobpage/ResumeCheck"));
+const InterCheck = lazy(() => import("./components/jobpage/InterviewCheck"));
+const InternApply = lazy(() => import("./components/jobpage/internApply"));
+const JobDetail = lazy(() => import("./components/jobpage/jobDetails"));
+
+function ProtectedRoute({ user, loading, children }) {
+  if (loading) return null;
+  return user ? children : <Navigate to="/homepage" replace />;
+}
+
+function RecruiterRoute({ user, loading, userType, children }) {
+  if (loading) return null;
+  const normalizedType = (userType || "").toLowerCase();
+  return user && normalizedType === "recruiter" ? children : <Navigate to="/homepage" replace />;
+}
 
 
 function App() {
@@ -56,6 +69,8 @@ function App() {
 
 function AppContent() {
   const [user, setUser] = useState(null);
+  const [userType, setUserType] = useState("");
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
   const location = useLocation(); // Now correctly inside Router
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSignup] = useState(false);
@@ -75,7 +90,28 @@ function AppContent() {
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setUser(currentUser);
+
+      if (!currentUser) {
+        setUserType("");
+        setIsAuthLoading(false);
+        return;
+      }
+
+      try {
+        const snapshot = await get(ref(database, `users/${currentUser.uid}`));
+        const profile = snapshot.exists() ? snapshot.val() : null;
+        setUserType(profile?.userType || "");
+      } catch (error) {
+        console.error("Failed to read user profile:", error);
+        setUserType("");
+      } finally {
+        setIsAuthLoading(false);
+      }
+    });
+
+    return () => unsubscribe();
   }, []);
   const handleLogout = () => {
     signOut(auth)
@@ -161,13 +197,21 @@ function AppContent() {
           </nav>
         </header>
       )}
+      <Suspense fallback={<div style={{ padding: "20px", textAlign: "center" }}>Loading...</div>}>
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/homepage" element={<Homepage />} />
         <Route path="/coursepage" element={<CoursePage />} />
         <Route path="/jobpage" element={<JobPage />} />
         <Route path="/toolspage" element={<ToolsPage />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute user={user} loading={isAuthLoading}>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/notespage" element={<NotesPage />} />
         <Route path="/coursedetail" element={<CourseDetail />} />
         <Route path="/base" element={<BasePage />} />
@@ -182,7 +226,14 @@ function AppContent() {
         <Route path="/books" element={<Books />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/recruiter" element={<Recruiter />} />
+        <Route
+          path="/recruiter"
+          element={
+            <RecruiterRoute user={user} loading={isAuthLoading} userType={userType}>
+              <Recruiter />
+            </RecruiterRoute>
+          }
+        />
         <Route path="/communication" element={<Communication />} />
         <Route path="/adaptability" element={<Adaptability />} />
         <Route path="/timemanage" element={<TimeManagement />} />
@@ -201,6 +252,7 @@ function AppContent() {
         <Route path="/interview-checklist" element={<InterCheck />} />
 
       </Routes>
+      </Suspense>
       <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isSignup={isSignup} />
       {showModal && <FounderNoteModal onClose={handleCloseModal} />}
       {/* Footer (Hidden on Login & Signup pages) */}

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { firestore, auth } from "../../firebase/firebase"; // Adjust path if needed
-import { collection, addDoc } from "firebase/firestore";
+import { CONTENT_TYPES, createRecruiterContent } from "../../firebase/recruiterContent";
 
 const JobInternshipModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
-    type: "",
+    roleType: "Job",
+    workType: "",
     position: "",
+    company: "",
     mode: "",
+    level: "",
+    salary: "",
     qualification: "",
     experience: "",
     skills: [],
@@ -39,18 +42,11 @@ const JobInternshipModal = ({ onClose }) => {
   const handleSubmit = async (e) => {
   e.preventDefault();
 
-  const user = auth.currentUser;
-  if (!user) {
-    alert("You must be logged in to post a job.");
-    return;
-  }
-
   try {
-    const jobRef = collection(firestore, `Recruiters/${user.uid}/Jobs`);
-    await addDoc(jobRef, {
+    await createRecruiterContent(CONTENT_TYPES.JOBS, {
       ...formData,
-      createdAt: new Date().toISOString(),
-      postedBy: user.email,
+      title: formData.position,
+      type: formData.workType,
     });
     alert("Job/Internship successfully posted!");
     onClose();
@@ -66,10 +62,18 @@ const JobInternshipModal = ({ onClose }) => {
       <h2>Job / Internship Details</h2>
       
       <div style={sectionStyle}>
-        <label style={labelStyle}>Type:</label>
+        <label style={labelStyle}>Hiring For:</label>
         <div>
-          <input type="radio" name="type" value="Technical" onChange={handleChange} /> Technical
-          <input type="radio" name="type" value="Non-Technical" onChange={handleChange} style={{ marginLeft: "10px" }} /> Non-Technical
+          <input type="radio" name="roleType" value="Job" checked={formData.roleType === "Job"} onChange={handleChange} /> Job
+          <input type="radio" name="roleType" value="Internship" checked={formData.roleType === "Internship"} onChange={handleChange} style={{ marginLeft: "10px" }} /> Internship
+        </div>
+      </div>
+
+      <div style={sectionStyle}>
+        <label style={labelStyle}>Domain:</label>
+        <div>
+          <input type="radio" name="workType" value="On-Site" checked={formData.workType === "On-Site"} onChange={handleChange} /> On-Site
+          <input type="radio" name="workType" value="Part Time" checked={formData.workType === "Part Time"} onChange={handleChange} style={{ marginLeft: "10px" }} /> Part Time
         </div>
       </div>
       
@@ -79,12 +83,31 @@ const JobInternshipModal = ({ onClose }) => {
       </div>
 
       <div style={sectionStyle}>
+        <label style={labelStyle}>Company:</label>
+        <input type="text" name="company" placeholder="Enter Company Name" style={inputStyle} onChange={handleChange} />
+      </div>
+
+      <div style={sectionStyle}>
         <label style={labelStyle}>Mode:</label>
         <div>
           <input type="radio" name="mode" value="In Office" onChange={handleChange} /> In Office
           <input type="radio" name="mode" value="Work From Home" onChange={handleChange} style={{ marginLeft: "10px" }} /> Work From Home
           <input type="radio" name="mode" value="Hybrid" onChange={handleChange} style={{ marginLeft: "10px" }} /> Hybrid
         </div>
+      </div>
+
+      <div style={sectionStyle}>
+        <label style={labelStyle}>Experience Level:</label>
+        <select name="level" onChange={handleChange} style={inputStyle}>
+          <option value="">Select Level</option>
+          <option value="Junior Level">Junior Level</option>
+          <option value="Senior Level">Senior Level</option>
+        </select>
+      </div>
+
+      <div style={sectionStyle}>
+        <label style={labelStyle}>Monthly Salary (INR):</label>
+        <input type="number" name="salary" placeholder="Enter Salary" style={inputStyle} onChange={handleChange} />
       </div>
 
       <div style={sectionStyle}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import RecentView from "../components/coursepage/recentView";
 import SpecializationContent from "../components/coursepage/SpecializationPage";
@@ -7,10 +7,7 @@ import headerBg from '../assets/coursepage/headerbg.png';
 import CodeEditor from '../components/coursepage/CodeEditor';
 
 const CoursePage = () => {
-  const [searchTerm, setSearchTerm] = useState("");
   const [selectedTab, setSelectedTab] = useState("Course");
-  const [selectedPath, setSelectedPath] = useState(null);
-  const [activeContent, setActiveContent] = useState("initial");
   const [showModal, setShowModal] = useState(false);
   const [showLearningModal, setShowLearningModal] = useState(false);
   const [showChallengeModal, setShowChallengeModal] = useState(false);
@@ -24,7 +21,7 @@ const CoursePage = () => {
   const navigate = useNavigate();
 
   // Daily challenges data
-  const dailyChallenges = [
+  const dailyChallenges = useMemo(() => [
     {
       id: 1,
       title: "Reverse a Linked List",
@@ -101,7 +98,7 @@ const CoursePage = () => {
       solutionApproach: "Sort the intervals by start time, then merge adjacent intervals if they overlap.",
       tags: ["Array", "Sorting"]
     }
-  ];
+  ], []);
 
   const learningTopics = [
     { 
@@ -162,7 +159,7 @@ const CoursePage = () => {
     const today = new Date().getDate();
     const challengeIndex = today % dailyChallenges.length;
     setCurrentChallenge(dailyChallenges[challengeIndex]);
-  }, []);
+  }, [dailyChallenges]);
 
   useEffect(() => {
     if (selectedTopic && isTimerRunning) {
@@ -181,14 +178,6 @@ const CoursePage = () => {
       return () => clearTimeout(timeout);
     }
   }, [currentIndex, selectedTopic, isTimerRunning]);
-
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const handleSearchSubmit = () => {
-    console.log("Searching for:", searchTerm);
-  };
 
   const toggleModal = () => {
     setShowModal(!showModal);

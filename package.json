@@ -12,6 +12,7 @@
     "compromise": "^14.14.4",
     "cra-template": "1.2.0",
     "d3-timer": "^3.0.1",
+    "dompurify": "^3.4.0",
     "face-api.js": "^0.22.2",
     "firebase": "^11.5.0",
     "fortawesome": "^0.0.1-security",

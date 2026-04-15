@@ -5,7 +5,6 @@ import { firestore } from "../../firebase/firebase"; // ✅ correct
 import { getAuth } from "firebase/auth";
 
 import { useLocation } from "react-router-dom";
-import * as faceapi from "face-api.js";
 import { FaCamera, FaMicrophone, FaCheck, FaExpand } from "react-icons/fa";
 // These icons are imported for potential future use
 // eslint-disable-next-line no-unused-vars
@@ -46,19 +45,6 @@ const TestPage = () => {
     }
   }, [blockLeave]);
 
-  // Load face detection models
-  useEffect(() => {
-    const loadModels = async () => {
-      try {
-        await faceapi.nets.tinyFaceDetector.loadFromUri("/models");
-        console.log("Face detection models loaded");
-      } catch (error) {
-        console.error("Error loading face detection models:", error);
-      }
-    };
-    loadModels();
-  }, []);
-
   // Handle camera stream
   const startVideo = async () => {
     try {
@@ -92,11 +78,20 @@ const TestPage = () => {
     const video = showTest ? videoRefSmall.current : videoRefPreview.current;
     if (video && cameraEnabled) {
       try {
-        const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions());
-        setFaceDetected(detections.length > 0);
+        if ("FaceDetector" in window) {
+          const detector = new window.FaceDetector({ fastMode: true, maxDetectedFaces: 1 });
+          const detections = await detector.detect(video);
+          setFaceDetected(detections.length > 0);
+        } else {
+          // Fallback for browsers without native FaceDetector support.
+          setFaceDetected(true);
+        }
       } catch (error) {
         console.error("Face detection error:", error);
+        setFaceDetected(false);
       }
+    } else {
+      setFaceDetected(false);
     }
   }, [cameraEnabled, showTest]);
 

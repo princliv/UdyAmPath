@@ -1,16 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Modal Components
 import JobInternshipModal from "./JobInternshipModal";
 import WorkshopModal from "./WorkshopModal";
 import QuizModal from "./QuizModal";
 import HackathonModal from "./HackathonModal";
+import { CONTENT_TYPES, fetchMyRecruiterContent, fetchRecruiterApplications } from "../../firebase/recruiterContent";
 
 const RecruiterHome = () => {
   const [activeModal, setActiveModal] = useState(null);
+  const [counts, setCounts] = useState({
+    jobs: 0,
+    workshops: 0,
+    quizzes: 0,
+    hackathons: 0,
+  });
+  const [applications, setApplications] = useState([]);
 
   const openModal = (category) => setActiveModal(category);
   const closeModal = () => setActiveModal(null);
+
+  useEffect(() => {
+    const loadCounts = async () => {
+      try {
+        const [jobs, workshops, quizzes, hackathons] = await Promise.all([
+          fetchMyRecruiterContent(CONTENT_TYPES.JOBS),
+          fetchMyRecruiterContent(CONTENT_TYPES.WORKSHOPS),
+          fetchMyRecruiterContent(CONTENT_TYPES.QUIZZES),
+          fetchMyRecruiterContent(CONTENT_TYPES.HACKATHONS),
+        ]);
+        const incomingApplications = await fetchRecruiterApplications();
+
+        setCounts({
+          jobs: jobs.length,
+          workshops: workshops.length,
+          quizzes: quizzes.length,
+          hackathons: hackathons.length,
+        });
+        setApplications(incomingApplications);
+      } catch (error) {
+        console.error("Failed to load recruiter content counts:", error);
+      }
+    };
+
+    loadCounts();
+  }, [activeModal]);
 
   const containerStyle = {
     display: "flex",
@@ -49,10 +83,10 @@ const RecruiterHome = () => {
   });
 
   const ongoingCategories = [
-    { name: "Jobs", count: 0, color: "#1976D2" },
-    { name: "Workshops", count: 0, color: "#9C27B0" },
-    { name: "Quizzes", count: 0, color: "#388E3C" },
-    { name: "Hackathons", count: 0, color: "#007ACC" },
+    { name: "Jobs", count: counts.jobs, color: "#1976D2" },
+    { name: "Workshops", count: counts.workshops, color: "#9C27B0" },
+    { name: "Quizzes", count: counts.quizzes, color: "#388E3C" },
+    { name: "Hackathons", count: counts.hackathons, color: "#007ACC" },
   ];
 
   // Right Section (Create)
@@ -125,6 +159,34 @@ const RecruiterHome = () => {
             </button>
           </div>
         ))}
+      </div>
+
+      <div style={{ ...ongoingStyle, width: "340px" }}>
+        <div style={titleStyle}>Applications Received</div>
+        {applications.length === 0 ? (
+          <p style={{ fontSize: "14px", color: "#666" }}>No applications yet.</p>
+        ) : (
+          applications.slice(0, 8).map((application) => (
+            <div
+              key={application.id}
+              style={{
+                border: "1px solid #e0e0e0",
+                borderRadius: "8px",
+                padding: "10px",
+                marginBottom: "8px",
+                background: "#fafcff",
+              }}
+            >
+              <div style={{ fontWeight: "bold", fontSize: "14px" }}>{application.jobTitle}</div>
+              <div style={{ fontSize: "12px", color: "#555" }}>
+                Applicant: {application.formData?.fullName || application.formData?.firstName || application.applicantEmail}
+              </div>
+              <div style={{ fontSize: "12px", color: "#555" }}>
+                Type: {application.roleType || "Job"} | {application.company}
+              </div>
+            </div>
+          ))
+        )}
       </div>
 
       {/* Modal Component */}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, googleProvider, signInWithGoogle, signInWithEmail } from "../firebase/firebase";
+import { signInWithGoogle, signInWithEmail } from "../firebase/firebase";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FaLinkedin } from "react-icons/fa";
@@ -15,7 +15,7 @@ const Login = ({ isOpen, onClose }) => {
   // 🔹 Google Login
   const handleGoogleLogin = async () => {
     try {
-      await signInWithGoogle(auth, googleProvider);
+      await signInWithGoogle();
       alert("Google Login Successful");
       onClose(); // Close modal after login
       navigate("/homepage"); 
@@ -28,7 +28,7 @@ const Login = ({ isOpen, onClose }) => {
   const handleEmailLogin = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmail(auth, email, password);
+      await signInWithEmail(email, password);
       alert("Login Successful");
       onClose(); // Close modal after login
       navigate("/homepage");

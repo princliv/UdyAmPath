@@ -4,6 +4,12 @@ const Adaptability = () => {
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [progress, setProgress] = useState(0);
+  const questions = [
+    "How well do you handle unexpected changes?",
+    "Are you open to learning new skills quickly?",
+    "Do you stay calm under pressure?",
+    "How often do you step out of your comfort zone?",
+  ];
 
   useEffect(() => {
     const savedAnswers = JSON.parse(localStorage.getItem("adaptabilityAnswers"));
@@ -16,14 +22,7 @@ const Adaptability = () => {
     localStorage.setItem("adaptabilityAnswers", JSON.stringify(answers));
     const completedQuestions = Object.values(answers).filter((answer) => answer !== "").length;
     setProgress((completedQuestions / questions.length) * 100);
-  }, [answers]);
-
-  const questions = [
-    "How well do you handle unexpected changes?",
-    "Are you open to learning new skills quickly?",
-    "Do you stay calm under pressure?",
-    "How often do you step out of your comfort zone?",
-  ];
+  }, [answers, questions.length]);
 
   const handleChange = (index, value) => {
     setAnswers({ ...answers, [index]: value });

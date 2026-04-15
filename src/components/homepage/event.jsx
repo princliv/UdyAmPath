@@ -1,16 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import event1 from "../../assets/event1.png";
 import event2 from "../../assets/event2.jpg";
 import event3 from "../../assets/event3.png";
+import { CONTENT_TYPES, fetchRecruiterContent } from "../../firebase/recruiterContent";
 
-const originalEvents = [
+const fallbackEvents = [
   { img: event1, date: "20.02.2025", location: "Pune, Maharashtra" },
   { img: event2, date: "15.03.2025", location: "Mumbai, Maharashtra" },
   { img: event3, date: "10.04.2025", location: "Bangalore, Karnataka" },
 ];
 
 const Event = () => {
+  const [originalEvents, setOriginalEvents] = useState(fallbackEvents);
   const [currentIndex, setCurrentIndex] = useState(1); // start from first real slide
   const [isTransitioning, setIsTransitioning] = useState(true);
   const sliderRef = useRef(null);
@@ -23,13 +25,57 @@ const Event = () => {
     setIsTransitioning(true);
   };
 
-  const nextSlide = () => updateIndex(currentIndex + 1);
+  const nextSlide = useCallback(() => updateIndex(currentIndex + 1), [currentIndex]);
   const prevSlide = () => updateIndex(currentIndex - 1);
+
+  useEffect(() => {
+    const loadEvents = async () => {
+      try {
+        const [workshops, hackathons, quizzes] = await Promise.all([
+          fetchRecruiterContent(CONTENT_TYPES.WORKSHOPS),
+          fetchRecruiterContent(CONTENT_TYPES.HACKATHONS),
+          fetchRecruiterContent(CONTENT_TYPES.QUIZZES),
+        ]);
+
+        const mapped = [
+          ...workshops.map((item) => ({
+            img: event1,
+            date: item.date || "Upcoming",
+            location: item.location || "Online",
+            title: item.title || "Workshop",
+            kind: "Workshop",
+          })),
+          ...hackathons.map((item) => ({
+            img: event2,
+            date: item.date || "Upcoming",
+            location: item.location || "Online",
+            title: item.title || "Hackathon",
+            kind: "Hackathon",
+          })),
+          ...quizzes.map((item) => ({
+            img: event3,
+            date: item.date || "Upcoming",
+            location: "Online",
+            title: item.title || "Quiz",
+            kind: "Quiz",
+          })),
+        ];
+
+        if (mapped.length > 0) {
+          setOriginalEvents(mapped);
+        }
+      } catch (error) {
+        console.error("Error loading recruiter events:", error);
+      }
+    };
+
+    loadEvents();
+  }, []);
 
   useEffect(() => {
     intervalRef.current = setInterval(nextSlide, 3000);
     return () => clearInterval(intervalRef.current);
-  });
+  }, [nextSlide]);
 
   const handleTransitionEnd = () => {
     if (currentIndex === events.length - 1) {
@@ -76,10 +122,10 @@ const Event = () => {
             <div className="event-card" key={index}>
               <img src={event.img} alt="Event" className="event-image" />
               <div className="event-details">
-                <p className="event-date">Applied by: {event.date}</p>
+                <p className="event-date">{event.kind || "Event"} | Date: {event.date}</p>
                 <div className="event-footer">
-                  <p className="event-location">Location: {event.location}</p>
-                  <button className="event-button">See More</button>
+                  <p className="event-location">{event.title || "Live Event"} - {event.location}</p>
+                  <button className="event-button">View</button>
                 </div>
               </div>
             </div>

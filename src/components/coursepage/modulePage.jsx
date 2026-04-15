@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import DOMPurify from "dompurify";
 
 const ModulePage = () => {
     const location = useLocation();
@@ -259,7 +260,12 @@ const renderModuleContent = (data) => {
 
     switch (data.type) {
         case "text":
-            return <div style={styles.textContent} dangerouslySetInnerHTML={{ __html: data.content }} />;
+            return (
+                <div
+                    style={styles.textContent}
+                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.content || "") }}
+                />
+            );
         case "video":
             return (
                 <div style={styles.videoContainer}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import amazonLogo from "../../assets/jobpage/amazon.png";
@@ -8,6 +8,7 @@ import doneImg from "../../assets/jobpage/done.png";
 import CityDetailsModal from "../jobpage/CityDetailsModal";
 
 import { useNavigate } from "react-router-dom";
+import { CONTENT_TYPES, fetchRecruiterContent } from "../../firebase/recruiterContent";
 
 
 
@@ -47,6 +48,67 @@ const Details = () => {
         setInterns(updated);
       })
       .catch((error) => console.error("Error loading job data:", error));
+
+    const loadRecruiterJobs = async () => {
+      try {
+        const recruiterItems = await fetchRecruiterContent(CONTENT_TYPES.JOBS, { onlyPublished: true, includeExpired: false });
+        const mappedItems = recruiterItems.map((item) => {
+          const applyDate = item.applyBefore ? new Date(item.applyBefore) : null;
+          const now = new Date();
+          const daysLeft = applyDate
+            ? Math.max(0, Math.ceil((applyDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)))
+            : 0;
+
+          return {
+            id: item.id,
+            title: item.title || item.position || "Untitled Role",
+            company: item.company || item.recruiterEmail || "Recruiter Posted",
+            type: item.type || "On-Site",
+            level: item.level || "Junior Level",
+            salary: Number(item.salary) || 0,
+            daysLeft,
+            mode: item.mode || "",
+            qualification: item.qualification || "",
+            experience: item.experience || "",
+            rounds: item.rounds || "",
+            applyBefore: item.applyBefore || "",
+            description: item.description || "",
+            skills: item.skills || [],
+            color: "#d9f0ff",
+            logo: null,
+            roleType: item.roleType || "Job",
+            recruiterId: item.recruiterId || null,
+          };
+        });
+        const recruiterJobs = mappedItems.filter((item) => item.roleType === "Job");
+        const recruiterInternships = mappedItems.filter((item) => item.roleType === "Internship");
+
+        setJobs((prev) => {
+          const merged = [...prev, ...recruiterJobs];
+          const seen = new Set();
+          return merged.filter((entry) => {
+            const key = `${entry.title}-${entry.company}-${entry.roleType || "Job"}`.toLowerCase();
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return true;
+          });
+        });
+        setInterns((prev) => {
+          const merged = [...prev, ...recruiterInternships];
+          const seen = new Set();
+          return merged.filter((entry) => {
+            const key = `${entry.title}-${entry.company}-${entry.roleType || "Internship"}`.toLowerCase();
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return true;
+          });
+        });
+      } catch (error) {
+        console.error("Error loading recruiter jobs:", error);
+      }
+    };
+
+    loadRecruiterJobs();
   }, []);
 
   
@@ -54,12 +116,14 @@ const Details = () => {
 
 
   // Filter jobs based on selected type and level
-  const filteredJobs = currentData.filter((job) => {
-    return (
-      (typeFilter.length === 0 || typeFilter.includes(job.type)) && // ✅ Fix type filter check
-      (levelFilter === "" || job.level.trim().toLowerCase() === levelFilter.trim().toLowerCase()) // ✅ Case insensitive comparison
-    );
-  });
+  const filteredJobs = useMemo(() => {
+    return currentData.filter((job) => {
+      return (
+        (typeFilter.length === 0 || typeFilter.includes(job.type)) &&
+        (levelFilter === "" || job.level.trim().toLowerCase() === levelFilter.trim().toLowerCase())
+      );
+    });
+  }, [currentData, typeFilter, levelFilter]);
   
   
   const { city } = useParams(); // Get city from URL
@@ -75,13 +139,14 @@ const Details = () => {
       .catch((error) => console.error("Error fetching city data:", error));
   }, [city]);
 
-  if (!cityInfo) return <p>Loading city details...</p>;
-  
-  const { total_expense } = cityInfo;
+  const total_expense = cityInfo?.total_expense || 0;
 
-  filteredJobs.forEach((job) => {
-    job.isAffordable = job.salary > total_expense;
-  });
+  const displayJobs = useMemo(
+    () => filteredJobs.map((job) => ({ ...job, isAffordable: Number(job.salary) > Number(total_expense) })),
+    [filteredJobs, total_expense]
+  );
+  
+  if (!cityInfo) return <p>Loading city details...</p>;
   
 
   return (
@@ -284,7 +349,7 @@ const Details = () => {
         gap: "40px",
         paddingBottom: "40px"
       }}>
-        {filteredJobs.map((job, index) => (
+        {displayJobs.map((job, index) => (
           <div
             key={index}
             style={{
@@ -369,7 +434,7 @@ const Details = () => {
                 }}>{job.level}</span>
                 <button
                   onClick={() => {
-                    if (job.type === "Internship") {
+                    if (selectedTab === "Internship") {
                       navigate("/intern-apply", { state: { job } });
                     } else {
                       navigate("/jobDetails", { state: { job } });;

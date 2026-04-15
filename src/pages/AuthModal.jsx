@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, googleProvider, signInWithGoogle, signInWithEmail } from "../firebase/firebase";
+import { signInWithGoogle, signInWithEmail, signUpWithEmail } from "../firebase/firebase";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FaLinkedin } from "react-icons/fa";
@@ -25,7 +25,7 @@ const AuthModal = ({ isOpen, onClose }) => {
   const handleGoogleLogin = async () => {
     setLoading(true); // Set loading to true when starting the Google login
     try {
-      await signInWithGoogle(auth, googleProvider);
+      await signInWithGoogle();
       navigate(userType === "recruiter" ? "/recruiter" : "/homepage");
       setTimeout(onClose, 500);
     } catch (error) {
@@ -43,9 +43,16 @@ const AuthModal = ({ isOpen, onClose }) => {
           alert("Passwords do not match!");
           return;
         }
-        await auth.createUserWithEmailAndPassword(email, password);
+        await signUpWithEmail(
+          email,
+          password,
+          firstName,
+          lastName,
+          "",
+          userType === "recruiter" ? "Recruiter" : "Candidate"
+        );
       } else {
-        await signInWithEmail(auth, email, password);
+        await signInWithEmail(email, password);
       }
 
       // Redirect based on userType

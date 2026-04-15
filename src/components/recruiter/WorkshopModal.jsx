@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { getFirestore, collection, doc, addDoc } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { CONTENT_TYPES, createRecruiterContent } from "../../firebase/recruiterContent";
 
 const WorkshopModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -26,14 +25,7 @@ const WorkshopModal = ({ onClose }) => {
     setError(null);
 
     try {
-      const auth = getAuth();
-      const user = auth.currentUser;
-      if (!user) throw new Error("Not authenticated");
-
-      const db = getFirestore();
-      const workshopsRef = collection(db, "Recruiters", user.uid, "Workshops");
-
-      await addDoc(workshopsRef, formData);
+      await createRecruiterContent(CONTENT_TYPES.WORKSHOPS, formData);
 
       setSaving(false);
       onClose();

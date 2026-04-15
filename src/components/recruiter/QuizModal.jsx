@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { firestore } from "../../firebase/firebase"; // adjust path as needed
-import { collection, addDoc } from "firebase/firestore";
+import { CONTENT_TYPES, createRecruiterContent } from "../../firebase/recruiterContent";
 const QuizModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
     title: "",
@@ -24,11 +23,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    const quizRef = collection(firestore, "Recruiter/Quiz/QuizList"); // `QuizList` is optional, but helps organize
-    await addDoc(quizRef, {
-      ...formData,
-      createdAt: new Date().toISOString(),
-    });
+    await createRecruiterContent(CONTENT_TYPES.QUIZZES, formData);
 
     alert("Quiz successfully created!");
     onClose();

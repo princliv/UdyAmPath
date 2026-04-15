@@ -14,7 +14,7 @@ const CodeEditor = ({ challenge }) => {
   const [testCases, setTestCases] = useState([]);
 
   // Use the passed challenge prop or a default if none
-  const currentChallenge = challenge || {
+  const currentChallenge = React.useMemo(() => challenge || {
     id: 1,
     title: "Default Challenge",
     difficulty: "Medium",
@@ -25,7 +25,7 @@ const CodeEditor = ({ challenge }) => {
     constraints: ["Constraint 1", "Constraint 2"],
     solutionApproach: "Use the optimal approach",
     tags: ["Array", "Sorting"]
-  };
+  }, [challenge]);
 
   // Generate test cases based on challenge difficulty
   useEffect(() => {
@@ -69,6 +69,7 @@ const CodeEditor = ({ challenge }) => {
   // Process the string
   return modifiedStr;
 }`;
+        break;
       default:
         template = `function ${currentChallenge.title.toLowerCase().replace(/\s+/g, '_')}(input) {
   // Implement your solution
