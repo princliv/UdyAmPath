@@ -3,6 +3,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { get, ref } from "firebase/database";
 import React, { Suspense, lazy, useEffect, useState } from "react";
 import { BrowserRouter as Router, Link, Navigate, NavLink, Route, Routes, useLocation } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 import { auth, database } from "./firebase/firebase";
 
 import { signOut } from "firebase/auth";
@@ -71,7 +72,10 @@ function AppContent() {
   const [user, setUser] = useState(null);
   const [userType, setUserType] = useState("");
   const [isAuthLoading, setIsAuthLoading] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation(); // Now correctly inside Router
+  const isMobile = useMediaQuery({ maxWidth: 820 });
+  const isTablet = useMediaQuery({ minWidth: 821, maxWidth: 1120 });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSignup] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -88,6 +92,13 @@ function AppContent() {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -118,83 +129,288 @@ function AppContent() {
       .then(() => setUser(null))  // Clears the user state
       .catch((error) => console.error("Logout error:", error));
   };
-  
+
+  const isAuthPage = location.pathname === "/login" || location.pathname === "/signup";
+
+  const applyInlineHover = (event, hoverStyles) => {
+    Object.assign(event.currentTarget.style, hoverStyles);
+  };
+
+  const clearInlineHover = (event, defaultStyles) => {
+    Object.assign(event.currentTarget.style, defaultStyles);
+  };
 
   const headerStyle = {
+    position: "sticky",
+    top: 0,
+    zIndex: 1200,
+    width: "100%",
+    borderBottom: "1px solid rgba(17, 129, 200, 0.16)",
+    background: "#ffffff",
+    boxShadow: scrolled
+      ? "0 10px 30px rgba(15, 23, 42, 0.09)"
+      : "0 6px 22px rgba(15, 23, 42, 0.06)",
+    transition: "all 0.3s ease",
+  };
+
+  const headerInnerStyle = {
+    maxWidth: "1240px",
+    margin: "0 auto",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: "10px 20px",
-    background: "#f8f9fa",
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-    position: "sticky",
-    top: 0,
-    zIndex: 1000,
+    gap: "16px",
+    padding: scrolled ? "10px 20px" : "14px 20px",
+    flexWrap: isMobile ? "wrap" : "nowrap",
   };
 
   const logoStyle = {
-    height: "50px",
+    height: isMobile ? "44px" : "50px",
     cursor: "pointer",
+    transition: "transform 0.22s ease, filter 0.22s ease",
   };
 
   const navStyle = {
     display: "flex",
-    gap: "20px",
+    alignItems: "center",
+    gap: isMobile ? "14px" : "24px",
+    flexWrap: "wrap",
+    justifyContent: isMobile ? "flex-start" : "flex-end",
   };
 
-  const linkStyle = {
+  const navTextBase = {
     textDecoration: "none",
-    color: "#333",
-    fontSize: "16px",
-    fontWeight: "bold",
-    padding: "8px 12px",
-    transition: "color 0.3s",
+    fontSize: "15px",
+    fontWeight: 600,
+    letterSpacing: "0.01em",
+    padding: "6px 2px",
+    color: "#1181c8",
+    borderBottom: "2px solid transparent",
+    transition: "color 0.25s ease, border-color 0.25s ease, transform 0.2s ease",
   };
-  const loginButtonStyle = {
-    background: "#1d3480",
-    color: "white",
-    padding: "8px 16px",
+
+  const navLinkStyle = ({ isActive }) => ({
+    ...navTextBase,
+    color: isActive ? "#004aad" : navTextBase.color,
+    borderBottom: isActive ? "2px solid #1181c8" : navTextBase.borderBottom,
+  });
+
+  const actionButtonStyle = {
+    padding: "9px 16px",
     border: "none",
-    borderRadius: "5px",
+    borderRadius: "999px",
     cursor: "pointer",
-    fontWeight: "bold",
+    fontWeight: 700,
+    fontSize: "14px",
+    background: "linear-gradient(135deg, #1181c8 0%, #004aad 100%)",
+    color: "#ffffff",
+    boxShadow: "0 10px 24px rgba(17, 129, 200, 0.28)",
+    transition: "transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease",
   };
-  
-  
+
+  const secondaryActionStyle = {
+    ...actionButtonStyle,
+    background: scrolled ? "#0f2f62" : "rgba(255, 255, 255, 0.2)",
+    border: "1px solid rgba(255, 255, 255, 0.3)",
+    boxShadow: "none",
+    transition: "transform 0.22s ease, background 0.22s ease",
+  };
+
+  const footerStyle = {
+    background: "linear-gradient(130deg, #1181c8 0%, #0c58a5 60%, #0a4a90 100%)",
+    color: "#ffffff",
+    textAlign: "left",
+    padding: isMobile ? "38px 18px 24px" : "48px 24px 28px",
+    marginTop: 0,
+    borderTop: "1px solid rgba(255, 255, 255, 0.16)",
+  };
+
+  const footerInnerStyle = {
+    maxWidth: "1200px",
+    margin: "0 auto",
+    display: "grid",
+    gridTemplateColumns: isMobile
+      ? "1fr"
+      : isTablet
+        ? "1.4fr 1fr 1fr"
+        : "1.6fr 1fr 1fr 1fr",
+    gap: isMobile ? "24px" : "28px",
+  };
+
+  const footerHeadingStyle = {
+    fontSize: "18px",
+    fontWeight: 700,
+    margin: "0 0 14px",
+    letterSpacing: "0.01em",
+  };
+
+  const footerLinkStyle = {
+    textDecoration: "none",
+    color: "rgba(255, 255, 255, 0.9)",
+    fontSize: "14px",
+    lineHeight: "1.9",
+    display: "inline-block",
+    transition: "color 0.2s ease, transform 0.2s ease",
+  };
+
+  const footerTextStyle = {
+    margin: "0 0 8px",
+    fontSize: "14px",
+    color: "rgba(255, 255, 255, 0.9)",
+    lineHeight: "1.6",
+  };
 
   return (
     <>
       {location.pathname !== "/recruiter" && (
         <header style={headerStyle}>
-          <Link to="/homepage">
-            <img src={backgroud} alt="Logo" style={logoStyle} />
-          </Link>
-          <nav style={navStyle}>
-            <NavLink to="/coursepage" style={linkStyle} activestyle={{ color: "#007bff" }}>
-              Courses
-            </NavLink>
-            <NavLink to="/jobpage" style={linkStyle} activestyle={{ color: "#007bff" }}>
-              Jobs/Internship
-            </NavLink>
-            <NavLink to="/toolspage" style={linkStyle} activestyle={{ color: "#007bff" }}>
-              Tools
-            </NavLink>
+          <div style={headerInnerStyle}>
+            <Link to="/homepage">
+              <img
+                src={backgroud}
+                alt="Logo"
+                style={logoStyle}
+                onMouseEnter={(event) =>
+                  applyInlineHover(event, {
+                    transform: "translateY(-1px) scale(1.03)",
+                    filter: "drop-shadow(0 10px 18px rgba(17, 129, 200, 0.28))",
+                  })
+                }
+                onMouseLeave={(event) =>
+                  clearInlineHover(event, {
+                    transform: "translateY(0) scale(1)",
+                    filter: "none",
+                  })
+                }
+              />
+            </Link>
+            <nav style={navStyle}>
+              <NavLink
+                to="/coursepage"
+                style={navLinkStyle}
+                onMouseEnter={(event) =>
+                  applyInlineHover(event, {
+                    transform: "translateY(-1px)",
+                    color: "#004aad",
+                    borderBottomColor: "#1181c8",
+                  })
+                }
+                onMouseLeave={(event) =>
+                  clearInlineHover(event, {
+                    transform: "translateY(0)",
+                    color: "#1181c8",
+                    borderBottomColor: "transparent",
+                  })
+                }
+              >
+                Courses
+              </NavLink>
+              <NavLink
+                to="/jobpage"
+                style={navLinkStyle}
+                onMouseEnter={(event) =>
+                  applyInlineHover(event, {
+                    transform: "translateY(-1px)",
+                    color: "#004aad",
+                    borderBottomColor: "#1181c8",
+                  })
+                }
+                onMouseLeave={(event) =>
+                  clearInlineHover(event, {
+                    transform: "translateY(0)",
+                    color: "#1181c8",
+                    borderBottomColor: "transparent",
+                  })
+                }
+              >
+                Opportunity
+              </NavLink>
+              <NavLink
+                to="/toolspage"
+                style={navLinkStyle}
+                onMouseEnter={(event) =>
+                  applyInlineHover(event, {
+                    transform: "translateY(-1px)",
+                    color: "#004aad",
+                    borderBottomColor: "#1181c8",
+                  })
+                }
+                onMouseLeave={(event) =>
+                  clearInlineHover(event, {
+                    transform: "translateY(0)",
+                    color: "#1181c8",
+                    borderBottomColor: "transparent",
+                  })
+                }
+              >
+                Tools
+              </NavLink>
 
-            {!user ? (
-              <button onClick={() => setIsModalOpen(true)} style={loginButtonStyle}>
-                Login
-              </button>
-            ) : (
-              <>
-                <Link to="/profile" style={linkStyle}>
-                  Profile
-                </Link>
-                <button onClick={handleLogout} style={loginButtonStyle}>
-                  Logout
+              {!user ? (
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  style={actionButtonStyle}
+                  onMouseEnter={(event) =>
+                    applyInlineHover(event, {
+                      transform: "translateY(-1px)",
+                      boxShadow: "0 12px 26px rgba(17, 129, 200, 0.32)",
+                      filter: "brightness(1.04)",
+                    })
+                  }
+                  onMouseLeave={(event) =>
+                    clearInlineHover(event, {
+                      transform: "translateY(0)",
+                      boxShadow: "0 10px 24px rgba(17, 129, 200, 0.28)",
+                      filter: "brightness(1)",
+                    })
+                  }
+                >
+                  Login
                 </button>
-              </>
-            )}
-          </nav>
+              ) : (
+                <>
+                  <NavLink
+                    to="/profile"
+                    style={navLinkStyle}
+                    onMouseEnter={(event) =>
+                      applyInlineHover(event, {
+                        transform: "translateY(-1px)",
+                        color: "#004aad",
+                        borderBottomColor: "#1181c8",
+                      })
+                    }
+                    onMouseLeave={(event) =>
+                      clearInlineHover(event, {
+                        transform: "translateY(0)",
+                        color: "#1181c8",
+                        borderBottomColor: "transparent",
+                      })
+                    }
+                  >
+                    Profile
+                  </NavLink>
+                  <button
+                    onClick={handleLogout}
+                    style={secondaryActionStyle}
+                    onMouseEnter={(event) =>
+                      applyInlineHover(event, {
+                        transform: "translateY(-1px)",
+                        filter: "brightness(1.07)",
+                      })
+                    }
+                    onMouseLeave={(event) =>
+                      clearInlineHover(event, {
+                        transform: "translateY(0)",
+                        filter: "brightness(1)",
+                      })
+                    }
+                  >
+                    Logout
+                  </button>
+                </>
+              )}
+            </nav>
+          </div>
         </header>
       )}
       <Suspense fallback={<div style={{ padding: "20px", textAlign: "center" }}>Loading...</div>}>
@@ -256,73 +472,66 @@ function AppContent() {
       <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isSignup={isSignup} />
       {showModal && <FounderNoteModal onClose={handleCloseModal} />}
       {/* Footer (Hidden on Login & Signup pages) */}
-      {location.pathname !== "/login" && location.pathname !== "/signup" && (
-        <footer style={{ backgroundColor: "#1181c8", color: "white", textAlign: "left", padding: "40px 20px", marginTop: "0px" }}>
-        <div style={{
-          maxWidth: "1100px",
-          margin: "auto",
-          display: "flex",
-          flexWrap: "nowrap",  // Ensures all columns stay in one row
-          justifyContent: "space-between",
-          gap: "20px"
-        }}>
-          {/* Column 1 (Doubled Width) */}
-          <div style={{ flex: 2, minWidth: "400px" }}>
-            <img src={flogo} alt="Company Logo" style={{ width: "300px", height: "auto", marginBottom: "10px" }} />
-            <p>A complete solution for learning, time management, mental wellness, and career growth..</p>
+      {!isAuthPage && (
+        <footer style={footerStyle}>
+          <div style={footerInnerStyle}>
+            <div>
+              <img
+                src={flogo}
+                alt="Company Logo"
+                style={{ width: isMobile ? "220px" : "280px", height: "auto", marginBottom: "12px" }}
+              />
+              <p style={{ ...footerTextStyle, maxWidth: "460px" }}>
+                A complete solution for learning, time management, mental wellness, and career growth.
+              </p>
+              <p style={{ ...footerTextStyle, opacity: 0.85 }}>
+                Build skills. Find opportunities. Grow with confidence.
+              </p>
+            </div>
+
+            <div>
+              <h6 style={footerHeadingStyle}>Products</h6>
+              <Link to="/coursepage" style={footerLinkStyle} onMouseEnter={(event) => applyInlineHover(event, { color: "#ffffff", transform: "translateX(2px)" })} onMouseLeave={(event) => clearInlineHover(event, { color: "rgba(255, 255, 255, 0.9)", transform: "translateX(0)" })}>Courses</Link><br />
+              <Link to="/coursepage" style={footerLinkStyle} onMouseEnter={(event) => applyInlineHover(event, { color: "#ffffff", transform: "translateX(2px)" })} onMouseLeave={(event) => clearInlineHover(event, { color: "rgba(255, 255, 255, 0.9)", transform: "translateX(0)" })}>Specializations</Link><br />
+              <Link to="/notespage" style={footerLinkStyle} onMouseEnter={(event) => applyInlineHover(event, { color: "#ffffff", transform: "translateX(2px)" })} onMouseLeave={(event) => clearInlineHover(event, { color: "rgba(255, 255, 255, 0.9)", transform: "translateX(0)" })}>Notes</Link><br />
+              <Link to="/jobpage" style={footerLinkStyle} onMouseEnter={(event) => applyInlineHover(event, { color: "#ffffff", transform: "translateX(2px)" })} onMouseLeave={(event) => clearInlineHover(event, { color: "rgba(255, 255, 255, 0.9)", transform: "translateX(0)" })}>Jobs</Link>
+            </div>
+
+            <div>
+              <h6 style={footerHeadingStyle}>Tools</h6>
+              <Link to="/techInterview" style={footerLinkStyle} onMouseEnter={(event) => applyInlineHover(event, { color: "#ffffff", transform: "translateX(2px)" })} onMouseLeave={(event) => clearInlineHover(event, { color: "rgba(255, 255, 255, 0.9)", transform: "translateX(0)" })}>Interview Practice</Link><br />
+              <Link to="/projectModal" style={footerLinkStyle} onMouseEnter={(event) => applyInlineHover(event, { color: "#ffffff", transform: "translateX(2px)" })} onMouseLeave={(event) => clearInlineHover(event, { color: "rgba(255, 255, 255, 0.9)", transform: "translateX(0)" })}>Project Listing</Link><br />
+              <Link to="/toolspage" style={footerLinkStyle} onMouseEnter={(event) => applyInlineHover(event, { color: "#ffffff", transform: "translateX(2px)" })} onMouseLeave={(event) => clearInlineHover(event, { color: "rgba(255, 255, 255, 0.9)", transform: "translateX(0)" })}>Mentora</Link><br />
+              <Link to="/toolspage" style={footerLinkStyle} onMouseEnter={(event) => applyInlineHover(event, { color: "#ffffff", transform: "translateX(2px)" })} onMouseLeave={(event) => clearInlineHover(event, { color: "rgba(255, 255, 255, 0.9)", transform: "translateX(0)" })}>Career Supportive Tools</Link>
+            </div>
+
+            {!isTablet && !isMobile && (
+              <div>
+                <h6 style={footerHeadingStyle}>Contact</h6>
+                <p style={footerTextStyle}><i className="fas fa-home"></i> Roorkee, Uttarakhand, 247667, India</p>
+                <p style={footerTextStyle}><i className="fas fa-envelope"></i> udyampath@gmail.com</p>
+                <p style={footerTextStyle}><i className="fas fa-phone"></i> +91 969 312 093</p>
+                <p style={footerTextStyle}><i className="fas fa-print"></i> +01 234 567 89</p>
+              </div>
+            )}
           </div>
-          
-          {/* Column 2 */}
-          <div style={{ flex: 1, minWidth: "200px" }}>
-            <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Products</h6>
-            <a href="/coursepage" style={{ textDecoration: "none", color: "inherit" }}>
-              <p>Courses</p>
-            </a>
-            <a href="/coursepage" style={{ textDecoration: "none", color: "inherit" }}>
-              <p>Specializations</p>
-            </a>
-            <a href="/notespage" style={{ textDecoration: "none", color: "inherit" }}>
-              <p>Notes</p>
-            </a>
-            <a href="/jobpage" style={{ textDecoration: "none", color: "inherit" }}>
-              <p>Jobs</p>
-            </a>
-          </div>
-      
-          {/* Column 3 */}
-          <div style={{ flex: 1, minWidth: "200px" }}>
-            <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Tools</h6>
-            <a href="/techInterview" style={{ textDecoration: "none", color: "inherit"}}>
-              <p>Interview Practice</p>
-            </a>
-            <a href="/projectModal" style={{ textDecoration: "none", color: "inherit"}}>
-              <p>Project Listing</p>
-            </a>
-            <a href="/toolspage" style={{ textDecoration: "none", color: "inherit"}}>
-              <p>Mentora</p>
-            </a>
-            <a href="/toolspage" style={{ textDecoration: "none", color: "inherit"}}>
-              <p>Career Supportive Tools</p>
+
+          <hr style={{ margin: "24px auto 14px", width: "100%", maxWidth: "1200px", borderColor: "rgba(255,255,255,0.3)" }} />
+
+          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "8px" }}>
+            <p style={{ margin: 0, fontSize: "13px", color: "rgba(255,255,255,0.9)" }}>
+              © 2026 UdyAmPath. Crafted for modern career growth.
+            </p>
+            <a
+              href="https://yourwebsite.com"
+              style={{ color: "rgba(255,255,255,0.95)", textDecoration: "none", fontSize: "13px", transition: "opacity 0.2s ease" }}
+              onMouseEnter={(event) => applyInlineHover(event, { opacity: "0.85" })}
+              onMouseLeave={(event) => clearInlineHover(event, { opacity: "1" })}
+            >
+              Visit Website
             </a>
           </div>
-      
-          {/* Column 4 */}
-          <div style={{ flex: 1, minWidth: "200px" }}>
-            <h6 style={{ fontSize: "18px", fontWeight: "bold" }}>Contact</h6>
-            <p><i className="fas fa-home"></i> Roorkee, Uttarakhand, 247667, India</p>
-            <p><i className="fas fa-envelope"></i> udyampath@gmail.com</p>
-            <p><i className="fas fa-phone"></i> +91 969 312 093</p>
-            <p><i className="fas fa-print"></i> +01 234 567 89</p>
-          </div>
-        </div>
-      
-        <hr style={{ margin: "20px 0", width: "100%", borderColor: "white" }} />
-      
-        <div>
-          <p>© 2025 Copyright: <a href="https://yourwebsite.com" style={{ color: "white", textDecoration: "none" }}>YourWebsite.com</a></p>
-        </div>
-      </footer>
-      
+        </footer>
       )}
     </>
   );

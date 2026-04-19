@@ -1,218 +1,378 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import homeArrow from "../../assets/homearrow.png";
 import homePopular from "../../assets/homepopular.png";
 
+const courseData = [
+  {
+    title: "UI/UX Design",
+    description: "Learn user research, wireframing, and modern interaction patterns.",
+    link: "/courses/uiux",
+    level: "Beginner",
+    duration: "6 Weeks",
+    accent: "#a5b4fc",
+  },
+  {
+    title: "Full Stack Development",
+    description: "Build real-world apps with frontend, backend, APIs, and deployment.",
+    link: "/courses/fullstack",
+    level: "Intermediate",
+    duration: "10 Weeks",
+    accent: "#7dd3fc",
+  },
+  {
+    title: "Data Science",
+    description: "Master Python, analytics, machine learning, and data storytelling.",
+    link: "/courses/datascience",
+    level: "Intermediate",
+    duration: "8 Weeks",
+    accent: "#6ee7b7",
+  },
+  {
+    title: "Cybersecurity Essentials",
+    description: "Understand threats, secure systems, and protect modern applications.",
+    link: "/courses/cybersecurity",
+    level: "Beginner",
+    duration: "7 Weeks",
+    accent: "#fca5a5",
+  },
+  {
+    title: "Digital Marketing",
+    description: "Run SEO, social, and paid campaigns with measurable growth.",
+    link: "/courses/marketing",
+    level: "All Levels",
+    duration: "5 Weeks",
+    accent: "#fcd34d",
+  },
+  {
+    title: "Cloud Computing",
+    description: "Deploy scalable services using AWS, Azure, and cloud architecture.",
+    link: "/courses/cloud",
+    level: "Advanced",
+    duration: "9 Weeks",
+    accent: "#93c5fd",
+  },
+];
+
 const Popular = () => {
-  const [startIndex, setStartIndex] = useState(0);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isTablet = useMediaQuery({ minWidth: 769, maxWidth: 1100 });
 
-  const coursesToShow = 3; // Show only 3 courses at a time
+  const visibleCount = isMobile ? 1 : isTablet ? 2 : 3;
   const totalCourses = courseData.length;
+  const baseIndex = totalCourses;
 
-  const nextSlide = useCallback(() => {
-    setStartIndex((prev) => (prev + 1) % totalCourses); // Move forward cyclically
-  }, [totalCourses]);
+  const [currentIndex, setCurrentIndex] = useState(baseIndex);
+  const [isAnimating, setIsAnimating] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
-  const prevSlide = () => {
-    setStartIndex((prev) => (prev - 1 + totalCourses) % totalCourses); // Move backward cyclically
-  };
+  const infiniteSlides = useMemo(
+    () => [...courseData, ...courseData, ...courseData],
+    []
+  );
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 3000); // Auto move every 3 seconds
-    return () => clearInterval(interval);
-  }, [nextSlide]);
+    setIsAnimating(false);
+    setCurrentIndex(baseIndex);
+  }, [visibleCount, baseIndex]);
 
-  // Create a visible array for the current courses
-  const visibleCourses = [];
-  for (let i = 0; i < coursesToShow; i++) {
-    visibleCourses.push(courseData[(startIndex + i) % totalCourses]);
-  }
+  useEffect(() => {
+    if (isAnimating) return;
+    const frame = requestAnimationFrame(() => {
+      setIsAnimating(true);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [isAnimating]);
+
+  useEffect(() => {
+    if (isPaused) return undefined;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => prev + 1);
+    }, 3200);
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  const goNext = () => setCurrentIndex((prev) => prev + 1);
+  const goPrev = () => setCurrentIndex((prev) => prev - 1);
+
+  const handleTransitionEnd = () => {
+    if (currentIndex >= baseIndex + totalCourses) {
+      setIsAnimating(false);
+      setCurrentIndex(baseIndex);
+    }
+    if (currentIndex < baseIndex) {
+      setIsAnimating(false);
+      setCurrentIndex(baseIndex + totalCourses - 1);
+    }
+  };
 
   return (
-    <div style={styles.container}>
-      {/* Heading Section */}
-      <div style={styles.headingContainer}>
-        <h2 style={styles.heading}>
-          Most Popular <br /> Courses{" "}
-          <img src={homeArrow} alt="arrow" style={styles.arrowIcon} />
-        </h2>
-        <p style={styles.subHeading}>
-          Explore top-rated courses loved by learners worldwide. Master skills
-          that matter and stay ahead!
-        </p>
+    <section style={styles.section}>
+      <div style={styles.headerBlock}>
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
+          <h2 style={styles.heading}>
+            Most Popular Courses
+            <img src={homeArrow} alt="arrow" style={styles.arrowIcon} />
+          </h2>
+          <p style={styles.subHeading}>
+            Curated programs learners keep coming back to. Explore practical,
+            career-ready courses designed to help you level up faster.
+          </p>
+        </motion.div>
       </div>
 
-      {/* Carousel */}
-      <div style={styles.carouselWrapper}>
-        <FaChevronLeft
-          style={{ ...styles.arrow, ...styles["left-arrow"] }}
-          onClick={prevSlide} // Click for previous slide
-        />
-        <div style={styles.courseWrapper}>
+      <div
+        style={styles.carouselShell}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <button
+          type="button"
+          aria-label="Previous courses"
+          style={{ ...styles.navButton, ...styles.leftButton }}
+          onClick={goPrev}
+        >
+          <FaChevronLeft />
+        </button>
+
+        <div style={styles.viewport}>
           <div
             style={{
-              ...styles.courseScroll,
-              transform: `translateX(-${(startIndex % totalCourses) * (100 / coursesToShow)}%)`, // Move 100% per 3 items
-              transition: "transform 0.6s ease", // Smooth transition
+              ...styles.track,
+              width: `${(infiniteSlides.length * 100) / visibleCount}%`,
+              transform: `translateX(-${(currentIndex * 100) / infiniteSlides.length}%)`,
+              transition: isAnimating ? "transform 620ms cubic-bezier(0.22, 0.61, 0.36, 1)" : "none",
             }}
+            onTransitionEnd={handleTransitionEnd}
           >
-            {courseData.map((course, index) => (
-              <div key={index} style={styles.card}>
-                <img src={homePopular} alt="Course" style={styles.cardImage} />
-                <h3 style={styles.cardTitle}>{course.title}</h3>
-                <p style={styles.cardDesc}>{course.description}</p>
-                <Link to={course.link} style={styles.cardButton}>
-                  Start Learning
-                </Link>
+            {infiniteSlides.map((course, index) => (
+              <div
+                key={`${course.title}-${index}`}
+                style={{
+                  ...styles.slide,
+                  width: `${100 / infiniteSlides.length}%`,
+                  padding: isMobile ? "0 8px" : "0 12px",
+                }}
+              >
+                <motion.article
+                  style={styles.card}
+                  whileHover={{ y: -8, scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 220, damping: 20 }}
+                >
+                  <div style={styles.imageWrap}>
+                    <img src={homePopular} alt={course.title} style={styles.cardImage} />
+                    <div
+                      style={{
+                        ...styles.imageOverlay,
+                        background: `linear-gradient(155deg, ${course.accent}40 0%, rgba(10, 30, 68, 0.78) 78%)`,
+                      }}
+                    />
+                    <div style={{ ...styles.levelChip, borderColor: `${course.accent}aa` }}>
+                      {course.level}
+                    </div>
+                  </div>
+
+                  <div style={styles.content}>
+                    <div>
+                      <h3 style={styles.cardTitle}>{course.title}</h3>
+                      <p style={styles.cardDesc}>{course.description}</p>
+                    </div>
+
+                    <div style={styles.footerRow}>
+                      <span style={styles.duration}>{course.duration}</span>
+                      <Link to={course.link} style={styles.cardButton}>
+                        Start Learning
+                      </Link>
+                    </div>
+                  </div>
+                </motion.article>
               </div>
             ))}
           </div>
         </div>
-        <FaChevronRight
-          style={{ ...styles.arrow, ...styles["right-arrow"] }}
-          onClick={nextSlide} // Click for next slide
-        />
+
+        <button
+          type="button"
+          aria-label="Next courses"
+          style={{ ...styles.navButton, ...styles.rightButton }}
+          onClick={goNext}
+        >
+          <FaChevronRight />
+        </button>
       </div>
-    </div>
+    </section>
   );
 };
 
-const courseData = [
-  {
-    title: "UI/UX Design",
-    description: "Learn the fundamentals of user experience and interface design",
-    link: "/courses/uiux",
-  },
-  {
-    title: "Full Stack Development",
-    description: "Become proficient in both front end and back-end technologies",
-    link: "/courses/fullstack",
-  },
-  {
-    title: "Data Science",
-    description: "Explore data analysis, machine learning, and statistical modeling",
-    link: "/courses/datascience",
-  },
-  {
-    title: "Cybersecurity Essentials",
-    description: "Understand key concepts of securing systems and data",
-    link: "/courses/cybersecurity",
-  },
-  {
-    title: "Digital Marketing",
-    description: "Master SEO, social media, and campaign strategies",
-    link: "/courses/marketing",
-  },
-  {
-    title: "Cloud Computing",
-    description: "Get started with AWS, Azure and cloud-based architectures",
-    link: "/courses/cloud",
-  },
-];
-
 const styles = {
-  container: {
-    display: "flex",
-    padding: "40px",
+  section: {
+    width: "100vw",
+    marginLeft: "calc(50% - 50vw)",
+    marginRight: "calc(50% - 50vw)",
+    padding: "56px 0",
     background: "linear-gradient(to right, #4b2b7f, #003057)",
-    color: "#fff",
-    fontFamily: "'Segoe UI', sans-serif",
-    maxWidth: "100%", // Make sure it does not expand beyond the screen width
-    overflow: "hidden", // Prevent overflow
+    color: "#ffffff",
+    overflow: "hidden",
   },
-  headingContainer: {
-    marginBottom: "30px",
-    textAlign: "left",
+  headerBlock: {
+    width: "100%",
+    maxWidth: "1240px",
+    margin: "0 auto 26px",
+    padding: "0 24px",
+    boxSizing: "border-box",
   },
   heading: {
-    fontSize: "2.5rem",
-    fontWeight: "bold",
-    display: "flex",
+    margin: 0,
+    fontSize: "clamp(1.9rem, 4vw, 3rem)",
+    fontWeight: 800,
+    letterSpacing: "-0.03em",
+    lineHeight: 1.15,
+    display: "inline-flex",
     alignItems: "center",
     gap: "10px",
   },
   arrowIcon: {
-    width: "40px",
-    height: "40px",
+    width: "36px",
+    height: "36px",
+    objectFit: "contain",
   },
   subHeading: {
-    fontSize: "1.1rem",
-    color: "#ccc",
-    marginTop: "10px",
-    maxWidth: "500px",
+    margin: "14px 0 0",
+    fontSize: "1rem",
+    color: "rgba(236, 244, 255, 0.9)",
+    maxWidth: "700px",
+    lineHeight: 1.7,
   },
-  carouselWrapper: {
-    display: "flex",
-    alignItems: "center",
+  carouselShell: {
+    width: "100%",
+    maxWidth: "1240px",
+    margin: "0 auto",
     position: "relative",
-    overflow: "hidden", // Hide extra items beyond the visible section
-    width: "80%", // Ensure it takes the full width of the container
+    padding: "0 44px",
   },
-  courseWrapper: {
-    display: "flex",
-    transition: "transform 0.6s ease", // Smooth transition with ease-out cubic bezier curve
+  viewport: {
+    width: "100%",
+    overflow: "hidden",
   },
-  courseScroll: {
+  track: {
     display: "flex",
-    gap: "20px", // Space between the courses
+    alignItems: "stretch",
+    willChange: "transform",
+  },
+  slide: {
     flexShrink: 0,
-    minWidth: "100%", // This ensures the carousel doesn't expand the section width
+    boxSizing: "border-box",
   },
   card: {
-    minWidth: "300px", // Keep a fixed width for each box
-    maxWidth: "300px", // Fixed width
-    background: "rgba(255, 255, 255, 0.05)",
-    borderRadius: "20px",
-    padding: "20px",
-    textAlign: "center",
-    backdropFilter: "blur(10px)",
-    boxShadow: "0 8px 16px rgba(0,0,0,0.3)",
-    flexShrink: 0,
+    height: "100%",
+    borderRadius: "22px",
+    overflow: "hidden",
+    border: "1px solid rgba(255, 255, 255, 0.25)",
+    background: "rgba(255, 255, 255, 0.08)",
+    backdropFilter: "blur(16px)",
+    WebkitBackdropFilter: "blur(16px)",
+    boxShadow: "0 18px 50px rgba(0, 0, 0, 0.28)",
+    display: "flex",
+    flexDirection: "column",
+  },
+  imageWrap: {
+    position: "relative",
+    height: "172px",
   },
   cardImage: {
     width: "100%",
-    height: "160px",
-    borderRadius: "12px",
+    height: "100%",
     objectFit: "cover",
-    marginBottom: "15px",
+    opacity: 0.9,
+  },
+  imageOverlay: {
+    position: "absolute",
+    inset: 0,
+  },
+  levelChip: {
+    position: "absolute",
+    top: "12px",
+    left: "12px",
+    padding: "6px 11px",
+    borderRadius: "999px",
+    border: "1px solid rgba(255, 255, 255, 0.5)",
+    background: "rgba(8, 21, 55, 0.55)",
+    color: "#ffffff",
+    fontSize: "0.76rem",
+    fontWeight: 600,
+    letterSpacing: "0.02em",
+  },
+  content: {
+    padding: "18px 18px 16px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    gap: "14px",
+    minHeight: "170px",
   },
   cardTitle: {
-    fontSize: "1.3rem",
-    fontWeight: "bold",
-    marginBottom: "10px",
+    margin: 0,
+    fontSize: "1.15rem",
+    fontWeight: 700,
+    lineHeight: 1.35,
   },
   cardDesc: {
-    fontSize: "0.95rem",
-    color: "#ddd",
-    marginBottom: "15px",
+    margin: "8px 0 0",
+    fontSize: "0.92rem",
+    lineHeight: 1.55,
+    color: "rgba(233, 241, 255, 0.9)",
+  },
+  footerRow: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: "10px",
+  },
+  duration: {
+    fontSize: "0.82rem",
+    color: "rgba(230, 240, 255, 0.85)",
+    letterSpacing: "0.02em",
   },
   cardButton: {
-    display: "inline-block",
-    padding: "10px 20px",
-    backgroundColor: "#223fa0",
-    color: "#fff",
-    borderRadius: "25px",
     textDecoration: "none",
-    fontWeight: "bold",
-    fontSize: "0.9rem",
+    padding: "9px 14px",
+    borderRadius: "10px",
+    background: "linear-gradient(135deg, #60a5fa 0%, #4f46e5 100%)",
+    color: "#ffffff",
+    fontSize: "0.84rem",
+    fontWeight: 700,
+    letterSpacing: "0.01em",
+    whiteSpace: "nowrap",
   },
-  arrow: {
-    fontSize: "2rem",
-    color: "#aaa",
+  navButton: {
     position: "absolute",
     top: "50%",
     transform: "translateY(-50%)",
+    width: "34px",
+    height: "34px",
+    borderRadius: "50%",
+    border: "1px solid rgba(255, 255, 255, 0.35)",
+    background: "rgba(12, 26, 59, 0.7)",
+    color: "#ffffff",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     cursor: "pointer",
-    zIndex: 10, // Ensure the arrows are above other elements
+    zIndex: 5,
   },
-  "left-arrow": {
-    left: "10px",
+  leftButton: {
+    left: "0",
   },
-  "right-arrow": {
-    right: "10px",
+  rightButton: {
+    right: "0",
   },
 };
 

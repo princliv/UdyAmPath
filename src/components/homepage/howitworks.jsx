@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import createProfileGif from "../../assets/img1.gif";
 import discoverCoursesGif from "../../assets/img2.gif";
 import jobSimulatorGif from "../../assets/img3.gif";
