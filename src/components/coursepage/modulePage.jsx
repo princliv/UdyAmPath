@@ -350,8 +350,10 @@ const styles = {
     sidebarTitle: {
         fontSize: "18px",
         fontWeight: "600",
-        color: "#2d3748",
+        color: "var(--course-primary)",
         marginBottom: "16px",
+        borderLeft: "4px solid var(--course-primary)",
+        paddingLeft: "10px",
     },
     progressContainer: {
         marginTop: "16px",
@@ -462,6 +464,8 @@ const styles = {
         fontWeight: "600",
         color: "#2d3748",
         marginBottom: "16px",
+        borderLeft: "4px solid var(--course-primary)",
+        paddingLeft: "12px",
     },
     moduleDetails: {
         fontSize: "16px",

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import GlassCard from '../shared/GlassCard';
+import AnimatedSection from '../shared/AnimatedSection';
 
 const MyLearningsPage = () => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);
@@ -60,23 +63,23 @@ const MyLearningsPage = () => {
       padding: "20px", 
       maxWidth: "1200px", 
       margin: "0 auto",
-      fontFamily: "'Inter', sans-serif"
+      fontFamily: "var(--font-primary)"
     }}>
       <h2 style={{ 
-        color: "#004aad", 
+        color: "var(--course-primary)", 
         marginBottom: "30px",
         fontSize: "28px",
-        fontWeight: "600"
+        fontWeight: "700"
       }}>
         My Learning Dashboard
       </h2>
       
       {enrolledCourses.length === 0 ? (
-        <div style={{ 
-          backgroundColor: "white", 
+        <GlassCard style={{ 
+          background: "rgba(255,255,255,0.55)", 
           padding: "40px", 
           borderRadius: "12px",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+          border: "1px solid rgba(124, 107, 255, 0.18)",
           textAlign: "center"
         }}>
           <div style={{ 
@@ -100,24 +103,41 @@ const MyLearningsPage = () => {
           }}>
             Courses you enroll in will appear here with your progress tracking.
           </p>
-        </div>
+        </GlassCard>
       ) : (
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))",
-          gap: "20px"
-        }}>
+        <AnimatedSection>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))",
+              gap: "20px"
+            }}
+          >
           {enrolledCourses.map((course) => (
-            <div key={course.id} style={{
-              backgroundColor: "white",
+            <motion.div
+              key={course.id}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+            >
+            <GlassCard style={{
+              background: "rgba(255,255,255,0.58)",
               borderRadius: "12px",
               padding: "20px",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
-              transition: "transform 0.2s",
-              ":hover": {
-                transform: "translateY(-5px)",
-                boxShadow: "0 8px 16px rgba(0,0,0,0.1)"
-              }
+              border: "1px solid rgba(124, 107, 255, 0.18)",
+              height: "100%",
             }}>
               <div style={{
                 display: "flex",
@@ -163,17 +183,20 @@ const MyLearningsPage = () => {
                 </div>
                 <div style={{
                   height: "8px",
-                  backgroundColor: "#f0f0f0",
+                  backgroundColor: "rgba(124, 107, 255, 0.18)",
                   borderRadius: "4px",
                   overflow: "hidden"
                 }}>
-                  <div style={{
-                    width: `${course.progress}%`,
-                    height: "100%",
-                    backgroundColor: "#004aad",
-                    borderRadius: "4px",
-                    transition: "width 0.3s ease"
-                  }}></div>
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${course.progress}%` }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    style={{
+                      height: "100%",
+                      backgroundColor: "var(--course-primary)",
+                      borderRadius: "4px",
+                    }}
+                  ></motion.div>
                 </div>
               </div>
               
@@ -232,7 +255,7 @@ const MyLearningsPage = () => {
                   width: "100%",
                   padding: "10px",
                   marginTop: "15px",
-                  backgroundColor: "#004aad",
+                  backgroundColor: "var(--course-primary)",
                   color: "white",
                   border: "none",
                   borderRadius: "6px",
@@ -247,9 +270,11 @@ const MyLearningsPage = () => {
                 {course.progress === 0 ? "Start Learning" : 
                  course.progress === 100 ? "Completed! Review Course" : "Continue Learning"}
               </button>
-            </div>
+            </GlassCard>
+            </motion.div>
           ))}
-        </div>
+          </motion.div>
+        </AnimatedSection>
       )}
     </div>
   );

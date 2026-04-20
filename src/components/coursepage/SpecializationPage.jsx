@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import GlassCard from '../shared/GlassCard';
+import AnimatedSection from '../shared/AnimatedSection';
+import SkeletonCard from '../shared/SkeletonCard';
 
 // Import all images from your assets folder
 import AI from '../../assets/specializationpage/AI.jpg';
@@ -71,7 +75,27 @@ const SpecializationPage = () => {
   };
 
   if (loading) {
-    return <div style={{ textAlign: 'center', padding: '20px' }}>Loading specializations...</div>;
+    return (
+      <div style={{ padding: '20px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gap: '18px',
+          }}
+        >
+          {Array.from({ length: 6 }).map((_, index) => (
+            <SkeletonCard
+              key={`spec-skeleton-${index}`}
+              height={330}
+              borderRadius={16}
+              baseColor="#ede9fe"
+              highlightColor="#c8bbff"
+            />
+          ))}
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -80,9 +104,15 @@ const SpecializationPage = () => {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: '20px'
+        marginBottom: '20px',
+        background: 'rgba(124, 107, 255, 0.1)',
+        borderRadius: 'var(--radius-xl)',
+        border: '1px solid rgba(124, 107, 255, 0.2)',
+        padding: '14px 16px',
+        gap: '12px',
+        flexWrap: 'wrap',
       }}>
-        <h2 style={{ fontSize: '24px', color: '#004aad' }}> Specializations </h2>
+        <h2 style={{ fontSize: '24px', color: 'var(--course-primary)' }}>Specializations</h2>
         <input
           type="text"
           placeholder="Search specializations..."
@@ -91,113 +121,132 @@ const SpecializationPage = () => {
           style={{
             padding: '10px 15px',
             borderRadius: '20px',
-            border: '1px solid #ccc',
-            width: '300px'
+            border: '1px solid rgba(124, 107, 255, 0.35)',
+            background: 'rgba(255, 255, 255, 0.65)',
+            width: '300px',
+            outline: 'none',
           }}
         />
       </div>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-        gap: '20px',
-        padding: '10px'
-      }}>
-        {filteredSpecializations.map((specialization) => (
-          <div 
-            key={specialization.id}
-            style={{
-              backgroundColor: 'white',
-              borderRadius: '10px',
-              boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-              overflow: 'hidden',
-              transition: 'transform 0.3s',
-              cursor: 'pointer',
-              ':hover': {
-                transform: 'translateY(-5px)'
-              }
-            }}
-            onClick={() => openSpecializationDetail(specialization)}
-          >
-            <div style={{
-              height: '160px',
-              background: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url(${specializationImages[specialization.name]})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              position: 'relative'
-            }}>
-              <div style={{
-                position: 'absolute',
-                bottom: '10px',
-                left: '10px',
-                color: 'white',
-                textShadow: '1px 1px 3px rgba(0,0,0,0.8)'
-              }}>
-                <h3 style={{ fontSize: '20px', margin: 0 }}>{specialization.name}</h3>
-                <p style={{ margin: '5px 0 0', fontSize: '14px' }}>{specialization.duration}</p>
-              </div>
-            </div>
-            <div style={{ padding: '15px' }}>
-              <p style={{ color: '#555', marginBottom: '15px' }}>{specialization.description}</p>
-              
-              <div style={{ marginBottom: '15px' }}>
-                <h4 style={{ fontSize: '16px', margin: '0 0 8px', color: '#333' }}>Key Courses:</h4>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
-                  {specialization.courses.slice(0, 3).map((course, index) => (
-                    <span 
-                      key={index}
-                      style={{
-                        backgroundColor: '#e4deff',
-                        padding: '3px 8px',
-                        borderRadius: '10px',
-                        fontSize: '12px'
-                      }}
-                    >
-                      {course.name}
-                    </span>
-                  ))}
-                  {specialization.courses.length > 3 && (
-                    <span style={{
-                      backgroundColor: '#d1c4ff',
-                      padding: '3px 8px',
-                      borderRadius: '10px',
-                      fontSize: '12px'
-                    }}>
-                      +{specialization.courses.length - 3} more
-                    </span>
-                  )}
+      <AnimatedSection>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '20px',
+            padding: '10px',
+          }}
+        >
+          {filteredSpecializations.map((specialization) => (
+            <motion.div
+              key={specialization.id}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+            >
+              <GlassCard
+                onClick={() => openSpecializationDetail(specialization)}
+                style={{
+                  background: 'rgba(255,255,255,0.58)',
+                  border: '1px solid rgba(124,107,255,0.24)',
+                  overflow: 'hidden',
+                }}
+              >
+                <div style={{
+                  height: '160px',
+                  background: `linear-gradient(rgba(24, 16, 62, 0.2), rgba(24, 16, 62, 0.5)), url(${specializationImages[specialization.name]})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  position: 'relative'
+                }}>
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '10px',
+                    left: '10px',
+                    color: 'white',
+                    textShadow: '1px 1px 3px rgba(0,0,0,0.8)'
+                  }}>
+                    <h3 style={{ fontSize: '20px', margin: 0 }}>{specialization.name}</h3>
+                    <p style={{ margin: '5px 0 0', fontSize: '14px' }}>{specialization.duration}</p>
+                  </div>
                 </div>
-              </div>
+                <div style={{ padding: '15px' }}>
+                  <p style={{ color: '#4c4466', marginBottom: '15px' }}>{specialization.description}</p>
 
-              <div>
-                <h4 style={{ fontSize: '16px', margin: '0 0 8px', color: '#333' }}>Top Employers:</h4>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  {specialization.companies.slice(0, 3).map((company, index) => (
-                    <div key={index} style={{
-                      width: '30px',
-                      height: '30px',
-                      borderRadius: '50%',
-                      backgroundColor: '#f0f0f0',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '10px',
-                      fontWeight: 'bold'
-                    }}>
-                      {company.charAt(0)}
+                  <div style={{ marginBottom: '15px' }}>
+                    <h4 style={{ fontSize: '16px', margin: '0 0 8px', color: '#2c2552' }}>Key Courses:</h4>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
+                      {specialization.courses.slice(0, 3).map((course, index) => (
+                        <span
+                          key={index}
+                          style={{
+                            backgroundColor: 'rgba(124, 107, 255, 0.16)',
+                            padding: '3px 8px',
+                            borderRadius: '10px',
+                            fontSize: '12px'
+                          }}
+                        >
+                          {course.name}
+                        </span>
+                      ))}
+                      {specialization.courses.length > 3 && (
+                        <span style={{
+                          backgroundColor: 'rgba(124, 107, 255, 0.24)',
+                          padding: '3px 8px',
+                          borderRadius: '10px',
+                          fontSize: '12px'
+                        }}>
+                          +{specialization.courses.length - 3} more
+                        </span>
+                      )}
                     </div>
-                  ))}
-                  {specialization.companies.length > 3 && (
-                    <span style={{ fontSize: '12px', color: '#666' }}>
-                      +{specialization.companies.length - 3} companies
-                    </span>
-                  )}
+                  </div>
+
+                  <div>
+                    <h4 style={{ fontSize: '16px', margin: '0 0 8px', color: '#2c2552' }}>Top Employers:</h4>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      {specialization.companies.slice(0, 3).map((company, index) => (
+                        <div key={index} style={{
+                          width: '30px',
+                          height: '30px',
+                          borderRadius: '50%',
+                          backgroundColor: 'rgba(124, 107, 255, 0.14)',
+                          color: '#2c2552',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '10px',
+                          fontWeight: 'bold'
+                        }}>
+                          {company.charAt(0)}
+                        </div>
+                      ))}
+                      {specialization.companies.length > 3 && (
+                        <span style={{ fontSize: '12px', color: '#5d5476' }}>
+                          +{specialization.companies.length - 3} companies
+                        </span>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+              </GlassCard>
+            </motion.div>
+          ))}
+        </motion.div>
+      </AnimatedSection>
     </div>
   );
 };
