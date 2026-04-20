@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const FaqPage = () => {
   const [openIndex, setOpenIndex] = useState(null);

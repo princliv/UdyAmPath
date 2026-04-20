@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import home1 from "../assets/home1.png";
 import home2 from "../assets/home2.png";
 import home3 from "../assets/home3.png";
@@ -11,83 +12,178 @@ import Event from "../components/homepage/event";
 import { useMediaQuery } from "react-responsive";
 import FaqPage from "../components/homepage/FaqPage";
 import Works from "../components/homepage/howitworks";
+import PageTransition from "../components/shared/PageTransition";
+import AnimatedSection from "../components/shared/AnimatedSection";
+import GlassCard from "../components/shared/GlassCard";
 
 const Homepage = () => {
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   return (
-    <div style={styles.container}>
-      {/* Content Wrapper */}
-      <div style={styles.contentWrapper}>
-        {/* Left Section */}
-        <div style={styles.leftSection}>
-          <p style={styles.description}>
-            A complete solution for learning, time management, mental wellness, and career growth.
-          </p>
-          <div style={styles.buttonContainer}>
-            <button style={styles.seeMoreBtn}>See More</button>
-            <button 
-              style={styles.exploreBtn} 
-              onClick={() => navigate("/recruiter")}
-            >
-              Hire Talent
-            </button>
+    <PageTransition>
+      <div style={styles.container}>
+        {/* Hero Section with Gradient Background */}
+        <div style={{ ...styles.heroSection, ...(isMobile ? styles.heroSectionMobile : {}) }}>
+          <div style={{ ...styles.contentWrapper, ...(isMobile ? styles.contentWrapperMobile : {}) }}>
+            {/* Left Section - Hero Text */}
+            <div style={{ ...styles.leftSection, ...(isMobile ? styles.leftSectionMobile : {}) }}>
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <h1 style={styles.heroHeading}>
+                  Your Complete<br />Career Companion
+                </h1>
+              </motion.div>
+
+              <motion.p
+                style={{ ...styles.description, ...(isMobile ? styles.descriptionMobile : {}) }}
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                A complete solution for learning, time management, mental wellness, and career growth.
+              </motion.p>
+
+              <motion.div
+                style={{ ...styles.buttonContainer, ...(isMobile ? styles.buttonContainerMobile : {}) }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <button style={styles.seeMoreBtn}>See More</button>
+                <button 
+                  style={styles.exploreBtn} 
+                  onClick={() => navigate("/recruiter")}
+                >
+                  Hire Talent
+                </button>
+              </motion.div>
+            </div>
+
+            {/* Right Section - Feature Cards */}
+            <div style={{ ...styles.rightSection, ...(isMobile ? styles.rightSectionMobile : styles.rightSectionDesktop) }}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                style={isMobile ? undefined : styles.desktopCardSlotA}
+              >
+                <Link to="/jobpage" style={{ textDecoration: "none" }}>
+                  <GlassCard
+                    style={{
+                      ...styles.featureCardContent,
+                      ...(isMobile ? styles.featureCardMobile : styles.featureCardDesktopSquare),
+                    }}
+                  >
+                    <div style={{ ...styles.cardBackgroundImage, backgroundImage: `url(${home1})` }} />
+                    <div style={styles.cardBackgroundOverlay} />
+                    <div style={styles.cardForeground}>
+                      <div style={styles.cardIconSection}>
+                        <div style={{ ...styles.cardIcon, backgroundColor: "#9be6c1" }}>💼</div>
+                        <div>
+                          <h3 style={styles.cardTitle}>Jobs and Internships</h3>
+                          <p style={styles.cardSubtitle}>Explore and Achieve</p>
+                        </div>
+                      </div>
+                      <p style={styles.cardTagline}>Open roles, internships, and fresh opportunities.</p>
+                    </div>
+                  </GlassCard>
+                </Link>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                style={isMobile ? undefined : styles.desktopCardSlotB}
+              >
+                <Link to="/coursepage" style={{ textDecoration: "none" }}>
+                  <GlassCard
+                    style={{
+                      ...styles.featureCardContent,
+                      ...(isMobile ? styles.featureCardMobile : styles.featureCardDesktopSquare),
+                    }}
+                  >
+                    <div style={{ ...styles.cardBackgroundImage, backgroundImage: `url(${home2})` }} />
+                    <div style={styles.cardBackgroundOverlay} />
+                    <div style={styles.cardForeground}>
+                      <div style={styles.cardIconSection}>
+                        <div style={{ ...styles.cardIcon, backgroundColor: "#c8bbff" }}>📚</div>
+                        <div>
+                          <h3 style={styles.cardTitle}>Courses</h3>
+                          <p style={styles.cardSubtitle}>Refine Your Knowledge</p>
+                        </div>
+                      </div>
+                      <p style={styles.cardTagline}>Structured learning paths to master in-demand skills.</p>
+                    </div>
+                  </GlassCard>
+                </Link>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                style={isMobile ? undefined : styles.desktopCardSlotC}
+              >
+                <Link to="/toolspage" style={{ textDecoration: "none" }}>
+                  <GlassCard
+                    style={{
+                      ...styles.featureCardContent,
+                      ...(isMobile ? styles.featureCardMobile : styles.featureCardDesktopWide),
+                    }}
+                  >
+                    <div style={{ ...styles.cardBackgroundImage, backgroundImage: `url(${home3})` }} />
+                    <div style={styles.cardBackgroundOverlay} />
+                    <div style={styles.cardForeground}>
+                      <div style={styles.cardIconSection}>
+                        <div style={{ ...styles.cardIcon, backgroundColor: "#fed7aa" }}>⚡</div>
+                        <div>
+                          <h3 style={styles.cardTitle}>Productivity Tools</h3>
+                          <p style={styles.cardSubtitle}>Enjoy and Explore</p>
+                        </div>
+                      </div>
+                      <p style={styles.cardTagline}>Practice tests, simulators, and tools to stay ahead.</p>
+                    </div>
+                  </GlassCard>
+                </Link>
+              </motion.div>
+            </div>
           </div>
         </div>
 
-        {/* Right Section */}
-        <div style={styles.rightSection}>
-          {/** Jobs Box */}
-          <Link to="/jobpage" style={{ ...styles.box, backgroundColor: "#9be6c1" }} className="box">
-            <div style={styles.textContainer}>
-              <h3 style={styles.heading}>Jobs and Internships</h3>
-              <p style={styles.subHeading}>Explore and Achieve</p>
-            </div>
-            <img src={home1} alt="Jobs and Internships" style={styles.image(isMobile)} />
-          </Link>
+        {/* Section Divider */}
+        <div style={styles.sectionDivider} />
 
-          {/** Courses Box */}
-          <Link to="/coursepage" style={{ ...styles.box, backgroundColor: "#c8bbff" }} className="box">
-            <div style={styles.textContainer}>
-              <h3 style={styles.heading}>Courses</h3>
-              <p style={styles.subHeading}>Refine Your Knowledge</p>
-            </div>
-            <img src={home2} alt="Courses" style={styles.image(isMobile)} />
-          </Link>
+        {/* Additional Sections with Animations */}
+        <AnimatedSection direction="up">
+          <NewFeature />
+        </AnimatedSection>
 
-          {/** Productivity Tools Box */}
-          <Link to="/toolspage" style={{ ...styles.box, backgroundColor: "#fbc5ff" }} className="box">
-            <div style={styles.textContainer}>
-              <h3 style={styles.heading}>Productivity Tools</h3>
-              <p style={styles.subHeading}>Enjoy and Explore</p>
-            </div>
-            <img src={home3} alt="Productivity Tools" style={styles.image(isMobile)} />
-          </Link>
-        </div>
+        <AnimatedSection direction="up" delay={0.2}>
+          <Popular />
+        </AnimatedSection>
+
+        <AnimatedSection direction="up" delay={0.4}>
+          <HomeTool />
+        </AnimatedSection>
+
+        <AnimatedSection direction="up" delay={0.6}>
+          <Works />
+        </AnimatedSection>
+
+        <AnimatedSection direction="up" delay={0.8}>
+          <Event />
+        </AnimatedSection>
+
+        <AnimatedSection direction="up" delay={1}>
+          <FaqPage />
+        </AnimatedSection>
       </div>
-
-      {/* Additional Sections */}
-      <NewFeature />
-      <Popular />
-      <HomeTool />
-      <Works />
-      <Event />
-      <FaqPage />
-
-      {/* Adding Hover Animation using CSS */}
-      <style>
-        {`
-          .box {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-          }
-          .box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-          }
-        `}
-      </style>
-    </div>
+    </PageTransition>
   );
 };
 
@@ -96,83 +192,208 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "40px",
+    width: "100%",
+    backgroundColor: "#ffffff",
+  },
+  heroSection: {
+    width: "100%",
+    background: "var(--home-gradient)",
+    padding: "60px 40px",
+    minHeight: "500px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  heroSectionMobile: {
+    padding: "40px 20px",
   },
   contentWrapper: {
     display: "flex",
     justifyContent: "space-between",
     width: "100%",
+    maxWidth: "1200px",
+    gap: "40px",
+  },
+  contentWrapperMobile: {
+    flexDirection: "column",
+    gap: "28px",
   },
   leftSection: {
     flex: 2,
-    padding: '20px',
-    backgroundImage: `url(${bgImage1})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    color: '#000000', // Optional: improve contrast
-  },  
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    color: "#ffffff",
+    paddingRight: "40px",
+  },
+  leftSectionMobile: {
+    paddingRight: "0",
+  },
+  heroHeading: {
+    fontSize: "48px",
+    fontWeight: 800,
+    lineHeight: "1.2",
+    marginBottom: "20px",
+    color: "#ffffff",
+  },
   description: {
-    fontSize: "22px",
-    fontWeight: 150,
-    lineHeight: "1.5",
+    fontSize: "18px",
+    fontWeight: 400,
+    lineHeight: "1.6",
     maxWidth: "500px",
+    marginBottom: "30px",
+    color: "rgba(255, 255, 255, 0.9)",
+  },
+  descriptionMobile: {
+    fontSize: "16px",
   },
   buttonContainer: {
-    marginTop: "20px",
+    display: "flex",
+    gap: "15px",
+    marginTop: "10px",
+  },
+  buttonContainerMobile: {
+    flexWrap: "wrap",
   },
   seeMoreBtn: {
-    padding: "10px 20px",
+    padding: "12px 28px",
     fontSize: "16px",
-    fontWeight: "bold",
-    border: "2px solid black",
-    background: "white",
+    fontWeight: "600",
+    border: "2px solid white",
+    background: "transparent",
+    color: "white",
     cursor: "pointer",
-    borderRadius: "5px",
-    marginRight: "10px",
+    borderRadius: "var(--radius-md)",
+    transition: "all var(--transition-base)",
   },
   exploreBtn: {
-    padding: "10px 20px",
+    padding: "12px 28px",
     fontSize: "16px",
-    fontWeight: "bold",
-    backgroundColor: "#1181c8",
+    fontWeight: "600",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
     color: "white",
     border: "none",
     cursor: "pointer",
-    borderRadius: "5px",
+    borderRadius: "var(--radius-md)",
+    transition: "all var(--transition-base)",
   },
   rightSection: {
     flex: 1,
+    gap: "20px",
+  },
+  rightSectionDesktop: {
+    display: "grid",
+    gridTemplateColumns: "repeat(2, 1fr)",
+    gridTemplateRows: "repeat(2, 1fr)",
+    gap: "20px",
+    width: "min(44vw, 520px)",
+    aspectRatio: "1 / 1",
+  },
+  rightSectionMobile: {
     display: "flex",
     flexDirection: "column",
-    gap: "15px",
   },
-  box: {
+  desktopCardSlotA: {
+    gridColumn: "1 / 2",
+    gridRow: "1 / 2",
+    width: "100%",
+    height: "100%",
+  },
+  desktopCardSlotB: {
+    gridColumn: "2 / 3",
+    gridRow: "1 / 2",
+    width: "100%",
+    height: "100%",
+  },
+  desktopCardSlotC: {
+    gridColumn: "1 / 3",
+    gridRow: "2 / 3",
+    width: "100%",
+    height: "100%",
+  },
+  featureCardContent: {
+    position: "relative",
+    padding: "20px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "12px",
+    justifyContent: "space-between",
+  },
+  featureCardDesktopSquare: {
+    width: "100%",
+    height: "100%",
+    minHeight: "0",
+    aspectRatio: "1 / 1",
+  },
+  featureCardDesktopWide: {
+    width: "100%",
+    height: "100%",
+    minHeight: "0",
+  },
+  featureCardMobile: {
+    minHeight: "250px",
+  },
+  cardBackgroundImage: {
+    position: "absolute",
+    inset: "0",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    opacity: 0.6,
+    transform: "scale(1.03)",
+  },
+  cardBackgroundOverlay: {
+    position: "absolute",
+    inset: "0",
+    background: "linear-gradient(180deg, rgba(10, 20, 56, 0.28) 0%, rgba(10, 20, 56, 0.74) 100%)",
+  },
+  cardForeground: {
+    position: "relative",
+    zIndex: 2,
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    gap: "10px",
+  },
+  cardIconSection: {
+    display: "flex",
+    gap: "12px",
+    alignItems: "flex-start",
+  },
+  cardIcon: {
+    width: "48px",
+    height: "48px",
+    borderRadius: "var(--radius-md)",
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
-    padding: "20px",
-    borderRadius: "10px",
-    textDecoration: "none",
-    color: "black",
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+    justifyContent: "center",
+    fontSize: "24px",
+    flexShrink: 0,
   },
-  textContainer: {
-    flex: 1,
+  cardTitle: {
+    fontSize: "16px",
+    fontWeight: 600,
+    margin: "0 0 4px 0",
+    color: "#ffffff",
   },
-  heading: {
-    fontSize: "25px",
-    fontWeight: "bold",
+  cardSubtitle: {
+    fontSize: "13px",
+    fontWeight: 400,
+    margin: "0",
+    color: "rgba(255, 255, 255, 0.9)",
   },
-  subHeading: {
-    fontSize: "14px",
-    marginTop: "5px",
+  cardTagline: {
+    margin: "0",
+    fontSize: "13px",
+    lineHeight: "1.5",
+    color: "rgba(255, 255, 255, 0.92)",
+    maxWidth: "90%",
   },
-  image: (isMobile) => ({
-    width: isMobile ? "90px" : "230px",
-    height: isMobile ? "90px" : "120px",
-    objectFit: "cover",
-  }),
+  sectionDivider: {
+    width: "100%",
+    height: "1px",
+    backgroundColor: "#f0f0f0",
+  },
 };
 
 export default Homepage;
