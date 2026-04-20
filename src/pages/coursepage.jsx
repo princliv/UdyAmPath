@@ -1,10 +1,13 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import RecentView from "../components/coursepage/recentView";
 import SpecializationContent from "../components/coursepage/SpecializationPage";
 import MyLearningsContent from "../components/coursepage/MyLearningsPage";
 import headerBg from '../assets/coursepage/headerbg.png';
 import CodeEditor from '../components/coursepage/CodeEditor';
+import PageTransition from "../components/shared/PageTransition";
+import AnimatedSection from "../components/shared/AnimatedSection";
 
 const CoursePage = () => {
   const [selectedTab, setSelectedTab] = useState("Course");
@@ -18,6 +21,7 @@ const CoursePage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentChallenge, setCurrentChallenge] = useState(null);
   const [showCodeEditor, setShowCodeEditor] = useState(false);
+  const [isWideLayout, setIsWideLayout] = useState(() => window.innerWidth >= 1024);
   const navigate = useNavigate();
 
   // Daily challenges data
@@ -211,14 +215,28 @@ const CoursePage = () => {
     setShowCodeEditor(false);
   };
 
+  useEffect(() => {
+    const handleResize = () => setIsWideLayout(window.innerWidth >= 1024);
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const twoColumnGrid = isWideLayout
+    ? "minmax(220px, 1fr) minmax(0, 4fr)"
+    : "1fr";
+
   return (
-    <div style={{ 
+    <PageTransition>
+      <div style={{ 
       display: "flex", 
       flexDirection: "column", 
       gap: "20px", 
       padding: "20px",
       overflowX: "hidden",
-      position: "relative"
+      position: "relative",
+      background: "#ffffff",
+      borderRadius: "16px",
     }}>
       {/* Code Editor Overlay */}
       {showCodeEditor && currentChallenge && (
@@ -1015,16 +1033,26 @@ const CoursePage = () => {
       )}
 
       {/* Top Section */}
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div style={{ display: "grid", gridTemplateColumns: twoColumnGrid, gap: "20px" }}>
         <div style={{ 
           background: "#e4deff", 
           color: "black", 
           padding: "20px", 
           borderRadius: "10px", 
-          width: "250px", 
-          textAlign: "left" 
+          textAlign: "left",
+          minHeight: isWideLayout ? "100%" : "auto"
         }}>
-          <h2>Customized Path to Reduce the Duration of the Specialization</h2>
+          <h2
+            style={{
+              fontSize: "clamp(1.65rem, 2vw, 2.2rem)",
+              lineHeight: "1.2",
+              maxWidth: "100%",
+              overflowWrap: "anywhere",
+              margin: 0,
+            }}
+          >
+            Customized Path to Reduce the Duration of the Specialization
+          </h2>
           <button 
             onClick={toggleModal}
             style={{ 
@@ -1054,10 +1082,9 @@ const CoursePage = () => {
           backgroundRepeat: "no-repeat",
           padding: "20px", 
           borderRadius: "10px", 
-          flex: 1, 
-          marginLeft: "20px",
+          minWidth: 0,
         }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "12px" }}>
             <h2 style={{ fontSize: "30px" }}>
               Learn Something New in <span style={{ color: "#004aad" }}>60 Seconds</span><br /> 
               Quick <span style={{ color: "#004aad" }}>Knowledge Boost</span>
@@ -1089,7 +1116,7 @@ const CoursePage = () => {
             marginTop: "10px", 
             color: "#555", 
             fontSize: "16px",
-            maxWidth: "70%"
+            maxWidth: isWideLayout ? "70%" : "100%"
           }}>
             Select a topic and learn its essentials in just one minute. Perfect for quick knowledge boosts!
           </p>
@@ -1097,10 +1124,10 @@ const CoursePage = () => {
       </div>
 
       {/* Main Content Area */}
-      <div style={{ display: "flex", gap: "20px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: twoColumnGrid, gap: "20px", alignItems: "start" }}>
         {/* Left Sidebar - Now with single Job Simulator card */}
         <div style={{ 
-          width: "270px", 
+          width: "100%", 
           background: "linear-gradient(to bottom, #f8f9ff, #e4deff)", 
           padding: "15px", 
           borderRadius: "12px", 
@@ -1444,44 +1471,56 @@ const CoursePage = () => {
         </div>
 
         {/* Right Content Area */}
-        <div style={{ flex: 1 }}>
+        <div style={{ minWidth: 0 }}>
+          <AnimatedSection>
           <div style={{ 
             display: "flex", 
             justifyContent: "space-between", 
             alignItems: "center", 
+            flexWrap: "wrap",
+            gap: "10px",
             marginBottom: "20px",
-            background: "white",
-            padding: "10px",
-            borderRadius: "10px"
+            background: "rgba(124, 107, 255, 0.1)",
+            border: "1px solid rgba(124, 107, 255, 0.2)",
+            backdropFilter: "blur(12px)",
+            padding: "12px",
+            borderRadius: "var(--radius-xl)"
           }}>
             <div>
               {['Course', 'Specialization', 'My Learnings'].map(tab => (
-                <button
+                <motion.button
                   key={tab}
                   onClick={() => setSelectedTab(tab)}
+                  whileTap={{ scale: 0.98 }}
                   style={{
-                    backgroundColor: selectedTab === tab ? "#3f92c3" : "#ccc",
-                    color: "white",
-                    padding: "10px 15px",
+                    backgroundColor: selectedTab === tab ? "var(--course-primary)" : "rgba(255, 255, 255, 0.55)",
+                    color: selectedTab === tab ? "white" : "#4b3f71",
+                    padding: "10px 16px",
                     border: "none",
-                    borderRadius: "5px",
+                    borderRadius: "999px",
                     marginRight: "10px",
                     cursor: "pointer",
+                    fontWeight: "600",
+                    transition: "all 0.3s ease",
                   }}
                 >
                   {tab}
-                </button>
+                </motion.button>
               ))}
             </div>
             <span style={{ fontSize: "20px", cursor: "pointer" }}>🔖</span>
           </div>
+          </AnimatedSection>
 
-          {selectedTab === "Course" && <RecentView />}
-          {selectedTab === "Specialization" && <SpecializationContent />}
-          {selectedTab === "My Learnings" && <MyLearningsContent />}
+          <AnimatedSection>
+            {selectedTab === "Course" && <RecentView />}
+            {selectedTab === "Specialization" && <SpecializationContent />}
+            {selectedTab === "My Learnings" && <MyLearningsContent />}
+          </AnimatedSection>
         </div>
       </div>
-    </div>
+      </div>
+    </PageTransition>
   );
 };
 

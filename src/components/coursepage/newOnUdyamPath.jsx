@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import genAiImage from "../../assets/coursepage/gen_ai.jpg";
 import cyberImage from "../../assets/coursepage/cybersecurity.jpg";
 import devopsImage from "../../assets/coursepage/dev_ops.png";
@@ -8,6 +9,10 @@ import courseraLogo from "../../assets/coursepage/cera.png";
 import udemyLogo from "../../assets/coursepage/Udemy.png";
 import skillshareLogo from "../../assets/coursepage/Skillshare.png";
 import linkedInLearninglogo from "../../assets/coursepage/LinkedInLearning.png";
+import AnimatedSection from "../shared/AnimatedSection";
+import GlassCard from "../shared/GlassCard";
+import SkeletonCard from "../shared/SkeletonCard";
+import { courseCardStyles, getSectionPanelStyle } from "./courseCardStyles";
 
 const logoMap = {
   "Coursera": courseraLogo,
@@ -25,6 +30,7 @@ const courseImageMap = {
 const New = () => {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/coursedata.json")
@@ -38,8 +44,12 @@ const New = () => {
           image: courseImageMap[course.title] || null,
         }));
         setCourses(updatedCourses);
+        setLoading(false);
       })
-      .catch((error) => console.error("Error loading course data:", error));
+      .catch((error) => {
+        console.error("Error loading course data:", error);
+        setLoading(false);
+      });
   }, []);
 
   const openCourseDetail = (course) => {
@@ -47,98 +57,85 @@ const New = () => {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "flex-end" }}>
-      <div style={{ width: "100%", backgroundColor: "#ffffff", padding: "20px" }}>
-        {/* Heading */}
-        <div style={{ marginBottom: "10px", fontSize: "25px", fontWeight: "bold", color: "#333" }}>
-          New On UdyamPath
-        </div>
+    <AnimatedSection>
+      <div style={courseCardStyles.sectionWrap}>
+        <div style={getSectionPanelStyle("rgba(237,233,254,0.72)")}>
+          <div style={courseCardStyles.heading}>New On UdyamPath</div>
 
-        {/* Course Grid */}
-        <div style={{ 
-          display: "grid", 
-          gridTemplateColumns: "1fr 1fr 1fr 1fr", 
-          gap: "20px", 
-          padding: "20px", 
-          borderRadius: "10px" 
-        }}>
-          {courses.map((course, index) => (
-            <div
-              key={index}
-              style={{
-                backgroundColor: course.color,
-                padding: "10px",
-                borderRadius: "15px",
-                boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-                display: "flex",
-                flexDirection: "column",
-                gap: "20px",
-                height: "auto",
-                maxWidth: "250px",
-              }}
-            >
-              {/* Course Image */}
-              <div style={{ flex: 1 }}>
-                <img
-                  src={course.image}
-                  alt="course-related"
-                  style={{
-                    width: "100%",
-                    height: "150px",
-                    objectFit: "cover",
-                    borderRadius: "10px",
-                  }}
-                />
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: 0.12,
+                },
+              },
+            }}
+            style={courseCardStyles.grid}
+          >
+            {loading
+              ? Array.from({ length: 4 }).map((_, index) => (
+                  <SkeletonCard
+                    key={`new-skeleton-${index}`}
+                    height={260}
+                    borderRadius={16}
+                    baseColor="#ede9fe"
+                    highlightColor="#c8bbff"
+                  />
+                ))
+              : courses.map((course, index) => (
+                  <motion.div
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, y: 30 },
+                      visible: { opacity: 1, y: 0 },
+                    }}
+                  >
+                    <GlassCard style={courseCardStyles.card}>
+                      <div style={courseCardStyles.imageWrap}>
+                        <motion.img
+                          src={course.image}
+                          alt="course-related"
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.3 }}
+                          style={courseCardStyles.image}
+                        />
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={courseCardStyles.metaRow}>
+                          <span>{course.company}</span>
+                          <span>{course.duration}</span>
+                        </div>
+                        <h4 style={courseCardStyles.title}>{course.title}</h4>
+                      </div>
+
+                      <button
+                        onClick={() => openCourseDetail(course)}
+                        style={courseCardStyles.detailsButton}
+                      >
+                        Details
+                      </button>
+                    </GlassCard>
+                  </motion.div>
+                ))}
+
+            {!loading && (
+              <div style={courseCardStyles.viewMoreWrap}>
+                <button
+                  style={courseCardStyles.viewMoreButton}
+                  onClick={() => console.log("View More clicked")}
+                >
+                  View More
+                </button>
               </div>
-
-              {/* Course Details */}
-              <div style={{ flex: 1 }}>
-                <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#555" }}>
-                  <span>{course.company}</span>
-                  <span>{course.duration}</span>
-                </div>
-                <h4 style={{ fontSize: "18px", fontWeight: "bold", margin: "10px 0", color: "#333" }}>
-                  {course.title}
-                </h4>
-              </div>
-
-              {/* Details Button */}
-              <button
-                onClick={() => openCourseDetail(course)}
-                style={{
-                  backgroundColor: "#f0f0f0",
-                  border: "none",
-                  padding: "5px 10px",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  alignSelf: "flex-start",
-                }}
-              >
-                Details
-              </button>
-            </div>
-          ))}
-          
-          {/* View More Button */}
-          <div style={{ gridColumn: "span 4", textAlign: "left" }}>
-            <button
-              style={{
-                padding: "5px 10px",
-                backgroundColor: "white",
-                color: "#004aad",
-                border: "3px solid #004aad",
-                borderRadius: "7px",
-                cursor: "pointer",
-                fontSize: "12px",
-              }}
-              onClick={() => console.log("View More clicked")}
-            >
-              View More
-            </button>
+            )}
+          </motion.div>
           </div>
         </div>
-      </div>
-    </div>
+    </AnimatedSection>
   );
 };
 
