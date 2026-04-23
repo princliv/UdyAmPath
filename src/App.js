@@ -1,8 +1,8 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { get, ref } from "firebase/database";
-import React, { Suspense, lazy, useEffect, useState } from "react";
-import { BrowserRouter as Router, Link, Navigate, NavLink, Route, Routes, useLocation } from "react-router-dom";
+import React, { Suspense, lazy, useEffect, useRef, useState } from "react";
+import { BrowserRouter as Router, Link, Navigate, NavLink, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { auth, database } from "./firebase/firebase";
 
@@ -36,11 +36,9 @@ const CourseDetail = lazy(() => import("./pages/coursedetail"));
 const CoursePage = lazy(() => import("./pages/coursepage"));
 const Homepage = lazy(() => import("./pages/homepage"));
 const JobPage = lazy(() => import("./pages/jobpage"));
-const Login = lazy(() => import("./pages/login"));
 const NotesPage = lazy(() => import("./pages/notespage"));
 const Profile = lazy(() => import("./pages/profile"));
 const Recruiter = lazy(() => import("./pages/recruiter"));
-const Signup = lazy(() => import("./pages/signup"));
 const ToolsPage = lazy(() => import("./pages/toolspage"));
 const JobSimulator = lazy(() => import("./components/coursepage/JobSimulator"));
 const ResumeCheck = lazy(() => import("./components/jobpage/ResumeCheck"));
@@ -74,11 +72,14 @@ function AppContent() {
   const [isAuthLoading, setIsAuthLoading] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation(); // Now correctly inside Router
+  const navigate = useNavigate();
   const isMobile = useMediaQuery({ maxWidth: 820 });
   const isTablet = useMediaQuery({ minWidth: 821, maxWidth: 1120 });
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSignup] = useState(false);
+  const [authMode, setAuthMode] = useState("login");
   const [showModal, setShowModal] = useState(false);
+  const [isMobileProfileMenuOpen, setIsMobileProfileMenuOpen] = useState(false);
+  const mobileProfileMenuRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -99,6 +100,42 @@ function AppContent() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setIsMobileProfileMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (location.pathname === "/login") {
+      setAuthMode("login");
+      setIsModalOpen(true);
+    }
+
+    if (location.pathname === "/signup") {
+      setAuthMode("signup");
+      setIsModalOpen(true);
+    }
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!isMobileProfileMenuOpen) {
+      return;
+    }
+
+    const handleOutsideClick = (event) => {
+      if (mobileProfileMenuRef.current && !mobileProfileMenuRef.current.contains(event.target)) {
+        setIsMobileProfileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+    };
+  }, [isMobileProfileMenuOpen]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -131,6 +168,19 @@ function AppContent() {
   };
 
   const isAuthPage = location.pathname === "/login" || location.pathname === "/signup";
+  const showMobileBottomBar = isMobile && !isAuthPage && location.pathname !== "/recruiter";
+
+  const openAuthModal = (mode = "login") => {
+    setAuthMode(mode);
+    setIsModalOpen(true);
+  };
+
+  const closeAuthModal = () => {
+    setIsModalOpen(false);
+    if (isAuthPage) {
+      navigate("/homepage", { replace: true });
+    }
+  };
 
   const applyInlineHover = (event, hoverStyles) => {
     Object.assign(event.currentTarget.style, hoverStyles);
@@ -158,10 +208,10 @@ function AppContent() {
     margin: "0 auto",
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: isMobile ? "flex-start" : "space-between",
     gap: "16px",
-    padding: scrolled ? "10px 20px" : "14px 20px",
-    flexWrap: isMobile ? "wrap" : "nowrap",
+    padding: isMobile ? "10px 16px" : scrolled ? "10px 20px" : "14px 20px",
+    flexWrap: "nowrap",
   };
 
   const logoStyle = {
@@ -260,6 +310,162 @@ function AppContent() {
     lineHeight: "1.6",
   };
 
+  const mobileBottomDockWrapStyle = {
+    position: "fixed",
+    left: 0,
+    right: 0,
+    bottom: "14px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "8px",
+    zIndex: 1300,
+    pointerEvents: "none",
+  };
+
+  const mobileDockSectionBase = {
+    minHeight: "60px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    pointerEvents: "auto",
+  };
+
+  const mobileLeftDockStyle = {
+    ...mobileDockSectionBase,
+    width: "62px",
+  };
+
+  const mobileCenterDockStyle = {
+    ...mobileDockSectionBase,
+    width: "182px",
+    height: "50px",
+    minHeight: "50px",
+    padding: "3px 6px",
+    borderRadius: "999px",
+    background: "rgba(39, 43, 52, 0.94)",
+    backdropFilter: "blur(14px) saturate(140%)",
+    WebkitBackdropFilter: "blur(14px) saturate(140%)",
+    border: "1px solid rgba(255, 255, 255, 0.14)",
+    boxShadow: "0 12px 24px rgba(0, 0, 0, 0.25)",
+    justifyContent: "space-between",
+  };
+
+  const mobileRightDockStyle = {
+    ...mobileDockSectionBase,
+    width: "62px",
+    position: "relative",
+  };
+
+  const mobileDockMenuStyle = {
+    position: "absolute",
+    bottom: "72px",
+    right: 0,
+    width: "172px",
+    background: "rgba(39, 43, 52, 0.96)",
+    backdropFilter: "blur(14px) saturate(140%)",
+    WebkitBackdropFilter: "blur(14px) saturate(140%)",
+    border: "1px solid rgba(255, 255, 255, 0.14)",
+    borderRadius: "14px",
+    boxShadow: "0 14px 28px rgba(0, 0, 0, 0.28)",
+    padding: "8px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "4px",
+  };
+
+  const mobileMenuItemStyle = {
+    width: "100%",
+    border: "none",
+    textDecoration: "none",
+    background: "transparent",
+    color: "#ffffff",
+    borderRadius: "10px",
+    padding: "10px 12px",
+    textAlign: "left",
+    fontSize: "13px",
+    fontWeight: 600,
+    cursor: "pointer",
+  };
+
+  const mobileCenterActionBase = {
+    textDecoration: "none",
+    border: "1px solid rgba(255, 255, 255, 0.14)",
+    background: "rgba(55, 60, 70, 0.96)",
+    backdropFilter: "blur(14px) saturate(140%)",
+    WebkitBackdropFilter: "blur(14px) saturate(140%)",
+    boxShadow: "0 12px 24px rgba(0, 0, 0, 0.25)",
+    borderRadius: "50%",
+    textDecoration: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#f9fcff",
+    cursor: "pointer",
+    transition: "all 0.22s ease",
+    flexDirection: "column",
+    gap: "0",
+    fontSize: "0",
+    fontWeight: 600,
+    lineHeight: 1,
+    width: "40px",
+    height: "40px",
+    padding: "0",
+    minWidth: "40px",
+  };
+
+  const mobileCenterLinkStyle = ({ isActive }) => ({
+    ...mobileCenterActionBase,
+    color: "#ffffff",
+    background: isActive ? "linear-gradient(135deg, #1181c8 0%, #004aad 100%)" : mobileCenterActionBase.background,
+    border: isActive ? "1px solid rgba(158, 216, 255, 0.85)" : mobileCenterActionBase.border,
+    boxShadow: isActive ? "0 10px 22px rgba(17, 129, 200, 0.4)" : mobileCenterActionBase.boxShadow,
+    transform: isActive ? "translateY(-2px)" : "translateY(0)",
+  });
+
+  const mobileNavItemBase = {
+    textDecoration: "none",
+    border: "1px solid rgba(255, 255, 255, 0.14)",
+    background: "rgba(39, 43, 52, 0.94)",
+    backdropFilter: "blur(14px) saturate(140%)",
+    WebkitBackdropFilter: "blur(14px) saturate(140%)",
+    boxShadow: "0 12px 24px rgba(0, 0, 0, 0.25)",
+    color: "#f9fcff",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    gap: "0",
+    fontSize: "0",
+    fontWeight: 600,
+    lineHeight: 1,
+    width: "50px",
+    height: "50px",
+    padding: "0",
+    borderRadius: "50%",
+    cursor: "pointer",
+    transition: "all 0.22s ease",
+  };
+
+  const mobileNavLinkStyle = ({ isActive }) => ({
+    ...mobileNavItemBase,
+    color: "#ffffff",
+    background: isActive ? "linear-gradient(135deg, #1181c8 0%, #004aad 100%)" : mobileNavItemBase.background,
+    border: isActive ? "1px solid rgba(158, 216, 255, 0.85)" : mobileNavItemBase.border,
+    boxShadow: isActive ? "0 10px 22px rgba(17, 129, 200, 0.4)" : mobileNavItemBase.boxShadow,
+    transform: isActive ? "translateY(-2px)" : "translateY(0)",
+  });
+
+  const mobileIconStyle = {
+    fontSize: "18px",
+    lineHeight: 1,
+  };
+
+  const mobileCenterIconStyle = {
+    fontSize: "15px",
+    lineHeight: 1,
+  };
+
   return (
     <>
       {location.pathname !== "/recruiter" && (
@@ -284,7 +490,7 @@ function AppContent() {
                 }
               />
             </Link>
-            <nav style={navStyle}>
+            {!isMobile && <nav style={navStyle}>
               <NavLink
                 to="/coursepage"
                 style={navLinkStyle}
@@ -348,7 +554,7 @@ function AppContent() {
 
               {!user ? (
                 <button
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={() => openAuthModal("login")}
                   style={actionButtonStyle}
                   onMouseEnter={(event) =>
                     applyInlineHover(event, {
@@ -409,10 +615,11 @@ function AppContent() {
                   </button>
                 </>
               )}
-            </nav>
+            </nav>}
           </div>
         </header>
       )}
+      <main style={{ paddingBottom: showMobileBottomBar ? "92px" : "0" }}>
       <Suspense fallback={<div style={{ padding: "20px", textAlign: "center" }}>Loading...</div>}>
       <Routes>
         <Route path="/" element={<Homepage />} />
@@ -440,8 +647,8 @@ function AppContent() {
         <Route path="/placementpapers" element={<Placement />} />
         <Route path="/placeTest" element={<PlaceTest />} />
         <Route path="/books" element={<Books />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<div style={{ minHeight: "100vh" }} />} />
+        <Route path="/signup" element={<div style={{ minHeight: "100vh" }} />} />
         <Route
           path="/recruiter"
           element={
@@ -469,7 +676,82 @@ function AppContent() {
 
       </Routes>
       </Suspense>
-      <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isSignup={isSignup} />
+      </main>
+
+      {showMobileBottomBar && (
+        <nav style={mobileBottomDockWrapStyle} aria-label="Mobile bottom navigation">
+          <div style={mobileLeftDockStyle}>
+            <NavLink to="/homepage" style={mobileNavLinkStyle} onClick={() => setIsMobileProfileMenuOpen(false)}>
+              <i className="fas fa-home" style={mobileIconStyle} aria-hidden="true" />
+              <span>Home</span>
+            </NavLink>
+          </div>
+
+          <div style={mobileCenterDockStyle}>
+            <NavLink to="/coursepage" style={mobileCenterLinkStyle} onClick={() => setIsMobileProfileMenuOpen(false)}>
+              <i className="fas fa-book-open" style={mobileIconStyle} aria-hidden="true" />
+              <span>Courses</span>
+            </NavLink>
+            <NavLink to="/jobpage" style={mobileCenterLinkStyle} onClick={() => setIsMobileProfileMenuOpen(false)}>
+              <i className="fas fa-briefcase" style={mobileIconStyle} aria-hidden="true" />
+              <span>Jobs</span>
+            </NavLink>
+            <NavLink to="/toolspage" style={mobileCenterLinkStyle} aria-label="Tools" onClick={() => setIsMobileProfileMenuOpen(false)}>
+              <i className="fas fa-plus" style={mobileCenterIconStyle} aria-hidden="true" />
+              <span>Tool</span>
+            </NavLink>
+          </div>
+
+          <div style={mobileRightDockStyle} ref={mobileProfileMenuRef}>
+            {user ? (
+              <>
+                <button
+                  style={mobileNavItemBase}
+                  onClick={() => setIsMobileProfileMenuOpen((prev) => !prev)}
+                  aria-label="Open profile options"
+                >
+                  <i className="fas fa-user-circle" style={mobileIconStyle} aria-hidden="true" />
+                  <span>Profile</span>
+                </button>
+
+                {isMobileProfileMenuOpen && (
+                  <div style={mobileDockMenuStyle}>
+                    <Link
+                      to="/profile"
+                      style={mobileMenuItemStyle}
+                      onClick={() => setIsMobileProfileMenuOpen(false)}
+                    >
+                      My Profile
+                    </Link>
+                    <button
+                      onClick={() => {
+                        setIsMobileProfileMenuOpen(false);
+                        handleLogout();
+                      }}
+                      style={mobileMenuItemStyle}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </>
+            ) : (
+              <button
+                onClick={() => {
+                  setIsMobileProfileMenuOpen(false);
+                  openAuthModal("login");
+                }}
+                style={mobileNavItemBase}
+              >
+                <i className="fas fa-user" style={mobileIconStyle} aria-hidden="true" />
+                <span>Login</span>
+              </button>
+            )}
+          </div>
+        </nav>
+      )}
+
+      <AuthModal isOpen={isModalOpen} onClose={closeAuthModal} initialMode={authMode} />
       {showModal && <FounderNoteModal onClose={handleCloseModal} />}
       {/* Footer (Hidden on Login & Signup pages) */}
       {!isAuthPage && (
